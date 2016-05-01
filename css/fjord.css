@@ -1,0 +1,121 @@
+
+#menu {
+  display: none;
+  position: fixed;
+  top: 20px;
+  z-index: 1;
+  right: 20px;
+  color: white;
+}
+#menu div {
+  float: left;
+  background: black;
+  height: 4em;
+  line-height: 4em;
+  text-align: center;
+  margin-right: 1px;
+  font-family: "Georgia";
+  font-size: 1.25em;
+  width: 4em;
+  margin-bottom: 1px;
+}
+#menu #share {
+/*  background: transparent url(/images/share.png) no-repeat;
+*/  cursor: pointer;
+}
+#menu #share #container {
+  position: relative;
+  width: 320px;
+  height: 80px;
+  margin-left: -321px;
+  overflow: hidden;
+  visibility: hidden;
+  background: none;
+}
+#menu #share #container div {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 80px;
+  margin-left: 321px;
+}
+/*#menu #share #container #facebook {
+  background: black url(/images/share-facebook.png) no-repeat;
+  left: 1px;
+}
+#menu #share #container #twitter {
+  background: black url(/images/share-twitter.png) no-repeat;
+  left: 82px;
+}
+#menu #share #container #google-plus {
+  background: black url(/images/share-googleplus.png) no-repeat;
+  left: 163px;
+}
+#menu #share #container #linkedin {
+  background: black url(/images/share-linkedin.png) no-repeat;
+  left: 244px;
+}*/
+#menu #share #container.active {
+  visibility: visible;
+}
+#menu #share #container.active div {
+  margin-left: 0;
+}
+#menu #next {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  background: black url(img/arrow-down-white.png);
+}
+#menu #next:hover {
+  background: black url(img/arrow-down-white.png) 0 80px;
+}
+#menu #next:active {
+  background: black url(img/arrow-down-white.png) 0px 88px;
+}
+#menu #prev {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  background: black url(img/arrow-up-white.png);
+}
+#menu #prev:hover {
+  background: black url(img/arrow-up-white.png) 0 -80px;
+}
+#menu #prev:active {
+  background: black url(img/arrow-up-white.png) 0px -88px;
+}
+#menu.trend-1 #prev, #menu.trend-NaN #prev {
+  height: 80px;
+  width: 0;
+}
+#menu.trend-10 #next {
+  height: 80px;
+  width: 0;
+}
+@media screen and (min-width: 768px) {
+  #menu {
+    display: block;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #menu {
+    top: 90px;
+    height: 180px;
+    width: 80px;
+  }
+  #menu.trend-1 #prev, #menu.trend-NaN #prev {
+    height: 0;
+    width: 80px;
+  }
+  #menu.trend-10 #next {
+    height: 0;
+    width: 80px;
+  }
+  #menu div {
+    margin-right: 0;
+  }
+}
