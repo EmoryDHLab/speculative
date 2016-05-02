@@ -181,7 +181,7 @@ document.createSvg = function(tagName) {
         if(triType != null)
           oldTriType = triType.getAttribute('id'); //store the previous triangle event so when it comes around again, we know it's really the second of the two events. The first one should be labeled w/o 'tri'
         
-        var dataEntry = country + ', ' +color + ', ' +id;
+        var dataEntry = country + ', ' +color + ', ' + id.replace(/compare/g,"");
         var dataList = document.getElementById("internalData").innerHTML;
         document.getElementById('internalData').innerHTML = dataList + '<li>' + dataEntry + '</li>';
     })
