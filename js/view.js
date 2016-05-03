@@ -172,55 +172,62 @@ document.createSvg = function(tagName) {
       else //else, the event is a triangle
         document.getElementById('sampleList').innerHTML = eventList + '<li id= viewtritype'+e.eventType + 'text'+parseInt((e.year%100)-1) + '>' + e.text + '</li>';
     })
-
   }
 
   function highlightItem(element){ //element is either text in list or typesquare or tritype 
     var id = element.getAttribute("id");
     var offsets = null;
 
-    if(id.includes("text")){ //if hovering over text
+    if(id && id.includes("text")){ //if hovering over text
       element.setAttribute("class","highlight"); 
       //the text's id type#text# turns to a square's id type#year#
       var typeSquare = document.getElementById(id.replace('text','year'));
-      typeSquare.setAttribute("class","highlightSquare");
+      if(typeSquare){
+        typeSquare.setAttribute("class","highlightSquare");
+      }
       offsets = $('#'+id.replace('text','year')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
     }
-    else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
+    else if(id && id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
       element.setAttribute("class","highlightSquare"); 
       var text = document.getElementById(id.replace('viewyear','text'))
-      text.setAttribute("class","highlight");
+      if(text){
+        text.setAttribute("class","highlight");
+      }
+      
       offsets = $('#'+id.replace('viewyear','text')).offset();
     }
 
     //TODO: draw line connecting the two elements
     var aLine = document.createSvg('line');
 
-    aLine.setAttribute('x1', offsets.left-60);
-    aLine.setAttribute('y1', offsets.top-120);
-    aLine.setAttribute('x2', $('#'+element.getAttribute("id")).offset().left-60);
-    aLine.setAttribute('y2', $('#'+element.getAttribute("id")).offset().top-120);
+    if(document.getElementById('bg') && aLine && offsets){
+      aLine.setAttribute('x1', offsets.left-60);
+      aLine.setAttribute('y1', offsets.top-120);
+      aLine.setAttribute('x2', $('#'+element.getAttribute("id")).offset().left-60);
+      aLine.setAttribute('y2', $('#'+element.getAttribute("id")).offset().top-120);
 
-    aLine.setAttribute('stroke', 'black');
-    aLine.setAttribute('stroke-width', '1');
-    aLine.setAttribute('stroke-dasharray',"10,10");
-    aLine.setAttribute('id', 'viewaLine');
-    //add line to page
-    document.getElementById('bg').appendChild(aLine);
+      aLine.setAttribute('stroke', 'black');
+      aLine.setAttribute('stroke-width', '1');
+      aLine.setAttribute('stroke-dasharray',"10,10");
+      aLine.setAttribute('id', 'viewaLine');
+      //add line to page
+      document.getElementById('bg').appendChild(aLine); 
+    }
+
   }
 
 
   function removeHighlight(element){ 
     var id = element.getAttribute("id");
 
-    if(id.includes("text")){ //if hovering over text
+    if(id && id.includes("text")){ //if hovering over text
       element.removeAttribute("class","highlight"); 
       //type#text# turns to type#year# for the squares
-      document.getElementById(id.replace('text','viewyear')).removeAttribute("class","highlightSquare");      
+      document.getElementById(id.replace('text','viewyear')).removeAttribute("class","highlightSquare");  //TODO: needs a null check    
   }
-    else if(id.includes("year")){ //if hovering over rect or tritype
+    else if(id && id.includes("year")){ //if hovering over rect or tritype
       element.removeAttribute("class","highlightSquare");
-      document.getElementById(id.replace('viewyear','text')).removeAttribute("class","highlight");
+      document.getElementById(id.replace('viewyear','text')).removeAttribute("class","highlight"); //TODO: needs a null check
     }
   }
 

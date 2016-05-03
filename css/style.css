@@ -56,15 +56,15 @@ html, body{
 }
 
 #history{
-	background-color: #8D2B1D;
+	background-color: #8D2B1D; /*red*/
 }
 
 #interaction{
-	background-color: #325B67;
+	background-color: #325B67; /*blue*/
 }
 
 #compare{
-	background-color: #458867;
+	background-color: #458867; /*green*/
 }
 
 #credits{
@@ -82,3 +82,9 @@ html, body{
 	stroke: black;
 
 }
+
+.interactive{
+	font-size: smaller;
+}
+
+

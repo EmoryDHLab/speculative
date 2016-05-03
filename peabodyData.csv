@@ -1,1 +1,24 @@
-year,color,country,eventType,text1501,#720042,England,5,"1501. Henry VII. grants patent for colonizing America. <i>To represent this event, the 6th subdivision of the square on the upper left hand is painted purple, which is the color for England</i>"1512,#BA390B,Spain,7,1512. Ponce de Leon discovers Florida. <i>Eighth subdivision of the twelfth square is brick red for Spain.</i>1517,#720042,England,7,"1517. Sebastian Cabot's last voyage in the English service. <i>Eighth subdivision, purple</i>"1520,#BA390B,Spain,7,"1520. Vasquez de Ayllon's Piracy on Chicora. <i>Eighth, brick red</i>"1523,#6EA2A3,France,7,"1523. Verrazzani explores American coasts for France. <i>Eighth subdivision, blue, for France</i>"1525,#BA390B,Spain,7,"1525. Stephen Gomez tries to discover North West Passage to India for Spain. <i>Eighth subdivision, brick red</i>"1526,#BA390B,Spain,7,"1526. Pamphilo de Narvaez attempts to conquer Florida. <i>Eighth, brick red</i>"1534,#6EA2A3,France,7,"1534. James Cartier discovers River St. Lawrence. <i>Eighth, blue</i>"1537,#BA390B,Spain,7,"1537. Ferdinand de Soto attempts to conquer Florida. <i>Eighth, brick red</i>"1540,#6EA2A3,France,8,"1540. Roberval and Cartier try in vain to colonize Canada. <i>Eighth, blue</i>"1542,#BA390B,Spain,8,"1542. Ferdinand de Soto dies on the Mississippi. <i>Ninth, brick red.</i>"1562,#6EA2A3,France,7,"1562. Coligny sends a Huguenot Colony to America. <i>Eighth, blue</i>"1565,#BA390B,Spain,0,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i> First, brick red, to represent the conquering Spaniards </i>"1565,#BA390B,Spain,1,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i>upper half of second, brick red, to represent annexation of French colony by the Spaniards </i>"1565,#BA390B,Spain,4,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i> fifth, brick red, to represent the foundation of St. Augustine </i>"1565,#BA390B,Spain,7,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i>eighth, brick red, the deed of Melendez</i>"1565,#6EA2A3,France,1,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i>  lower half of the second, blue,  to represent annexation of French colony</i>"1565,#6EA2A3,France,2,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony. <i> Third, blue, to represent French loss</i>"1576,#720042,England,7,"1576. Martin Frobisher renews English Explorations. <i>Eighth, purple</i>"1578,#720042,England,7,"1578. Sir Humphrey Gilbert's Voyage and Death. <i>Eighth, purple</i>"1579,#720042,England,7,"1579. Sir Francis Drake discovers Oregon, and names it New Albion. <i>Eighth, purple</i>"1584,#720042,England,7,"1584. Sir Walter Raleigh gets patent to colonize. <i>Eighth, purple</i>"1585,#720042,England,7,"1585. Sir W. R.'s unsuccessful colony at Roanoke, carried out by Sir Richard Grenville. <i>Eighth, purple</i>"
+year,color,country,eventType,text
+1501,#720042,England,5,1501. Henry VII. grants patent for colonizing America.
+1512,#BA390B,Spain,7,1512. Ponce de Leon discovers Florida.
+1517,#720042,England,7,1517. Sebastian Cabot's last voyage in the English service.
+1520,#BA390B,Spain,7,1520. Vasquez de Ayllon's Piracy on Chicora.
+1523,#6EA2A3,France,7,1523. Verrazzani explores American coasts for France.
+1525,#BA390B,Spain,7,1525. Stephen Gomez tries to discover North West Passage to India for Spain.
+1526,#BA390B,Spain,7,1526. Pamphilo de Narvaez attempts to conquer Florida.
+1534,#6EA2A3,France,7,1534. James Cartier discovers River St. Lawrence.
+1537,#BA390B,Spain,7,1537. Ferdinand de Soto attempts to conquer Florida.
+1540,#6EA2A3,France,8,1540. Roberval and Cartier try in vain to colonize Canada.
+1542,#BA390B,Spain,8,1542. Ferdinand de Soto dies on the Mississippi.
+1562,#6EA2A3,France,7,1562. Coligny sends a Huguenot Colony to America.
+1565,#BA390B,Spain,0,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1565,#BA390B,Spain,1,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1565,#BA390B,Spain,4,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1565,#BA390B,Spain,7,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1565,#6EA2A3,France,1,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1565,#6EA2A3,France,2,"1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony."
+1576,#720042,England,7,1576. Martin Frobisher renews English Explorations.
+1578,#720042,England,7,1578. Sir Humphrey Gilbert's Voyage and Death.
+1579,#720042,England,7,"1579. Sir Francis Drake discovers Oregon, and names it New Albion."
+1584,#720042,England,7,1584. Sir Walter Raleigh gets patent to colonize.
+1585,#720042,England,7,"1585. Sir W. R.'s unsuccessful colony at Roanoke, carried out by Sir Richard Grenville."
