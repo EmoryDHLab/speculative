@@ -77,4 +77,8 @@ html, body{
 	font-weight: 700;
 }
 
+.axis line, .axis path { /* timeline axis */
+	fill: none;
+	stroke: black;
 
+}

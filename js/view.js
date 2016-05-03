@@ -12,7 +12,7 @@ document.createSvg = function(tagName) {
 
 	d3.csv('peabodyData.csv', function(d){	
 		var container = document.getElementById("viewGrid");
-		container.appendChild(makeGrid(10, 30, 340, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 36, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
 		/*populate chart*/
     fillChart(d);
