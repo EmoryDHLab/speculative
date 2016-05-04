@@ -15,7 +15,7 @@ document.createSvg = function(tagName) {
     var numColors = 3;
 
 		var container = document.getElementById("buildGrid");
-		container.appendChild(makeGrid(10, 36, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 39, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
     var cpContainer = document.getElementById("buildPalette");
     cpContainer.appendChild(makeColorPalette(numColors)); //make dynamic color palette with 6 colors
@@ -31,8 +31,8 @@ document.createSvg = function(tagName) {
     var orangeOnRt = [5,15,25,35,45,55,65,75,85,95];
     //whole svg 
     var svg = document.createSvg("svg");
-    svg.setAttribute("width", 402); //hardcoded for now
-    svg.setAttribute("height", 402);
+    svg.setAttribute("width", 433); //hardcoded for now
+    svg.setAttribute("height", 433);
 
     //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
     maing = document.createSvg("g");

@@ -12,7 +12,7 @@ document.createSvg = function(tagName) {
 
 	d3.csv('peabodyData.csv', function(d){	
 		var container = document.getElementById("viewGrid");
-		container.appendChild(makeGrid(10, 36, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 39, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
 		/*populate chart*/
     fillChart(d);
@@ -31,8 +31,8 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
     //whole svg 
     var svg = document.createSvg("svg");
     svg.setAttribute("id","viewsvg");
-    svg.setAttribute("width", 402); //hard coded for now
-    svg.setAttribute("height", 402);
+    svg.setAttribute("width", 433); //hard coded for now
+    svg.setAttribute("height", 433);
 
     //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
     maing = document.createSvg("g");
