@@ -31,11 +31,20 @@ html, body{
 	font-family: "Inconsolata", monospace;
 }
 
+.intro .container{
+	padding-top: 30%;
+}
+
+.intro h1, .intro h2{
+	background-color: #c36c25;
+}
+
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{ 
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 }
+
 
 /*body for interactive pages*/
 .interactive{
@@ -50,9 +59,16 @@ html, body{
 	text-align: center;
 }
 
+
+h4 {
+	text-align: center;
+}
+
+
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
+	font-size: larger;
 }
 
 #history{
@@ -87,6 +103,4 @@ html, body{
 	font-size: smaller;
 }
 
-h4 {
-	text-align: center;
-}
+
