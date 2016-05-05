@@ -79,6 +79,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){
             yearBox.appendChild(type);
 
             type.setAttribute("class","typeSquare"); //class for all type squares 
+            type.setAttribute("class","compareType");
             type.setAttribute("id", "comparetype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
             type.setAttribute("width", size/3);
             type.setAttribute("height", size/3);

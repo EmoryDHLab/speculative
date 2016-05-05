@@ -20,7 +20,6 @@ document.createSvg = function(tagName) {
     var cpContainer = document.getElementById("buildPalette");
     cpContainer.appendChild(makeColorPalette(numColors)); //make dynamic color palette with 6 colors
 
-    fillEventList(d);
 	})
 
   var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: handle edge cases for specific yearboxes
@@ -67,7 +66,8 @@ document.createSvg = function(tagName) {
             //any style or attribute applied to a year will filter to the types that make it up
             yearBox.appendChild(type);
 
-            type.setAttribute("class","typeSquare"); //class for all type squares 
+            type.setAttribute("class","typeSquare"); //class for all type squares
+            type.setAttribute("class","buildType"); 
             type.setAttribute("id", "buildtype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
             type.setAttribute("width", size/3);
             type.setAttribute("height", size/3);
