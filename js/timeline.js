@@ -22,7 +22,7 @@ document.createSvg = function(tagName) {
 
 	})
 
-var arrayColors = ["#720042", "#BA390B", "#6EA2A3", "#336531","#D98634","#A34F93","#9FBCBF","#9BCF7A","#CC7172","#CFB47E"]
+var arrayColors = ["#8D2B1D", "#325B67", "#458867"];
 var countryNames = ["England", "Spain", "France"];
 var numColors = countryNames.length;
 
@@ -97,7 +97,7 @@ var numColors = countryNames.length;
       .attr("height", 7)
       .attr("fill", function(d){return d.color})
       .on("mouseover",function(d){ //show and hide tooltip of event label
-        document.getElementById("timelineToolTip").innerHTML = d.text + d.year;
+        document.getElementById("timelineToolTip").innerHTML = d.text;
         document.getElementById("timelineToolTip").style.visibility ="visible";
       })
       .on("mouseout", function(d){

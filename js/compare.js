@@ -12,7 +12,7 @@ document.createSvg = function(tagName) {
 
 	d3.csv('peabodyData.csv', function(d){	
 		var container = document.getElementById("compareGrid");
-		container.appendChild(makeGrid(10, 36, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 39, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
 		/*populate chart*/
     fillChart(d);
@@ -25,15 +25,20 @@ document.createSvg = function(tagName) {
 
 	})
 
-var arrayColors = ["#720042", "#BA390B", "#6EA2A3", "#336531","#D98634","#A34F93","#9FBCBF","#9BCF7A","#CC7172","#CFB47E"]
+var arrayColors = ["#8D2B1D", "#325B67", "#458867"];
 var countryNames = ["England", "Spain", "France"];
 var numColors = countryNames.length;
-  var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: handle edge cases for specific yearboxes
+var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ 
 
+    var noLeftOrange = [1,11,21,31,41,51,61,71,81,91];
+    var orangeOnLft = [6,16,26,36,46,56,66,76,86,96]; 
+    var orangeOnBtm = [51,52,53,54,55,56,57,58,59,60];
+    var orangeOnRt = [5,15,25,35,45,55,65,75,85,95];
+    
     //whole svg 
     var svg = document.createSvg("svg");
-    svg.setAttribute("width", pixelsPerSide + size/3);
-    svg.setAttribute("height", pixelsPerSide + size/3);
+    svg.setAttribute("width", 433); //hard coded for now
+    svg.setAttribute("height", 433);
 
     //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
     maing = document.createSvg("g");
@@ -41,20 +46,9 @@ var numColors = countryNames.length;
     maing.setAttribute("width", pixelsPerSide + size/3);
     maing.setAttribute("height", pixelsPerSide + size/3);
 
-    //"physical" bg element, this goes on top of "maing", a little redundant but think of it as the physical object in the container
-    var bg = document.createSvg("rect");
-    var sizeBG = (pixelsPerSide);
-    bg.setAttribute("id","comparebg");
-    bg.setAttribute("width", sizeBG + size/3);
-    bg.setAttribute("height", sizeBG + size/3);
-    bg.setAttribute("fill","white");
-    bg.setAttribute("fill-opacity",".1");
 
     //append maing to svg
     svg.appendChild(maing);
-
-    //the bg belong to the maing
-    maing.appendChild(bg);
 
     for(var i = 0; i < boxesPerSide; i++) {
         for(var j = 0; j < boxesPerSide; j++) {
@@ -85,44 +79,69 @@ var numColors = countryNames.length;
             yearBox.appendChild(type);
 
             type.setAttribute("class","typeSquare"); //class for all type squares 
+            type.setAttribute("class","compareType");
             type.setAttribute("id", "comparetype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
             type.setAttribute("width", size/3);
             type.setAttribute("height", size/3);
             type.setAttribute("fill", "white");
             type.setAttribute("squareState","0");
 
-            //0,1,2 are type boxes on the first row
+ //0,1,2 are type boxes on the first row
             if(numType == 0 || numType == 1 || numType == 2){ 
+            type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType),1 + ")"]); //moves individual type square
               if(numType == 0 || numType == 1){ //if 0 or 1 do right dotted 
-              	if(numType == 0){ //if 0 do left orange
-              		drawLine(0,0,(numType)*size/3,size/3,yearBox,'orange',0,0,1);
-				}
-              	drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'black',2,2,0.5);
-
+                if(numType == 0 && (!noLeftOrange.includes(currYearID))){ //if 0 do left orange
+                  if(orangeOnLft.includes(currYearID))
+                    drawLine(0,0,(numType)*size/3,size/3,yearBox,'orange',0,0,5);
+                  else
+                    drawLine(0,0,(numType)*size/3,size/3,yearBox,'orange',0,0,1);
+                }
+                drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'black',2,2,0.5);
               }   
-
-              type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType),1 + ")"]); //moves individual type square
-              drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,1); //line one px above the top of each type square
-              drawLine((numType)*size/3+numType,1.5+size/3,(numType)*size/3+numType+size/3,1.5+size/3,yearBox,'black',2,2,0.5);
+              if(numType == 2 && (orangeOnRt.includes(currYearID)))//thick orange on right
+                drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'orange',0,0,5);
+              
+              if(currYearID.between(11,101))//exclude top row from orange line
+              {
+                  if(currYearID.between(51,61))//extra thick orange line on top if middle row
+                    drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,5);
+                  else
+                    drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,1); //orange line one px above the top of each type square
+              }
+              drawLine((numType)*size/3+numType,1.5+size/3,(numType)*size/3+numType+size/3,1.5+size/3,yearBox,'black',2,2,0.5); //bottom dotted line
             }
             else if(numType == 3 || numType == 4 || numType == 5){
-            	if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
-            		if(numType == 3){//if 3 draw left orange
-            			drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,1);
-            		}
-            		drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
-            	}
-
-                type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3)),size/3 + 2 + ")"]);
-            	drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
+              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3)),size/3 + 2 + ")"]);
+              if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
+                if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
+                  if(orangeOnLft.includes(currYearID))
+                    drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,5);
+                  else
+                    drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,1);
+                }
+                drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
+              }
+        if(numType == 5 && (orangeOnRt.includes(currYearID)))//thick orange on right
+          drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'orange',0,0,5);
+               
+              drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
             }
             else if(numType == 6 || numType == 7 || numType == 8){
-            	if(numType == 6 || numType == 7){ //if 6 or 7 draw right dotted
-            		if(numType == 6){ //if 6 draw left orange
-            			drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,1);
-            		}
-            		drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5);
-            	}
+              if(numType == 6 || numType == 7){ //if 6 or 7 draw right dotted
+                if(numType == 6 && (!noLeftOrange.includes(currYearID))){ //if 6 draw left orange
+                  if(orangeOnLft.includes(currYearID))
+                    drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,5);
+                  else
+                    drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,1);
+                }
+                drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5); //right dotted
+              }
+              if(numType == 8 && orangeOnRt.includes(currYearID)) 
+                drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+3,yearBox,'orange',0,0,5);
+                
+                if(currYearID.between(41,51))
+                  drawLine((numType-6) * size/3 + (numType-6),3*size/3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3,yearBox,'orange',0,0,5); //bottom thick orange
+                
                 type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)),2*(size/3) + 3 +")"]);
             }
           } //end for loop
@@ -261,6 +280,7 @@ var numColors = countryNames.length;
       .attr("fill", function(d){return d.color})
       .on("mouseover",function(d){ //show and hide tooltip of event label
               document.getElementById(d.text + d.year).style.visibility = "visible";
+              console.log(document.getElementById(d.text + d.year));
       })
       .on("mouseout", function(d){
         document.getElementById(d.text + d.year).style.visibility ="hidden";
@@ -271,8 +291,9 @@ var numColors = countryNames.length;
       .enter()
       .append("text")
       .text(function(d){return d.text})
-      .attr("x",function(d){return xScale(+d.year)}) //TODO: if year is 68, place text on left side of data point
-      .attr("y",5)
+      .style("visibility", "hidden")
+      .attr("x",d3.mouse(this)[0]) //TODO: figure out correct placement
+      .attr("y",d3.mouse(this)[1])
       .attr("class","textLabels")
       .attr("id", function(d){return d.text + d.year}) //allows text elements to be accessible by their corresponding rect
       .style("visibility", "hidden");
