@@ -24,11 +24,13 @@ html, body{
 .intro h1{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 700;
+	letter-spacing: 2px;
 	font-size: 75px;
 }
 
 .intro h2{
 	font-family: "Inconsolata", monospace;
+	font-size: 150%;
 }
 
 .intro .container{
@@ -55,8 +57,9 @@ html, body{
 /*headers for all of the pages*/
 .narrative h2, .explanation h2, .interactive h2, .credits h2{
 	font-family: "PT Sans Narrow", sans-serif;
-	font-weight: 700;
+	font-weight: 400;
 	text-align: center;
+	font-size: 600%;
 }
 
 
@@ -64,10 +67,13 @@ h4 {
 	text-align: center;
 }
 
-
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
+
+}
+
+.narrative p{
 	font-size: larger;
 }
 
@@ -84,7 +90,7 @@ h4 {
 }
 
 #credits{
-	background-color: black;
+	background-color: lightgray;
 }
 
 
