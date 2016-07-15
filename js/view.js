@@ -12,7 +12,7 @@ document.createSvg = function(tagName) {
 
 	d3.csv('peabodyData.csv', function(d){	
 		var container = document.getElementById("viewGrid");
-		container.appendChild(makeGrid(10, 39, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 48, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
 		/*populate chart*/
     fillChart(d);
@@ -31,8 +31,8 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
     //whole svg 
     var svg = document.createSvg("svg");
     svg.setAttribute("id","viewsvg");
-    svg.setAttribute("width", 433); //hard coded for now
-    svg.setAttribute("height", 433);
+    svg.setAttribute("width", 522); //hard coded for now
+    svg.setAttribute("height", 522);
 
     //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
     maing = document.createSvg("g");
@@ -85,14 +85,17 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
 
             type.setAttribute("class","typeSquare"); //class for all type squares 
             type.setAttribute("id", "viewtype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
-            type.setAttribute("width", size/3);
-            type.setAttribute("height", size/3);
+            type.setAttribute("width", (size-9)/3);
+            console.log("-9");
+            type.setAttribute("height", (size-9)/3);
+            type.setAttribute("stroke", "white");
+            type.setAttribute("stroke-width", 3);
             type.setAttribute("fill", "white");
             type.setAttribute("squareState","0");
 
             //0,1,2 are type boxes on the first row
             if(numType == 0 || numType == 1 || numType == 2){ 
-            type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType),1 + ")"]); //moves individual type square
+            type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType + 2),2 + ")"]); //moves individual type square
               if(numType == 0 || numType == 1){ //if 0 or 1 do right dotted 
                 if(numType == 0 && (!noLeftOrange.includes(currYearID))){ //if 0 do left orange
                   if(orangeOnLft.includes(currYearID))
@@ -103,7 +106,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
                 drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'black',2,2,0.5);
               }   
               if(numType == 2 && (orangeOnRt.includes(currYearID)))//thick orange on right
-                drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'orange',0,0,5);
+                drawLine((numType+1)*size/3 + (0.5*(numType+1))+3,0,(numType+1)*size/3+(0.5*(numType+1))+3,size/3,yearBox,'orange',0,0,5);
               
               if(currYearID.between(11,101))//exclude top row from orange line
               {
@@ -115,7 +118,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
               drawLine((numType)*size/3+numType,1.5+size/3,(numType)*size/3+numType+size/3,1.5+size/3,yearBox,'black',2,2,0.5); //bottom dotted line
             }
             else if(numType == 3 || numType == 4 || numType == 5){
-              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3)),size/3 + 2 + ")"]);
+              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3) + 2),size/3 + 2 + 2 + ")"]);
               if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
                 if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
                   if(orangeOnLft.includes(currYearID))
@@ -126,7 +129,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
                 drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
               }
         if(numType == 5 && (orangeOnRt.includes(currYearID)))//thick orange on right
-          drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'orange',0,0,5);
+          drawLine((numType-2)*size/3+(0.5*(numType-2))+3,size/3,(numType-2)*size/3+(0.5*(numType-2))+3,2*size/3,yearBox,'orange',0,0,5);
                
               drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
             }
@@ -141,12 +144,12 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
                 drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5); //right dotted
               }
               if(numType == 8 && orangeOnRt.includes(currYearID)) 
-                drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+3,yearBox,'orange',0,0,5);
+                drawLine((numType-5)*size/3+(0.5*(numType-5))+3,2*size/3,(numType-5)*size/3+(0.5*(numType-5))+3,3*size/3+3,yearBox,'orange',0,0,5);
                 
                 if(currYearID.between(41,51))
-                  drawLine((numType-6) * size/3 + (numType-6),3*size/3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3,yearBox,'orange',0,0,5); //bottom thick orange
+                  drawLine((numType-6) * size/3 + (numType-6),3*size/3+3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3+3,yearBox,'orange',0,0,5); //bottom thick orange
                 
-                type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)),2*(size/3) + 3 +")"]);
+                type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)+2),2*(size/3) + 3 + 2 +")"]);
             }
           } //end for loop
 
@@ -175,19 +178,27 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
           //if a rectangle is present, draw a triangle over it
           var w = typeRect.getAttribute('width');
           var t = typeRect.getAttribute('transform');
-          var pts = "0," + w + " " + w + ",0" + " " + w + "," + w; //create a string of the triangle's coordinates //4
+          var pts = "0," + 14 + " " + 14 + ",0" + " " + 14 + "," + 14; //create a string of the triangle's coordinates //4
 
           var triangle = document.createSvg("polygon");
 
           triangle.setAttribute("id", "viewtri"+typeRect.getAttribute("id")); //give id, format is "tritype#year#"
           triangle.setAttribute("points", pts); //specify coordinates
           triangle.setAttribute("transform", t); //translate the triangle by the same amount that the typerect has been translated
+            
           triangle.setAttribute('fill', element.color); //change color
          
           typeRect.parentNode.appendChild(triangle);
+          typeRect.setAttribute('stroke', "black");
+            
         }
         else
+            //var colorc = element.color;
             typeRect.setAttribute('fill', element.color);
+            typeRect.setAttribute('stroke', element.color);
+            if (typeRect.getAttribute('fill') != typeRect.getAttribute('stroke')){
+                typeRect.setAttribute('stroke', typeRect.getAttribute('fill'));
+                                      }
     })
   }
 
@@ -214,9 +225,11 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
         var typeSquare = document.getElementById(id.replace('text','viewyear'));
         if(typeSquare != null)
           typeSquare.setAttribute("class","highlightSquare");
+          console.log("high");
         offsets = $('#'+id.replace('text','viewyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
       }
       else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
+        console.log(id);
         element.setAttribute("class","highlightSquare"); 
         var text = document.getElementById(id.replace('viewyear','text'))
         if(text != null)
