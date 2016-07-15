@@ -47,6 +47,15 @@ html, body{
 	font-weight: 400;
 }
 
+#viewGrid {
+    margin: 0 auto;
+}
+
+#viewsvg {
+ display: block;
+    margin: auto;
+}
+
 
 /*body for interactive pages*/
 .interactive{
@@ -114,5 +123,5 @@ h4 {
 }
 
 .highlightSquare{
-	outline: 3px solid blue;
+	stroke: blue;
 }
