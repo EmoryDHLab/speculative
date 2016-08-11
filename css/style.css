@@ -5,12 +5,24 @@
     background-repeat: no-repeat;
 }*/
 html, body{
-	height:100%;
-
+	height: 100%;
+    margin: 0;
 }
 
-.container{
-	height: 100%;
+.section {
+ min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+.container, .container-fluid{
+    
 }
 
 .intro{
@@ -21,39 +33,71 @@ html, body{
 	text-align: center;
 }
 
+.introban{
+   background-color: #c36c25; 
+    padding: 30px;
+}
+
 .intro h1{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 700;
 	letter-spacing: 2px;
 	font-size: 75px;
+    margin: 0;
 }
 
 .intro h2{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
+    margin: 0;
+    bix-sizing: border-box;
 }
 
 .intro .container{
-	padding-top: 30%;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
-.intro h1, .intro h2{
-	background-color: #c36c25;
-}
 
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{ 
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: webkit-flex;
+    display: flex;
+    align-items: center
+    justify-content: center;
+}
+
+.explanation .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.interactive .col-md-6 {
+    min-width: 552px;
 }
 
 #viewGrid {
     margin: 0 auto;
+    min-width: 522px;
 }
 
 #viewsvg {
  display: block;
     margin: auto;
+}
+
+#compareGrid {
+    margin: 0 auto;
+    min-width: 522px;
 }
 
 
@@ -86,19 +130,56 @@ h4 {
 	font-size: larger;
 }
 
+#eventKey{
+    padding: 0;
+
+}
+
 #history{
+    padding-top: 10%;
+    padding-bottom: 15%;
 	background-color: #8D2B1D; /*red*/
 }
 
+#works{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+#view{
+    padding-top: 5%;
+    padding-bottom: 15%;
+}
+
 #interaction{
+    padding-top: 10%;
+    padding-bottom: 15%;
 	background-color: #325B67; /*blue*/
 }
 
+#build{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+#timeline{
+    padding-bottom: 15%;
+}
+
 #compare{
+    padding-top: 10%;
+    padding-bottom: 15%;
 	background-color: #458867; /*green*/
 }
 
+#compare2{
+    padding-top: 10%;
+    padding-bottom: 15%;
+}
+
 #credits{
+    padding-top: 10%;
+    padding-bottom: 15%;
 	background-color: lightgray;
 }
 
