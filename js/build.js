@@ -15,7 +15,7 @@ document.createSvg = function(tagName) {
     var numColors = 3;
 
 		var container = document.getElementById("buildGrid");
-		container.appendChild(makeGrid(10, 39, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(10, 48, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
 
     var cpContainer = document.getElementById("buildPalette");
     cpContainer.appendChild(makeColorPalette(numColors)); //make dynamic color palette with 6 colors
@@ -30,8 +30,8 @@ document.createSvg = function(tagName) {
     var orangeOnRt = [5,15,25,35,45,55,65,75,85,95];
     //whole svg 
     var svg = document.createSvg("svg");
-    svg.setAttribute("width", 433); //hardcoded for now
-    svg.setAttribute("height", 433);
+    svg.setAttribute("width", 522); //hardcoded for now
+    svg.setAttribute("height", 522);
 
     //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
     maing = document.createSvg("g");
@@ -59,6 +59,18 @@ document.createSvg = function(tagName) {
                 }
             },
              false);
+            yearBox.addEventListener( //event listener for hover
+            "mouseover",
+            function(e){
+                    highlightItem(e.target); //e.target is the rect object, where id="type#year#" and class="typeSquare"
+            },
+             false);
+            yearBox.addEventListener( //event listener for hover
+              'mouseout',
+              function(e){
+                removeHighlight(e.target);
+              },
+              false);
 
           for(var numType = 0; numType < 9; numType++){ //for 9 times, create a type square and append to current year box
 
@@ -69,14 +81,16 @@ document.createSvg = function(tagName) {
             type.setAttribute("class","typeSquare"); //class for all type squares
             type.setAttribute("class","buildType"); 
             type.setAttribute("id", "buildtype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
-            type.setAttribute("width", size/3);
-            type.setAttribute("height", size/3);
+            type.setAttribute("width", (size-9)/3);
+            type.setAttribute("height", (size-9)/3);
+            type.setAttribute("stroke", "white");
+            type.setAttribute("stroke-width", 3);
             type.setAttribute("fill", "white");
             type.setAttribute("squareState","0");
 
-            //0,1,2 are type boxes on the first row
+             //0,1,2 are type boxes on the first row
             if(numType == 0 || numType == 1 || numType == 2){ 
-            type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType),1 + ")"]); //moves individual type square
+            type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType + 2),2 + ")"]); //moves individual type square
               if(numType == 0 || numType == 1){ //if 0 or 1 do right dotted 
                 if(numType == 0 && (!noLeftOrange.includes(currYearID))){ //if 0 do left orange
                   if(orangeOnLft.includes(currYearID))
@@ -87,7 +101,7 @@ document.createSvg = function(tagName) {
                 drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'black',2,2,0.5);
               }   
               if(numType == 2 && (orangeOnRt.includes(currYearID)))//thick orange on right
-                drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'orange',0,0,5);
+                drawLine((numType+1)*size/3 + (0.5*(numType+1))+3,0,(numType+1)*size/3+(0.5*(numType+1))+3,size/3,yearBox,'orange',0,0,5);
               
               if(currYearID.between(11,101))//exclude top row from orange line
               {
@@ -99,7 +113,7 @@ document.createSvg = function(tagName) {
               drawLine((numType)*size/3+numType,1.5+size/3,(numType)*size/3+numType+size/3,1.5+size/3,yearBox,'black',2,2,0.5); //bottom dotted line
             }
             else if(numType == 3 || numType == 4 || numType == 5){
-              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3)),size/3 + 2 + ")"]);
+              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3) + 2),size/3 + 2 + 2 + ")"]);
               if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
                 if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
                   if(orangeOnLft.includes(currYearID))
@@ -110,7 +124,7 @@ document.createSvg = function(tagName) {
                 drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
               }
         if(numType == 5 && (orangeOnRt.includes(currYearID)))//thick orange on right
-          drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'orange',0,0,5);
+          drawLine((numType-2)*size/3+(0.5*(numType-2))+3,size/3,(numType-2)*size/3+(0.5*(numType-2))+3,2*size/3,yearBox,'orange',0,0,5);
                
               drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
             }
@@ -125,12 +139,12 @@ document.createSvg = function(tagName) {
                 drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5); //right dotted
               }
               if(numType == 8 && orangeOnRt.includes(currYearID)) 
-                drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+3,yearBox,'orange',0,0,5);
+                drawLine((numType-5)*size/3+(0.5*(numType-5))+3,2*size/3,(numType-5)*size/3+(0.5*(numType-5))+3,3*size/3+3,yearBox,'orange',0,0,5);
                 
                 if(currYearID.between(41,51))
-                  drawLine((numType-6) * size/3 + (numType-6),3*size/3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3,yearBox,'orange',0,0,5); //bottom thick orange
+                  drawLine((numType-6) * size/3 + (numType-6),3*size/3+3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3+3,yearBox,'orange',0,0,5); //bottom thick orange
                 
-                type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)),2*(size/3) + 3 +")"]);
+                type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)+2),2*(size/3) + 3 + 2 +")"]);
             }
           } //end for loop
 
@@ -284,6 +298,7 @@ document.createSvg = function(tagName) {
       console.log("squareState == 1");
 
       element.setAttribute("fill", currColor); //fill square with currColor
+      element.setAttribute("stroke", currColor); //fill square with currColor
 
       prevColor = element.getAttribute("fill"); //store previous color
 
@@ -297,6 +312,7 @@ document.createSvg = function(tagName) {
       console.log(currColor);
 
       element.setAttribute("fill", "white");
+        element.setAttribute("stroke", "white");
       element.setAttribute("squareState","0");
     
     /*case 2: square is already filled with color, split it with current color*/
@@ -420,6 +436,67 @@ document.createSvg = function(tagName) {
   
   /*end copy of old code*/
 
+function highlightItem(element){ //element is either text in list or typesquare or tritype 
+    var id = element.getAttribute("id");
+    var offsets = null;
+
+    if(id != null){
+      if(id.includes("text")){ //if hovering over text
+        element.setAttribute("class","highlight"); 
+        //the text's id type#text# turns to a square's id type#year#
+        var typeSquare = document.getElementById(id.replace('text','viewyear'));
+        if(typeSquare != null)
+          typeSquare.setAttribute("class","highlightSquare");
+          console.log("high");
+        offsets = $('#'+id.replace('text','viewyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
+      }
+      else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
+        console.log(id);
+        console.log("hover");
+        element.setAttribute("stroke", "blue");
+        /*element.setAttribute("class","highlightSquare"); 
+        var text = document.getElementById(id.replace('viewyear','text'))
+        if(text != null)
+          text.setAttribute("class","highlight");
+        offsets = $('#'+id.replace('viewyear','text')).offset();
+        */
+      }
+  }
+}
+
+
+  function removeHighlight(element){ 
+    var id = element.getAttribute("id");
+    if(id != null)
+    {
+      if(id.includes("text")){ //if hovering over text
+        element.removeAttribute("class","highlight"); 
+        //type#text# turns to type#year# for the squares
+        if(document.getElementById(id.replace('text','viewyear')) != null)
+          document.getElementById(id.replace('text','viewyear')).removeAttribute("class","highlightSquare");      
+      }
+      else if(id.includes("year")){ //if hovering over rect or tritype
+          element.setAttribute("stroke", element.getAttribute("fill"));
+          /*
+        element.removeAttribute("class","highlightSquare");
+        if(document.getElementById(id.replace('viewyear','text')) != null) //if there exists a corresponding event
+          document.getElementById(id.replace('viewyear','text')).removeAttribute("class","highlight");
+          */
+      }
+   }
+  }
+
+    /*
+  //event listener for hovering over a list element
+  $('ol').on('mouseover', 'li', function(e){
+          highlightItem(e.target);
+    })
+
+  $('ol').on('mouseout', 'li', function(e){
+          removeHighlight(e.target);
+    })
+*/
+    
 //function to draw gridlines
   drawLine = function(x1,y1,x2,y2,group,strokeClr,dashWidth,dashSpace,strokeWidth){ 
   	var aLine = document.createSvg('line');

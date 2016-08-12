@@ -48,12 +48,12 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
     // bg.setAttribute("height", sizeBG + size/3);
     // bg.setAttribute("fill","white");
     // bg.setAttribute("fill-opacity",".1");
+    
+     //the bg belong to the maing
+   // maing.appendChild(bg);
 
     //append maing to svg
     svg.appendChild(maing);
-
-    //the bg belong to the maing
-   // maing.appendChild(bg);
 
     for(var i = 0; i < boxesPerSide; i++) {
         for(var j = 0; j < boxesPerSide; j++) {
@@ -86,7 +86,6 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
             type.setAttribute("class","typeSquare"); //class for all type squares 
             type.setAttribute("id", "viewtype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
             type.setAttribute("width", (size-9)/3);
-            console.log("-9");
             type.setAttribute("height", (size-9)/3);
             type.setAttribute("stroke", "white");
             type.setAttribute("stroke-width", 3);
@@ -216,6 +215,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
 
   function highlightItem(element){ //element is either text in list or typesquare or tritype 
     var id = element.getAttribute("id");
+      console.log(id);
     var offsets = null;
 
     if(id != null){
@@ -225,11 +225,9 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
         var typeSquare = document.getElementById(id.replace('text','viewyear'));
         if(typeSquare != null)
           typeSquare.setAttribute("class","highlightSquare");
-          console.log("high");
         offsets = $('#'+id.replace('text','viewyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
       }
       else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
-        console.log(id);
         element.setAttribute("class","highlightSquare"); 
         var text = document.getElementById(id.replace('viewyear','text'))
         if(text != null)
@@ -275,11 +273,11 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
 
   //event listener for hovering over a list element
   $('ol').on('mouseover', 'li', function(e){
-          highlightItem(e.target);
+          //highlightItem(e.target);
     })
 
   $('ol').on('mouseout', 'li', function(e){
-          removeHighlight(e.target);
+          //removeHighlight(e.target);
     })
 
   drawLine = function(x1,y1,x2,y2,group,strokeClr,dashWidth,dashSpace,strokeWidth){
