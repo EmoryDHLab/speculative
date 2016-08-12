@@ -215,6 +215,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){
         if(triType != null)
           oldTriType = triType.getAttribute('id'); //store the previous triangle event so when it comes around again, we know it's really the second of the two events. The first one should be labeled w/o 'tri'
         
+        //console.log(id);
         var dataEntry = country + ', ' +color + ', ' + id.replace(/compare/g,"");
         var dataList = document.getElementById("internalData").innerHTML;
         document.getElementById('internalData').innerHTML = dataList + '<li>' + dataEntry + '</li>';
@@ -427,22 +428,27 @@ function fillEventList1(dataArr){
     
     function highlightItem(element){ //element is either text in list or typesquare or tritype 
     var id = element.getAttribute("id");
-    console.log(id);
+        //console.log(id);
+    
     var offsets = null;
 
     if(id != null){
       if(id.includes("text")){ //if hovering over text
-        element.setAttribute("class","highlight"); 
+        element.setAttribute("class","highlight");
+          console.log(id);
         //the text's id type#text# turns to a square's id type#year#
-        var typeSquare = document.getElementById(id.replace('text','compareyear'));
+          var id1 = id.replace('viewtri', 'compare');
+        var typeSquare = document.getElementById(id1.replace('text','compareyear'));
         if(typeSquare != null)
           typeSquare.setAttribute("class","highlightSquare");
         offsets = $('#'+id.replace('text','compareyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
       }
       else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ 
           console.log("should highlight");//if hovering over rect or tritype
+          console.log(id);
         element.setAttribute("class","highlightSquare"); 
-        var text = document.getElementById(id.replace('compareyear','text'))
+          var text1 = id.replace('comparetype', 'viewtritype');
+        var text = document.getElementById(text1.replace('compareyear','text'))
         console.log(text);
         if(text != null)
           text.setAttribute("class","highlight");
@@ -457,15 +463,18 @@ function fillEventList1(dataArr){
     if(id != null)
     {
       if(id.includes("text")){ //if hovering over text
+          console.log('remove');
         element.removeAttribute("class","highlight"); 
         //type#text# turns to type#year# for the squares
-        if(document.getElementById(id.replace('text','compareyear')) != null)
-          document.getElementById(id.replace('text','compareyear')).removeAttribute("class","highlightSquare");      
+          var id1 = id.replace('viewtri', 'compare');
+        if(document.getElementById(id1.replace('text','compareyear')) != null)
+          document.getElementById(id1.replace('text','compareyear')).removeAttribute("class","highlightSquare");      
       }
       else if(id.includes("year")){ //if hovering over rect or tritype
         element.removeAttribute("class","highlightSquare");
-        if(document.getElementById(id.replace('compareyear','text')) != null) //if there exists a corresponding event
-          document.getElementById(id.replace('compareyear','text')).removeAttribute("class","highlight");
+          var text1 = id.replace('comparetype', 'viewtritype');
+        if(document.getElementById(text1.replace('compareyear','text')) != null) //if there exists a corresponding event
+          document.getElementById(text1.replace('compareyear','text')).removeAttribute("class","highlight");
       }
    }
   }
