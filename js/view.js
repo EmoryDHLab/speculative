@@ -371,15 +371,15 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
 
   //event listener for hovering over a list element
   $('ol').on('mouseover', 'li', function(e){
-          //highlightItem(e.target);
-          ids=getHorizVert(e.target);
-          addCrosshair(ids);
+        highlightItem(e.target);
+        //  ids=getHorizVert(e.target);
+        //  addCrosshair(ids);
 
     })
 
   $('ol').on('mouseout', 'li', function(e){
-          //removeHighlight(e.target);
-          removeCrosshair();
+          removeHighlight(e.target);
+          //removeCrosshair();
     })
 
   drawLine = function(x1,y1,x2,y2,group,strokeClr,dashWidth,dashSpace,strokeWidth){

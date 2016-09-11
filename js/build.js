@@ -225,7 +225,7 @@ var updateCurrColor = function(e){
       document.getElementById("colorBox"+i).removeAttribute("class","selectedColor");
     }
     //add new selection css
-    e.target.setAttribute("class","selectedColor");
+    document.getElementById(clickedItemID).setAttribute("class","selectedColor");
   }
   e.stopPropagation();
 }
@@ -271,7 +271,7 @@ var makeColorPalette = function(numColors){
     colorLabel.setAttribute("y","30");
     colorLabel.setAttribute("font-family", "PT Sans Narrow");
     colorLabel.setAttribute("font-size", "15");
-    colorLabel.setAttribute("transform", ["translate("  + (80*i), 10  + ")"]);
+    colorLabel.setAttribute("transform", ["translate("  + (80*i - 5), 10  + ")"]);
     colorLabel.setAttribute("textAlign","center");
 
 
