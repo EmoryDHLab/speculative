@@ -27,7 +27,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
   var noLeftOrange = [1,11,21,31,41,51,61,71,81,91];
   var orangeOnLft = [6,16,26,36,46,56,66,76,86,96];
   var orangeOnBtm = [51,52,53,54,55,56,57,58,59,60];
-  var orangeOnRt = [5,15,25,35,45,55,65,75,85,95];
+  var orangeOnRt = [10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95];
     //whole svg
     var svg = document.createSvg("svg");
     svg.setAttribute("id","viewsvg");
@@ -54,6 +54,8 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
 
     //append maing to svg
     svg.appendChild(maing);
+
+    //TODO add generic function for hover event on the yearbox elements.
 
     for(var i = 0; i < boxesPerSide; i++) {
         for(var j = 0; j < boxesPerSide; j++) {
@@ -87,7 +89,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
             type.setAttribute("id", "viewtype" + numType + type.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
             type.setAttribute("width", (size-9)/3);
             type.setAttribute("height", (size-9)/3);
-            type.setAttribute("stroke", "white");
+            //type.setAttribute("stroke", "white");
             type.setAttribute("stroke-width", 3);
             type.setAttribute("fill", "white");
             type.setAttribute("squareState","0");
@@ -96,20 +98,21 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
             if(numType == 0 || numType == 1 || numType == 2){
             type.setAttribute("transform", ["translate(" + ((numType) * size/3 + numType + 2),2 + ")"]); //moves individual type square
               if(numType == 0 || numType == 1){ //if 0 or 1 do right dotted
-                if(numType == 0 && (!noLeftOrange.includes(currYearID))){ //if 0 do left orange
-                  if(orangeOnLft.includes(currYearID))
+                //if(numType == 0 && (!noLeftOrange.includes(currYearID))){ //if 0 do left orange
+                if(numType == 0){
+                  if(orangeOnLft.includes(currYearID) || noLeftOrange.includes(currYearID))
                     drawLine(0,0,(numType)*size/3,size/3,yearBox,'orange',0,0,5);
                   else
                     drawLine(0,0,(numType)*size/3,size/3,yearBox,'orange',0,0,1);
                 }
                 drawLine((numType+1)*size/3 + (0.5*(numType+1)),0,(numType+1)*size/3+(0.5*(numType+1)),size/3,yearBox,'black',2,2,0.5);
               }
-              if(numType == 2 && (orangeOnRt.includes(currYearID)))//thick orange on right
+              if(numType == 2 && currYearID % 10==0)//thick orange on right
                 drawLine((numType+1)*size/3 + (0.5*(numType+1))+3,0,(numType+1)*size/3+(0.5*(numType+1))+3,size/3,yearBox,'orange',0,0,5);
 
-              if(currYearID.between(11,101))//exclude top row from orange line
+              if(currYearID.between(1,101))//exclude top row from orange line
               {
-                  if(currYearID.between(51,61))//extra thick orange line on top if middle row
+                  if(currYearID.between(51,61) || currYearID.between(1,11))//extra thick orange line on top if middle row
                     drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,5);
                   else
                     drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,1); //orange line one px above the top of each type square
@@ -119,33 +122,35 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
             else if(numType == 3 || numType == 4 || numType == 5){
               type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3) + 2),size/3 + 2 + 2 + ")"]);
               if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
-                if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
-                  if(orangeOnLft.includes(currYearID))
+                //if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
+                if(numType == 3){
+                  if(orangeOnLft.includes(currYearID) || noLeftOrange.includes(currYearID))
                     drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,5);
                   else
                     drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,1);
                 }
                 drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
               }
-        if(numType == 5 && (orangeOnRt.includes(currYearID)))//thick orange on right
+        if(numType == 5 && (currYearID)%10==0)//thick orange on right
           drawLine((numType-2)*size/3+(0.5*(numType-2))+3,size/3,(numType-2)*size/3+(0.5*(numType-2))+3,2*size/3,yearBox,'orange',0,0,5);
 
               drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
             }
             else if(numType == 6 || numType == 7 || numType == 8){
               if(numType == 6 || numType == 7){ //if 6 or 7 draw right dotted
-                if(numType == 6 && (!noLeftOrange.includes(currYearID))){ //if 6 draw left orange
-                  if(orangeOnLft.includes(currYearID))
+                //if(numType == 6 && (!noLeftOrange.includes(currYearID))){ //if 6 draw left orange
+                if(numType == 6){
+                  if(orangeOnLft.includes(currYearID) || noLeftOrange.includes(currYearID))
                     drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,5);
                   else
                     drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,1);
                 }
                 drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5); //right dotted
               }
-              if(numType == 8 && orangeOnRt.includes(currYearID))
+              if(numType == 8 && currYearID%10==0)
                 drawLine((numType-5)*size/3+(0.5*(numType-5))+3,2*size/3,(numType-5)*size/3+(0.5*(numType-5))+3,3*size/3+3,yearBox,'orange',0,0,5);
 
-                if(currYearID.between(41,51))
+                if(currYearID.between(91,101))
                   drawLine((numType-6) * size/3 + (numType-6),3*size/3+3+3,(numType-6) * size/3 + (numType-6)+size/3+1,3*size/3+3+3,yearBox,'orange',0,0,5); //bottom thick orange
 
                 type.setAttribute("transform", ["translate(" + ((numType-6) * (size/3) + (numType-6)+2),2*(size/3) + 3 + 2 +")"]);
@@ -153,14 +158,14 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
           } //end for loop
 
         if(numYear.between(0,50)){  //upper half of grid
-            yearBox.setAttribute("transform", ["translate(", j*size + j*3, ",", i*size + i*3, ")"].join("")); //offset to see bkg. j is x, i is y
+            yearBox.setAttribute("transform", ["translate(", j*size + j*3 +5, ",", i*size + i*3 +3, ")"].join("")); //offset to see bkg. j is x, i is y
             if(numYear.between(5,10) || numYear.between(15,20) || numYear.between(25,30) || numYear.between(35,40) || numYear.between(45,50)) // right quadrant
-              yearBox.setAttribute("transform", ["translate(", j*size + j*3 + size/3, ",", i*size + i*3, ")"].join(""));
+              yearBox.setAttribute("transform", ["translate(", j*size + j*3 +5, ",", i*size + i*3 +3, ")"].join(""));
           }
         if(numYear.between(50,100)){ //lower half of grid
-            yearBox.setAttribute("transform", ["translate(", j*size + j*3, ",", i*size + i*3 + size/3, ")"].join(""));
+            yearBox.setAttribute("transform", ["translate(", j*size + j*3 +5, ",", i*size + i*3 +3, ")"].join(""));
             if(numYear.between(55,60) || numYear.between(65,70) || numYear.between(75,80) || numYear.between(85,90) || numYear.between(95,100)) // right quadrant
-              yearBox.setAttribute("transform", ["translate(", j*size + j*3 + size/3, ",", i*size + i*3 + size/3, ")"].join(""));
+              yearBox.setAttribute("transform", ["translate(", j*size + j*3 +5, ",", i*size + i*3 +3, ")"].join(""));
           }
         }//close inner for loop
     }//close outer for loop
