@@ -217,7 +217,25 @@ h4 {
 #build rect:hover{
 	cursor:pointer;
 }
+#buildList{
+}
+#eventsNavigation{
+	width:50%;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#buildList p{
+	margin-left: auto;
+	margin-right: auto;
+
+	font-size: 1.5em;
+	height:2.6em;
+}
 .selectedColor{
 	stroke-width:3;
 	stroke:rgb(0,0,0);
+}
+.nextPrevButtons:hover{
+	cursor: pointer;
 }

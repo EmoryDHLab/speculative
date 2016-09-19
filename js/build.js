@@ -166,8 +166,6 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
           }
         }//close inner for loop
     }//close outer for loop
-
-
     return svg;
   }
 
