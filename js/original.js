@@ -57,7 +57,7 @@ $(function(){
   var transitionInProgress = false;
 
   var trendTitles = [];
-  $('.row h2').each(function(){
+  $('.trend h2').each(function(){
     var txt = $(this).text()
     txt = generateSlug(txt);
     trendTitles.push(txt);
@@ -343,15 +343,14 @@ $(function(){
 
  	// Cache selectors
 	var lastId;
-	var topMenu = $(".walkthrough");
+	var topMenu = $(".trends");
 	// All list items
-	var menuItems = topMenu.find(".row narrative");
+	var menuItems = topMenu.find(".trend");
 
 	// Anchors corresponding to menu items
 	var scrollItems = menuItems.map( function() {
 		var item = $("#"+$(this).attr("id"));
 		if (item.length)
-			console.log(item);
 			return item;
 	});
 
