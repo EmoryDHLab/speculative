@@ -22,7 +22,7 @@ html, body{
 }
 
 .container, .container-fluid{
-    
+
 }
 
 .intro{
@@ -34,7 +34,7 @@ html, body{
 }
 
 .introban{
-   background-color: #c36c25; 
+   background-color: #c36c25;
     padding: 30px;
 }
 
@@ -57,12 +57,12 @@ html, body{
 	display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
 }
 
 
 /*body for narrative and explanation sections*/
-.narrative, .explanation, .credits{ 
+.narrative, .explanation, .credits{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
@@ -204,5 +204,10 @@ h4 {
 }
 
 .highlightSquare{
-	stroke: blue;
+	stroke: yellow;
+    stroke-width: 5px;
+}
+
+.timelineRect{
+    visibility: visible;
 }

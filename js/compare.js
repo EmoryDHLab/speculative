@@ -1,4 +1,13 @@
 $(document).ready(function() {
+  //event listener for hovering over a list element
+  $('ol').on('mouseover', function(e){
+          console.log(e.target);
+          highlightItem(e.target);
+    })
+
+  $('ol').on('mouseout', function(e){
+          removeHighlight(e.target);
+    })
 
 document.createSvg = function(tagName) {
         var svgNS = "http://www.w3.org/2000/svg";
@@ -21,7 +30,7 @@ document.createSvg = function(tagName) {
 
     showData(d);
 
-    drawTimeline();
+    drawTimeline(d);
 
 
 
@@ -222,13 +231,23 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){
     })
   }
 
-  function drawTimeline() {
+  function drawTimeline(d) {
     var margin= {top:60, bottom:20, right:25, left:15};
 
     document.getElementById("timelineCompare").innerHTML = ""; //clear out any previous timeline
 
-    var dataArr = generateEventDataArray(10,0);
+    var dataArr = [];
 
+    d.forEach(function(element){
+      dataArr.push({year:element.year.substring(2), color: element.color, text: element.text, type: element.eventType});
+    })
+
+
+    console.log("dataArr: " + JSON.stringify(dataArr));
+
+    // dataArr.forEach(function (element, index, array){
+    //   console.log("element: " + JSON.stringify(element));
+    // });
     //object with key as year and value as the number of events during that year
     var yearsMap = {};
 
@@ -289,13 +308,28 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){
       .attr("width", 7)
       .attr("height", 7)
       .attr("fill", function(d){return d.color})
-      .on("mouseover",function(d){ //show and hide tooltip of event label
-              document.getElementById(d.text + d.year).style.visibility = "visible";
-              console.log(document.getElementById(d.text + d.year));
-      })
-      .on("mouseout", function(d){
-        document.getElementById(d.text + d.year).style.visibility ="hidden";
-      });
+      .attr("id",function(d){return "timelinetype"+d.type+"timelineyear"+d.year})
+      .attr("class","timelineRect")
+      // .on("mouseover",function(d){ //show and hide tooltip of event label
+      //         document.getElementById("timelinetype"+d.type+"timelineyear"+ d.year).style.visibility = "visible";
+      //         console.log(getElementById("timelinetype"+d.type+"timelineyear"+ d.year));
+      // })
+      // .on("mouseout", function(d){
+      //   document.getElementById("timelinetype"+d.type+"timelineyear"+ d.year).style.visibility ="hidden";
+      // });
+timeline.selectAll("rect").addEventListener( //event listener for hover
+            "mouseover",
+            function(e){
+              console.log("REACHED")
+                    highlightItem(e.target); //e.target is the rect object, where id="type#year#" and class="typeSquare"
+            },
+             false);
+            timeline.selectAll("rect").addEventListener( //event listener for hover
+              'mouseout',
+              function(e){
+                removeHighlight(e.target);
+              },
+              false);
 
     timeline.selectAll("text")
       .data(dataArr)
@@ -306,8 +340,9 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){
       .attr("x",d3.mouse(this)[0]) //TODO: figure out correct placement
       .attr("y",d3.mouse(this)[1])
       .attr("class","textLabels")
-      .attr("id", function(d){return d.text + d.year}) //allows text elements to be accessible by their corresponding rect
+      .attr("id", function(d){return "timelinetype"+d.type+"timelineyear"+ d.year}) //allows text elements to be accessible by their corresponding rect
       .style("visibility", "hidden");
+
   };
 
   /*this function pulls events from a chart and returns as an array of objects*/
@@ -436,7 +471,7 @@ function fillEventList1(dataArr){
       if(id.includes("text")){ //if hovering over text
         console.log("text el reached")
         highlightCorrForText(id);
-        // offsets = $('#'+id.replace('text','compareyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
+        //offsets = $('#'+id.replace('text','compareyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
       }
       else if (id.includes("data")){
         console.log("data el reached")
@@ -448,6 +483,10 @@ function fillEventList1(dataArr){
         highlightCorrForSquare(id);
         // offsets = $('#'+id.replace('compareyear','text')).offset();
       }
+      else if(id.includes("timelineyear") && element.getAttribute('fill') != 'white'){
+        console.log("time el reached");
+        highlightCorrForTimeline(id);
+      }
 
   }
 
@@ -458,18 +497,33 @@ function fillEventList1(dataArr){
       text ? text.setAttribute("class", "highlight"): null;
 
       data? data.setAttribute("class", "highlight"): null;
+
+      var timeline = document.getElementById(id.replace("comparetype","timelinetype").replace("compareyear","timelineyear"))
+      timeline ? setAttribute("class","highlightSquare"): null;
     }
 
     function highlightCorrForText(id){
       document.getElementById(id).setAttribute("class", "highlight");
       document.getElementById(id.replace("viewtritype","comparetype").replace('text','compareyear')).setAttribute("class", "highlightSquare");
       document.getElementById(id.replace("viewtritype","datatype").replace("text","datayear")).setAttribute("class", "highlight");
+      var timeline = document.getElementById(id.replace("viewtritype","timelinetype").replace("text","timelineyear"))
+      timeline ? setAttribute("class","highlightSquare"): null;
     }
 
     function highlightCorrForData(id){
       document.getElementById(id).setAttribute("class", "highlight");
       document.getElementById(id.replace("datatype","comparetype").replace("datayear","compareyear")).setAttribute("class","highlightSquare");
       document.getElementById(id.replace("datatype", "viewtritype").replace("datayear","text")).setAttribute("class","highlight")
+      var timeline = document.getElementById(id.replace("datatype","timelinetype").replace("datayear","timelineyear"))
+      timeline ? setAttribute("class","highlightSquare"): null;
+    }
+
+    function highlightCorrForTimeline(id){
+      document.getElementById(id).setAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).setAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("timelinetype", "viewtritype").replace("timelineyear", "text")).setAttribute("class, highlight")
+      var timeline = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
+      timeline ? setAttribute("class", "highlight") : null;
     }
   }
 
@@ -512,17 +566,14 @@ function fillEventList1(dataArr){
       document.getElementById(id.replace("datatype","comparetype").replace("datayear","compareyear")).removeAttribute("class","highlightSquare");
       document.getElementById(id.replace("datatype", "viewtritype").replace("datayear","text")).removeAttribute("class","highlight")
     }
+
+    function removeHighlightCorrForTimeline(id){
+      document.getElementById(id).setAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).removeAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("timelinetype", "viewtritype").replace("timelineyear", "text")).removeAttribute("class, highlight")
+      document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear")).removeAttribute("class", "highlight");
+    }
   }
-
-  //event listener for hovering over a list element
-  $('ol').on('mouseover', function(e){
-          console.log(e.target);
-          highlightItem(e.target);
-    })
-
-  $('ol').on('mouseout', function(e){
-          removeHighlight(e.target);
-    })
 
   drawLine = function(x1,y1,x2,y2,group,strokeClr,dashWidth,dashSpace,strokeWidth){
   	var aLine = document.createSvg('line');
