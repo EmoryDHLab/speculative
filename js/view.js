@@ -63,7 +63,7 @@ document.createSvg = function(tagName) {
 
 	d3.csv('peabodyData.csv', function(d){
 		var container = document.getElementById("viewGrid");
-		container.appendChild(makeGrid(10, 48, 450, 0)); //makes four 5x5 quadrant with boxes 30 px wide
+		container.appendChild(makeGrid(480, 1)); //makes four 5x5 quadrant with boxes 30 px wide
 
 		/*populate chart*/
     fillChart(d);
@@ -73,6 +73,7 @@ document.createSvg = function(tagName) {
 
 	})
 
+<<<<<<< HEAD
 var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: handle edge cases for specific yearboxes
 
   var noLeftOrange = [1,11,21,31,41,51,61,71,81,91];
@@ -164,35 +165,99 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
                     drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,5);
                   else
                     drawLine((numType)*size/3+numType,0,(numType)*size/3+numType+size/3 + 1,0,yearBox,'orange',0,0,1); //orange line one px above the top of each type square
+=======
+  var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specific yearboxes
+      var centSize=size+gControl.lines.thick*3;
+      var yearSize=size/10;
+      var eventSize=yearSize/3;
+      //whole svg
+      var svg = document.createSvg("svg");
+
+      svg.setAttribute("width", centSize); //hard coded for now
+      svg.setAttribute("height", centSize);
+
+      //group for everything: background, years, types. so when "maing" is translated, everything moves as a unit
+      maing = document.createSvg("g");
+      maing.setAttribute("id", "viewmaing");
+      maing.setAttribute("height",centSize);
+      maing.setAttribute("width",centSize);
+      var century= drawRect(gControl.lines.thick/2,gControl.lines.thick/2, size+gControl.lines.thick*2, size+gControl.lines.thick*2, gControl.lines.thick);
+      maing.appendChild(century);
+      topG= document.createSvg("g");
+      maing.appendChild(topG);
+
+      century.setAttribute("fill","white");
+      century.setAttribute("stroke",gControl.colors.outer);
+      //append maing to svg
+      //TODO add generic function for hover event on the yearbox elements.
+
+      for(var i = 0; i < 10; i++) {// for each decade
+        for(var j = 0; j < 10; j++) {//for each year
+            var numYear = i*10 + j; //which number year box we're on
+            var yearGroup = document.createSvg("g");
+            yearGroup.setAttribute("width", size+gControl.lines.medium);
+            yearGroup.setAttribute("height", size+gControl.lines.medium);
+            yearGroup.setAttribute("id", "viewyear" + (currYearID-1));
+            yearGroup.setAttribute("class","yearBox")
+            currYearID = currYearID + 1;
+            for(var numType = 0; numType < 9; numType++){ //for 9 times, create a type square and append to current year box
+              var currEvtX=gControl.x,
+                  currEvtY=gControl.y;
+              currEvtX += j * yearSize; // add year x offset
+              currEvtY += i * yearSize; // add year y offset
+              currEvtY += Math.floor(numType/3) * eventSize;  // som cool math to find y offset
+              currEvtX += numType%3 * eventSize;              // some cool math to find x offset
+              if(j>4){
+                  currEvtX+=18;
+>>>>>>> 1ee37248322fc82b609fced897f192d0afde8c7f
               }
-              drawLine((numType)*size/3+numType,1.5+size/3,(numType)*size/3+numType+size/3,1.5+size/3,yearBox,'black',2,2,0.5); //bottom dotted line
-            }
-            else if(numType == 3 || numType == 4 || numType == 5){
-              type.setAttribute("transform", ["translate(" + ((numType-3) * size/3 + (numType-3) + 2),size/3 + 2 + 2 + ")"]);
-              if(numType == 3 || numType == 4){ //if 3 or 4 draw right dotted
-                if(numType == 3 && (!noLeftOrange.includes(currYearID))){//if 3 and not in the left column, draw left orange
-                  if(orangeOnLft.includes(currYearID))
-                    drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,5);
-                  else
-                    drawLine(0,size/3,(numType-3)*size/3,2*size/3,yearBox,'orange',0,0,1);
-                }
-                drawLine((numType-2)*size/3+(0.5*(numType-2)),size/3,(numType-2)*size/3+(0.5*(numType-2)),2*size/3,yearBox,'black',2,2,0.5);
+              if(i>4){
+                  currEvtY+=18;
               }
+<<<<<<< HEAD
         if(numType == 5 && (orangeOnRt.includes(currYearID)))//thick orange on right
           drawLine((numType-2)*size/3+(0.5*(numType-2))+3,size/3,(numType-2)*size/3+(0.5*(numType-2))+3,2*size/3,yearBox,'orange',0,0,5);
 
               drawLine((numType-3) * size/3 + (numType-3),size/3+2.5+size/3,(numType-3) * size/3 + (numType-3)+size/3,size/3+2.5+size/3,yearBox,'black',2,2,0.5); //dotted line 1px below the bottom of type square
+=======
+              var typeBox = drawRect(currEvtX,currEvtY,eventSize,eventSize);
+              //any style or attribute applied to a year will filter to the types that make it up
+              yearGroup.appendChild(typeBox);
+              typeBox.setAttribute("class","viewSquare"); //class for all type squares
+              typeBox.setAttribute("id", "viewtype" + numType + typeBox.parentNode.getAttribute("id")); //each type square has an ID according to its type: 0-8 AND ALSO ITS YEAR (otherwise it wont be unique)
+              typeBox.setAttribute("fill", "white");
+              typeBox.setAttribute("squareState","0");
+              //0,1,2 are type boxes on the first row
+>>>>>>> 1ee37248322fc82b609fced897f192d0afde8c7f
             }
-            else if(numType == 6 || numType == 7 || numType == 8){
-              if(numType == 6 || numType == 7){ //if 6 or 7 draw right dotted
-                if(numType == 6 && (!noLeftOrange.includes(currYearID))){ //if 6 draw left orange
-                  if(orangeOnLft.includes(currYearID))
-                    drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,5);
-                  else
-                    drawLine(0,2*size/3,(numType-6)*size/3,3*size/3+3,yearBox,'orange',0,0,1);
-                }
-                drawLine((numType-5)*size/3+(0.5*(numType-5)),2*size/3,(numType-5)*size/3+(0.5*(numType-5)),3*size/3+1,yearBox,'black',2,2,0.5); //right dotted
+            maing.appendChild(yearGroup);
+          }//close inner for loop
+      }//close outer for loop
+
+      for(var i=1; i<30; i++){//draws event lines
+        var eventPos=((i)*eventSize),
+            thickness=gControl.lines.thin,
+            clr=gControl.colors.innermost;
+        if((i)%3!=0){
+          if (i>15) {
+            eventPos+=18;
+          }
+          topG.appendChild(drawLine(gControl.x,gControl.y+eventPos,gControl.x+size+gControl.offset,gControl.y+eventPos,thickness,clr));
+          topG.appendChild(drawLine(gControl.x+eventPos,gControl.y,gControl.x+eventPos,gControl.y+size+gControl.offset,thickness,clr));
+        }
+      }
+
+      for(var i=0;i<9;i++){// draws year lines
+        for(var j=0; j<9; j++){
+          var thickness=gControl.lines.medium,
+              clr=gControl.colors.inner,
+              yrPos=((i+1)*yearSize);
+          if(i<9){
+            if((i+1)%5!=0){
+              if (i>4) {
+                yrPos+=18;
               }
+<<<<<<< HEAD
               if(numType == 8 && orangeOnRt.includes(currYearID))
                 drawLine((numType-5)*size/3+(0.5*(numType-5))+3,2*size/3,(numType-5)*size/3+(0.5*(numType-5))+3,3*size/3+3,yearBox,'orange',0,0,5);
 
@@ -212,18 +277,32 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
             yearBox.setAttribute("transform", ["translate(", j*size + j*3, ",", i*size + i*3 + size/3, ")"].join(""));
             if(numYear.between(55,60) || numYear.between(65,70) || numYear.between(75,80) || numYear.between(85,90) || numYear.between(95,100)) // right quadrant
               yearBox.setAttribute("transform", ["translate(", j*size + j*3 + size/3, ",", i*size + i*3 + size/3, ")"].join(""));
+=======
+              topG.appendChild(drawLine(gControl.x,gControl.y+yrPos,gControl.x+size+gControl.offset,gControl.y+yrPos,thickness,clr));
+              topG.appendChild(drawLine(gControl.x+yrPos,gControl.y,gControl.x+yrPos,gControl.y+size+gControl.offset,thickness,clr));
+            }else{
+                yrPos+=9;
+            }
+>>>>>>> 1ee37248322fc82b609fced897f192d0afde8c7f
           }
-        }//close inner for loop
-    }//close outer for loop
+        }
+      }
+      // draws thick centers.
+      var midPos=(5*yearSize)+9,
+          clr=gControl.colors.outer;
 
+      topG.appendChild(drawLine(gControl.x, gControl.y+midPos,gControl.x+size+gControl.offset,gControl.y+midPos, gControl.lines.thick, clr));
+      topG.appendChild(drawLine(gControl.x+midPos, gControl.y, gControl.x+midPos, gControl.y+size+gControl.offset, gControl.lines.thick,clr));
+      svg.appendChild(maing);
+      svg.appendChild(topG);
 
-    return svg;
-  }
+      return svg;
+    }
 
  /*fill in squares on chart given an array of objects w/ year, eventType, color*/
   function fillChart(dataArr){
     dataArr.forEach(function (element, index, array){
-        var typeRect = document.getElementById('viewtype' + element.eventType + 'viewyear' + (+element.year % 100 - 1))
+        var typeRect = document.getElementById('viewtype' + element.eventType + 'viewyear' + (element.year % 100 - 1))
         if(typeRect.getAttribute('fill') != 'white'){
           //if a rectangle is present, draw a triangle over it
           var w = typeRect.getAttribute('width');
@@ -269,6 +348,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
       console.log(id);
     var offsets = null;
 
+<<<<<<< HEAD
   //   if(id != null){
   //     if(id.includes("text")){ //if hovering over text
   //       element.setAttribute("class","highlight");
@@ -298,6 +378,26 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
         var typeText = document.getElementById(id.replace('viewyear', 'text'));
         typeText ? typeText.setAttribute("class", "highlight") : null;
       }
+=======
+    if(id != null){
+      if(id.includes("text")){ //if hovering over text
+        element.setAttribute("class","highlight");
+        //the text's id type#text# turns to a square's id type#year#
+        var typeSquare = document.getElementById(id.replace('text','viewyear'));
+        console.log(typeSquare)
+        if(typeSquare != null)
+          typeSquare.setAttribute("class","highlightSquare");
+        offsets = $('#'+id.replace('text','viewyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
+      }
+      else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
+        element.setAttribute("class","highlightSquare");
+        var text = document.getElementById(id.replace('viewyear','text'))
+        if(text != null)
+          text.setAttribute("class","highlight");
+        offsets = $('#'+id.replace('viewyear','text')).offset();
+      }
+    }
+>>>>>>> 1ee37248322fc82b609fced897f192d0afde8c7f
 
     //TODO: draw line connecting the two elements
     // var aLine = document.createSvg('line');
@@ -334,13 +434,109 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
    }
   }
 
+  //This function finds all squares horiz and vert of given square
+  function getHorizVert(element){
+    //get the id of the element
+    var id= element.getAttribute("id");
+    //Check id is valid, if not, stop this
+    if(id==null){
+      return
+    }
+    // are we hovering over a list element or a rect?
+    if(id.includes("text")){ //list
+      console.log("list element")
+
+      //get the year of the element
+      year=parseInt(id.substring(13))
+      console.log(year)
+    }else if (id.includes("year")) {//rect
+      //get the year of the element
+      year=parseInt(id.substring(17))
+    }else{
+      console.log("What are you hovering over??");
+      return
+    }
+    //get the type of the element
+    var tp=parseInt(id.charAt(8))
+    console.log(tp)
+    var hYears=[];
+    var vYears=[];
+    var ones=parseInt(year) %10
+
+    console.log("Tens: ")
+    var tens=Math.floor(parseInt(year)/10)
+    //find years
+    for (i = 0; i < 10; i++) { //one loop used for ones and tens.
+        vYears.push((i*10)+ones)//for all vertical
+        if(!(i==ones & i==tens))
+        hYears.push((tens*10)+i)//for all horizontal
+    }
+    console.log(hYears)
+    console.log(vYears)
+    //find types
+    var vTypes=[]
+    var hTypes=[]
+    if (tp>=0 && tp<3){
+      hTypes=[0,1,2]
+    }else if(tp>2 && tp<6){
+      hTypes=[3,4,5]
+    }else if(tp>5 && tp<9){
+      hTypes=[6,7,8]
+    }else{
+      console.log("Type Error in crosshair")
+    }
+    if(tp==0 || tp==3 || tp==6){
+      vTypes=[0,3,6]
+    }else if (tp==1 || tp==4 || tp==7) {
+      vTypes=[1,4,7]
+    }else if (tp==2 || tp==5 || tp==8) {
+      vTypes=[2,5,8]
+    }else {
+      console.log("Type Error in crosshair")
+    }
+
+    // all ids
+    ids=[]
+      for(h of hYears){//for each year I need to go through
+        for(t of hTypes){//for each horizontal w/in that year
+          if(!(h==year && t==tp)){
+            ids.push("viewtype"+t.toString()+"viewyear"+h.toString())
+          }
+        }
+      }
+      for(v of vYears){//for each year I need to go through
+        for(t of vTypes){//for each vertical w/in said that
+          if(!(v==year && t==tp)){
+            ids.push("viewtype"+t.toString()+"viewyear"+v.toString())
+          }
+        }
+      }
+    console.log(ids)
+    return ids
+  }
+
+  function addCrosshair(ids){
+    for(id of ids){
+      console.log(id)
+      document.getElementById("#"+id).class="crosshair";
+    }
+  }
+  function removeCrosshair(){
+    $('.crosshair').removeClass('crosshair');
+  }
+
+
   //event listener for hovering over a list element
   $('ol').on('mouseover', 'li', function(e){
-          //highlightItem(e.target);
+        highlightItem(e.target);
+        //  ids=getHorizVert(e.target);
+        //  addCrosshair(ids);
+
     })
 
   $('ol').on('mouseout', 'li', function(e){
-          //removeHighlight(e.target);
+          removeHighlight(e.target);
+          //removeCrosshair();
     })
 
   drawLine = function(x1,y1,x2,y2,group,strokeClr,dashWidth,dashSpace,strokeWidth){
@@ -354,6 +550,7 @@ var makeGrid = function(boxesPerSide, size, pixelsPerSide, currYearID){ //TODO: 
     aLine.setAttribute('stroke-dasharray',dashWidth+","+dashSpace);
     group.appendChild(aLine);
   }
+
 
 
 

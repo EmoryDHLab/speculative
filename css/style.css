@@ -211,3 +211,64 @@ h4 {
 .timelineRect{
     visibility: visible;
 }
+
+.tester{
+	fill:blue;stroke:pink;stroke-width:5;opacity:0.5;
+}
+
+.crosshair{
+	fill:grey !important;
+}
+.buildSquare:hover{
+	cursor:pointer;
+}
+#buildList {
+	background-color: #F3F3F3;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left: 2em;
+}
+#eventsNavigation{
+	text-align: center;
+	font-size: 1.5em;
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
+}
+
+.row{
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#buildList p{
+	margin-right: 10px;
+	font-size: 1.7em;
+	text-align: left;
+	min-height:3em;
+	display:inline-block;;
+}
+.selectedColor{
+	stroke-width:3;
+	stroke:rgb(0,0,0);
+}
+.nextPrevButtons:hover{
+	cursor: pointer;
+}
+#eventCounter{
+	font-style: italic;
+}
+#show-hide{
+	font-size: .7em;
+}
+#show-hide:hover{
+	cursor: pointer;
+}
+
+.corIncor{
+	width: 30px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
