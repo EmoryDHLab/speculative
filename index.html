@@ -325,26 +325,26 @@
       counter.text(BuildControl.getCounter());
 
       $("#show-hide").click(function(e){
-        if($(e.target).html()=="Show"){
+        if(BuildControl.getShow()=="Show"){
           $("#show-hide").html("Hide");
-          console.log("Show");
+          console.log("Shown");
           BuildControl.showMe();
-        }else{
+        }else if(BuildControl.getShow()=="Hide"){
           $("#show-hide").html("Show");
-          console.log("Hide");
+          console.log("Hidden");
           BuildControl.hideMe();
         }
       });
       prevE.click(function(){
-        $("#show-hide").html("Show");
         BuildControl.dec();
+        $("#show-hide").html(BuildControl.getShow());
         currentEvent.text(BuildControl.currentEvent());
         counter.text(BuildControl.getCounter())
 
       });
       nextE.click(function(){
-        $("#show-hide").html("Show");
         BuildControl.inc();
+        $("#show-hide").html(BuildControl.getShow());
         currentEvent.text(BuildControl.currentEvent());
         counter.text(BuildControl.getCounter())
       });

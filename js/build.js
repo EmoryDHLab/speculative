@@ -108,9 +108,9 @@ var BuildControl={
   unlockAnswer:function(){
     this.allowed[this.i]=true;
   },
-  placeAnswer(e){
+  placeAnswer(e,g=true){
     var temp=this.placed[this.i];
-    this.guessed[this.i]=true;
+    this.guessed[this.i]=g;
     this.placed[this.i]=changeSquare(e,this.allowed[this.i]);
     if(this.placed[this.i]===""){
       this.unlockAnswer();
@@ -129,7 +129,14 @@ var BuildControl={
   hideMe: function(){
     var correctElem=document.getElementById(this.currentAnswer()[0]);
     currColor=this.currentAnswer()[1];
-    this.placeAnswer(correctElem);
+    this.placeAnswer(correctElem,false);
+  },
+  getShow: function(){
+      if(this.guessed[this.i]==true){
+        return "Hide";
+      }else{
+        return "Show";
+      }
   },
   update: function(){
     var check=this.checkAnswer();
