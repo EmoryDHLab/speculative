@@ -164,21 +164,34 @@
                 <br><br>
               <img></img>
               <div id="buildGrid"></div>
-              <div id="buildPalette">Palette</div>
             </div>
             <div class="col-md-6">
 <!--THIS IS WHERE YOU ARE WORKING RN #####################################################################################################################################-->
-                <h1>Events</h1>
-                <div id="buildList">
-                  <p id="currentBuildEvent">1501. Henry VII. grants patent for colonizing America.</p>
-                  <div id="eventsNavigation">
-                    <span id="previous" class="glyphicon glyphicon-menu-left nextPrevButtons" aria-hidden="true"></span>
-                    <span id="eventCounter">1</span>
-                    <img class="corIncor" id="correct" src="#" alt="C"/>
-                    <button type="button" name="show">Show Me</button>
-                    <span id="next" class="glyphicon glyphicon-menu-right nextPrevButtons" aria-hidden="true"></span>
+                <h3>Events</h3>
+                <div class="row">
+                  <div id="buildList" class="col-md-11">
+                    <p><span id="currentBuildEvent">1501. Henry VII. grants patent for colonizing America.</span>&nbsp;<a id="show-hide">Show</a></p>
+                    <div id="eventsNavigation" class="row">
+                      <div class="col-md-1">
+                        <span id="previous" class="glyphicon glyphicon-menu-left nextPrevButtons" aria-hidden="true"></span>
+                      </div>
+                      <div id="evtListCounter" class="col-md-1">
+                        <span id="eventCounter">1</span>
+                      </div>
+                      <div class="col-md-3">
+                        <img class="corIncor" id="correct" width="30px" height="30px" src="img/correct.svg" alt="correct" hidden="true"/>
+                        <img class="corIncor" id="incorrect" width="30px" height="30px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
+                        <img class="corIncor" id="na" width="30px" height="30px" src="img/na.svg" alt="n/a"/>
+                      </div>
+                      <div class="col-md-1">
+                        <span id="next" class="glyphicon glyphicon-menu-right nextPrevButtons" aria-hidden="true"></span>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </div>
                   </div>
+                  <div class="col-md-1"></div>
                 </div>
+                <div id="buildPalette">Palette</div>
                 <h3>Events and their corresponding squares</h3>
                 <div class="row">
                     <div class="col-md-4">
@@ -304,42 +317,44 @@
 
     <script src="js/fullheight.js"></script>
     <script>
-      var buildEvents=["1501. Henry VII. grants patent for colonizing America.",
-        "1512. Ponce de Leon discovers Florida.","1517. Sebastian Cabot's last voyage in the English service.",
-        "1520. Vasquez de Ayllon’s Piracy on Chicora.","1523. Verrazzani explores American coasts for France.",
-        "1525. Stephen Gomez tries to discover North West Passage to India for Spain.","1526. Pamphilo de Narvaez attempts to conquer Florida.",
-        "1534. James Cartier discovers River St. Lawrence.","1537. Ferdinand de Soto attempts to conquer Florida.",
-        "1540. Roberval and Cartier try in vain to colonize Canada.","1542. Ferdinand de Soto dies on the Mississippi.",
-        "1562. Coligny sends a Huguenot Colony to America.","1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony.",
-        "1576. Martin Frobisher renews English Explorations.","1578. Sir Humphrey Gilbert’s Voyage and Death.",
-        "1579. Sir Francis Drake discovers Oregon, and names it New Albion.","1584. Sir Walter Raleigh gets patent to colonize.",
-        "1585. Sir W. R.’s unsuccessful colony at Roanoke, carried out by Sir Richard Grenville."
-      ];
-      var currentEventId=0,
-          currentEvent=$("#currentBuildEvent"),
-          nextE=$("#next"),
-          prevE=$("#previous"),
-          counter=$("#eventCounter");
-      currentEvent.text(buildEvents[0]);
-      counter.text((currentEventId+1).toString() +" / "+ buildEvents.length.toString())
-      prevE.click(function(){
-        if(currentEventId<=0){
-          currentEventId=buildEvents.length;
+      var currentEvent=$("#currentBuildEvent"),
+        nextE=$("#next"),
+        prevE=$("#previous"),
+        counter=$("#eventCounter");
+      currentEvent.text(BuildControl.currentEvent());
+      counter.text(BuildControl.getCounter());
+
+      $("#show-hide").click(function(e){
+        if($(e.target).html()=="Show"){
+          $("#show-hide").html("Hide");
+          console.log("Show");
+          BuildControl.showMe();
+        }else{
+          $("#show-hide").html("Show");
+          console.log("Hide");
+          BuildControl.hideMe();
         }
-        currentEventId--;
-        currentEvent.text(buildEvents[currentEventId]);
-        counter.text((currentEventId+1).toString() +" / "+ buildEvents.length.toString())
+      });
+      prevE.click(function(){
+        $("#show-hide").html("Show");
+        BuildControl.dec();
+        currentEvent.text(BuildControl.currentEvent());
+        counter.text(BuildControl.getCounter())
 
       });
       nextE.click(function(){
-        if(currentEventId>=buildEvents.length-1){
-          currentEventId=-1;
-        }
-          currentEventId++;
-          currentEvent.text(buildEvents[currentEventId]);
-          counter.text((currentEventId+1).toString() +" / "+ buildEvents.length.toString())
+        $("#show-hide").html("Show");
+        BuildControl.inc();
+        currentEvent.text(BuildControl.currentEvent());
+        counter.text(BuildControl.getCounter())
       });
-
     </script>
+
+    <script>
+      $("body").on("click",".buildSquare",function(e){
+        BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
+      });
+    </script>
+
   </body>
 </html>
