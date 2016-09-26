@@ -63,7 +63,7 @@ html, body{
 
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{ 
-	font-family: "PT Sans Narrow", sans-serif;
+	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
     display: -moz-box;
@@ -123,6 +123,7 @@ h4 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
+    font-size: 115%;
 
 }
 
@@ -136,8 +137,8 @@ h4 {
 }
 
 #history{
-    padding-top: 10%;
-    padding-bottom: 15%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 	background-color: #8D2B1D; /*red*/
 }
 
@@ -206,3 +207,50 @@ h4 {
 .highlightSquare{
 	stroke: blue;
 }
+
+
+/*remove gradient from bootstrap carousel*/
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+    top: -100px;
+}
+
+
+.carousel-control{
+  color:black;
+}
+
+.carousel-control:hover, .carousel-control:focus{
+  color:black;
+}
+
+
+/*if white bg*/
+.carousel-indicators li{
+  background-color:white;
+  border-color:black;
+}
+.carousel-indicators .active{
+  background-color:black;
+  border-color: white;
+}
+
+img.carousel{
+/*    width: 50%;
+*/}
+
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    line-height: 1;
+    width: 60%; 
+    margin: auto;
+}
+
+
+
+
+
+
