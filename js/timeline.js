@@ -10,7 +10,7 @@ document.createSvg = function(tagName) {
     };
 
 
-	d3.csv('peabodyData.csv', function(d){	
+	d3.csv('peabodyData.csv', function(d){
 
 
 		/*populate chart*/
@@ -32,7 +32,7 @@ var numColors = countryNames.length;
     var margin= {top:60, bottom:20, right:25, left:15};
 
     document.getElementById("timeline").innerHTML = ""; //clear out any previous timeline
-    
+
     var dataArr = generateEventDataArray(10,0);
 
     //object with key as year and value as the number of events during that year
@@ -41,7 +41,7 @@ var numColors = countryNames.length;
     var svg = document.createSvg("svg");
     var canvas = d3.select('#timeline').append('svg')
               .attr("width",document.getElementById("timeline").offsetWidth); //current width of the timelineContainer div
-    
+
     var timeline = canvas.append('g')
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -54,9 +54,9 @@ var numColors = countryNames.length;
                   .orient("bottom")
                   .ticks(100)
                   .tickFormat(function(d) { //dont display text unless it's an even decade
-                    if((d % 10) != 0){ 
+                    if((d % 10) != 0){
                         return ("");
-                    }else{ 
+                    }else{
                         return (d + 1500); //the 1600 would be user input start century
                     }});
 
@@ -90,7 +90,7 @@ var numColors = countryNames.length;
       .attr("y", function(d){ //prevent overlapping rectangles by keeping track of how many events occur each year
         if(yearsMap[d.year] == null)
             yearsMap[d.year] = 1;
-        else 
+        else
             yearsMap[d.year] = +yearsMap[d.year] + 1;
         return (19 - 7*yearsMap[d.year] - yearsMap[d.year])})
       .attr("width", 7)
@@ -104,7 +104,7 @@ var numColors = countryNames.length;
         document.getElementById("timelineToolTip").style.visibility ="hidden";
       });
 
-    timeline.selectAll("text") 
+    timeline.selectAll("text")
       .data(dataArr)
       .enter()
       .append("text")
@@ -117,7 +117,7 @@ var numColors = countryNames.length;
   };
 
   /*this function pulls events from a chart and returns as an array of objects*/
-   function generateEventDataArray(boxesPerSide, yearID){ 
+   function generateEventDataArray(boxesPerSide, yearID){
     var timelineDataPts = []; //array of points to be plotted on the timeline
       for(var i = 0; i < boxesPerSide; i++) {
         for(var j = 0; j < boxesPerSide; j++) {
@@ -140,7 +140,7 @@ var numColors = countryNames.length;
                    }
                    else if(numType == 1){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Conquest, annexation, or union"});
-                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Conquest, annexation, or union <br>"; 
+                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Conquest, annexation, or union <br>";
                    }
                    else if(numType == 2){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Loss or disaster"});
@@ -164,7 +164,7 @@ var numColors = countryNames.length;
                    }
                    else if(numType == 7){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Deed"});
-                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Deed <br>"; 
+                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Deed <br>";
                    }
                    else if(numType == 8){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Death of remarkable individual"});
@@ -172,7 +172,7 @@ var numColors = countryNames.length;
                    }
                 } //end if triangle.getAttr
               } //end if triangle != null
-              if(typeSquare.getAttribute("fill") == arrayColors[numClr-1])
+              if(typeSquare.getAttribute("fill") && (typeSquare.getAttribute("fill") == arrayColors[numClr-1]))
                 {
                   var country = countryNames[numClr-1];
                   //9 if else statements for type of event. to avoid: would be nice to have an added attribute during makeGrid that is eventName
@@ -182,7 +182,7 @@ var numColors = countryNames.length;
                    }
                    if(numType == 1){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Conquest, annexation, or union"});
-                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Conquest, annexation, or union <br>"; 
+                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Conquest, annexation, or union <br>";
                    }
                    if(numType == 2){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Loss or disaster"});
@@ -206,7 +206,7 @@ var numColors = countryNames.length;
                    }
                    if(numType == 7){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Deed"});
-                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Deed <br>"; 
+                    //document.getElementById("timeline").innerHTML =  document.getElementById("timeline").innerHTML + country + ": Deed <br>";
                    }
                    if(numType == 8){
                     timelineDataPts.push({year: yearID, color: arrayColors[numClr-1], text: country + ": Death of remarkable individual"});
