@@ -1,0 +1,20 @@
+{
+  "name": "speculative",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "start": "node server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgiaTechDHLab/speculative.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgiaTechDHLab/speculative/issues"
+  },
+  "homepage": "https://github.com/GeorgiaTechDHLab/speculative#readme"
+}
