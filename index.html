@@ -68,7 +68,7 @@
         <div class="section row explanation" id="howitworks">
           <div class="container">
             <h2>How it Works</h2>
-            <h3 id="h3_instr">Click below to progress through a sequence of images to learn about the method.</h3>
+            <h3 id="h3_howitworks">Click below to progress through a sequence of images to learn about the method.</h3>
               <!--data interval = "false" stops it from automatically cycling through-->
               <div id="carousel-example-generic" class="carousel" data-ride="carousel" data-interval="false">
                 <!-- Indicators -->
@@ -116,7 +116,7 @@
                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                   <span class="sr-only">Previous</span>
                 </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" onclick="hide('h3_howitworks')">
                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </a>
@@ -124,12 +124,10 @@
           </div>
         </div>
 
-        <div class="customHr">.</div>
-
         <div class="row interactive fluid" id="view">
           <div class="container">
             <h2>View</h2>
-            <h3 id="h3_instr">Mouse over the squares or list of events to see how items correspond.</h3>
+            <h3 id="h3_view" data-toggle="collapse" data target="#h3_view">Mouse over the squares or list of events to see how items correspond.</h3>
             <div class="col-md-6">
               <img></img>
               <br><br>
@@ -182,7 +180,7 @@
         <div class="row interactive fluid" id="build">
           <div class="container">
             <h2>Build</h2>
-            <h3 id="h3_instr">Move through the sequence of events and use the color palette to build the chart.</h3>
+            <h3 id="h3_build">Move through the sequence of events and use the color palette to build the chart.</h3>
             <div class="col-md-6">
                 <br><br>
               <img></img>
@@ -356,6 +354,12 @@
       $("body").on("click",".buildSquare",function(e){
         BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
       });
+    </script>
+
+    <script>
+      function hide(target){
+        document.getElementById(target).style.display = 'none';
+      }
     </script>
 
   </body>
