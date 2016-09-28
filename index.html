@@ -1,3 +1,11 @@
+<!--  h1 is the main title of the page, The Shape of History, nothing else
+      h2 is the subtitle of each section, like About and How it Works
+      h3 are the subtitles of the subtitles of each section, like the instructions Click the right arrow...
+      h4 are the subtitles in each section, like Events and Events and their corresponding squares -->
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,8 +44,9 @@
         </div>
       </section><!--close section intro-->
 
-      <section class="walkthrough">
-        <div class="section row narrative" id="history">
+
+<!--       <section class="walkthrough">
+ -->        <div class="section row narrative" id="history">
           <div class="container">
             <h2>About</h2>
             <br>
@@ -52,14 +61,14 @@
             </div>
           </div>
         </div><!--close history-->
-      </section>
-
+<!--       </section>
+ -->
 
 
         <div class="section row explanation" id="howitworks">
           <div class="container">
             <h2>How it Works</h2>
-
+            <h3 id="h3_instr">Click below to progress through a sequence of images to learn about the method.</h3>
               <!--data interval = "false" stops it from automatically cycling through-->
               <div id="carousel-example-generic" class="carousel" data-ride="carousel" data-interval="false">
                 <!-- Indicators -->
@@ -78,43 +87,27 @@
                 <div class="carousel-inner" role="listbox">
                   <div class="item active">
                     <img src="img/imgseq_9-23-01.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-02.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-03.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-04.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-05.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-06.png" alt="...">
-     <!--                <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-07.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                   <div class="item">
                     <img src="img/imgseq_9-23-08.png" alt="...">
-    <!--                 <div class="carousel-caption">
-                    </div> -->
                   </div>
                 </div>
 
@@ -128,25 +121,24 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-
-
           </div>
         </div>
 
+        <div class="customHr">.</div>
 
         <div class="row interactive fluid" id="view">
           <div class="container">
             <h2>View</h2>
-
+            <h3 id="h3_instr">Mouse over the squares or list of events to see how items correspond.</h3>
             <div class="col-md-6">
               <img></img>
               <br><br>
               <div id="viewGrid"></div>
             </div>
             <div class="col-md-6">
-                <h3>Events</h3>
+                <h4>Events</h4>
                 <ol id="sampleList"></ol>
-                <h3>Events and their corresponding squares</h3>
+                <h4>Events and their corresponding squares</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img>
@@ -174,25 +166,23 @@
         <div class="section row narrative" id="interaction">
           <div class="container">
             <h2>Interact</h2>
-            <div class="col-md-4">
-  <!--             <div class="classWithPad" //add to each column if need to add more space between columsn>
-   -->
-              <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
-  <!--             </div //css is .classWithPad { margin:10px; padding:10px; }>
-   -->
-            </div>
-            <div class="col-md-4">
-              <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
-            </div>
-            <div class="col-md-4">
-              <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
+            <br>
+            <div class = "row">
+              <div class="col-md-6">
+                <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
+                <br>
+                <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
+                <br>
+                <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
             </div>
           </div>
         </div><!--close interaction-->
+      </div>
 
         <div class="row interactive fluid" id="build">
           <div class="container">
             <h2>Build</h2>
+            <h3 id="h3_instr">Move through the sequence of events and use the color palette to build the chart.</h3>
             <div class="col-md-6">
                 <br><br>
               <img></img>
@@ -200,7 +190,7 @@
             </div>
             <div class="col-md-6">
 <!--THIS IS WHERE YOU ARE WORKING RN #####################################################################################################################################-->
-                <h3>Events</h3>
+                <h4>Events</h4>
                 <div class="row">
                   <div id="buildList" class="col-md-11">
                     <p><span id="currentBuildEvent">1501. Henry VII. grants patent for colonizing America.</span>&nbsp;<a id="show-hide">Show</a></p>
@@ -224,8 +214,10 @@
                   </div>
                   <div class="col-md-1"></div>
                 </div>
-                <div id="buildPalette">Palette</div>
-                <h3>Events and their corresponding squares</h3>
+                <div id="buildPalette">
+                  <h4>Palette</h4>
+                </div>
+                <h4>Events and their corresponding squares</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img>
@@ -252,33 +244,19 @@
           </div>
         </div><!--close build-->
 
-
-        <div class="row explanation">
-          <div class="container">
-            <h2>View as timeline</h2>
-            <br>
-            <h4 id="timelineToolTip">Hover over squares to view event description</h4>
-            <div class="col-md-12" id="timeline">
-              <div id="timelineExplanation">TODO: javascript for the timeline to go here</div>
-            </div>
-          </div>
-        </div><!--close timeline-->
-
-        <div class="row narrative" id="compare">
+        <div class="section row narrative" id="compare">
           <div class="container">
             <h2>Compare</h2>
-            <div class="col-md-4">
-  <!--             <div class="classWithPad" //add to each column if need to add more space between columsn>
-   -->
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero. Praesent ut enim vestibulum, suscipit orci ac, facilisis libero. Mauris vulputate ac sapien in lacinia. Morbi varius augue libero. Pellenscelerisque scelerisque. Phasellus sollicitudin luctus orci id consectetur. Pellentesque eget viverra ante. In hac habitasse platea dictumst. Nunc congue, elit sit amet rutrum congue, nibh nibh commodo nisl, nec ullamcorper orci justo quis ipsum. Donec augue odio, inteurna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur</p>
-  <!--             </div //css is .classWithPad { margin:10px; padding:10px; }>
-   -->
-            </div>
-            <div class="col-md-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero. Praesent ut enim vestibulum, suscipit orci ac, facilisis libero. Mauris vulputate ac sapien in lacinia. Morbi varius augue libero. Pellenscelerisque scelerisque. Phasellus sollicitudin luctus orci id consectetur. Pellentesque eget viverra ante. In hac habitasse platea dictumst. Nunc congue, elit sit amet rutrum congue, nibh nibh commodo nisl, nec ullamcorper orci justo quis ipsum. Donec augue odio, inteurna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur</p>
-            </div>
-            <div class="col-md-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero. Praesent ut enim vestibulum, suscipit orci ac, facilisis libero. Mauris vulputate ac sapien in lacinia. Morbi varius augue libero. Pellenscelerisque scelerisque. Phasellus sollicitudin luctus orci id consectetur. Pellentesque eget viverra ante. In hac habitasse platea dictumst. Nunc congue, elit sit amet rutrum congue, nibh nibh commodo nisl, nec ullamcorper orci justo quis ipsum. Donec augue odio, inteurna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur</p>
+            <br>
+            <div class="row">
+              
+              <div class="col-md-6">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+                <br>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+                <br>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+              </div>
             </div>
           </div>
         </div><!--close compare-->
@@ -286,6 +264,7 @@
         <div class="row interactive" id="compare2">
           <div class="container">
             <h2>Compare</h2>
+            <h3 id="h3_instr">Mouse over the squares or list of events to see how items correspond.</h3>
             <div class="col-md-12">
               <div id="timelineCompare">TODO: timeline goes here</div>
               <div class="col-md-3">
@@ -302,28 +281,27 @@
             </div>
           </div>
         </div><!--close compare2-->
-
       </section><!--close section walkthrough-->
-      <section class="creditss">
+
+
+
         <div class="row credits" id="credits">
           <div class="container">
             <h2>Credits</h2>
-              <br>
-            <div class="col-md-4">
-              <p>Caroline Foster, Erica Pramer, Lauren Klein</p>
-            </div>
-            <div class="col-md-4">
-              <p>second column for credits</p>
-            </div>
-            <div class="col-md-4">
-              <p>third column for credits</p>
+            <br>
+            <div class="row">
+
+              <div class="col-md-6">
+                <p>Caroline Foster, Erica Pramer, Lauren Klein Temp the column is centered for real though just needs a whole line of text or more</p>
+
+                <p>second column for credits</p>
+
+                <p>third column for credits</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </section><!--close section credits-->
-<!--       </div>
- -->
+
     <script src="js/server.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
