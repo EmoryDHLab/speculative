@@ -191,29 +191,24 @@
                 <h4>Events</h4>
                 <div class="row">
                   <div id="buildList" class="col-md-11">
-                    <p><span id="currentBuildEvent">1501. Henry VII. grants patent for colonizing America.</span>&nbsp;<a id="show-hide">Show</a></p>
-                    <div id="eventsNavigation" class="row">
-                      <div class="col-md-1">
+                    <p><span id="currentYr" class="col-md-2">1501.</span><span id="currentBuildEvent" class="col-md-10">Henry VII. grants patent for colonizing America.&nbsp;<a id='show-hide'>Show</a></span></p>
+                    <div id="eventsNavigation">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-5">
                         <span id="previous" class="glyphicon glyphicon-menu-left nextPrevButtons" aria-hidden="true"></span>
-                      </div>
-                      <div id="evtListCounter" class="col-md-1">
                         <span id="eventCounter">1</span>
-                      </div>
-                      <div class="col-md-3">
-                        <img class="corIncor" id="correct" width="30px" height="30px" src="img/correct.svg" alt="correct" hidden="true"/>
-                        <img class="corIncor" id="incorrect" width="30px" height="30px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
-                        <img class="corIncor" id="na" width="30px" height="30px" src="img/na.svg" alt="n/a"/>
-                      </div>
-                      <div class="col-md-1">
+                        <img class="corIncor" id="correct" width="21px" height="21px" src="img/correct.svg" alt="correct" hidden="true"/>
+                        <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
+                        <img class="corIncor" id="na" width="21px" height="21px" src="img/na.svg" alt="n/a"/>
                         <span id="next" class="glyphicon glyphicon-menu-right nextPrevButtons" aria-hidden="true"></span>
                       </div>
-                      <div class="col-md-4"></div>
+                      <div class="col-md-5"></div>
                     </div>
                   </div>
                   <div class="col-md-1"></div>
                 </div>
                 <div id="buildPalette">
-                  <h4>Palette</h4>
+                  <h4 style="margin-top:20px; margin-bottom:5px;">Palette</h4>
                 </div>
                 <h4>Events and their corresponding squares</h4>
                 <div class="row">
@@ -247,7 +242,7 @@
             <h2>Compare</h2>
             <br>
             <div class="row">
-              
+
               <div class="col-md-6">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
                 <br>
@@ -318,10 +313,12 @@
     <script src="js/fullheight.js"></script>
     <script>
       var currentEvent=$("#currentBuildEvent"),
+        currYear=$("#currentYr"),
         nextE=$("#next"),
         prevE=$("#previous"),
         counter=$("#eventCounter");
-      currentEvent.text(BuildControl.currentEvent());
+      currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+      currYear.text(BuildControl.currentYear()+".");
       counter.text(BuildControl.getCounter());
 
       $("#show-hide").click(function(e){
@@ -338,14 +335,16 @@
       prevE.click(function(){
         BuildControl.dec();
         $("#show-hide").html(BuildControl.getShow());
-        currentEvent.text(BuildControl.currentEvent());
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
         counter.text(BuildControl.getCounter())
 
       });
       nextE.click(function(){
         BuildControl.inc();
         $("#show-hide").html(BuildControl.getShow());
-        currentEvent.text(BuildControl.currentEvent());
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
         counter.text(BuildControl.getCounter())
       });
     </script>

@@ -58,7 +58,7 @@ html, body{
 
 
 /*body for narrative and explanation sections*/
-.narrative, .explanation, .credits{ 
+.narrative, .explanation, .credits{
 	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
@@ -157,7 +157,7 @@ h3 {
 }
 
 #interaction{
-	background-color: #2B4461; /*blue*/ 
+	background-color: #2B4461; /*blue*/
 }
 
 #build{
@@ -245,6 +245,14 @@ h3 {
 	margin-right: 0;
 }
 
+#currentYr{
+
+}
+
+#currentBuildEvent{
+
+}
+
 #buildList p{
 	margin-right: 10px;
 	font-size: 1.7em;
@@ -261,6 +269,8 @@ h3 {
 }
 #eventCounter{
 	font-style: italic;
+	display:inline-block;
+	width:2.5em;
 }
 #show-hide{
 	font-size: .7em;
@@ -272,10 +282,13 @@ h3 {
 .corIncor{
 	width: 30px;
 	height: 30px;
-	margin-left: auto;
-	margin-right: auto;
+	position: relative;
+	top:-3px;
 }
 
+.colorBox{
+	cursor: pointer;
+}
 
 /***************************CAROUSEL (for how it works) STYLING****************************/
 
@@ -316,7 +329,6 @@ img.carousel{
     height: auto;
     max-width: 100%;
     line-height: 1;
-    width: 60%; 
+    width: 60%;
     margin: auto;
 }
-
