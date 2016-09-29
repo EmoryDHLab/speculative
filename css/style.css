@@ -219,11 +219,8 @@ h3 {
 	fill:blue;stroke:pink;stroke-width:5;opacity:0.5;
 }
 
-.crosshair{
-	fill:grey !important;
-}
 .buildSquare:hover{
-	cursor:pointer;
+	cursor:pointer;s
 }
 #buildList {
 	background-color: #F3F3F3;
@@ -262,7 +259,7 @@ h3 {
 }
 .selectedColor{
 	stroke-width:3;
-	stroke:rgb(0,0,0);
+	stroke:#F7DE65;
 }
 .nextPrevButtons:hover{
 	cursor: pointer;
