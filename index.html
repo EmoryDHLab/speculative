@@ -133,7 +133,7 @@
               <br><br>
               <div id="viewGrid"></div>
             </div>
-            <div class="col-md-6">
+            <div id="viewTools" class="col-md-6">
                 <h4>Events</h4>
                 <ol id="sampleList"></ol>
                 <h4>Event Key</h4>
@@ -353,6 +353,17 @@
       $("body").on("click",".buildSquare",function(e){
         BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
       });
+      $("body").on("mouseover",".buildSquare",function(e){
+        if($(e.currentTarget).attr("fill")=="white"){
+          $(e.currentTarget).attr("fill","#F3F3F3");
+        }
+      });
+      $("body").on("mouseout",".buildSquare",function(e){
+        if ($(e.currentTarget).attr("fill")=="#F3F3F3") {
+          $(e.currentTarget).attr("fill","white");
+        }
+      });
+
     </script>
 
     <script>
