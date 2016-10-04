@@ -503,9 +503,10 @@ function fillEventList1(dataArr){
     function highlightCorrForTimeline(id){
       document.getElementById(id).setAttribute("class", "highlightSquare");
       document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).setAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text")).setAttribute("class, highlight")
-      var timeline = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
-      timeline ? timeline.setAttribute("class", "highlightSquare") : null;
+      var compare = document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text"))
+      compare? compare.setAttribute("class", "highlight") : null;
+      var data = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
+      data ? data.setAttribute("class", "highlight") : null;
     }
   }
 
@@ -562,9 +563,10 @@ function fillEventList1(dataArr){
     function removeHighlightCorrForTimeline(id){
       document.getElementById(id).removeAttribute("class", "highlightSquare");
       document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).removeAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text")).removeAttribute("class, highlight")
-      var timeline = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
-      timeline ? timeline.removeAttribute("class", "highlightSquare") : null;
+      var compare = document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text"))
+      compare? compare.removeAttribute("class", "highlight") : null;
+      var data = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
+      data ? data.removeAttribute("class", "highlight") : null;
     }
   }
 
