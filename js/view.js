@@ -208,6 +208,9 @@ document.createSvg = function(tagName) {
     // aLine.setAttribute('id', 'viewaLine');
     //add line to page
     //document.getElementById('viewmaing').appendChild(aLine);
+      var type = document.getElementById("type" + /\d+/g.exec(id));
+
+      type ? type.setAttribute("class", "highlight"): null;
   }
 
 
@@ -227,6 +230,11 @@ document.createSvg = function(tagName) {
           document.getElementById(id.replace('viewyear','text')).removeAttribute("class","highlight");
       }
    }
+
+      var type = document.getElementById("type" + /\d+/g.exec(id));
+
+      type ? type.removeAttribute("class", "highlight"): null;
+
   }
 
   //This function finds all squares horiz and vert of given square
