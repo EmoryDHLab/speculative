@@ -164,7 +164,12 @@ h3 {
     padding-top: 10%;
     padding-bottom: 5%;
 }
-
+#buildTools{
+	margin-top: 35px;
+}
+#buildTools h4{
+	font-weight: bold;
+}
 #timeline{
     padding-bottom: 15%;
 }
