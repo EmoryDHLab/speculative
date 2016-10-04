@@ -276,3 +276,8 @@ h4 {
 #compareList{
     margin-left: 100px;
 }
+
+.square text {
+    fill: black;
+    font: 10px sans-serif;
+/*    text-anchor: end;*/
