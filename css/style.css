@@ -10,7 +10,7 @@ html, body{
 }
 
 .section {
- min-height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,10 +19,6 @@ html, body{
 .row{
     display: flex;
     justify-content: center;
-}
-
-.container, .container-fluid{
-
 }
 
 .intro{
@@ -63,7 +59,7 @@ html, body{
 
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{
-	font-family: "PT Sans Narrow", sans-serif;
+	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
     display: -moz-box;
@@ -85,13 +81,18 @@ html, body{
     min-width: 552px;
 }
 
+#cheatbreak{
+    border-bottom: 10px gray;
+}
+
+
 #viewGrid {
     margin: 0 auto;
     min-width: 522px;
 }
 
 #viewsvg {
- display: block;
+    display: block;
     margin: auto;
 }
 
@@ -116,13 +117,20 @@ html, body{
 }
 
 
-h4 {
+h3 {
 	text-align: center;
-}
+    font-family: "PT Sans Narrow", sans-serif;
+    font-weight: lighter;
+    color: gray;
+/*    font-size: 100%;
+*/}
 
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
+    font-size: 115%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 
 }
 
@@ -136,8 +144,6 @@ h4 {
 }
 
 #history{
-    padding-top: 10%;
-    padding-bottom: 15%;
 	background-color: #8D2B1D; /*red*/
 }
 
@@ -147,28 +153,30 @@ h4 {
 }
 
 #view{
-    padding-top: 5%;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
 }
 
 #interaction{
-    padding-top: 10%;
-    padding-bottom: 15%;
-	background-color: #325B67; /*blue*/
+	background-color: #2B4461; /*blue*/
 }
 
 #build{
     padding-top: 10%;
     padding-bottom: 5%;
 }
-
+#buildTools{
+	margin-top: 35px;
+}
+#buildTools h4{
+	font-weight: bold;
+}
 #timeline{
     padding-bottom: 15%;
 }
 
 #compare{
-    padding-top: 10%;
-    padding-bottom: 15%;
+/*    padding-top: 10%;
+    padding-bottom: 15%;*/
 	background-color: #458867; /*green*/
 }
 
@@ -178,8 +186,8 @@ h4 {
 }
 
 #credits{
-    padding-top: 10%;
-    padding-bottom: 15%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 	background-color: lightgray;
 }
 
@@ -216,11 +224,8 @@ h4 {
 	fill:blue;stroke:pink;stroke-width:5;opacity:0.5;
 }
 
-.crosshair{
-	fill:grey !important;
-}
 .buildSquare:hover{
-	cursor:pointer;
+	cursor:pointer;s
 }
 #buildList {
 	background-color: #F3F3F3;
@@ -242,6 +247,14 @@ h4 {
 	margin-right: 0;
 }
 
+#currentYr{
+
+}
+
+#currentBuildEvent{
+
+}
+
 #buildList p{
 	margin-right: 10px;
 	font-size: 1.7em;
@@ -251,13 +264,15 @@ h4 {
 }
 .selectedColor{
 	stroke-width:3;
-	stroke:rgb(0,0,0);
+	stroke:#F7DE65;
 }
 .nextPrevButtons:hover{
 	cursor: pointer;
 }
 #eventCounter{
 	font-style: italic;
+	display:inline-block;
+	width:2.5em;
 }
 #show-hide{
 	font-size: .7em;
@@ -269,8 +284,55 @@ h4 {
 .corIncor{
 	width: 30px;
 	height: 30px;
-	margin-left: auto;
-	margin-right: auto;
+	position: relative;
+	top:-3px;
+}
+
+.colorBox{
+	cursor: pointer;
+}
+
+/***************************CAROUSEL (for how it works) STYLING****************************/
+
+
+/*remove gradient from bootstrap carousel*/
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+    top: -100px;
+}
+
+
+.carousel-control{
+  color:black;
+}
+
+.carousel-control:hover, .carousel-control:focus{
+  color:black;
+}
+
+
+/*if white bg*/
+.carousel-indicators li{
+  background-color:white;
+  border-color:black;
+}
+.carousel-indicators .active{
+  background-color:black;
+  border-color: white;
+}
+
+img.carousel{
+/*    width: 50%;
+*/}
+
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    line-height: 1;
+    width: 60%;
+    margin: auto;
 }
 
 #compareList{
