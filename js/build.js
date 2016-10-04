@@ -100,8 +100,7 @@ var BuildControl={
   },
   currentAnswer: function(){
     return [this.eventsList[this.i].getId(), this.eventsList[this.i].clr];
-  }
-  ,
+  },
   currentEventDesc: function(){
     return this.eventsList[this.i].desc;
   },
@@ -119,17 +118,15 @@ var BuildControl={
     }
   },
   checkAnswer: function(){
-    if(this.getPlacedData()==""){
+    if(this.getPlacedData()==""){//if nothing is place yet, return null.
       return null;
     }
     a=this.currentAnswer();
-    console.log(a)
     p=this.getPlacedData();
-    console.log(p)
-    if (a[0]==p[0] && a[1]==p[1]){
+    if (a[0]==p[0] && a[1]==p[1]){//if the ids and colors are equal, then it is correct.
       return true;
     }
-    return false;
+    return false; //if not, then it is incorrect
   },
   lockAnswer:function(){
     this.allowed[this.i]=false;
@@ -137,21 +134,30 @@ var BuildControl={
   unlockAnswer:function(){
     this.allowed[this.i]=true;
   },
-  placeAnswer(e,g=true){
-    console.log(e);
-    var temp=this.placed[this.i];
-    this.guessed[this.i]=g;
-    this.placed[this.i]=changeSquare(e,this.allowed[this.i]);
-    if(this.placed[this.i]===""){
-      this.unlockAnswer();
-    }else if(this.placed[this.i]===false){
+  placeAnswer(e,g=true){// given an element, place it on the grid
+    this.guessed[this.i]=g; // update guessed to true
+    var temp=changeSquare(e,this.allowed[this.i]);// make sure the placement is allowed
+    if(temp===""){// changesquare resulted in "",
+      this.unlockAnswer();       // unlock the answer for future modification
       this.placed[this.i]=temp;
+    }else if(temp===false){ // if not, but the placement was invalid
+      this.update();
+      return;           // revert the placement back to the old one.
+    }else if(this.existsElsewhere(temp)){
+      console.log("removing", temp)
+      $(temp).remove();
     }else{
+      this.placed[this.i]=temp;
       this.lockAnswer();
     }
-    this.update();
+    this.update(); // Update the UI to match
   },
   showMe: function(){
+    if(this.placed[this.i]!=""){
+      var wrongElem=this.placed[this.i];
+      currColor=$(wrongElem).attr('fill');
+      this.placeAnswer(wrongElem);
+    }
     var correctElem=document.getElementById(this.currentAnswer()[0]);
     currColor=this.currentAnswer()[1];
     this.placeAnswer(correctElem);
@@ -168,6 +174,26 @@ var BuildControl={
     }else{
       return "Show";
     }
+  },
+  existsElsewhere: function(elem){ // checks for occurences of an id in placed other which aren't at the current position.
+    var elemId=$(elem).attr("id");
+    var elemYearType=[elemId.substr(9,1),elemId.substr(19)];
+    if(elemId.startsWith("tri")){
+      elemYearType=[elemId.substr(12,1),elemId.substr(22)]
+    }
+    console.log("THE ID IS:", elemYearType)
+    // okay so the strings are buildtype[0-8]buildyear[1-100]
+
+    for(var i in this.placed){
+      pl=this.placed[i];
+      if(this.i!=i && pl!=""){
+        console.log("TEH OTHER ONE",[$(pl).attr("id").substr(9,1),$(pl).attr("id").substr(19)]);
+        if ($(pl).attr("id").substr(9,1)==elemYearType[0] && $(pl).attr("id").substr(19)==elemYearType[1] ){
+          return true
+        }
+      }
+    }
+    return false;
   },
   update: function(){
     var check=this.checkAnswer();
@@ -261,7 +287,7 @@ function changeSquare(element, allowed=true){
     element.parentNode.appendChild(triangle); //set triangle's parent as yearbox
 
     element.setAttribute("squareState","2");
-
+    return triangle;
   /*case 3: square is already split with color one way, split it the other way*/
   //Lauren didn't request this but I think it is necessary for some of the chart possibilites
   }else if(element.getAttribute("squareState") == "2"){
@@ -286,6 +312,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","3");
+    return triangle2;
   }
 
   //new case, case 4: fill opposite direction
@@ -310,6 +337,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","4");
+    return triangle2;
   }
 
   //new case, case 5: fill opposite opposite direction
@@ -333,6 +361,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","5");
+    return triangle2;
   }
 
   //case 6: square is split with color the second way, fill it with current color

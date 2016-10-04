@@ -321,7 +321,7 @@
       currYear.text(BuildControl.currentYear()+".");
       counter.text(BuildControl.getCounter());
 
-      $("#show-hide").click(function(e){
+      $("body").on("click","#show-hide",function(e){
         if(BuildControl.getShow()=="Show"){
           $("#show-hide").html("Hide");
           console.log("Shown");
@@ -334,18 +334,17 @@
       });
       prevE.click(function(){
         BuildControl.dec();
-        $("#show-hide").html(BuildControl.getShow());
         currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
         currYear.text(BuildControl.currentYear());
         counter.text(BuildControl.getCounter())
-
+        $("#show-hide").html(BuildControl.getShow());
       });
       nextE.click(function(){
         BuildControl.inc();
-        $("#show-hide").html(BuildControl.getShow());
         currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
         currYear.text(BuildControl.currentYear());
-        counter.text(BuildControl.getCounter())
+        counter.text(BuildControl.getCounter());
+        $("#show-hide").html(BuildControl.getShow());
       });
     </script>
 
