@@ -205,7 +205,6 @@ var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specifi
         if(triType != null)
           oldTriType = triType.getAttribute('id'); //store the previous triangle event so when it comes around again, we know it's really the second of the two events. The first one should be labeled w/o 'tri'
 
-        //console.log(id);
         var dataEntry = country + ', ' +color + ', ' + id.replace(/compare/g,"");
         var dataList = document.getElementById("internalData").innerHTML;
         document.getElementById('internalData').innerHTML = dataList + '<li id=' +id.replace(/compare/g,"data") +'>' + dataEntry + '</li>';
@@ -226,9 +225,6 @@ var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specifi
 
     console.log("dataArr: " + JSON.stringify(dataArr));
 
-    // dataArr.forEach(function (element, index, array){
-    //   console.log("element: " + JSON.stringify(element));
-    // });
     //object with key as year and value as the number of events during that year
     var yearsMap = {};
 
@@ -291,13 +287,7 @@ var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specifi
       .attr("fill", function(d){return d.color})
       .attr("id",function(d){return "timelinetype"+d.type+"timelineyear"+d.year})
       .attr("class","timelineRect")
-      // .on("mouseover",function(d){ //show and hide tooltip of event label
-      //         document.getElementById("timelinetype"+d.type+"timelineyear"+ d.year).style.visibility = "visible";
-      //         console.log(getElementById("timelinetype"+d.type+"timelineyear"+ d.year));
-      // })
-      // .on("mouseout", function(d){
-      //   document.getElementById("timelinetype"+d.type+"timelineyear"+ d.year).style.visibility ="hidden";
-      // });
+
 timeline.selectAll("rect").addEventListener( //event listener for hover
             "mouseover",
             function(e){
