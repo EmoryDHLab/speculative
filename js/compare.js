@@ -5,9 +5,20 @@ $(document).ready(function() {
           highlightItem(e.target);
     })
 
+  $('body').on('mouseover','rect', function(e){
+        console.log(e.target);
+        highlightItem(e.target);
+  })
+
   $('ol').on('mouseout', function(e){
           removeHighlight(e.target);
     })
+
+  $('body').on('mouseout','rect', function(e){
+      console.log(e.target);
+      removeHighlight(e.target);
+  })
+
 
 document.createSvg = function(tagName) {
         var svgNS = "http://www.w3.org/2000/svg";
@@ -448,52 +459,53 @@ function fillEventList1(dataArr){
         highlightCorrForData(id);
         // offsets = $('#'+id.replace('compareyear','text')).offset()
       }
+      else if(id.includes("timeline") && element.getAttribute('fill') != 'white'){
+        console.log("time el reached");
+        highlightCorrForTimeline(id);
+      }
+
       else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){
         console.log("square el reached")
         highlightCorrForSquare(id);
         // offsets = $('#'+id.replace('compareyear','text')).offset();
-      }
-      else if(id.includes("timelineyear") && element.getAttribute('fill') != 'white'){
-        console.log("time el reached");
-        highlightCorrForTimeline(id);
       }
 
   }
 
     function highlightCorrForSquare(id){
       document.getElementById(id).setAttribute("class", "highlightSquare")
-      var text = document.getElementById(id.replace('comparetype','viewtritype').replace('compareyear','text'));
+      var text = document.getElementById(id.replace('comparetype','viewtype').replace('compareyear','text'));
       var data = document.getElementById(id.replace('comparetype','datatype').replace('compareyear','datayear'))
       text ? text.setAttribute("class", "highlight"): null;
 
       data? data.setAttribute("class", "highlight"): null;
 
       var timeline = document.getElementById(id.replace("comparetype","timelinetype").replace("compareyear","timelineyear"))
-      timeline ? setAttribute("class","highlightSquare"): null;
+      timeline ? timeline.setAttribute("class","highlightSquare"): null;
     }
 
     function highlightCorrForText(id){
       document.getElementById(id).setAttribute("class", "highlight");
-      document.getElementById(id.replace("viewtritype","comparetype").replace('text','compareyear')).setAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("viewtritype","datatype").replace("text","datayear")).setAttribute("class", "highlight");
-      var timeline = document.getElementById(id.replace("viewtritype","timelinetype").replace("text","timelineyear"))
-      timeline ? setAttribute("class","highlightSquare"): null;
+      document.getElementById(id.replace("viewtype","comparetype").replace('text','compareyear')).setAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("viewtype","datatype").replace("text","datayear")).setAttribute("class", "highlight");
+      var timeline = document.getElementById(id.replace("viewtype","timelinetype").replace("text","timelineyear"))
+      timeline ? timeline.setAttribute("class","highlightSquare"): null;
     }
 
     function highlightCorrForData(id){
       document.getElementById(id).setAttribute("class", "highlight");
       document.getElementById(id.replace("datatype","comparetype").replace("datayear","compareyear")).setAttribute("class","highlightSquare");
-      document.getElementById(id.replace("datatype", "viewtritype").replace("datayear","text")).setAttribute("class","highlight")
+      document.getElementById(id.replace("datatype", "viewtype").replace("datayear","text")).setAttribute("class","highlight")
       var timeline = document.getElementById(id.replace("datatype","timelinetype").replace("datayear","timelineyear"))
-      timeline ? setAttribute("class","highlightSquare"): null;
+      timeline ? timeline.setAttribute("class","highlightSquare"): null;
     }
 
     function highlightCorrForTimeline(id){
       document.getElementById(id).setAttribute("class", "highlightSquare");
       document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).setAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("timelinetype", "viewtritype").replace("timelineyear", "text")).setAttribute("class, highlight")
+      document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text")).setAttribute("class, highlight")
       var timeline = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
-      timeline ? setAttribute("class", "highlight") : null;
+      timeline ? timeline.setAttribute("class", "highlightSquare") : null;
     }
   }
 
@@ -507,8 +519,11 @@ function fillEventList1(dataArr){
       }
       else if (id.includes("data")){
         removeHighlightCorrForData(id);
-
        }
+      else if(id.includes("timeline") && element.getAttribute('fill') != 'white'){
+        console.log("time el reached");
+        removeHighlightCorrForTimeline(id);
+      }
       else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
         removeHighlightCorrForSquare(id);
       }
@@ -517,31 +532,39 @@ function fillEventList1(dataArr){
    }
 
     function removeHighlightCorrForSquare(id){
-      document.getElementById(id) ? document.getElementById(id).removeAttribute("class", "highlightSquare") : null;
-      var text = document.getElementById(id.replace('comparetype','viewtritype').replace('compareyear','text'));
+      document.getElementById(id).removeAttribute("class", "highlightSquare")
+      var text = document.getElementById(id.replace('comparetype','viewtype').replace('compareyear','text'));
       var data = document.getElementById(id.replace('comparetype','datatype').replace('compareyear','datayear'))
       text ? text.removeAttribute("class", "highlight"): null;
 
-      data ? data.removeAttribute("class", "highlight"): null;
+      data? data.removeAttribute("class", "highlight"): null;
+
+      var timeline = document.getElementById(id.replace("comparetype","timelinetype").replace("compareyear","timelineyear"))
+      timeline ? timeline.removeAttribute("class","highlightSquare"): null;
     }
 
     function removeHighlightCorrForText(id){
       document.getElementById(id).removeAttribute("class", "highlight");
-      document.getElementById(id.replace("viewtritype","comparetype").replace('text','compareyear')).removeAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("viewtritype","datatype").replace("text","datayear")).removeAttribute("class", "highlight");
+      document.getElementById(id.replace("viewtype","comparetype").replace('text','compareyear')).removeAttribute("class", "highlightSquare");
+      document.getElementById(id.replace("viewtype","datatype").replace("text","datayear")).removeAttribute("class", "highlight");
+      var timeline = document.getElementById(id.replace("viewtype","timelinetype").replace("text","timelineyear"))
+      timeline ? timeline.removeAttribute("class","highlightSquare"): null;
     }
 
     function removeHighlightCorrForData(id){
-     document.getElementById(id).removeAttribute("class", "highlight");
+      document.getElementById(id).removeAttribute("class", "highlight");
       document.getElementById(id.replace("datatype","comparetype").replace("datayear","compareyear")).removeAttribute("class","highlightSquare");
-      document.getElementById(id.replace("datatype", "viewtritype").replace("datayear","text")).removeAttribute("class","highlight")
+      document.getElementById(id.replace("datatype", "viewtype").replace("datayear","text")).removeAttribute("class","highlight")
+      var timeline = document.getElementById(id.replace("datatype","timelinetype").replace("datayear","timelineyear"))
+      timeline ? timeline.removeAttribute("class","highlightSquare"): null;
     }
 
     function removeHighlightCorrForTimeline(id){
-      document.getElementById(id).setAttribute("class", "highlightSquare");
+      document.getElementById(id).removeAttribute("class", "highlightSquare");
       document.getElementById(id.replace("timelinetype","comparetype").replace("timelineyear","compareyear")).removeAttribute("class", "highlightSquare");
-      document.getElementById(id.replace("timelinetype", "viewtritype").replace("timelineyear", "text")).removeAttribute("class, highlight")
-      document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear")).removeAttribute("class", "highlight");
+      document.getElementById(id.replace("timelinetype", "viewtype").replace("timelineyear", "text")).removeAttribute("class, highlight")
+      var timeline = document.getElementById(id.replace("timelinetype","datatype").replace("timelineyear","datayear"))
+      timeline ? timeline.removeAttribute("class", "highlightSquare") : null;
     }
   }
 
