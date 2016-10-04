@@ -1,54 +1,3 @@
-  // function highlightItem(element){ //element is either text in list or typesquare or tritype
-  //   var id = element.getAttribute("id");
-  //     console.log(id);
-  //   var offsets = null;
-
-  //   if(id != null){
-  //     // if(id.includes("text")){ //if hovering over text
-  //     //   element.setAttribute("class","highlight");
-  //     //   //the text's id type#text# turns to a square's id type#year#
-  //     //   var typeSquare = document.getElementById(id.replace('text','viewyear'));
-  //     //   if(typeSquare != null)
-  //     //     typeSquare.setAttribute("class","highlightSquare");
-  //     //   offsets = $('#'+id.replace('text','viewyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
-  //     // }
-  //     // else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
-  //     //   element.setAttribute("class","highlightSquare");
-  //     //   var text = document.getElementById(id.replace('viewyear','text'))
-  //     //   if(text != null)
-  //     //     text.setAttribute("class","highlight");
-  //     //   offsets = $('#'+id.replace('viewyear','text')).offset();
-  //     // }
-  //     if(id.includes("text")){
-  //       console.log("hovering over text");
-  //       element.setAttribute("class", "highlight");
-  //       var typeSquare = document.getElementById(id.replace('text','viewyear'));
-  //       typeSquare.setAttribute("class","highlightSquare");
-  //     } else {
-  //       console.log("hovering over square");
-  //       element.setAttribute("class", "highlightSquare");
-  //       var typeText = document.getElementById(id.replace('viewyear', 'text'));
-  //       typeText.setAttribute("class", "highlight");
-  //     }
-
-  // }
-
-  //   //TODO: draw line connecting the two elements
-  //   // var aLine = document.createSvg('line');
-
-  //   // aLine.setAttribute('x1', offsets.left-60);
-  //   // aLine.setAttribute('y1', offsets.top-120);
-  //   // aLine.setAttribute('x2', $('#'+element.getAttribute("id")).offset().left-60);
-  //   // aLine.setAttribute('y2', $('#'+element.getAttribute("id")).offset().top-120);
-
-  //   // aLine.setAttribute('stroke', 'black');
-  //   // aLine.setAttribute('stroke-width', '1');
-  //   // aLine.setAttribute('stroke-dasharray',"10,10");
-  //   // aLine.setAttribute('id', 'viewaLine');
-  //   //add line to page
-  //   //document.getElementById('viewmaing').appendChild(aLine);
-  // }
-
 $(document).ready(function() {
 
 document.createSvg = function(tagName) {
@@ -64,7 +13,7 @@ document.createSvg = function(tagName) {
 	d3.csv('peabodyData.csv', function(d){
 		var container = document.getElementById("viewGrid");
 		container.appendChild(makeGrid(480, 1)); //makes four 5x5 quadrant with boxes 30 px wide
-
+    makeTypeSvg();
 		/*populate chart*/
     fillChart(d);
 
@@ -72,6 +21,88 @@ document.createSvg = function(tagName) {
     fillEventList(d);
 
 	})
+
+  var makeTypeSvg = function(){
+    function gridData(){
+      var data = new Array();
+      var width = 30;
+      var height = 30;
+      var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
+      var ypos = 1;
+      var i = 1;
+
+      for (var row = 0; row < 3; row++){
+         data.push( new Array() );
+         for (var column = 0; column < 3; column++) {
+           data[row].push({
+                    x: xpos,
+                    y: ypos,
+                    width: width,
+                    height: height,
+                    number: i
+                })
+            xpos += width;
+            i++;
+        }
+                // reset the x position after a row is complete
+          xpos = 1;
+          // increment the y position for the next row. Move it down 50 (height variable)
+          ypos += height;
+
+
+      }
+      return data;
+    }
+      var gridData = gridData();
+
+      var grid = d3.select("div#typeGrid")
+    .append("svg")
+    .attr("width","100px")
+    .attr("height","100px");
+
+    var row = grid.selectAll(".row")
+  .data(gridData)
+  .enter().append("g")
+  .attr("class", "row");
+
+var column = row.selectAll(".square")
+  .data(function(d) { return d; })
+  .enter().append("rect")
+  .attr("class","square")
+  .attr("x", function(d) { return d.x; })
+  .attr("y", function(d) { return d.y; })
+  .attr("width", function(d) { return d.width; })
+  .attr("height", function(d) { return d.height; })
+  .style("fill", "#fff")
+  .style("stroke", "#222")
+  // .text(function(d) { return d.number.toString(); });
+
+  column.append("text")
+    .attr("x", function(d){return d.x +2})
+    .attr("y", function(d){return d.x +2})
+    .attr("dy", ".35em")
+    .text(function(d) { return d.number; });
+
+
+    // var row = grid.selectAll(".row")
+    // .data(gridData)
+    // .enter().append("g")
+    // .attr("class", "row");
+
+    // var column = row.selectAll(".square")
+    // .data(function(d) { return d; })
+    // .enter().append("rect")
+    // .attr("class","square")
+    // .attr("x", function(d) { return d.x; })
+    // .attr("y", function(d) { return d.y; })
+    // .attr("width", function(d) { return d.width; })
+    // .attr("height", function(d) { return d.height; })
+    // .style("fill", "#fff")
+    // .style("stroke", "#222");
+
+  }
+
+
 
   var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specific yearboxes
       var centSize=size+gControl.lines.thick*3;
@@ -259,6 +290,9 @@ document.createSvg = function(tagName) {
     // aLine.setAttribute('id', 'viewaLine');
     //add line to page
     //document.getElementById('viewmaing').appendChild(aLine);
+      var type = document.getElementById("type" + /\d+/g.exec(id));
+
+      type ? type.setAttribute("class", "highlight"): null;
   }
 
 
@@ -278,6 +312,11 @@ document.createSvg = function(tagName) {
           document.getElementById(id.replace('viewyear','text')).removeAttribute("class","highlight");
       }
    }
+
+      var type = document.getElementById("type" + /\d+/g.exec(id));
+
+      type ? type.removeAttribute("class", "highlight"): null;
+
   }
 
   //This function finds all squares horiz and vert of given square

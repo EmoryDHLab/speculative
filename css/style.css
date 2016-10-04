@@ -339,3 +339,12 @@ img.carousel{
     width: 60%;
     margin: auto;
 }
+
+#compareList{
+    margin-left: 100px;
+}
+
+.square text {
+    fill: black;
+    font: 10px sans-serif;
+/*    text-anchor: end;*/
