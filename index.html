@@ -68,7 +68,7 @@
         <div class="section row explanation" id="howitworks">
           <div class="container">
             <h2>How it Works</h2>
-            <h3 id="h3_howitworks">Click below to progress through a sequence of images to learn about the method.</h3>
+            <h3 id="h3_howitworks">Click to learn how Peabody envisioned her method.</h3>
               <!--data interval = "false" stops it from automatically cycling through-->
               <div id="carousel-example-generic" class="carousel" data-ride="carousel" data-interval="false">
                 <!-- Indicators -->
@@ -127,31 +127,32 @@
         <div class="row interactive fluid" id="view">
           <div class="container">
             <h2>View</h2>
-            <h3 id="h3_view" data-toggle="collapse" data target="#h3_view">Mouse over the squares or list of events to see how items correspond.</h3>
+            <h3 id="h3_view" data-toggle="collapse" data target="#h3_view">Mouse over each event to see its position on the grid.</h3>
             <div class="col-md-6">
               <img></img>
               <br><br>
               <div id="viewGrid"></div>
             </div>
-            <div class="col-md-6">
+            <div id="viewTools" class="col-md-6">
                 <h4>Events</h4>
                 <ol id="sampleList"></ol>
-                <h4>Events and their corresponding squares</h4>
+                <h4>Event Key</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img>
+                        <!-- <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img> -->
+                        <div id="typeGrid"></div>
                     </div>
                     <div class="col-md-8">
                         <ol id="eventKey">
-                        <li>Battles, Sieges, Beginning of War</li>
-                        <li>Conquests, Annexations, Unions</li>
-                        <li>Losses and Disasters</li>
-                        <li>Falls of States</li>
-                        <li>Foundations of States and Revolutions</li>
-                        <li>Treaties and Sundries</li>
-                        <li>Births</li>
-                        <li>Deeds</li>
-                        <li>Deaths, of remarkable individuals</li>
+                        <li id="type0">Battles, Sieges, Beginning of War</li>
+                        <li id="type1">Conquests, Annexations, Unions</li>
+                        <li id ="type2">Losses and Disasters</li>
+                        <li id ="type3">Falls of States</li>
+                        <li id ="type4">Foundations of States and Revolutions</li>
+                        <li id ="type5">Treaties and Sundries</li>
+                        <li id ="type6">Births</li>
+                        <li id ="type7">Deeds</li>
+                        <li id ="type8">Deaths, of remarkable individuals</li>
                     </ol>
                         <!--               <p>TODO: fade-in explanation text should go here</p>
 
@@ -163,7 +164,7 @@
 
         <div class="section row narrative" id="interaction">
           <div class="container">
-            <h2>Interact</h2>
+            <h2>Interaction, Updated</h2>
             <br>
             <div class = "row">
               <div class="col-md-6">
@@ -179,43 +180,39 @@
 
         <div class="row interactive fluid" id="build">
           <div class="container">
-            <h2>Build</h2>
-            <h3 id="h3_build">Move through the sequence of events and use the color palette to build the chart.</h3>
+            <h2>Interact</h2>
+            <h3 id="h3_build">Using the color palette below, plot each event on the chart.</h3>
             <div class="col-md-6">
                 <br><br>
               <img></img>
               <div id="buildGrid"></div>
             </div>
-            <div class="col-md-6">
+            <div id="buildTools" class="col-md-6">
 <!--THIS IS WHERE YOU ARE WORKING RN #####################################################################################################################################-->
-                <h4>Events</h4>
+              <h4><b>Event</b></h4>
                 <div class="row">
                   <div id="buildList" class="col-md-11">
-                    <p><span id="currentBuildEvent">1501. Henry VII. grants patent for colonizing America.</span>&nbsp;<a id="show-hide">Show</a></p>
-                    <div id="eventsNavigation" class="row">
-                      <div class="col-md-1">
+
+                    <p><span id="currentYr" class="col-md-2">1501.</span><span id="currentBuildEvent" class="col-md-10">Henry VII. grants patent for colonizing America.&nbsp;<a id='show-hide'>Show</a></span></p>
+                    <div id="eventsNavigation">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-5">
                         <span id="previous" class="glyphicon glyphicon-menu-left nextPrevButtons" aria-hidden="true"></span>
-                      </div>
-                      <div id="evtListCounter" class="col-md-1">
                         <span id="eventCounter">1</span>
-                      </div>
-                      <div class="col-md-3">
-                        <img class="corIncor" id="correct" width="30px" height="30px" src="img/correct.svg" alt="correct" hidden="true"/>
-                        <img class="corIncor" id="incorrect" width="30px" height="30px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
-                        <img class="corIncor" id="na" width="30px" height="30px" src="img/na.svg" alt="n/a"/>
-                      </div>
-                      <div class="col-md-1">
+                        <img class="corIncor" id="correct" width="21px" height="21px" src="img/correct.svg" alt="correct" hidden="true"/>
+                        <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
+                        <img class="corIncor" id="na" width="21px" height="21px" src="img/na.svg" alt="n/a"/>
                         <span id="next" class="glyphicon glyphicon-menu-right nextPrevButtons" aria-hidden="true"></span>
                       </div>
-                      <div class="col-md-4"></div>
+                      <div class="col-md-5"></div>
                     </div>
                   </div>
                   <div class="col-md-1"></div>
                 </div>
                 <div id="buildPalette">
-                  <h4>Palette</h4>
+                  <h4 style="margin-top:20px; margin-bottom:5px;">Palette</h4>
                 </div>
-                <h4>Events and their corresponding squares</h4>
+                <h4>Event Key</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img>
@@ -244,16 +241,16 @@
 
         <div class="section row narrative" id="compare">
           <div class="container">
-            <h2>Compare</h2>
+            <h2>The Data of History</h2>
             <br>
             <div class="row">
-              
+
               <div class="col-md-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+                <p>The unfamiliarity of Peabody’s grid is striking in contrast to the familiar form of the timeline. The same history, depicted in timeline form, assumes a comforting legibility: the unfolding of past to present, steadily punctuated by significant events.</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+                <p>The conversion from grid to timeline is made possible, here, because of how each event is stored as data. Country, color, event type, and year; these are the elements that comprise what is, in effect, Peabody’s data structure. Once converted to data, the record of history can be visually represented in any number of different ways.</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nulla porta quam suscipit lacinia. Quisque porttitor fermentum tortor, non imperdiet augue convallis non. Ut tempor at est nec hendrerit. Donec a lacinia odio, nec congue nisi. Fusce elementum lorem a gue nisi. Fusce elementum lorem a urna finibus, id tempor dui tincidunt. Suspendisse potenti. Aenean dictum est in nibh sagittis ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis congue nisi, non euismod libero.</p>
+                <p>Comparing these four representations of the same set of events—as timeline, as data, as grid, and as text—we become alerted to how the representation of data truly matters. We also learn how each visual form reflects a particular sense of the historical record, and our role in the interpretation of it.</p>
               </div>
             </div>
           </div>
@@ -262,7 +259,7 @@
         <div class="row interactive" id="compare2">
           <div class="container">
             <h2>Compare</h2>
-            <h3 id="h3_instr">Mouse over the squares or list of events to see how items correspond.</h3>
+            <h3 id="h3_instr">Mouse over any element to see how the four representations of the data compare.</h3>
             <div class="col-md-12">
               <div id="timelineCompare">TODO: timeline goes here</div>
               <div class="col-md-3">
@@ -283,18 +280,18 @@
 
 
 
-        <div class="row credits" id="credits">
+        <div class="section row narrative" id="credits">
           <div class="container">
             <h2>Credits</h2>
             <br>
             <div class="row">
 
               <div class="col-md-6">
-                <p>Caroline Foster, Erica Pramer, Lauren Klein Temp the column is centered for real though just needs a whole line of text or more</p>
+                <p>"The Shape of History" was designed and developed in Spring 2016 by Caroline Foster, Erica Pramer, and Lauren Klein. Shivani Negi and Adam Hayward joined the team in Fall 2016, contributing additional features to the project. Version 2.0 will be released in December 2016.</p>
 
-                <p>second column for credits</p>
+                <p>For questions and comments, please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>.</p>
 
-                <p>third column for credits</p>
+                <p>A project of the Georgia Tech <a href="dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</p>
               </div>
             </div>
           </div>
@@ -318,13 +315,15 @@
     <script src="js/fullheight.js"></script>
     <script>
       var currentEvent=$("#currentBuildEvent"),
+        currYear=$("#currentYr"),
         nextE=$("#next"),
         prevE=$("#previous"),
         counter=$("#eventCounter");
-      currentEvent.text(BuildControl.currentEvent());
+      currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+      currYear.text(BuildControl.currentYear()+".");
       counter.text(BuildControl.getCounter());
 
-      $("#show-hide").click(function(e){
+      $("body").on("click","#show-hide",function(e){
         if(BuildControl.getShow()=="Show"){
           $("#show-hide").html("Hide");
           console.log("Shown");
@@ -337,16 +336,17 @@
       });
       prevE.click(function(){
         BuildControl.dec();
-        $("#show-hide").html(BuildControl.getShow());
-        currentEvent.text(BuildControl.currentEvent());
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
         counter.text(BuildControl.getCounter())
-
+        $("#show-hide").html(BuildControl.getShow());
       });
       nextE.click(function(){
         BuildControl.inc();
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
+        counter.text(BuildControl.getCounter());
         $("#show-hide").html(BuildControl.getShow());
-        currentEvent.text(BuildControl.currentEvent());
-        counter.text(BuildControl.getCounter())
       });
     </script>
 
@@ -354,6 +354,17 @@
       $("body").on("click",".buildSquare",function(e){
         BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
       });
+      $("body").on("mouseover",".buildSquare",function(e){
+        if($(e.currentTarget).attr("fill")=="white"){
+          $(e.currentTarget).attr("fill","#F3F3F3");
+        }
+      });
+      $("body").on("mouseout",".buildSquare",function(e){
+        if ($(e.currentTarget).attr("fill")=="#F3F3F3") {
+          $(e.currentTarget).attr("fill","white");
+        }
+      });
+
     </script>
 
     <script>

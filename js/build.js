@@ -17,6 +17,51 @@ var gControl={
   }
 }
 
+var Evt = function(tp, year, desc, country){
+  this.tp=tp;
+  this.year = year; //the integer value of the year
+  this.desc = desc;
+  this.country = country;
+  this.clr = "white";
+  if(country.toLowerCase()=="england"){
+    this.clr = gControl.colors.en;
+  }else if(country.toLowerCase()=="spain"){
+    this.clr = gControl.colors.sp;
+  }else if(country.toLowerCase()=="france"){
+    this.clr = gControl.colors.fr;
+  }
+}
+
+Evt.prototype.getYear=function(){
+  return this.year%100;
+}
+
+Evt.prototype.getId=function(typ="build"){
+  return typ + "type" + this.tp + typ + "year" + this.getYear();
+}
+
+var generateEvents=function(){
+  return [
+    new Evt(5, 1501, "Henry VII. grants patent for colonizing America.", "England"),
+    new Evt(7, 1512, "Ponce de Leon discovers Florida.", "Spain"),
+    new Evt(7, 1517, "Sebastian Cabot's last voyage in the English service.", "England"),
+    new Evt(7, 1520, "Vasquez de Ayllon’s Piracy on Chicora.", "Spain"),
+    new Evt(7, 1523, "Verrazzani explores American coasts for France.", "France"),
+    new Evt(7, 1525, "Stephen Gomez tries to discover North West Passage to India for Spain.", "Spain"),
+    new Evt(7, 1526, "Pamphilo de Narvaez attempts to conquer Florida.","Spain"),
+    new Evt(7, 1534, "James Cartier discovers River St. Lawrence.","France"),
+    new Evt(7, 1537, "Ferdinand de Soto attempts to conquer Florida.", "Spain"),
+    new Evt(7, 1540, "Roberval and Cartier try in vain to colonize Canada.","France"),
+    new Evt(8, 1542, "Ferdinand de Soto dies on the Mississippi.", "Spain"),
+    new Evt(8, 1562, "Coligny sends a Huguenot Colony to America.", "France"),
+    new Evt(7, 1565, "St. Augustine, founded by the Spanish Melendez, who conquers the French colony.", "Spain"),
+    new Evt(4, 1576, "Martin Frobisher renews English Explorations.", "England"),
+    new Evt(7, 1578, "Sir Humphrey Gilbert’s Voyage and Death.", "England"),
+    new Evt(7, 1579, "Sir Francis Drake discovers Oregon, and names it New Albion.", "England"),
+    new Evt(7, 1584, "Sir Walter Raleigh gets patent to colonize.", "England"),
+    new Evt(7, 1585, "Sir W. R.’s unsuccessful colony at Roanoke, carried out by Sir Richard Grenville.","England")
+  ];
+}
 
 var BuildControl={
   i:0,
@@ -32,34 +77,13 @@ var BuildControl={
     true,true,true,true,true,
     true,true,true
   ],
-  answers:[
-    ["buildtype5buildyear1","#8D2B1D"],["buildtype7buildyear12","#2B4461"],
-    ["buildtype7buildyear17","#8D2B1D"], ["buildtype7buildyear20","#2B4461"],
-    ["buildtype7buildyear23","#458867"], ["buildtype7buildyear25","#2B4461"],
-    ["buildtype7buildyear26","#2B4461"], ["buildtype7buildyear34","#458867"],
-    ["buildtype7buildyear37","#2B4461"], ["buildtype7buildyear40","#458867"],
-    ["buildtype8buildyear42","#2B4461"], ["buildtype8buildyear62","#458867"],
-    ["buildtype7buildyear65","#2B4461"], ["buildtype4buildyear76","#8D2B1D"],
-    ["buildtype7buildyear78","#8D2B1D"], ["buildtype7buildyear79","#8D2B1D"],
-    ["buildtype7buildyear84","#8D2B1D"], ["buildtype7buildyear85","#8D2B1D"]
-  ],
   placed:[
     "", "", "", "", "",
     "", "", "", "", "",
     "", "", "", "", "",
     "", "", ""
   ],
-  eventsList:[
-    "1501. Henry VII. grants patent for colonizing America.", "1512. Ponce de Leon discovers Florida.",
-    "1517. Sebastian Cabot's last voyage in the English service.", "1520. Vasquez de Ayllon’s Piracy on Chicora.",
-    "1523. Verrazzani explores American coasts for France.", "1525. Stephen Gomez tries to discover North West Passage to India for Spain.",
-    "1526. Pamphilo de Narvaez attempts to conquer Florida.", "1534. James Cartier discovers River St. Lawrence.",
-    "1537. Ferdinand de Soto attempts to conquer Florida.", "1540. Roberval and Cartier try in vain to colonize Canada.",
-    "1542. Ferdinand de Soto dies on the Mississippi.", "1562. Coligny sends a Huguenot Colony to America.",
-    "1565. St. Augustine, founded by the Spanish Melendez, who conquers the French colony.", "1576. Martin Frobisher renews English Explorations.",
-    "1578. Sir Humphrey Gilbert’s Voyage and Death.", "1579. Sir Francis Drake discovers Oregon, and names it New Albion.",
-    "1584. Sir Walter Raleigh gets patent to colonize.", "1585. Sir W. R.’s unsuccessful colony at Roanoke, carried out by Sir Richard Grenville."
-  ],
+  eventsList: generateEvents(),
   inc: function(){
     if(this.i >= this.eventsList.length-1){
       this.i = -1;
@@ -75,11 +99,13 @@ var BuildControl={
     this.update();
   },
   currentAnswer: function(){
-    return this.answers[this.i]
-  }
-  ,
-  currentEvent: function(){
-    return this.eventsList[this.i]
+    return [this.eventsList[this.i].getId(), this.eventsList[this.i].clr];
+  },
+  currentEventDesc: function(){
+    return this.eventsList[this.i].desc;
+  },
+  currentYear: function(){
+    return this.eventsList[this.i].year;
   },
   getCounter: function(){
     return (this.i+1).toString() +"/"+ this.eventsList.length.toString()
@@ -92,15 +118,15 @@ var BuildControl={
     }
   },
   checkAnswer: function(){
-    if(this.getPlacedData()==""){
+    if(this.getPlacedData()==""){//if nothing is place yet, return null.
       return null;
     }
     a=this.currentAnswer();
     p=this.getPlacedData();
-    if (a[0]==p[0] && a[1]==p[1]){
+    if (a[0]==p[0] && a[1]==p[1]){//if the ids and colors are equal, then it is correct.
       return true;
     }
-    return false;
+    return false; //if not, then it is incorrect
   },
   lockAnswer:function(){
     this.allowed[this.i]=false;
@@ -108,20 +134,30 @@ var BuildControl={
   unlockAnswer:function(){
     this.allowed[this.i]=true;
   },
-  placeAnswer(e,g=true){
-    var temp=this.placed[this.i];
-    this.guessed[this.i]=g;
-    this.placed[this.i]=changeSquare(e,this.allowed[this.i]);
-    if(this.placed[this.i]===""){
-      this.unlockAnswer();
-    }else if(this.placed[this.i]===false){
+  placeAnswer(e,g=true){// given an element, place it on the grid
+    this.guessed[this.i]=g; // update guessed to true
+    var temp=changeSquare(e,this.allowed[this.i]);// make sure the placement is allowed
+    if(temp===""){// changesquare resulted in "",
+      this.unlockAnswer();       // unlock the answer for future modification
       this.placed[this.i]=temp;
+    }else if(temp===false){ // if not, but the placement was invalid
+      this.update();
+      return;           // revert the placement back to the old one.
+    }else if(this.existsElsewhere(temp)){
+      console.log("removing", temp)
+      $(temp).remove();
     }else{
+      this.placed[this.i]=temp;
       this.lockAnswer();
     }
-    this.update();
+    this.update(); // Update the UI to match
   },
   showMe: function(){
+    if(this.placed[this.i]!=""){
+      var wrongElem=this.placed[this.i];
+      currColor=$(wrongElem).attr('fill');
+      this.placeAnswer(wrongElem);
+    }
     var correctElem=document.getElementById(this.currentAnswer()[0]);
     currColor=this.currentAnswer()[1];
     this.placeAnswer(correctElem);
@@ -132,11 +168,32 @@ var BuildControl={
     this.placeAnswer(correctElem,false);
   },
   getShow: function(){
-      if(this.guessed[this.i]==true){
-        return "Hide";
-      }else{
-        return "Show";
+    console.log("SHOW?")
+    if(this.guessed[this.i]==true){
+      return "Hide";
+    }else{
+      return "Show";
+    }
+  },
+  existsElsewhere: function(elem){ // checks for occurences of an id in placed other which aren't at the current position.
+    var elemId=$(elem).attr("id");
+    var elemYearType=[elemId.substr(9,1),elemId.substr(19)];
+    if(elemId.startsWith("tri")){
+      elemYearType=[elemId.substr(12,1),elemId.substr(22)]
+    }
+    console.log("THE ID IS:", elemYearType)
+    // okay so the strings are buildtype[0-8]buildyear[1-100]
+
+    for(var i in this.placed){
+      pl=this.placed[i];
+      if(this.i!=i && pl!=""){
+        console.log("TEH OTHER ONE",[$(pl).attr("id").substr(9,1),$(pl).attr("id").substr(19)]);
+        if ($(pl).attr("id").substr(9,1)==elemYearType[0] && $(pl).attr("id").substr(19)==elemYearType[1] ){
+          return true
+        }
       }
+    }
+    return false;
   },
   update: function(){
     var check=this.checkAnswer();
@@ -153,6 +210,7 @@ var BuildControl={
       $("#correct").hide()
       $("#na").hide();
     }
+    $("#show-hide").html(this.getShow());
   }
 }
 /*color palette interaction*/
@@ -181,7 +239,7 @@ better-named string variables but doesn't matter*/
 function changeSquare(element, allowed=true){
   var w = element.getAttribute('width');
   var t = element.getAttribute('transform');
-
+  console.log(w,t)
   //create the polygon svg elements for the triangle overlay
   var triangle = document.createSvg("polygon");  //triangle order 1
   var triangle2 = document.createSvg("polygon"); //triangle order 2
@@ -229,7 +287,7 @@ function changeSquare(element, allowed=true){
     element.parentNode.appendChild(triangle); //set triangle's parent as yearbox
 
     element.setAttribute("squareState","2");
-
+    return triangle;
   /*case 3: square is already split with color one way, split it the other way*/
   //Lauren didn't request this but I think it is necessary for some of the chart possibilites
   }else if(element.getAttribute("squareState") == "2"){
@@ -254,6 +312,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","3");
+    return triangle2;
   }
 
   //new case, case 4: fill opposite direction
@@ -278,6 +337,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","4");
+    return triangle2;
   }
 
   //new case, case 5: fill opposite opposite direction
@@ -301,6 +361,7 @@ function changeSquare(element, allowed=true){
     element.setAttribute("fill", prevColor); //change type square color
 
     element.setAttribute("squareState","5");
+    return triangle2;
   }
 
   //case 6: square is split with color the second way, fill it with current color
@@ -489,7 +550,7 @@ var makeGrid = function(size, currYearID){ //TODO: handle edge cases for specifi
   /*creates a list of events based on a "text" attribute of objects in an array*/
 function fillEventList(dataArr){
   dataArr.forEach(function (e, i, a){
-    var eventLi = document.getElementById('buildtype'+e.eventType+'text'+parseInt((e.year%100)-1));
+    var eventLi = document.getElementById('buildtype'+e.eventType+'text'+parseInt((e.year%100)));
     var eventList = document.getElementById("buildList").innerHTML;
     if(eventLi == null)                     //this math sets list element's id equal to type#text+year, e.g. type0text0
       document.getElementById('buildList').innerHTML = eventList + '<li id= buildtype'+e.eventType + 'text'+parseInt((e.year%100)-1) + '>' + e.text + '</li>';
@@ -513,7 +574,7 @@ var makeColorPalette = function(numColors){
   var svgNS = "http://www.w3.org/2000/svg";
   var svg = document.createElementNS(svgNS, "svg"); //and this line, they both work
   svg.setAttribute("width", "100%");
-  svg.setAttribute("height", 60);
+  svg.setAttribute("height", 40);
   svg.setAttribute("id","colorPaletteSVG");
 
 
@@ -524,7 +585,7 @@ var makeColorPalette = function(numColors){
     var colorBox = document.createSvg("rect");
     colorBox.setAttribute("width", "20px");
     colorBox.setAttribute("height", "20px");
-    colorBox.setAttribute("transform", ["translate("  + (4+80*i), 25  + ")"]);
+    colorBox.setAttribute("transform", ["translate("  + (4+80*i), 10  + ")"]);
     colorBox.setAttribute("id", "colorBox" + i); //colorbox1, colorbox2, etc
     colorBox.setAttribute("class","colorBox");
     colorBox.setAttribute("fill", arrayColors[i]);
@@ -543,7 +604,7 @@ var makeColorPalette = function(numColors){
     colorLabel.setAttribute("y","30");
     colorLabel.setAttribute("font-family", "PT Sans Narrow");
     colorLabel.setAttribute("font-size", "15");
-    colorLabel.setAttribute("transform", ["translate("  + (80*i - 5), 10  + ")"]);
+    colorLabel.setAttribute("transform", ["translate("  + (80*i + 1), -5  + ")"]);
     colorLabel.setAttribute("textAlign","center");
 
 

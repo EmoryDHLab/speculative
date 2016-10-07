@@ -58,7 +58,7 @@ html, body{
 
 
 /*body for narrative and explanation sections*/
-.narrative, .explanation, .credits{ 
+.narrative, .explanation, .credits{
 	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
@@ -90,7 +90,12 @@ html, body{
     margin: 0 auto;
     min-width: 522px;
 }
-
+#viewTools{
+	margin-top:17px;
+}
+#viewTools h4{
+	font-weight: bold;
+}
 #viewsvg {
     display: block;
     margin: auto;
@@ -157,14 +162,19 @@ h3 {
 }
 
 #interaction{
-	background-color: #2B4461; /*blue*/ 
+	background-color: #2B4461; /*blue*/
 }
 
 #build{
     padding-top: 10%;
     padding-bottom: 5%;
 }
-
+#buildTools{
+	margin-top: 35px;
+}
+#buildTools h4{
+	font-weight: bold;
+}
 #timeline{
     padding-bottom: 15%;
 }
@@ -219,11 +229,8 @@ h3 {
 	fill:blue;stroke:pink;stroke-width:5;opacity:0.5;
 }
 
-.crosshair{
-	fill:grey !important;
-}
 .buildSquare:hover{
-	cursor:pointer;
+	cursor:pointer;s
 }
 #buildList {
 	background-color: #F3F3F3;
@@ -245,6 +252,14 @@ h3 {
 	margin-right: 0;
 }
 
+#currentYr{
+
+}
+
+#currentBuildEvent{
+
+}
+
 #buildList p{
 	margin-right: 10px;
 	font-size: 1.7em;
@@ -254,13 +269,15 @@ h3 {
 }
 .selectedColor{
 	stroke-width:3;
-	stroke:rgb(0,0,0);
+	stroke:#F7DE65;
 }
 .nextPrevButtons:hover{
 	cursor: pointer;
 }
 #eventCounter{
 	font-style: italic;
+	display:inline-block;
+	width:2.5em;
 }
 #show-hide{
 	font-size: .7em;
@@ -270,12 +287,15 @@ h3 {
 }
 
 .corIncor{
-	width: 30px;
-	height: 30px;
-	margin-left: auto;
-	margin-right: auto;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top:-4px;
 }
 
+.colorBox{
+	cursor: pointer;
+}
 
 /***************************CAROUSEL (for how it works) STYLING****************************/
 
@@ -316,7 +336,15 @@ img.carousel{
     height: auto;
     max-width: 100%;
     line-height: 1;
-    width: 60%; 
+    width: 60%;
     margin: auto;
 }
 
+#compareList{
+    margin-left: 100px;
+}
+
+.square text {
+    fill: black;
+    font: 10px sans-serif;
+/*    text-anchor: end;*/
