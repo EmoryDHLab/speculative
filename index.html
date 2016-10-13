@@ -351,18 +351,22 @@
     </script>
 
     <script>
-      $("body").on("click",".buildSquare",function(e){
+      $("#buildGrid").on("click","rect",function(e){
         BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
       });
-      $("body").on("mouseover",".buildSquare",function(e){
+      $("#buildGrid").on("mouseover","rect",function(e){
         if($(e.currentTarget).attr("fill")=="white"){
+          console.log("GRAY IT");
           $(e.currentTarget).attr("fill","#F3F3F3");
         }
       });
-      $("body").on("mouseout",".buildSquare",function(e){
+      $("#buildGrid").on("mouseout","rect",function(e){
+        console.log("Out! GET RID OF THE GRAY")
         if ($(e.currentTarget).attr("fill")=="#F3F3F3") {
+          console.log("GRAY IT");
           $(e.currentTarget).attr("fill","white");
         }
+        $(e.currentTarget).attr("class","buildSquare")
       });
 
     </script>

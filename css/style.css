@@ -229,8 +229,8 @@ h3 {
 	fill:blue;stroke:pink;stroke-width:5;opacity:0.5;
 }
 
-.buildSquare:hover{
-	cursor:pointer;s
+#buildGrid rect:hover{
+	cursor:pointer;
 }
 #buildList {
 	background-color: #F3F3F3;
@@ -250,14 +250,6 @@ h3 {
 .row{
 	margin-left: 0;
 	margin-right: 0;
-}
-
-#currentYr{
-
-}
-
-#currentBuildEvent{
-
 }
 
 #buildList p{

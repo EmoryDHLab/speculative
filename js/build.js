@@ -622,55 +622,6 @@ var makeColorPalette = function(numColors){
 
   /*end copy of old code*/
 
-function highlightItem(element){ //element is either text in list or typesquare or tritype
-    var id = element.getAttribute("id");
-    var offsets = null;
-
-    if(id != null){
-      if(id.includes("text")){ //if hovering over text
-        element.setAttribute("class","highlight");
-        //the text's id type#text# turns to a square's id type#year#
-        var typeSquare = document.getElementById(id.replace('text','buildyear'));
-        if(typeSquare != null)
-          typeSquare.setAttribute("class","highlightSquare");
-          console.log("high");
-        offsets = $('#'+id.replace('text','buildyear')).offset(); //have to use jquery to use its offset() method which accounts for scrolling offsets
-      }
-      else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != 'white'){ //if hovering over rect or tritype
-        console.log(id);
-        console.log("hover");
-        element.setAttribute("stroke", "blue");
-        /*element.setAttribute("class","highlightSquare");
-        var text = document.getElementById(id.replace('buildyear','text'))
-        if(text != null)
-          text.setAttribute("class","highlight");
-        offsets = $('#'+id.replace('buildyear','text')).offset();
-        */
-      }
-  }
-}
-
-
-  function removeHighlight(element){
-    var id = element.getAttribute("id");
-    if(id != null)
-    {
-      if(id.includes("text")){ //if hovering over text
-        element.removeAttribute("class","highlight");
-        //type#text# turns to type#year# for the squares
-        if(document.getElementById(id.replace('text','buildyear')) != null)
-          document.getElementById(id.replace('text','buildyear')).removeAttribute("class","highlightSquare");
-      }
-      else if(id.includes("year")){ //if hovering over rect or tritype
-          element.setAttribute("stroke", element.getAttribute("fill"));
-          /*
-        element.removeAttribute("class","highlightSquare");
-        if(document.getElementById(id.replace('buildyear','text')) != null) //if there exists a corresponding event
-          document.getElementById(id.replace('buildyear','text')).removeAttribute("class","highlight");
-          */
-      }
-   }
-  }
 
     /*
   //event listener for hovering over a list element
