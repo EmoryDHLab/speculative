@@ -271,9 +271,11 @@ h3 {
 }
 #show-hide{
 	font-size: .7em;
+	color: #59C7FF;
 }
 #show-hide:hover{
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .corIncor{

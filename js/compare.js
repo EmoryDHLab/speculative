@@ -454,7 +454,7 @@ function fillEventList1(dataArr){
         highlightCorrForTimeline(id);
       }
 
-      else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != '#F3F3F3'){
+      else if(id.includes("year") && id.includes('type') && element.getAttribute('fill') != '#F3F3F3' && element.getAttribute('fill') != 'white'){
         console.log("square el reached")
         highlightCorrForSquare(id);
         // offsets = $('#'+id.replace('compareyear','text')).offset();
