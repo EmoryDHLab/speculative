@@ -72,7 +72,7 @@ var Grid= function(location,styles=null){
       empty:"#fff",
       hlght:"#",
       hvr:"#",
-      evt:"#B3B3B3",
+      evt:"#000",
       yr:"#FAAE3C",
       cent:"#DB882A"
     },
@@ -88,25 +88,30 @@ var Grid= function(location,styles=null){
   this.pos=[0,0];
   this.evtSet=null;
 }
-Grid.prototype.getCenturySize=function(){
-  return this.styles.sz*30+this.styles.lines[0]*60+
-    this.styles.lines[1]*8+this.styles.lines[2];
+Grid.prototype.getCenturySize=function(){ //gets inner size of century
+  return this.styles.sz*30+this.styles.lines[0]*20+
+    this.styles.lines[1]*8 + 2*this.styles.lines[2];
 }
 Grid.prototype.addEventSet=function(evtSet){
   this.evtSet=evtSet;
 }
 
 Grid.prototype.addEvtRep=function(tp,two){
-  x=Math.floor(tp/3)*(this.styles.lines[0]+this.styles.sz);
-  y=(tp%3)*(this.styles.lines[0]+this.styles.sz);
+  var x=Math.floor(tp/3)*(this.styles.lines[0]+this.styles.sz);
+  var y=(tp%3)*(this.styles.lines[0]+this.styles.sz);
   console.log("("+x+","+y+")");
-  return two.makeRectangle(x,y,this.styles.sz,this.styles.sz);
+  var r=two.makeRectangle(x+this.styles.sz/2,y+this.styles.sz/2,this.styles.sz,this.styles.sz)
+  r.linewidth=0;
+  r.fill=this.styles.colors.empty;
+  return r;
 }
 
 Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
   // I add the main grid rectangle (the century block)
   var cSz=this.getCenturySize();
-  var century=two.makeRectangle(cSz/2,cSz/2,cSz,cSz);
+  var cSzOuter=cSz + 2*this.styles.lines[2];
+  var century=two.makeRectangle(0,0,cSz,cSz);
+  century.translation.set((cSz+this.styles.lines[2])/2,(cSz+this.styles.lines[2])/2);
   century.linewidth= this.styles.lines[2];
   century.stroke=this.styles.colors.cent;
   var allGrid= two.makeGroup(century);
@@ -114,15 +119,43 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
   // year lines
   var yearLines=two.makeGroup();
   var topLines=two.makeGroup();
+  var bleh=1;
+  // subsection lines
+  var evtLines=two.makeGroup();
+  var bleh=1;
+  for(var i=1; i<30; i++){
+    if(i==15){
+      bleh=-1;
+    }
+    if(i%3!=0){
+      var pos= Math.floor(i/3)*this.styles.lines[1]+i*(this.styles.sz)+
+        (i-1)*this.styles.lines[0]/2+Math.floor(i/15)*this.styles.lines[2]+
+        (bleh*(this.styles.lines[0]/2));
+
+      var line1=two.makeLine(0,pos,cSz-this.styles.lines[2],pos),//  x, y, x1, y1
+          line2=two.makeLine(pos,0,pos,cSz-this.styles.lines[2]);
+
+      // define line characteristics
+      line1.linewidth=this.styles.lines[0];
+      line2.linewidth=this.styles.lines[0];
+      line1.stroke=this.styles.colors.evt;
+      line2.stroke=this.styles.colors.evt;
+      evtLines.add(line1)
+      evtLines.add(line2)
+    }
+  }
+  evtLines.addTo(yearLines)
+  var bleh=1;
   for(var i=1; i<10; i++){
     // if the line is a century line.
     if(i==5){
-      pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3)*i+
+      bleh=-1;
+      pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3+this.styles.lines[0]*2)*i+
         this.styles.lines[2]/2;
-      //horizontal line
-      var line1=two.makeLine(0,pos,cSz-this.styles.lines[2],pos),//  x, y, x1, y1
+      //horizontal line1
+      var line1=two.makeLine(-1,pos,cSz-this.styles.lines[2]+1,pos),//  x, y, x1, y1
       //vertical line
-        line2=two.makeLine(pos,0,pos,cSz-this.styles.lines[2]);
+        line2=two.makeLine(pos,-1,pos,cSz-this.styles.lines[2]+1);
       line1.linewidth=this.styles.lines[2];
       line2.linewidth=this.styles.lines[2];
       line1.stroke=this.styles.colors.cent;
@@ -131,8 +164,8 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
       topLines.add(line2);
     //if the line is a year line
     }else{
-      pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3)*i+
-        this.styles.lines[2]*(Math.floor(i/5));
+      pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3+this.styles.lines[0]*2)*i+
+        (this.styles.lines[2])*Math.floor(i/5)+(bleh*(this.styles.lines[1]/2));
       //horizontal line
       var line1=two.makeLine(0,pos,cSz-this.styles.lines[2],pos),//  x, y, x1, y1
       //vertical line
@@ -146,30 +179,9 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
     }
   }
   topLines.addTo(yearLines);
-  yearLines.translation.set((this.styles.lines[2]/2),this.styles.lines[2]/2);
-  //
-  /* subsection lines
-  var evtLines=[];
-  for(var i=1; i<30; i++){
-    if(i%3!=0){
-      horiz=this.x+(this.styles.sz*i);
-      vert=this.y+(this.styles.sz*i);
-      var line1=two.makeLine(0,1,2,3),//  x, y, x1, y1
-        line2=two.makeLine(1,100,1000,0);
-      if(i==5){
-        line1.linewidth=this.styles.lines[0];
-        line2.linewidth=this.styles.lines[0];
-      }else{
-        line1.linewidth=this.styles.lines[0];
-        line2.linewidth=this.styles.lines[0];
-      }
-      line1.stroke=this.styles.colors.evt;
-      line2.stroke=this.styles.colors.evt;
-      evtLines.push(line1)
-      evtLines.push(line2)
-    }
-  }
-  */
+  yearLines.translation.set(this.styles.lines[2],this.styles.lines[2]);
+  //yearLines.translation.set(this.styles.lines[2],this.styles.lines[2]);
+
   // represent all events on the grid.
   var evtReps=two.makeGroup()
   // for each decade
@@ -180,23 +192,26 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
       yearGroup=two.makeGroup();
       // for each event type in that year
       for(var k=0; k<9; k++){
-        /*
-          addEvtRep(eType); determines position of and draws a rectangle/rect-tri
-          combo to represent the event or lack thereof, given the current year
-          and eType.
-        */
+        //  addEvtRep(eType); determines position of and draws a rectangle/rect-tri
+        //  combo to represent the event or lack thereof, given the current year
+        //  and eType.
         yearGroup.add(this.addEvtRep(k,two));
       }// end event loop
-      yrX=(this.styles.lines[1]+this.styles.sz*3)*j+
-        (Math.floor(j/5)*this.styles.lines[2]);
-      yrY=(this.styles.lines[1]+this.styles.sz*3)*i+
-        (Math.floor(i/5)*this.styles.lines[2]);
+      yrX=(this.styles.lines[1]+this.styles.sz*3+2*this.styles.lines[0])*j+
+        (Math.floor(j/5)*(this.styles.lines[2]-this.styles.lines[1]));
+        console.log(j,"X OFFSET:",yrX);
+      yrY=(this.styles.lines[1]+this.styles.sz*3+2*this.styles.lines[0])*i+
+        (Math.floor(i/5)*(this.styles.lines[2]-this.styles.lines[1]));
       yearGroup.translation.set(yrX,yrY);
+      console.log(yearGroup.translation);
       yearGroup.addTo(evtReps);
     }// end year loop
     evtReps.translation.set(this.styles.lines[2],this.styles.lines[2]);
   }// end decade loop
+  evtReps.addTo(allGrid)
+  yearLines.addTo(allGrid)
+  /**/
   // update two
   two.update();
-  return
+  return;
 }
