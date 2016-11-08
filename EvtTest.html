@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -7,7 +6,6 @@
 
   </head>
   <body>
-    <button onclick="start()">Test</button>
     <div id="main"></div>
   </body>
   <script src="server.js"></script>
@@ -26,23 +24,43 @@
   <script src="js/fullheight.js"></script>
 
   <script>
-    peabody=new EventSet();
+    var peabody=new EventSet();
+    var test= new EventSet();
+    var el = document.getElementById("main"),
+      two = new Two({width:530,height:530});
+    two.appendTo(el);
+    var g=new Grid(two,.5);
     // start handles all loading for events.
     function start(){
-      peabody.loadFromCSV("peabodyData.csv", main);
+      console.log("Loading data 1/2");
+      peabody.loadFromCSV("peabodyData.csv", testing);
+    }
+    function testing(){
+      console.log("Loading data 2/2");
+      test.loadFromCSV("testing.csv",main);
     }
     function main(){
-      console.log(peabody.events)
-      var el = document.getElementById("main"),
-        two = new Two({
-            fullscreen: true
-        });
-      two.appendTo(el);
-      var g=new Grid(two);
-      g.addEventSet(peabody)
+      g.addEventSet(peabody);
       g.draw(two);
+      two.update()
     }
+    start();
+    $("#main").on("mouseover","path",function(e){
+      if (g.evtDict.getVal(e.currentTarget.id)){
+        g.evtDict.getVal(e.currentTarget.id).linewidth=1;
+        two.update();
+      }
+    });
+    $("#main").on("mouseout","path",function(e){
+      if (g.evtDict.getVal(e.currentTarget.id)){
+        g.evtDict.getVal(e.currentTarget.id).linewidth=0;
+        two.update();
+      }
+    });
   </script>
 
-
+<!--
+  TODO: Build out grid to allow highlights and hovers.
+  TODO: Build an input taking version of grid
+-->
 </html>
