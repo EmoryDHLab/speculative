@@ -351,3 +351,20 @@ a:hover{
     color: lightgray;
     text-decoration: underline;
 }
+.ptr{
+	cursor: pointer;
+}
+#pallete{
+	padding:1em;
+}
+.palleteSquare{
+	display: inline-block;
+	margin-right:10px;
+	cursor: pointer;
+}
+.palleteSquare:hover{
+	outline: 3px dashed #F7DE65;
+}
+.currentColor{
+	outline: 3px solid #F7DE65;
+}
