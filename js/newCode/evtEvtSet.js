@@ -88,3 +88,7 @@ EventSet.prototype.findAll=function(yr,tp){
 EventSet.prototype.isMulti = function (yr,tp) {
   return this.findAll(yr,tp).length>1;
 };
+
+EventSet.prototype.sortByYear=function(){
+  this.events=mergeSortByYear(this.events);
+}

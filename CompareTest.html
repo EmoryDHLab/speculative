@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow:400,700|Inconsolata' rel='stylesheet' type='text/css'>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fjord.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="main"></div>
+    <ol id="evtList"></ol>
+    <div id="eventKey"></div>
+  </body>
+  <script src="server.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!--<script src="js/fjord.js"></script>-->
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <script src="js/two.min.js"></script>
+  <script src="js/newCode/helpers.js"></script>
+  <script src="js/newCode/evtEvtSet.js"></script>
+  <script src="js/newCode/compare.js"></script>
+  <script src="js/newCode/grid.js"></script>
+  <script src="js/newCode/gridAccessories.js"></script>
+  <script src="js/fullheight.js"></script>
+
+  <script>
+    var peabody=new EventSet();
+    var test= new EventSet();
+    var el = document.getElementById("main"),
+      two = new Two({width:530,height:530});
+    two.appendTo(el);
+    var g=new Grid(.95,0);
+    var eKey=new EventKey(100);
+    var eList=new List();
+    // start handles all loading for events.
+    function start(){
+      console.log("Loading data 1/2");
+      peabody.loadFromCSV("peabodyData.csv", testing);
+    }
+    function testing(){
+      console.log("Loading data 2/2");
+      test.loadFromCSV("testing.csv",main);
+    }
+    function main(){
+      test.sortByYear();
+      peabody.sortByYear();
+      g.addEventSet(test);
+      eList.addEventSet(test);
+      g.draw(two);
+      eList.draw();
+      eKey.draw();
+      two.update();
+    }
+    start();
+    $("body").on("mouseover","path, li",function(e){
+      console.log('highlighting');
+      if (e.currentTarget.getAttribute('data-date')==undefined){
+        if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+          return;
+        }
+        var el=e.currentTarget.parentNode;
+      }else{
+        var el=e.currentTarget;
+      }
+      highlight(el,[g,eList,eKey]);
+    });
+    $("body").on("mouseout","path, li",function(e){
+      console.log(e.currentTarget);
+      if (e.currentTarget.getAttribute('data-date')==undefined){
+        if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+          return;
+        }
+        var el=e.currentTarget.parentNode;
+      }else{
+        var el=e.currentTarget;
+      }
+      unhighlight(el,[g,eList,eKey]);
+    });
+    $("#main").on("click","path",function(e){
+      g.clickHandle(e,two);
+    });
+
+  </script>
+
+<!--
+  TODO: Build an input taking version of grid
+-->
+</html>

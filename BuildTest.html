@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow:400,700|Inconsolata' rel='stylesheet' type='text/css'>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fjord.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="buildList" class="col-md-11">
+      <p><span id="currentYr" class="col-md-2">1501.</span><span id="currentBuildEvent" class="col-md-10">Henry VII. grants patent for colonizing America.&nbsp;<a id='show-hide'>Show</a></span></p>
+      <div id="eventsNavigation">
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+          <span id="previous" class="glyphicon glyphicon-triangle-left nextPrevButtons" aria-hidden="true"></span>
+          <span id="eventCounter">1</span>
+          <img class="corIncor" id="correct" width="21px" height="21px" src="img/correct.svg" alt="correct" hidden="true"/>
+          <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
+          <img class="corIncor" id="na" width="21px" height="21px" src="img/na.svg" alt="n/a"/>
+          <span id="next" class="glyphicon glyphicon-triangle-right nextPrevButtons" aria-hidden="true"></span>
+        </div>
+        <div class="col-md-5"></div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div id="main"></div>
+    <div id="pallete"></div>
+  </body>
+  <script src="server.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!--<script src="js/fjord.js"></script>-->
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <script src="js/two.min.js"></script>
+  <script src="js/newCode/helpers.js"></script>
+  <script src="js/newCode/evtEvtSet.js"></script>
+  <script src="js/newCode/buildCorrector.js"></script>
+  <script src="js/newCode/grid.js"></script>
+
+  <script src="js/fullheight.js"></script>
+
+  <script>
+    var peabody=new EventSet();
+    var test= new EventSet();
+    var el = document.getElementById("main"),
+      two = new Two({width:530,height:530});
+    two.appendTo(el);
+    var g=new Grid(.95,1);
+    var pal=new Pallete();
+    var bc=null;
+    // start handles all loading for events.
+    function start(){
+      console.log("Loading data 1/2");
+      peabody.loadFromCSV("peabodyData.csv", testing);
+    }
+    function testing(){
+      console.log("Loading data 2/2");
+      test.loadFromCSV("testing.csv",main);
+    }
+    function main(){
+      bc=new BuildCorrector(test);
+      g.addEventSet(test);
+      g.draw(two);
+      pal.init(test);
+      pal.draw();
+      g.initBuild(pal,bc)
+      two.update();
+    }
+    start();
+    $("#main").on("mouseover","path",function(e){
+      g.hoverHandle(e,true,two);
+    });
+    $("#main").on("mouseout","path",function(e){
+      g.hoverHandle(e,false,two);
+    });
+    $("#main").on("click","path",function(e){
+      g.clickHandle(e,two);
+    });
+    $("#next").click(function(e){
+      bc.loadNext();
+    });
+    $("#previous").click(function(e){
+      bc.loadPrev();
+    });
+    $("#pallete").on("mousedown",".palleteSquare",function(e){
+      pal.selectColor(e.currentTarget);
+    });
+  </script>
+
+<!--
+  TODO: Build an input taking version of grid
+-->
+</html>

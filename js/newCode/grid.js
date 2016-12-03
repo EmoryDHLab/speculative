@@ -1,46 +1,8 @@
-//TODO: make triangles invisible in interact mode
-//        I will make groups of triangles and main squares, and shader will change the color of the whole group
-//TODO: allow dynamic placement of color
-
-var Pallete = function(target="pallete"){
-  this.colors=[];
-  this.eventSet=null;
-  this.target= document.getElementById(target);
-  this.currentColor=null;
-}
-Pallete.prototype.init = function (eventSet) {
-  this.eventSet=eventSet;
-  for(let evt of this.eventSet.events){
-    if(!this.colors.includes(evt.getColors()[0])){
-      this.colors.push(evt.getColors()[0]);
-    }
-  }
-  this.currentColor=this.colors[0];
-};
-Pallete.prototype.draw = function () {
-  var first=true;
-  for (let clr of this.colors){
-    var tempDiv=document.createElement("div");
-    tempDiv.style.backgroundColor= clr;
-    tempDiv.className=(first) ? "palleteSquare currentColor":"palleteSquare";
-    tempDiv.style.width="50px";
-    tempDiv.style.height="50px";
-    this.target.appendChild(tempDiv);
-    first=false;
-  }
-};
-Pallete.prototype.selectColor = function(el){
-  console.log("Selecting!")
-  this.currentColor=rgb2hex(el.style.backgroundColor);
-  var selected=document.getElementsByClassName("currentColor");
-  for(let ele of selected){
-    ele.className="palleteSquare";
-  }
-  el.className+=" currentColor";
-}
+//TODO: fix highlight to regroup elements properly
 
 // generates a grid with default styles
 var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limited building, 2- play!
+  this.type="grid";
   var defaultGridStyle={
     lines:[.25,2,18], // [0]--> most thin, [2]--> most thick
     colors:{
@@ -53,6 +15,7 @@ var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limite
     },
     sz:16, //size of squares-- affects inner square sizes, not lines.
     highlight: function(el,active){
+      console.log(el);
       if(active){
         el.linewidth=1;
       }else{
@@ -78,17 +41,16 @@ var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limite
       stroke is not factored in here. I.E. How much to shift the grid once it0
       has been drawn.
   */
-  this.evtSet=new EventSet();
+  this.eventSet=new EventSet();
   this.evtDict=new JSdict(); // a dictionary of events by id
   this.emptyDict=new JSdict(); // a dictionary of empty rects by id
-  this.groupDict=new JSdict();
+
   this.allGroup=null;
   this.build=build;
   this.allowMultiPlacement=false;
   if(build==0){
     this.setShader(function(){return;});
   }else{
-    this.setHiglighter(function(){return;});
     this.styles.point=true;
     if(build==2){
       this.allowMultiPlacement=true;
@@ -106,10 +68,10 @@ Grid.prototype.getCenturySize=function(){ //gets inner size of century
     this.styles.lines[1]*8 + 2*this.styles.lines[2];
 }
 Grid.prototype.addEventSet=function(evtSet){
-  this.evtSet=evtSet;
+  this.eventSet=evtSet;
 }
-Grid.prototype.replaceEventSet=function(evtSet){
-  this.evtSet=evtSet;
+Grid.prototype.setEventSet=function(evtSet){
+  this.eventSet=evtSet;
 }
 Grid.prototype.setShader=function(newFunc){
   this.styles.shade=newFunc;
@@ -130,7 +92,7 @@ Grid.prototype.addEvtRepTri=function(x,y,two){
 Grid.prototype.addEvtRep=function(yr,tp,two){
   var y=Math.floor(tp/3)*(this.styles.lines[0]+this.styles.sz);
   var x=(tp%3)*(this.styles.lines[0]+this.styles.sz);
-  var tempEvts=this.evtSet.findAll(yr,tp),
+  var tempEvts=this.eventSet.findAll(yr,tp),
       r=two.makeRectangle(x+this.styles.sz/2,y+this.styles.sz/2,this.styles.sz,this.styles.sz),
       t=this.addEvtRepTri(x,y,two),
       grp=two.makeGroup(r,t);
@@ -241,11 +203,33 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
   if(this.styles.point){
     this.doPointer();
   }
+  for(let g of this.evtDict.Values){
+    setDateAndType(document.getElementById(g.id),g.classList[0].year,g.classList[0].eType);
+  }
+  for(let g of this.emptyDict.Values){
+    setDateAndType(document.getElementById(g.id),g.classList[0].year,g.classList[0].eType);
+  }
   return;
 };
-
-Grid.prototype.reload = function (two) {
+Grid.prototype.getGroupIdByData=function(yr,tp){
+  rep1=this.evtDict.Values.find(function(rep){
+    return rep.children[0].year==yr && rep.children[0].eType==tp;
+  });
+  rep2=this.emptyDict.Values.find(function(rep){
+    return rep.children[0].year==yr && rep.children[0].eType==tp;
+  });
+  if(rep1===undefined){
+    return rep1.id;
+  }else if (rep2===undefined){
+    return rep2.id;
+  }
+}
+Grid.prototype.reload = function (evtSet,two) {
+  console.log(evtSet);
+  this.setEventSet(evtSet);
   this.allGroup.remove();
+  this.evtDict=new JSdict();
+  this.emptyDict=new JSdict();
   this.draw(two);
 };
 Grid.prototype.isEvtRep= function(id){
@@ -257,15 +241,7 @@ Grid.prototype.isEvtRep= function(id){
     return undefined;
   }
 };
-Grid.prototype.isGroupedEvt= function(id){
-  if(this.groupDict.getVal(id)){
-    return true;
-  }else if(this.groupDict.getVal(id)) {
-    return false;
-  }else{
-    return undefined;
-  }
-};
+
 Grid.prototype.hoverHandle = function(e,isIn,two){
   // if build mode, do shading on empties
   var evtR=this.isEvtRep(e.currentTarget.parentNode.id);
@@ -289,14 +265,18 @@ Grid.prototype.hoverHandle = function(e,isIn,two){
     this.styles.shade(evt,isIn);
   }
   two.update();
+  return [evt.year,evt.eType]
 };
 Grid.prototype.clickHandle = function(e,two){
   var evtR=this.isEvtRep(e.currentTarget.parentNode.id);
   if(evtR===undefined || this.build==0){
     return;
   }
-  if(this.build>0){
+  if(this.build==1){
     this.attemptPlace(e.currentTarget.parentNode.id);
+  }else if (this.build==2) {
+    var clr=this.pallete.currentColor;
+    this.place(e.currentTarget.parentNode.id,clr);
   }
   two.update();
 }
@@ -356,4 +336,32 @@ Grid.prototype.place=function(id,color){
   var yr=grp.classList[0].year,
       tp=grp.classList[0].eType;
   return this.corrector.attempt(id,yr,tp,color);
+}
+
+Grid.prototype.highlight=function(yr,tp){
+  try{
+    var el=document.getElementById("main").querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+  }catch(e){
+    console.log(e);
+  }
+  var twoRep=this.evtDict.getVal(el.id);
+  if (twoRep!=null){
+    this.styles.highlight(twoRep,true);
+  }
+  two.update();
+}
+
+Grid.prototype.unhighlight=function(yr,tp){
+  try{
+    var el=document.getElementById("main").querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+    console.log(el);
+  }catch(e){
+    console.log(e);
+  }
+  var twoRep=this.evtDict.getVal(el.id);
+  if(twoRep!=null){
+    console.log("UNHSDGFSDFG");
+    this.styles.highlight(twoRep,false);
+  }
+  two.update();
 }

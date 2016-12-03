@@ -114,3 +114,54 @@ function rgb2hex(rgb){
   ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
   return ret.toUpperCase();
 }
+
+function setDateAndType(el,date,tp){
+  try{
+    el.dataset.date=date;
+    el.dataset.type=tp;
+  }catch(e){
+    el.setAttribute("data-date",date);
+    el.setAttribute('data-type',tp);
+  }
+}
+
+function highlight(el,objects){
+  var tp=el.getAttribute("data-type"),
+      yr=el.getAttribute("data-date");
+  for(var i in objects){
+    objects[i].highlight(yr,tp);
+  }
+}
+function unhighlight(el,objects){
+  var tp=el.getAttribute('data-type'),
+      yr=el.getAttribute('data-date');
+  for(var i in objects){
+    objects[i].unhighlight(yr,tp)
+  }
+}
+
+function mergeSortByYear(list){
+  if (list.length==1){
+    return list;
+  }
+  var i= Math.floor(list.length/2);
+  var l1=mergeSortByYear(list.slice(0,i));
+  var l2=mergeSortByYear(list.slice(i));
+  var l3=[];
+  while(l1.length>0 || l2.length>0){
+    if (l1.length==0){
+      l3.push(l2.shift())
+    }else if (l2.length==0) {
+      l3.push(l1.shift())
+    }else{
+      l3.push((l1[0].year<=l2[0].year)? l1.shift():l2.shift());
+    }
+  }
+  return l3
+}
+
+function reload(objects,evtSet,two){
+  for(var i in objects){
+    objects[i].reload(evtSet,two);
+  }
+}
