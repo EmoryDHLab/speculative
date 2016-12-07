@@ -15,11 +15,11 @@ var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limite
     },
     sz:16, //size of squares-- affects inner square sizes, not lines.
     highlight: function(el,active){
-      console.log(el);
       if(active){
-        el.linewidth=1;
+        el.addTo(el.parent)
+        el.children[0].linewidth=5;
       }else{
-        el.linewidth=0;
+        el.children[0].linewidth=0;
       }
     },
     shade: function(el,active){
@@ -193,8 +193,8 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
     }// end year loop
     evtReps.translation.set(this.styles.lines[2],this.styles.lines[2]);
   }// end decade loop
-  evtReps.addTo(allGrid);
   yearLines.addTo(allGrid);
+  evtReps.addTo(allGrid);
   allGrid.scale=this.scale;
   /**/
   // update two
@@ -225,7 +225,6 @@ Grid.prototype.getGroupIdByData=function(yr,tp){
   }
 }
 Grid.prototype.reload = function (evtSet,two) {
-  console.log(evtSet);
   this.setEventSet(evtSet);
   this.allGroup.remove();
   this.evtDict=new JSdict();
@@ -354,7 +353,6 @@ Grid.prototype.highlight=function(yr,tp){
 Grid.prototype.unhighlight=function(yr,tp){
   try{
     var el=document.getElementById("main").querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
-    console.log(el);
   }catch(e){
     console.log(e);
   }

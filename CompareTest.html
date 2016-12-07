@@ -23,6 +23,7 @@
     <link href="css/fjord.css" rel="stylesheet">
   </head>
   <body>
+    <div id="timeline"></div>
     <div id="main"></div>
     <ol id="evtList"></ol>
     <div id="eventKey"></div>
@@ -54,6 +55,7 @@
     var g=new Grid(.95,0);
     var eKey=new EventKey(100);
     var eList=new List();
+    var timeline= new Timeline();
     // start handles all loading for events.
     function start(){
       console.log("Loading data 1/2");
@@ -68,13 +70,15 @@
       peabody.sortByYear();
       g.addEventSet(test);
       eList.addEventSet(test);
+      timeline.addEventSet(test);
       g.draw(two);
       eList.draw();
       eKey.draw();
+      timeline.draw();
       two.update();
     }
     start();
-    $("body").on("mouseover","path, li",function(e){
+    $("body").on("mouseover","path, rect, li",function(e){
       console.log('highlighting');
       if (e.currentTarget.getAttribute('data-date')==undefined){
         if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
@@ -84,9 +88,9 @@
       }else{
         var el=e.currentTarget;
       }
-      highlight(el,[g,eList,eKey]);
+      highlight(el,[g,eList,eKey,timeline]);
     });
-    $("body").on("mouseout","path, li",function(e){
+    $("body").on("mouseout","path, rect, li",function(e){
       console.log(e.currentTarget);
       if (e.currentTarget.getAttribute('data-date')==undefined){
         if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
@@ -96,7 +100,7 @@
       }else{
         var el=e.currentTarget;
       }
-      unhighlight(el,[g,eList,eKey]);
+      unhighlight(el,[g,eList,eKey,timeline]);
     });
     $("#main").on("click","path",function(e){
       g.clickHandle(e,two);

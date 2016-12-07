@@ -115,6 +115,9 @@ function rgb2hex(rgb){
   return ret.toUpperCase();
 }
 
+function getHighlightColor(){
+  return "#F7DE65";
+}
 function setDateAndType(el,date,tp){
   try{
     el.dataset.date=date;
@@ -129,14 +132,14 @@ function highlight(el,objects){
   var tp=el.getAttribute("data-type"),
       yr=el.getAttribute("data-date");
   for(var i in objects){
-    objects[i].highlight(yr,tp);
+    objects[i].highlight(yr,tp,el);
   }
 }
 function unhighlight(el,objects){
   var tp=el.getAttribute('data-type'),
       yr=el.getAttribute('data-date');
   for(var i in objects){
-    objects[i].unhighlight(yr,tp)
+    objects[i].unhighlight(yr,tp,el)
   }
 }
 
@@ -165,3 +168,11 @@ function reload(objects,evtSet,two){
     objects[i].reload(evtSet,two);
   }
 }
+document.createSvg = function(tagName) {
+  var svgNS = "http://www.w3.org/2000/svg";
+  return this.createElementNS(svgNS, tagName);
+};
+
+Number.prototype.between = function (min, max) {
+  return this >= min && this < max;
+};

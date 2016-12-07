@@ -18,7 +18,9 @@ Evt.prototype.getPlayers = function () {
   }
   return ps;
 }
-
+Evt.prototype.getActor = function () {
+  return this.getPlayers()[0];
+}
 Evt.prototype.getColors = function () {
   var cs=[];
   for(var i in this.players){

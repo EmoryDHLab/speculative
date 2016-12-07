@@ -11,16 +11,9 @@ document.createSvg = function(tagName) {
 
 
 	d3.csv('peabodyData.csv', function(d){
-
-
 		/*populate chart*/
-
-
     drawTimeline();
-
-
-
-	})
+	});
 
 var arrayColors = ["#8D2B1D", "#325B67", "#458867"];
 var countryNames = ["England", "Spain", "France"];
