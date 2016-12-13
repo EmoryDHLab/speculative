@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Simple test</title>
+        <link rel="stylesheet" href="zooming.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <script src="zoom-js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+        <!--     <link rel="stylesheet" href="../dist/css/animsition.min.css"> -->
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- animsition.js -->
+        <!-- <script src="../dist/js/animsition.min.js"></script> -->
+        <script>
+        </script>
+
+    </head>
+
+
+
+
+
+
+
+<body>
+    <div onclick="toggle()"><i class="fa fa-th" aria-hidden="true"></i></div>
+    <div id="exz2" class="zoomViewport">
+        <div class='zoomContainer'>
+        <div class='zoomTarget' id='route1' onclick='goToURL(id)'>Route 1</div>
+        <div class='zoomTarget' id='route2' onclick='goToURL(id)' data-closeclick='true'>Route 2</div><div class='zoomTarget' id='route3' onclick='goToURL(id)' data-closeclick='true'>Route 3</div><div class='zoomTarget' id='route4' onclick='goToURL(id)' data-closeclick='true'>Route 4</div><div class='zoomTarget' id='route5' onclick='goToURL(id)' data-closeclick='true'>Route 5</div><div class='zoomTarget' id='route6' onclick='goToURL(id)'
+        data-closeclick='true'>Route 6</div><div class='zoomTarget' id='route7' onclick='goToURL(id)' data-closeclick='true'>Route 7</div>
+        <div class='zoomTarget' id='route8' onclick='goToURL(id)' data-closeclick='true'>Route 8</div><div class='zoomTarget' id='route9' onclick='goToURL(id)' data-closeclick='true'>Route 9</div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+        <script>
+
+            var gridShown = true;
+
+        $(document).ready(function() {
+            $("#route1").zoomTarget();
+        });
+            function toggle(){
+                gridShown = !gridShown;
+
+                if(gridShown){
+                    var viewport = document.getElementsByClassName("zoomContainer")[0];
+                    window.location.reload();
+                } else{
+                    var viewport = document.getElementsByClassName("zoomContainer")[0];
+                    viewport.innerHTML = ""
+                }
+            }
+
+            function goToURL(route){
+            console.log("made it");
+            setTimeout(function(){return this.window.location=route+".html";},1000);
+            }
+
+
+        </script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+ </html>
