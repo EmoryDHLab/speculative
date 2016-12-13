@@ -118,6 +118,7 @@ html, body{
 	font-weight: 400;
 	text-align: center;
 	font-size: 600%;
+    margin: 0;
 }
 
 
@@ -140,6 +141,8 @@ h3 {
 
 .narrative p{
 	font-size: larger;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #eventKey{
@@ -350,4 +353,27 @@ a{
 a:hover{
     color: lightgray;
     text-decoration: underline;
+}
+
+.hamburger {
+    background:#8D2B1D;
+    height: 80px;
+}
+.direction-right {
+    float: right;
+    text-align:right;
+}
+
+.direction-left {
+    float:left;
+    text-align: left;
+}
+
+.direction-down {
+    text-align: center;
+}
+
+.direction-suggested{
+    color: yellow;
+
 }
