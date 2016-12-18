@@ -23,35 +23,16 @@
     <link href="css/fjord.css" rel="stylesheet">
   </head>
   <body>
-    <div id="learn" class='contain'>
-      <h2>Learn</h2>
-      <h3>Click on a color in the palette below and then click on the chart to plot each event.</h3>
+    <div id="play" class='contain'>
+      <h2>Play</h2>
+      <h3>Add your own events; change the title, color, color labels, and event descriptions in the Event Key.</h3>
       <div style="display:flex;">
         <div id="main"></div>
         <div class="accessories">
-          <h4 class="sidetitle">Event</h4>
-          <div id="buildList">
-            <div id="infoNavArea">
-              <div class="info">
-                <div id="currentYr">1501.</div>
-                <div id="currentBuildEvent">Henry VII. grants patent for colonizing America.&nbsp;</div>
-              </div>
-              <div id="eventsNavigation">
-                <div>
-                  <span id="previous" class="glyphicon glyphicon-chevron-left nextPrevButtons" aria-hidden="true"></span>
-                  <span id="eventCounter">1</span>
+          <input class="sidetitle editable head4" type="text" value="Insert title here"></input>
+          <textarea id="playEvents">
 
-                  <span id="next" class="glyphicon glyphicon-chevron-right nextPrevButtons" aria-hidden="true"></span>
-                </div>
-              </div>
-            </div>
-            <div id="correctionArea">
-              <img class="corIncor" id="correct" width="21px" height="21px" src="img/checkx-check.png" alt="correct" hidden/>
-              <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/checkx-x.png" alt="incorrect" hidden/>
-              <span class="corIncor" id="na" width="21px" height="21px"></span>
-              <a id='show-hide'>Show me</a>
-            </div>
-          </div>
+          </textarea>
           <h4 class="sidetitle">Pallete</h4>
           <div id="pallete"></div>
           <h4 class="sidetitle">Event Key</h4>
@@ -84,8 +65,8 @@
     var el = document.getElementById("main"),
       two = new Two({width:420,height:420});
     two.appendTo(el);
-    var g=new Grid(.75,1);
-    var pal=new Pallete();
+    var g=new Grid(.75,2);
+    var pal=new Pallete("pallete",true);
     var eKey=new EventKey(100);
     var bc=null;
     // start handles all loading for events.
@@ -101,7 +82,14 @@
       bc=new BuildCorrector(test);
       g.addEventSet(test);
       g.draw(two);
-      pal.init(test);
+      pal.init([
+        ['rgb(141, 43, 29)','Color Label'],
+        ['rgb(50, 91, 103)','Color Label'],
+        ['rgb(69, 136, 103)','Color Label'],
+        ['#9CB23E ','Color Label'],
+        ['#74436C','Color Label'],
+        ['#BF602E','Color Label']
+      ]);
       pal.draw();
       eKey.draw();
       g.initBuild(pal,bc)
@@ -126,10 +114,27 @@
     $("#pallete").on("mousedown",".palleteSquare:not(.disabled)",function(e){
       pal.selectColor(e.currentTarget);
     });
+    $("#pallete").on("dblclick",".palleteSquare:not(.disabled)",function(e){
+      pal.changeColor(e.currentTarget);
+    });
     $("#show-hide").on("click",function(e){
-      console.log("clicky");
       g.showAnswer(two);
-    })
+    });
+    $("#play").on("dblclick",".palleteSquare",function(e){
+      console.log(e.currentTarget.children);
+      e.currentTarget.children[0].disabled=false;
+      $(e.currentTarget.children[0]).trigger("click");
+    });
+    $("#play").on("change",".secretColor",function(e){
+      e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
+      pal.currentColor=e.currentTarget.value;
+      e.currentTarget.disabled=true;
+    });
+    $("#play").on("focusout",".secretColor",function(e){
+      e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
+      pal.currentColor=e.currentTarget.value;
+      e.currentTarget.disabled=true;
+    });
   </script>
 
 <!--

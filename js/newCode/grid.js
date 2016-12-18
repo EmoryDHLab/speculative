@@ -96,7 +96,7 @@ Grid.prototype.addEvtRep=function(yr,tp,two){
       r=two.makeRectangle(x+this.styles.sz/2,y+this.styles.sz/2,this.styles.sz,this.styles.sz),
       t=this.addEvtRepTri(x,y,two),
       grp=two.makeGroup(r,t);
-  grp.classList.push({year:yr,eType:tp});
+
   r.linewidth=0;
   if(tempEvts.length>0 && this.build==0){       // if we are not in build mode and we have events to place
     r.stroke=this.styles.colors.hlght;            // set the highlight
@@ -115,6 +115,13 @@ Grid.prototype.addEvtRep=function(yr,tp,two){
     grp.fill=this.styles.colors.empty;
     this.evtDict.add(grp.id,grp);
   }
+  if(tempEvts.length>0){
+    var c1=tempEvts[0].getColors()[0];
+    if(tempEvts.length>1){
+      var c2=tempEvts[1].getColors()[0];
+    }
+  }
+  grp.classList.push({year:yr,eType:tp, colors:[c1,c2]});
   return [grp];
 }
 
@@ -362,4 +369,23 @@ Grid.prototype.unhighlight=function(yr,tp){
     this.styles.highlight(twoRep,false);
   }
   two.update();
+}
+
+Grid.prototype.showAnswer=function(two){
+  console.log("heyo");
+  this.corrector.unattemptCurrent();
+  var e1=this.corrector.currentA.evt,
+      e2=this.corrector.currentA.evt2;
+  for(i in this.evtDict.Values){
+    console.log(i);
+    var evt = this.evtDict.Values[i];
+    console.log(evt.classList[0].colors.includes(e1.getColors()[0]),evt.classList[0].year);
+    console.log(e1);
+    if (evt.classList[0].colors.includes(e1.getColors()[0]) && evt.classList[0].year==e1.getDecade() && evt.classList[0].eType==e1.eType){
+      console.log("GOTE<");
+      this.place(this.evtDict.Keys[i],e1.getColors()[0]);
+      break;
+    }
+  }
+  two.update()
 }

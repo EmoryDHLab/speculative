@@ -1,13 +1,18 @@
-var List= function(target="evtList"){
+var List= function(target="evtList", csv=false){
   this.type="list"
   this.eventSet=null;
   this.target=document.getElementById(target);
+  this.isCSV=csv;
 }
 List.prototype.draw = function() {
   for(let evt of this.eventSet.events){
     li=document.createElement("LI");
     setDateAndType(li,evt.year%100,evt.eType);
-    li.innerHTML=evt.year+". "+evt.desc;
+    if(!this.isCSV){
+      li.innerHTML=evt.year+". "+evt.desc;
+    }else{
+      li.innerHTML=evt.getActor()+", "+evt.getColors()[0]+", type"+evt.eType+"year"+evt.getDecade();
+    }
     this.target.appendChild(li);
   }
 };
@@ -57,7 +62,8 @@ var Timeline=function(target="timeline"){
   console.log(this.target);
   this.eventSet=new EventSet();
   this.canvas = d3.select("#"+this.target.id).append('svg')
-            .attr("width",this.target.offsetWidth); //current width of the timelineContainer div
+            .attr("width",this.target.offsetWidth)
+            .attr("height", 125); //current width of the timelineContainer div
   this.eventTypes=[
     "Battle, Siege, or Beginning of War",
     "Conquest, Annexation, or Union",

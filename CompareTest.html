@@ -23,10 +23,33 @@
     <link href="css/fjord.css" rel="stylesheet">
   </head>
   <body>
-    <div id="timeline"></div>
-    <div id="main"></div>
-    <ol id="evtList"></ol>
-    <div id="eventKey"></div>
+    <div id="compare" class="contain">
+      <h2>Compare</h2>
+      <h3>Mouse over any element to see how the elements compare.</h3>
+      <div id="timeline"></div>
+      <div style="display:flex;">
+        <div class="accessories left-acc">
+          <ol id="csv" class="eList"></ol>
+        </div>
+        <div id="main"></div>
+        <div class="accessories right-acc">
+          <div class="dropdown">
+            <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <h4 class="drop">
+                <span class="currentDataSet">1. Peabody 1501-1600</span>
+                <span class="caret"></span>
+              </h4>
+            </div>
+            <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
+              <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
+              <li><a data-index="2" data-parent="#compare">2. Another Data Set</a></li>
+              <li><a data-index="3" data-parent="#compare">3. Another Data Set Again</a></li>
+            </ul>
+          </div>
+          <ol id="evtList" class="eList"></ol>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="server.js"></script>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -50,11 +73,11 @@
     var peabody=new EventSet();
     var test= new EventSet();
     var el = document.getElementById("main"),
-      two = new Two({width:530,height:530});
+      two = new Two({width:335,height:335});
     two.appendTo(el);
-    var g=new Grid(.95,0);
-    var eKey=new EventKey(100);
+    var g=new Grid(.6,0);
     var eList=new List();
+    var cList=new List("csv",true);
     var timeline= new Timeline();
     // start handles all loading for events.
     function start(){
@@ -68,12 +91,13 @@
     function main(){
       test.sortByYear();
       peabody.sortByYear();
-      g.addEventSet(test);
-      eList.addEventSet(test);
-      timeline.addEventSet(test);
+      g.addEventSet(peabody);
+      eList.addEventSet(peabody);
+      cList.addEventSet(peabody);
+      timeline.addEventSet(peabody);
       g.draw(two);
       eList.draw();
-      eKey.draw();
+      cList.draw();
       timeline.draw();
       two.update();
     }
@@ -88,7 +112,7 @@
       }else{
         var el=e.currentTarget;
       }
-      highlight(el,[g,eList,eKey,timeline]);
+      highlight(el,[g,eList,cList,timeline]);
     });
     $("body").on("mouseout","path, rect, li",function(e){
       console.log(e.currentTarget);
@@ -100,12 +124,25 @@
       }else{
         var el=e.currentTarget;
       }
-      unhighlight(el,[g,eList,eKey,timeline]);
+      unhighlight(el,[g,eList,cList,timeline]);
     });
     $("#main").on("click","path",function(e){
       g.clickHandle(e,two);
     });
-
+    $("#compare .data-picker").on("click","a", function(e){
+      changeSet(e,"#compare");
+    });
+    function changeSet(e, parent){
+      console.log(e);
+      if(e.currentTarget.dataset.index==1){
+        reload([g,eList,timeline,cList],peabody,two);
+      }else if (e.currentTarget.dataset.index==2) {
+        reload([g,eList,timeline,cList],test,two);
+      }else{
+        return
+      }
+      $(parent+" .currentDataSet").html(e.currentTarget.innerHTML);
+    }
   </script>
 
 <!--

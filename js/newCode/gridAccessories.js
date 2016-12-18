@@ -1,30 +1,79 @@
 
-var Pallete = function(target="pallete"){
+var Pallete = function(target="pallete", isTemplate=false){
   this.colors=[];
+  this.labels=[];
+  this.isTemplate=isTemplate;
   this.eventSet=null;
   this.target= document.getElementById(target);
   this.currentColor=null;
 }
 Pallete.prototype.init = function (eventSet) {
+  if (this.isTemplate){
+    return this.initEmpty(eventSet);
+  }
   this.eventSet=eventSet;
   for(let evt of this.eventSet.events){
     if(!this.colors.includes(evt.getColors()[0])){
       this.colors.push(evt.getColors()[0]);
+      this.labels.push(evt.getActor());
     }
   }
   this.currentColor=this.colors[0];
 };
-Pallete.prototype.draw = function () {
-  var first=true;
-  for (let clr of this.colors){
-    var tempDiv=document.createElement("div");
-    tempDiv.style.backgroundColor= clr;
-    tempDiv.className=(first) ? "palleteSquare currentColor":"palleteSquare";
-    tempDiv.style.width="50px";
-    tempDiv.style.height="50px";
-    this.target.appendChild(tempDiv);
-    first=false;
+Pallete.prototype.initEmpty = function (colorLabel) {// passed in as a list of two lists, one for colors, one for labels
+  for(var i in colorLabel){
+    this.colors.push(colorLabel[i][0]);
+    this.labels.push(colorLabel[i][1]);
   }
+  this.currentColor=this.colors[0];
+};
+
+Pallete.prototype.draw = function () {
+  var tempRow=document.createElement("div");
+  for (var i=0; i<6; i++){
+    if (i==3){
+      this.target.appendChild(tempRow);
+      tempRow=document.createElement("div");
+      tempRow.className="palleteRow";
+    }
+    var tempContainerDiv=document.createElement("div");
+    tempContainerDiv.className="colorLabelPair";
+
+    if (!this.isTemplate){
+      var tempLabel= document.createElement("div");
+      tempLabel.className="palleteLabel";
+      tempLabel.innerHTML=(this.labels[i]) ? this.labels[i]:"Unused";
+    }else{
+      var tempLabel= document.createElement("input");
+      tempLabel.value=(this.labels[i]) ? this.labels[i]:"Unused";
+      tempLabel.className="palleteLabel editable";
+      tempLabel.overflowX="auto";
+      tempLabel.style.width="6em";
+    }
+
+    var tempDiv=document.createElement("div");
+    tempDiv.className=(i==0) ? "palleteSquare currentColor":"palleteSquare";
+    tempDiv.className+=(this.colors[i]) ? "":" disabled";
+    tempDiv.style.width="30px";
+    tempDiv.style.height="30px";
+    tempDiv.style.backgroundColor= (this.colors[i]) ? this.colors[i]:"#dfdfdf";
+    if (this.isTemplate){
+      var colorInput=document.createElement("INPUT");
+      colorInput.className="secretColor";
+      colorInput.value=this.colors[i];
+      colorInput.type="color";
+      colorInput.style.width="30px";
+      colorInput.style.height="30px";
+      colorInput.style.opacity="0";
+      colorInput.disabled=true;
+      tempDiv.appendChild(colorInput);
+    }
+    console.log(tempContainerDiv);
+    tempContainerDiv.appendChild(tempDiv);
+    tempContainerDiv.appendChild(tempLabel);
+    tempRow.appendChild(tempContainerDiv);
+  }
+  this.target.appendChild(tempRow);
 };
 Pallete.prototype.selectColor = function(el){
   console.log("Selecting!")
@@ -35,6 +84,7 @@ Pallete.prototype.selectColor = function(el){
   }
   el.className+=" currentColor";
 }
+Pallete.prototype.changeColor = function(){}
 
 /*
   The Event key is a small square which sits at the bottom of the page. it

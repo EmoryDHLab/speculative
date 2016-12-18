@@ -8,7 +8,6 @@ html, body{
 	height: 100%;
     margin: 0;
 }
-
 .section {
 /*    min-height: 100%;
 */    display: flex;
@@ -113,11 +112,12 @@ html, body{
 }
 
 /*headers for all of the pages*/
-.narrative h2, .explanation h2, .interactive h2, .credits h2{
+h2{
+	margin-top: 0;
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	font-size: 600%;
+	font-size: 400%;
 }
 
 
@@ -128,6 +128,10 @@ h3 {
     color: gray;
 /*    font-size: 100%;
 */}
+
+#compare h3{
+	margin-bottom: 0;
+}
 
 /*font for narrative pages*/
 .narrative{
@@ -175,11 +179,7 @@ h3 {
 	font-weight: bold;
 }
 
-#compare{
-/*    padding-top: 10%;
-    padding-bottom: 15%;*/
-	background-color: #458867; /*green*/
-}
+
 
 #compare2{
     padding-top: 5%;
@@ -227,20 +227,7 @@ h3 {
 #buildGrid rect:hover{
 	cursor:pointer;
 }
-#buildList {
-	background-color: #F3F3F3;
-	padding-top:10px;
-	padding-bottom: 10px;
-	padding-left: 2em;
-}
-#eventsNavigation{
-	text-align: center;
-	font-size: 1.5em;
-	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
-	-moz-user-select: none; /* mozilla browsers */
-	-khtml-user-select: none; /* webkit (konqueror) browsers */
-	-ms-user-select: none; /* IE10+ */
-}
+
 
 .row{
 	margin-left: 0;
@@ -249,7 +236,7 @@ h3 {
 
 #buildList p{
 	margin-right: 10px;
-	font-size: 1.7em;
+	font-size: 1.2em;
 	text-align: left;
 	min-height:3em;
 	display:inline-block;;
@@ -257,29 +244,6 @@ h3 {
 .selectedColor{
 	stroke-width:3;
 	stroke:#F7DE65;
-}
-.nextPrevButtons:hover{
-	cursor: pointer;
-}
-#eventCounter{
-	font-style: italic;
-	display:inline-block;
-	width:2.5em;
-}
-#show-hide{
-	font-size: .7em;
-	color: #59C7FF;
-}
-#show-hide:hover{
-	cursor: pointer;
-	text-decoration: none;
-}
-
-.corIncor{
-	width: 20px;
-	height: 20px;
-	position: relative;
-	top:-4px;
 }
 
 .colorBox{
@@ -351,23 +315,173 @@ a:hover{
 .ptr{
 	cursor: pointer;
 }
+
+/*
+	container stuff
+*/
+.contain{
+	padding:.5em;
+}
+
+/*
+-------------------------------Build Event Thing--------------------------------
+*/
+#buildList {
+	background-color: #F3F3F3;
+	padding:10px 1.5em;
+	display:flex;
+	flex:1;
+	max-width: 520px;
+}
+#eventsNavigation{
+	text-align: right;
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
+}
+#infoNavArea{
+	flex:1;
+	padding-top: 1em;
+	padding-right: 1em;
+	box-sizing: border-box;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+	margin-right:1em;
+}
+
+#correctionArea{
+	flex:.25;
+	position: relative;
+}
+#currentYr{
+	margin-right: .5em;
+	flex: .15;
+}
+#currentBuildEvent{
+	display: inline-block;
+	flex:1
+}
+.info{
+	display: flex;
+	height: 3em;
+	margin-bottom: 10px;
+}
+.nextPrevButtons:hover{
+	cursor: pointer;
+	color:#DB882A;
+}
+#next{
+	color:#DB882A;
+}
+#eventCounter{
+	font-style: italic;
+}
+#correctionArea hr{
+	margin: 10px 0px;
+	border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+#show-hide{
+	text-align: center;
+	color: #59C7FF;
+	display: block;
+
+}
+#show-hide:hover{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.corIncor{
+	width: 40px;
+	height: 40px;
+	display: block;
+	margin: 20px auto;
+}
+
+/*
+--------------------------Grid--------------------------------------------------
+*/
+#main{
+	flex:1;
+	margin-left:10px;
+	margin-right:10px;
+}
+#main svg{
+	margin-left:1.2em;
+}
+
+.accessories{
+	flex:1;
+}
+
+.accessories.left-acc{
+	flex: .65;
+}
+/*
+-------------------------Event lists--------------------------------------------
+*/
+.dropdown{
+	margin-top: -15px;
+}
+.dropdown-toggle:hover{
+	cursor: pointer;
+}
+.dropdown-menu:hover{
+	cursor:pointer;
+}
+h4.drop{
+	display:inline-block;
+	border-bottom: 2px solid grey;
+}
+#evtList{
+	background-color: #efefef;
+}
+#csv{
+	height:340px;
+}
+.eList{
+	font-size: 12px;
+	height:300px;
+	overflow-y: auto;
+}
+/*
+----------------------------Color Pallete---------------------------------------
+*/
 #pallete{
-	padding:1em;
+	width:40em;
 }
 .palleteSquare{
 	display: inline-block;
 	margin-right:10px;
 	cursor: pointer;
 }
-.palleteSquare:hover{
+.palleteSquare:not(.disabled):hover{
 	outline: 3px dashed #F7DE65;
+}
+.palleteSquare.disabled:hover{
+	cursor:not-allowed;
 }
 .currentColor{
 	outline: 3px solid #F7DE65;
 }
 
+.palleteLabel{
+	display: inline-block;
+	max-width: 10em;
+	transform: translateY(-25%);
+}
+.colorLabelPair{
+	padding: 3px;
+	display: inline-block;
+	max-width:10em;
+	min-width: 25%
+}
+
 /*
-	STYLING FOR EVENTKEY
+	----------------------------EVENTKEY------------------------------------------
 */
 #eventKeyTypes{
 	display: inline-block;
@@ -410,4 +524,41 @@ a:hover{
 #eventKeySqr td[data-type='7'],
 #eventKeySqr td[data-type='8']{
 	border-bottom-style:hidden;
+}
+.sidetitle + div{
+	margin-left: 1em !important;
+}
+
+/*
+--------------------Scrollbar---------------------------------------------------
+*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+
+}
+/*
+-------------------Play Input styles-----------------------------------------
+*/
+.head4{
+	font-size: 1.4em;
+}
+.editable{
+	border: none;
+	border-bottom: 2px dashed #efefef;
+}
+.editable:focus{
+	outline: none;
 }

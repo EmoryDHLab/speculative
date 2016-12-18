@@ -61,7 +61,7 @@ BuildCorrector.prototype.attempt=function(id,year,type,color){
           b= (this.currentA.evt2.getColors()[0]==tempP.color && this.currentA.evt.getColors()[0]==tempP.color2);
     }
   }
-  this.currentA.correct=(a||b)&& this.currentA.evt.getDecade()==year && this.currentA.evt.eType==type;
+  this.currentA.correct=(a||b) && this.currentA.evt.getDecade()==year && this.currentA.evt.eType==type;
   this.correct();
   return this.currentA.correct;
 };
@@ -77,6 +77,13 @@ BuildCorrector.prototype.unattempt=function(id){
   this.placed=tempA;
   this.correct();
 };
+BuildCorrector.prototype.unattemptCurrent=function(){
+  for(let p of this.placed){
+    if(p.i==this.currentA.i){
+      this.unattempt(p.id);
+    }
+  }
+}
 BuildCorrector.prototype.next=function(){
   var nextI=this.currentA.i+1;
   if (nextI>=this.answers.length){
@@ -117,9 +124,10 @@ BuildCorrector.prototype.isAllowed=function(id,color){
 }
 
 BuildCorrector.prototype.update=function(){
-  $("#currentYr").html(this.currentA.evt.year);
-  $("#currentBuildEvent").html(this.currentA.evt.desc+this.getShow());
+  $("#currentYr").html(this.currentA.evt.year+".");
+  $("#currentBuildEvent").html(this.currentA.evt.desc);
   $("#eventCounter").html(this.currentA.i+1+"/"+this.answers.length);
+  this.correct();
 };
 BuildCorrector.prototype.correct = function () {
   if (this.currentA.correct){
@@ -132,7 +140,4 @@ BuildCorrector.prototype.correct = function () {
     $(".corIncor:not(#incorrect)").hide();
     $("#incorrect").show();
   }
-};
-BuildCorrector.prototype.getShow=function(){
-  return "&nbsp;<a id='show-hide'>Show</a></span>";
 };
