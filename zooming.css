@@ -1,5 +1,5 @@
 #exz2 { height: 60em; width:100%; background: #bbb; text-align: center; margin-left: 0%;}
-#exz2 .zoomContainer .zoomTarget { overflow-x: scroll; overflow-y:scroll; display: inline-block; width: 21em; height: 16em; margin: .8em 1em; border: 1px solid blue; background: #fff; font-size: 1.1em; padding: none; }
+#exz2 .zoomContainer .zoomTarget { overflow-x: scroll; overflow-y:scroll; display: inline-block; width: 21em; height: 16em; margin: .8em 1em; border:; background: #fff; font-size: 1.1em; padding: none; }
 
 .slider__control{
   z-index: 2;
