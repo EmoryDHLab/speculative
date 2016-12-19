@@ -117,8 +117,8 @@ html, body{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	font-size: 600%;
     margin: 0;
+    font-size: 20;
 }
 
 
@@ -133,7 +133,7 @@ h3 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
-    font-size: 115%;
+    font-size: .2em;
     padding-top: 3%;
     padding-bottom: 3%;
 
@@ -147,7 +147,11 @@ h3 {
 
 #eventKey{
     padding: 0;
+    font-size: 10%
+}
 
+img#eventKeyIMG {
+    width: 25%;
 }
 
 #history{
@@ -238,6 +242,7 @@ h3 {
 	padding-top:10px;
 	padding-bottom: 10px;
 	padding-left: 2em;
+    font-size: 10%;
 }
 #eventsNavigation{
 	text-align: center;
