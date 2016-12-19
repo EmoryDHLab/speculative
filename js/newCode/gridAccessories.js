@@ -91,11 +91,12 @@ Pallete.prototype.changeColor = function(){}
   represents the event being hovered over.
   size is given in px
 */
-var EventKey=function(size,target="eventKey"){
+var EventKey=function(size,target="eventKey",template=false){
   this.size=size;
   this.linewidth=size*.01;
   this.borderwidth=size*.04;
   this.evtSize=(size/3)-(size*.50);
+  this.isTemplate=template;
   this.eventTypes=[
     "Battles, Sieges, Beginning of War",
     "Conquests, Annexations, Unions",
@@ -140,7 +141,15 @@ EventKey.prototype.draw=function(){
   var ct=0;
   for(let type of this.eventTypes){
     var li=document.createElement("li");
-    li.innerHTML=type;
+    if(this.isTemplate){
+      var inp= document.createElement("input");
+      inp.type="text";
+      inp.value="Event Description";
+      inp.className="editable";
+      li.appendChild(inp);
+    }else{
+      li.innerHTML=type;
+    }
     li.dataset.type=ct;
     ol.appendChild(li);
     ct++;

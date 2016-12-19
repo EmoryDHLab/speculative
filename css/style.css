@@ -562,3 +562,20 @@ h4.drop{
 .editable:focus{
 	outline: none;
 }
+
+textarea.editable{
+	border:1px dashed #dfdfdf;
+	padding:.5em;
+}
+.suggested{
+	color:grey;
+}
+#playEvents{
+	display: block;
+	width: 75%;
+	min-width: 7em;
+	height:150px;
+	margin-top: 10px;
+	overflow-y: scroll;
+	resize:none;
+}
