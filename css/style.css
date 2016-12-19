@@ -113,11 +113,11 @@ html, body{
 
 /*headers for all of the pages*/
 h2{
-	margin-top: 0;
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	font-size: 400%;
+  margin: 0;
+  font-size: 20;
 }
 
 
@@ -136,7 +136,7 @@ h3 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
-    font-size: 115%;
+    font-size: .2em;
     padding-top: 3%;
     padding-bottom: 3%;
 
@@ -144,20 +144,31 @@ h3 {
 
 .narrative p{
 	font-size: larger;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #eventKey{
     padding: 0;
+    font-size: 10%
+}
 
+img#eventKeyIMG {
+    width: 25%;
 }
 
 #history{
 	background-color: #8D2B1D; /*red*/
+    margin-top: -30em;
+    margin-top: 6em;
 }
 
 #howitworks{
-    padding-top: 5%;
-    padding-bottom: 5%;
+/*    padding-top: 5%;
+    padding-bottom: 5%;*/
+    background-color: #FDFDFD;
+    width: 100%;
+    height: 100%;
 }
 
 #view{
@@ -228,6 +239,21 @@ h3 {
 	cursor:pointer;
 }
 
+#buildList {
+	background-color: #F3F3F3;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left: 2em;
+    font-size: 10%;
+}
+#eventsNavigation{
+	text-align: center;
+	font-size: 1.5em;
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
+}
 
 .row{
 	margin-left: 0;
@@ -578,4 +604,93 @@ textarea.editable{
 	margin-top: 10px;
 	overflow-y: scroll;
 	resize:none;
+}
+
+.hamburger {
+    background:none;
+    height: 1em;
+    float: left;
+    border: gray;
+}
+.direction-right {
+    float: right;
+    text-align:right;
+}
+
+.direction-left {
+    float:left;
+    text-align: left;
+}
+
+.direction-down {
+    text-align: center;
+}
+
+.direction-suggested{
+    color: yellow;
+
+}
+
+#route1{
+    background:#8D2B1D !important;
+}
+
+#route2{
+    background: #FDFDFD !important;
+}
+
+#route3{
+    background:#2B4461 !important;
+}
+
+
+button {
+  border: 0;
+  padding: 10px;
+  font-family: 'Source Sans Pro', Verdana, Sans-Serif;
+  font-size: 18px;
+  outline: none;
+  border-radius: 3px;
+  display: block;
+  margin: 15px auto;
+  background-color: #E3E3E3;
+  cursor: pointer;
+  transition: opacity 1s ease-in-out;
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: relative; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: -2em;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    max-width: 50%%
+    overflow: visible !important;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

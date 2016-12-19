@@ -1,0 +1,308 @@
+<html>
+    <head>
+        <title>Simple test</title>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow:400,700|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="zooming.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="zoom-js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+        <!--     <link rel="stylesheet" href="../dist/css/animsition.min.css"> -->
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- animsition.js -->
+        <!-- <script src="../dist/js/animsition.min.js"></script> -->
+        <script>
+        </script>
+
+    </head>
+
+
+<body>
+    <section class="speculative_intro">
+        <div class="fullrow row intro section">
+          <div class="container-fluid introban">
+              <h1>The Shape of History</h1>
+              <br>
+              <div class="col-md-8 col-md-offset-2">
+                  <h2>What is the shape of history? How does that shape affect our sense of history itself?</h2>
+              </div>
+          </div>
+        </div>
+      </section><!--close section intro-->
+
+    <div id="exz2" class="zoomViewport">
+        <div class='zoomContainer'>
+
+        <div class='zoomTarget' id='route1' onclick=''>
+        <div id='route1' onclick="">
+            <button id="myBtn"><img class="hamburger" src="img/9-01.png"></button>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt sit quas aut labore nam quis qui eos quasi soluta sunt nihil voluptate expedita. Aliquam aliquid excepturi ex ab fuga ipsa?</div>
+              </div>
+            </div>
+
+            <div class="section row narrative" id="history">
+              <div class="container">
+                <h2>About</h2>
+                <br>
+                <div class = "row">
+                    <div class="col-md-6">
+                        <p>What is the shape of history? Does it unfold along a path, proceeding from past to present? Does it cycle, repeating both triumphs and tragedies? Or is it something else altogether, a shape that reflects the complexities and ambiguities of recorded time?</p>
+                        <br>
+
+                        <p>When we give shape to history, we make choices that impact how we understand history itself. A timeline, for instance, reinforces our sense of history’s inevitable forward progression. A clocklike arrangement, on the other hand, suggests the cyclical nature of historical events. But what if the goal of giving shape to history were to allow each person, individually, to make sense of history for herself?</p>
+                        <br>
+
+
+                        <p>This was the goal of Elizabeth Peabody, the nineteenth-century writer, editor, educator, and activist. Drawing from a system developed in Poland earlier in the century, she devised a method of translating history into shape and color. She aimed to appeal to the mind’s eye—a phrase she herself employed—so that each viewer could create her own story to explain the events of the past.</p>
+
+                    </div>
+<!--                         <div class="slider__control"></div>
+                        <div class="slider__control isRight"></div> -->
+                </div>
+
+              </div>
+            </div>
+
+        </div>
+        </div>
+        <div class='zoomTarget' id='route2'  data-closeclick='true'>
+        <div id='route2'>
+            <img class="hamburger" src="img/9-02.png">
+        </div>
+            <div class="section row explanation" id="howitworks">
+                <div class="container">
+                    <h2>Spanish, French and English Adventures</h2>
+                    <h4 id="h3_howitworks">Learn how Peabody's visualization works </h4>
+                    <br>
+                    <h2>CLICK to Advance</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class='zoomTarget' id='route3' data-closeclick='true'>
+        <div id='route3' onclick="revealMenu(id)">
+            <img class="hamburger" src="img/9-03.png">
+        </div>
+            <div class="section row narrative" id="interaction">
+              <div class="container">
+                <h2>Interaction, Updated</h2>
+                <br>
+                    <div class = "row">
+                      <div class="col-md-6">
+                        <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
+                        <br>
+                        <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
+                        <br>
+                        <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
+                    </div>
+                  </div>
+                </div><!--close interaction-->
+            </div>
+        </div>
+
+        <div class='zoomTarget' id='route4' onclick='goToURL(id)' data-closeclick='true'>Compare</div>
+        <div class='zoomTarget' id='route5' onclick='goToURL(id)' data-closeclick='true'>Sandbox</div>
+
+        <div class='zoomTarget' id='route6' data-closeclick='true'>
+                    <div class="row interactive fluid" id="build">
+          <div class="container">
+            <h2>The Lesson</h2>
+            <h3 id="h3_build">Using the color palette below, plot each event on the chart.</h3>
+            <div class="col-md-6">
+                <br><br>
+              <img></img>
+              <div id="buildGrid"></div>
+            </div>
+            <div id="buildTools" class="col-md-6">
+<!--THIS IS WHERE YOU ARE WORKING RN #####################################################################################################################################-->
+              <h4><b>Event</b></h4>
+                <div class="row">
+                  <div id="buildList" class="col-md-11">
+
+                    <p><span id="currentYr" class="col-md-2">1501.</span><span id="currentBuildEvent" class="col-md-10">Henry VII. grants patent for colonizing America.&nbsp;<a id='show-hide'>Show</a></span></p>
+                    <div id="eventsNavigation">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-5">
+                        <span id="previous" class="glyphicon glyphicon-triangle-left nextPrevButtons" aria-hidden="true"></span>
+                        <span id="eventCounter">1</span>
+                        <img class="corIncor" id="correct" width="21px" height="21px" src="img/correct.svg" alt="correct" hidden="true"/>
+                        <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/incorrect.svg" alt="incorrect" hidden="true"/>
+                        <img class="corIncor" id="na" width="21px" height="21px" src="img/na.svg" alt="n/a"/>
+                        <span id="next" class="glyphicon glyphicon-triangle-right nextPrevButtons" aria-hidden="true"></span>
+                      </div>
+                      <div class="col-md-5"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-1"></div>
+                </div>
+                <div id="buildPalette">
+                  <h4 style="margin-top:20px; margin-bottom:5px;">Palette</h4>
+                </div>
+                <h4>Event Key</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="img/eventKey-01.png" id="eventKeyIMG" width="80%" alt="event key"></img>
+                    </div>
+                    <div class="col-md-8">
+                        <ol id="eventKey">
+                        <li>Battles, Sieges, Beginning of War</li>
+                        <li>Conquests, Annexations, Unions</li>
+                        <li>Losses and Disasters</li>
+                        <li>Falls of States</li>
+                        <li>Foundations of States and Revolutions</li>
+                        <li>Treaties and Sundries</li>
+                        <li>Births</li>
+                        <li>Deeds</li>
+                        <li>Deaths, of remarkable individuals</li>
+                    </ol>
+                        <!--               <p>TODO: fade-in explanation text should go here</p>
+
+ -->                </div>
+                </div>
+            </div>
+
+
+          </div>
+        </div><!--close build-->
+        </div>
+
+        <div class='zoomTarget' id='route5' onclick='goToURL(id)' data-closeclick='true'>About Compare</div>
+        <div class='zoomTarget' id='route6' onclick='goToURL(id)' data-closeclick='true'>About Sandbox</div>
+
+        <div class='zoomTarget' id='route7' onclick='goToURL(id)' data-closeclick='true'>About Lesson</div>
+        </div>
+    </div>
+</body>
+
+        <script>
+
+            var gridShown = true;
+
+        $(document).ready(function() {
+            $("#route1").zoomTarget();
+        });
+            function toggle(){
+                gridShown = !gridShown;
+
+                if(gridShown){
+                    var viewport = document.getElementsByClassName("zoomContainer")[0];
+                    window.location.reload();
+                } else{
+                    var viewport = document.getElementsByClassName("zoomContainer")[0];
+                    viewport.innerHTML = ""
+                }
+            }
+
+            function goToURL(route){
+            console.log("made it");
+            setTimeout(function(){return this.window.location=route+".html";},1000);
+            }
+
+                        // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+
+        </script>
+        <script type="text/javascript" src="zoom-js/jquery.zoomooz.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/compare.js"></script>
+    <script src="js/build.js"></script>
+    <script src="js/timeline.js"></script>
+
+    <script src="js/fullheight.js"></script>
+    <script>
+      var currentEvent=$("#currentBuildEvent"),
+        currYear=$("#currentYr"),
+        nextE=$("#next"),
+        prevE=$("#previous"),
+        counter=$("#eventCounter");
+      currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+      currYear.text(BuildControl.currentYear()+".");
+      counter.text(BuildControl.getCounter());
+
+      $("body").on("click","#show-hide",function(e){
+        if(BuildControl.getShow()=="Show"){
+          $("#show-hide").html("Hide");
+          console.log("Shown");
+          BuildControl.showMe();
+        }else if(BuildControl.getShow()=="Hide"){
+          $("#show-hide").html("Show");
+          console.log("Hidden");
+          BuildControl.hideMe();
+        }
+      });
+      prevE.click(function(){
+        BuildControl.dec();
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
+        counter.text(BuildControl.getCounter())
+        $("#show-hide").html(BuildControl.getShow());
+      });
+      nextE.click(function(){
+        BuildControl.inc();
+        currentEvent.html(BuildControl.currentEventDesc()+"&nbsp;<a id='show-hide'>Show</a>");
+        currYear.text(BuildControl.currentYear());
+        counter.text(BuildControl.getCounter());
+        $("#show-hide").html(BuildControl.getShow());
+      });
+    </script>
+
+    <script>
+      $("#buildGrid").on("click","rect",function(e){
+        BuildControl.placeAnswer(e.currentTarget); //e.target is the rect object, where id="type#year#" and class="typeSquare"
+      });
+      $("#buildGrid").on("mouseover","rect",function(e){
+        if($(e.currentTarget).attr("fill")=="white"){
+          console.log("GRAY IT");
+          $(e.currentTarget).attr("fill","#F3F3F3");
+        }
+      });
+      $("#buildGrid").on("mouseout","rect",function(e){
+        console.log("Out! GET RID OF THE GRAY")
+        if ($(e.currentTarget).attr("fill")=="#F3F3F3") {
+          console.log("GRAY IT");
+          $(e.currentTarget).attr("fill","white");
+        }
+        $(e.currentTarget).attr("class","buildSquare")
+      });
+
+    </script>
+
+    <script>
+      function hide(target){
+        document.getElementById(target).style.display = 'none';
+      }
+    </script>
+ </html>

@@ -1,0 +1,93 @@
+<html>
+<head>
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/fjord.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+body {
+    background: #8D2B1D;
+}
+</style>
+<body>
+<div onclick="goHome()">
+    <img class="hamburger" src="img/9-01.png">
+</div>
+        <div class="section row explanation" id="howitworks">
+          <div class="container">
+            <h2>How it Works</h2>
+            <h3 id="h3_howitworks">Click to learn how Peabody envisioned her method.</h3>
+              <!--data interval = "false" stops it from automatically cycling through-->
+              <div id="carousel-example-generic" class="carousel" data-ride="carousel" data-interval="false">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="7"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="8"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="9"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <img src="img/imgseq_9-23-01.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-02.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-03.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-04.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-05.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-06.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-07.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-08.png" alt="...">
+                  </div>
+                  <div class="item">
+                    <img src="img/imgseq_9-23-09.png" alt="...">
+                  </div>
+                </div>
+
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" onclick="hide('h3_howitworks')">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+              <div class="direction-left" onClick="goHowItWorks()"><i class="fa fa-angle-left fa-4x" aria-hidden="true"></i></div>
+              <div class="direction-right direction-suggested" onClick="goExplore()"><i class="fa fa-angle-right fa-4x" aria-hidden="true"></i></div>
+              <div class="direction-down" onClick="goHowItWorks()"><i class="fa fa-angle-down fa-4x" aria-hidden="true"></i></div>
+
+          </div>
+        </div>
+</body>
+<script>
+function goHome(){
+    this.window.location='zoomingui.html';
+}
+function goExplore(){
+    this.window.location='route3.html';
+}
+</script>
+</html>

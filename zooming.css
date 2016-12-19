@@ -1,0 +1,32 @@
+#exz2 { height: 60em; width:100%; background: #bbb; text-align: center; margin-left: 0%;}
+#exz2 .zoomContainer .zoomTarget { overflow-x: scroll; overflow-y:scroll; display: inline-block; width: 21em; height: 16em; margin: .8em 1em; border:; background: #fff; font-size: 1.1em; padding: none; }
+
+.slider__control{
+  z-index: 2;
+  position: relative;
+  top: 50%;
+  left: 5%;
+  width: 4em;
+  height: 4em;
+  margin-left: -2em;
+  margin-top: -2em;
+
+  border-radius: 50%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 64' fill='gold' fill-opacity='.5' ><polyline points='16,0 48,32 16,64'/></svg>") center/50% no-repeat;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(#FFF, .2);
+    background-size: 40%;
+    }
+
+  &:active {
+    background: rgba(#000, .5);
+    }
+}
+
+.isRight {
+  left: 95%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 64' fill='gold' fill-opacity='.5' ><polyline points='16,0 48,32 16,64'/></svg>") center/50% no-repeat;
+
+}
