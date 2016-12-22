@@ -282,6 +282,13 @@ img#eventKeyIMG {
 
 /***************************CAROUSEL (for how it works) STYLING****************************/
 
+.clickThru{
+	width:100%;
+	height:500px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 
 /*remove gradient from bootstrap carousel*/
 .carousel-control.left, .carousel-control.right {
