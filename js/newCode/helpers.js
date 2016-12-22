@@ -163,9 +163,15 @@ function mergeSortByYear(list){
   return l3
 }
 
-function reload(objects,evtSet,two){
+function reload(objects,evtSet){
+  console.log(objects);
   for(var i in objects){
-    objects[i].reload(evtSet,two);
+    try{
+      objects[i].reload(evtSet);
+    }catch(e){
+      console.log(e);
+      console.log("skipping "+objects[i].type);
+    }
   }
 }
 document.createSvg = function(tagName) {
@@ -176,3 +182,27 @@ document.createSvg = function(tagName) {
 Number.prototype.between = function (min, max) {
   return this >= min && this < max;
 };
+
+function loadAllWithEventSet(objects,evtSet){
+  for(let o of objects){
+    try{
+      o.addEventSet(evtSet);
+    }catch(e){
+      console.log(e);
+      console.log("skipping "+o.type);
+    }
+  }
+  console.log("loaded");
+}
+
+function drawAll(objects,two){
+  for(let o of objects){
+    o.draw(two);
+  }
+  console.log("loaded again");
+}
+function sortAllByYear(objects){
+  for(let o of objects){
+    o.sortByYear();
+  }
+}

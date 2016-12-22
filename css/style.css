@@ -238,13 +238,6 @@ img#eventKeyIMG {
 	cursor:pointer;
 }
 
-#buildList {
-	background-color: #F3F3F3;
-	padding-top:10px;
-	padding-bottom: 10px;
-	padding-left: 2em;
-    font-size: 10%;
-}
 #eventsNavigation{
 	text-align: center;
 	font-size: 1.5em;
@@ -461,7 +454,7 @@ h4.drop{
 	display:inline-block;
 	border-bottom: 2px solid grey;
 }
-#evtList{
+#compEvtList{
 	background-color: #efefef;
 }
 #csv{

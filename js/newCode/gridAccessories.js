@@ -1,5 +1,6 @@
 
 var Pallete = function(target="pallete", isTemplate=false){
+  this.type="pallete"
   this.colors=[];
   this.labels=[];
   this.isTemplate=isTemplate;
@@ -7,7 +8,7 @@ var Pallete = function(target="pallete", isTemplate=false){
   this.target= document.getElementById(target);
   this.currentColor=null;
 }
-Pallete.prototype.init = function (eventSet) {
+Pallete.prototype.addEventSet = function (eventSet) {
   if (this.isTemplate){
     return this.initEmpty(eventSet);
   }
@@ -29,6 +30,7 @@ Pallete.prototype.initEmpty = function (colorLabel) {// passed in as a list of t
 };
 
 Pallete.prototype.draw = function () {
+  this.target.innerHTML="";
   var tempRow=document.createElement("div");
   for (var i=0; i<6; i++){
     if (i==3){
@@ -76,15 +78,21 @@ Pallete.prototype.draw = function () {
   this.target.appendChild(tempRow);
 };
 Pallete.prototype.selectColor = function(el){
-  console.log("Selecting!")
   this.currentColor=rgb2hex(el.style.backgroundColor);
-  var selected=document.getElementsByClassName("currentColor");
+  var selected=this.target.getElementsByClassName("currentColor");
   for(let ele of selected){
     ele.className="palleteSquare";
   }
   el.className+=" currentColor";
 }
-Pallete.prototype.changeColor = function(){}
+Pallete.prototype.reload=function(evtSet){
+  this.eventSet=null;
+  this.addEventSet(evtSet);
+  this.draw();
+}
+Pallete.prototype.changeColor=function(el){
+  this.currentColor=el.style.backgroundColor;
+}
 
 /*
   The Event key is a small square which sits at the bottom of the page. it

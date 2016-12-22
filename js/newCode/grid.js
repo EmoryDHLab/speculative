@@ -1,8 +1,11 @@
 //TODO: fix highlight to regroup elements properly
 
 // generates a grid with default styles
-var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limited building, 2- play!
+var Grid= function(id,scl=.75,build=0,sd=420){//build: 0- no building, 1- limited building, 2- play!
   this.type="grid";
+  this.target=document.getElementById(id);
+  this.two = new Two({width:sd,height:sd});
+  this.two.appendTo(this.target);
   var defaultGridStyle={
     lines:[.25,2,18], // [0]--> most thin, [2]--> most thick
     colors:{
@@ -35,7 +38,7 @@ var Grid= function(scl=1,build=0,styles=null){//build: 0- no building, 1- limite
     },
     point:false
   }
-  this.styles= (styles==null) ? defaultGridStyle : styles;
+  this.styles=defaultGridStyle;
   this.scale=scl;
   /*  the !!outermost!! position of the top right corner--
       stroke is not factored in here. I.E. How much to shift the grid once it0
@@ -79,23 +82,23 @@ Grid.prototype.setShader=function(newFunc){
 Grid.prototype.setHiglighter=function(newFunc){
   this.styles.highlight=newFunc;
 }
-Grid.prototype.addEvtRepTri=function(x,y,two){
+Grid.prototype.addEvtRepTri=function(x,y){
   var x2= x+this.styles.sz,
       y2= y,
       x3= x,
       y3= y+this.styles.sz,
-      tri=two.makePath(x,y,x2,y2,x3,y3,false);
+      tri=this.two.makePath(x,y,x2,y2,x3,y3,false);
   tri.stroke=this.styles.colors.hlght;
   tri.linewidth=0;
   return tri;
 }
-Grid.prototype.addEvtRep=function(yr,tp,two){
+Grid.prototype.addEvtRep=function(yr,tp){
   var y=Math.floor(tp/3)*(this.styles.lines[0]+this.styles.sz);
   var x=(tp%3)*(this.styles.lines[0]+this.styles.sz);
   var tempEvts=this.eventSet.findAll(yr,tp),
-      r=two.makeRectangle(x+this.styles.sz/2,y+this.styles.sz/2,this.styles.sz,this.styles.sz),
-      t=this.addEvtRepTri(x,y,two),
-      grp=two.makeGroup(r,t);
+      r=this.two.makeRectangle(x+this.styles.sz/2,y+this.styles.sz/2,this.styles.sz,this.styles.sz),
+      t=this.addEvtRepTri(x,y,this.two),
+      grp=this.two.makeGroup(r,t);
 
   r.linewidth=0;
   if(tempEvts.length>0 && this.build==0){       // if we are not in build mode and we have events to place
@@ -125,20 +128,22 @@ Grid.prototype.addEvtRep=function(yr,tp,two){
   return [grp];
 }
 
-Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
+Grid.prototype.draw= function(){// draws grid DOES NOT POPULATE IT
+  console.log("drawing grid");
   // I add the main grid rectangle (the century block)
+  this.two.clear();
   var cSz=this.getCenturySize();
   var cSzOuter=cSz + 2*this.styles.lines[2];
-  var century=two.makeRectangle(0,0,cSz,cSz);
+  var century=this.two.makeRectangle(0,0,cSz,cSz);
   century.translation.set((cSz+this.styles.lines[2])/2,(cSz+this.styles.lines[2])/2);
   century.linewidth= this.styles.lines[2];
   century.stroke=this.styles.colors.cent;
   century.fill=this.styles.colors.evt;
-  var allGrid= two.makeGroup(century);
+  var allGrid= this.two.makeGroup(century);
   // Once I have the main bounds, I put in the main lines-- the years, and the subsections.
   // year lines
-  var yearLines=two.makeGroup();
-  var topLines=two.makeGroup();
+  var yearLines=this.two.makeGroup();
+  var topLines=this.two.makeGroup();
   var bleh=1;
   for(var i=1; i<10; i++){
     // if the line is a century line.
@@ -147,9 +152,9 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
       pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3+this.styles.lines[0]*2)*i+
         this.styles.lines[2]/2;
       //horizontal line1
-      var line1=two.makeLine(-1,pos,cSz-this.styles.lines[2]+1,pos),//  x, y, x1, y1
+      var line1=this.two.makeLine(-1,pos,cSz-this.styles.lines[2]+1,pos),//  x, y, x1, y1
       //vertical line
-        line2=two.makeLine(pos,-1,pos,cSz-this.styles.lines[2]+1);
+        line2=this.two.makeLine(pos,-1,pos,cSz-this.styles.lines[2]+1);
       line1.linewidth=this.styles.lines[2];
       line2.linewidth=this.styles.lines[2];
       line1.stroke=this.styles.colors.cent;
@@ -161,9 +166,9 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
       pos=(this.styles.lines[1])*(i-1)+(this.styles.sz*3+this.styles.lines[0]*2)*i+
         (this.styles.lines[2])*Math.floor(i/5)+(bleh*(this.styles.lines[1]/2));
       //horizontal line
-      var line1=two.makeLine(0,pos,cSz-this.styles.lines[2],pos),//  x, y, x1, y1
+      var line1=this.two.makeLine(0,pos,cSz-this.styles.lines[2],pos),//  x, y, x1, y1
       //vertical line
-        line2=two.makeLine(pos,0,pos,cSz-this.styles.lines[2]);
+        line2=this.two.makeLine(pos,0,pos,cSz-this.styles.lines[2]);
       line1.linewidth=this.styles.lines[1];
       line2.linewidth=this.styles.lines[1];
       line1.stroke=this.styles.colors.yr;
@@ -177,19 +182,19 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
   //yearLines.translation.set(this.styles.lines[2],this.styles.lines[2]);
 
   // represent all events on the grid.
-  var evtReps=two.makeGroup()
+  var evtReps=this.two.makeGroup()
   // for each decade
   for(var i=0; i<10; i++){
     // for each year in that decade
     for(var j=0; j<10; j++){
       var yr=(i*10)+j+1;
-      var yearGroup=two.makeGroup();
+      var yearGroup=this.two.makeGroup();
       // for each event type in that year
       for(var k=0; k<9; k++){
         //  addEvtRep(eType); determines position of and draws a rectangle/rect-tri
         //  combo to represent the event or lack thereof, given the current year
         //  and eType.
-        yearGroup.add(this.addEvtRep(yr,k,two));
+        yearGroup.add(this.addEvtRep(yr,k));
       }// end event loop
       var yrX=(this.styles.lines[1]+this.styles.sz*3+2*this.styles.lines[0])*j+
         (Math.floor(j/5)*(this.styles.lines[2]-this.styles.lines[1]));
@@ -204,8 +209,8 @@ Grid.prototype.draw= function(two){// draws grid DOES NOT POPULATE IT
   evtReps.addTo(allGrid);
   allGrid.scale=this.scale;
   /**/
-  // update two
-  two.update();
+  // update this.two
+  this.two.update();
   this.allGroup=allGrid;
   if(this.styles.point){
     this.doPointer();
@@ -231,12 +236,12 @@ Grid.prototype.getGroupIdByData=function(yr,tp){
     return rep2.id;
   }
 }
-Grid.prototype.reload = function (evtSet,two) {
+Grid.prototype.reload = function (evtSet) {
   this.setEventSet(evtSet);
   this.allGroup.remove();
   this.evtDict=new JSdict();
   this.emptyDict=new JSdict();
-  this.draw(two);
+  this.draw(this.two);
 };
 Grid.prototype.isEvtRep= function(id){
   if(this.evtDict.getVal(id)){
@@ -248,7 +253,7 @@ Grid.prototype.isEvtRep= function(id){
   }
 };
 
-Grid.prototype.hoverHandle = function(e,isIn,two){
+Grid.prototype.hoverHandle = function(e,isIn){
   // if build mode, do shading on empties
   var evtR=this.isEvtRep(e.currentTarget.parentNode.id);
   var isBuild=this.build!=0;
@@ -270,10 +275,10 @@ Grid.prototype.hoverHandle = function(e,isIn,two){
     var evt = this.emptyDict.getVal(e.currentTarget.parentNode.id);
     this.styles.shade(evt,isIn);
   }
-  two.update();
+  this.two.update();
   return [evt.year,evt.eType]
 };
-Grid.prototype.clickHandle = function(e,two){
+Grid.prototype.clickHandle = function(e){
   var evtR=this.isEvtRep(e.currentTarget.parentNode.id);
   if(evtR===undefined || this.build==0){
     return;
@@ -284,7 +289,7 @@ Grid.prototype.clickHandle = function(e,two){
     var clr=this.pallete.currentColor;
     this.place(e.currentTarget.parentNode.id,clr);
   }
-  two.update();
+  this.two.update();
 }
 Grid.prototype.doPointer=function(){
   console.log("doing pointer!")
@@ -345,8 +350,9 @@ Grid.prototype.place=function(id,color){
 }
 
 Grid.prototype.highlight=function(yr,tp){
+  console.log(this.id);
   try{
-    var el=document.getElementById("main").querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+    var el=this.target.querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
   }catch(e){
     console.log(e);
   }
@@ -354,24 +360,23 @@ Grid.prototype.highlight=function(yr,tp){
   if (twoRep!=null){
     this.styles.highlight(twoRep,true);
   }
-  two.update();
+  this.two.update();
 }
 
 Grid.prototype.unhighlight=function(yr,tp){
   try{
-    var el=document.getElementById("main").querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+    var el=this.target.querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
   }catch(e){
     console.log(e);
   }
   var twoRep=this.evtDict.getVal(el.id);
   if(twoRep!=null){
-    console.log("UNHSDGFSDFG");
     this.styles.highlight(twoRep,false);
   }
-  two.update();
+  this.two.update();
 }
 
-Grid.prototype.showAnswer=function(two){
+Grid.prototype.showAnswer=function(){
   console.log("heyo");
   this.corrector.unattemptCurrent();
   var e1=this.corrector.currentA.evt,
@@ -387,5 +392,5 @@ Grid.prototype.showAnswer=function(two){
       break;
     }
   }
-  two.update()
+  this.two.update()
 }

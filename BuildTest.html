@@ -81,9 +81,7 @@
   <script>
     var peabody=new EventSet();
     var test= new EventSet();
-    var el = document.getElementById("main"),
-      two = new Two({width:420,height:420});
-    two.appendTo(el);
+
     var g=new Grid(.75,1);
     var pal=new Pallete();
     var eKey=new EventKey(100);
@@ -103,7 +101,7 @@
       g.draw(two);
       pal.init(test);
       pal.draw();
-      eKey.draw();
+      learnKey.draw();
       g.initBuild(pal,bc)
       two.update();
     }

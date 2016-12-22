@@ -1,7 +1,9 @@
 var List= function(target="evtList", csv=false){
-  this.type="list"
+  console.log(target);
+  this.type="list";
   this.eventSet=null;
   this.target=document.getElementById(target);
+  console.log(this.target);
   this.isCSV=csv;
 }
 List.prototype.draw = function() {
