@@ -288,6 +288,7 @@ img#eventKeyIMG {
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 /*remove gradient from bootstrap carousel*/
