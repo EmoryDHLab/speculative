@@ -465,12 +465,19 @@ a:hover{
 h4.drop{
 	display:inline-block;
 	border-bottom: 2px solid grey;
+	font-size: 1em
 }
 #compEvtList{
 	background-color: #efefef;
 }
+#exploreList{
+	height:200px;
+	background-color: #efefef;
+}
 #csv{
 	height:340px;
+	padding: 0 5%;
+	float: right;
 }
 .eList{
 	font-size: 12px;
@@ -558,7 +565,11 @@ h4.drop{
 .sidetitle + div{
 	margin-left: 1em !important;
 }
-
+.sidetitle{
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size: 1em;
+}
 /*
 --------------------Scrollbar---------------------------------------------------
 */
@@ -583,7 +594,8 @@ h4.drop{
 -------------------Play Input styles-----------------------------------------
 */
 .head4{
-	font-size: 1.4em;
+	font-size: 1.2em;
+	margin-top: -15px;
 }
 .editable{
 	border: none;

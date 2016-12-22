@@ -416,9 +416,9 @@
       function changeSet(e, parent){
         console.log(e);
         if(e.currentTarget.dataset.index==1){
-          if(parent=="#compare"){
+          //if(parent=="#compare"){
             reload(compareVisualizations,peabody);
-          }else if (parent=="#learn") {
+          //}else if (parent=="#learn") {
             reload(learnVisualizations,peabody);
             learnGrid.corrector=new BuildCorrector(peabody);
             learnCorrector=learnGrid.corrector;
@@ -428,13 +428,13 @@
             playCorrector=playGrid.corrector;
             playCorrector.update();
             playVisualizations[2]=playCorrector;
-          }else if (parent=="#explore") {
+          //}else if (parent=="#explore") {
             reload(exploreVisualizations,peabody);
-          }
+          //}
         }else if (e.currentTarget.dataset.index==2) {
-          if(parent=="#compare"){
+          //if(parent=="#compare"){
             reload(compareVisualizations,test);
-          }else if (parent=="#learn") {
+        //}else if (parent=="#learn") {
             reload(learnVisualizations,test);
             learnGrid.corrector=new BuildCorrector(test);
             learnCorrector=learnGrid.corrector;
@@ -444,13 +444,13 @@
             playCorrector=playGrid.corrector;
             playCorrector.update();
             playVisualizations[2]=playCorrector;
-          }else if (parent=="#explore") {
+          //}else if (parent=="#explore") {
             reload(exploreVisualizations,test);
-          }
+          //}
         }else{
           return
         }
-        $(parent+" .currentDataSet").html(e.currentTarget.innerHTML);
+        $(".currentDataSet").html(e.currentTarget.innerHTML);
       }
       $("#mainLearn").on("mouseover","path",function(e){
         learnGrid.hoverHandle(e,true);
