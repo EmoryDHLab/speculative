@@ -105,8 +105,7 @@ html, body{
 }
 
 #all {
-    z-index: -10;
-    box-shadow: -5px -5px 10px #4d4d4d;
+    box-shadow: -5px -5px 5px #4d4d4d;
 }
 
 /*body for interactive pages*/
@@ -177,10 +176,25 @@ img#eventKeyIMG {
 
 }
 
+#explore{
+    height: 83%;
+}
+
+#play{
+    height: 83%;
+}
+
 #view{
     padding-bottom: 5%;
 }
 
+#learn{
+    height: 83%;
+}
+
+#compare{
+    height: 83%;
+}
 #interaction{
 	background-color: #2B4461; /*blue*/
     height: 100%;

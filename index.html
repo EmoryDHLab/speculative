@@ -39,12 +39,13 @@
       </section>
       <section>
 
-              <div class="col navarrow"><i class="fa fa-angle-up direction-updown fa-4x" aria-hidden="true"></i></div>
+          <div class="current-content">
+              <div class="col navarrow" id= "splashpage" onclick="replace(id)"><i class="fa fa-angle-up direction-updown fa-4x" aria-hidden="true"></i></div>
 
               <div class="row">
 
-                <div class="col navarrow" ><i class="fa fa-angle-left direction fa-4x" aria-hidden="true"></i></div>
-                <div class="col-lg-12 current-content" id="all">
+                <div class="col "><i style="color:white" class="fa fa-angle-left direction fa-4x" aria-hidden="true"></i></div>
+                <div class="col-lg-12" id="all">
                   <div class="row narrative" id="history">
                     <div class="container">
                       <h2>About</h2>
@@ -62,50 +63,307 @@
                   </div>
                 </div>
 
-                <div class="col navarrow navarrow-suggested" id="howitworkspage" onclick="replace(id)"; ><i class="fa fa-angle-right direction direction-suggested fa-4x" aria-hidden="true" ></i></div>
+                <div class="col navarrow navarrow-suggested" id="howitworkspage" onclick="replace(id)" ><i class="fa fa-angle-right direction direction-suggested fa-4x" aria-hidden="true" ></i></div>
             </div>
                 <div class="col navarrow"><i class="fa fa-angle-down direction-updown fa-4x" aria-hidden="true"></i></div>
+        </div>
       </section>
+          <section>
+        <div class="fullrow row section">
+                    <div class="container">
+                      <h2>About Site, Peabody</h2>
+                      <br>
+                      <div class = "row">
+                          <div class="col">
+                              <p>ABOUT EP Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able conjure their own narratives of historical.</p>
+                              <br>
+                              <p>ABOUT THE SITE interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form.</p>
+                              <br>
+                              <p>FURTHER READING are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether?</p>
+                          </div>
+                      </div>
+                    </div>
+        </div>
+      </section>
+      <section>
 </body>
 
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/d3.min.js"></script>
-<script src="js/view.js"></script>
-<script src="js/compare.js"></script>
-<script src="js/build.js"></script>
-<script src="js/timeline.js"></script>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <script src="js/two.min.js"></script>
+  <script src="js/newCode/helpers.js"></script>
+  <script src="js/newCode/evtEvtSet.js"></script>
+  <script src="js/newCode/compare.js"></script>
+  <script src="js/newCode/buildCorrector.js"></script>
+  <script src="js/newCode/grid.js"></script>
+  <script src="js/newCode/gridAccessories.js"></script>
 
-<script src="js/fullheight.js"></script>
+  <script src="js/fullheight.js"></script>
+  <script>
+
+  function replace(page){
+    var content;
+
+    switch(page){
+      case "howitworkspage":
+        content = "howitworks.html";
+        break;
+      case "explorepage":
+        content = "explore.html";
+        break;
+      case "comparepage":
+        content = "compare.html";
+        break;
+      case "playpage":
+        content = "play.html";
+        break;
+      case "learnpage":
+        content = "learn.html";
+        break;
+      case "splash":
+        content = "splash";
+        break;
+      case "about":
+        content = "about";
+        break;
+      case "dataofhistory":
+        content = "dataofhistory.html"
+        break;
+      case "secondabout":
+        content = "secondabout.html"
+        break;
+      case "interactionupdated":
+        content = "interactionupdated.html"
+        break;
+      case "aboutsite":
+        content = "aboutsite"
+    }
+
+    if(content === "splash"){
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+    } else if (content === "about"){
+     location.reload();
+    } else if (content === "aboutsite"){
+      $("html, body").animate({ scrollTop: 2500 }, "slow");
+    }else{
+      $(function () {
+        $.get(content, function (data) {
+            $(".current-content").replaceWith(data);
+            // }
+        });
+      });
+      }
+  }
+
+
+  </script>
 <script>
+      var peabody=new EventSet();
+      var test= new EventSet();
 
-function replace(page){
-  // var content = "";
+      var compareGrid=new Grid("mainComp",.6,0,335),
+          compEvtList=new List("compEvtList"),
+          compDataList=new List("csv",true)
+          timeline= new Timeline(),
+          compareVisualizations=[compareGrid,compEvtList,compDataList,timeline];
 
-  // switch(page){
-  //   case howitworkspage:
-  //     content = "howitworks.html";
-  //     break;
-  //   case explore:
-  //     content = "explore.html";
-  //     break;
-  //   case compare:
-  //     content = "compare.html";
-  //     break;
-  //   case play:
-  //     content = "play.html";
-  //     break;
-  //   case learn:
-  //     content = "learn.html";
-  // }
-  var content = "howitworks.html"
+      var learnGrid=new Grid("mainLearn",.75,1),
+          learnPallete=new Pallete("learnPallete"),
+          learnCorrector=null,
+          learnKey=new EventKey(100,"learnKey"),
+          learnVisualizations=[learnGrid,learnPallete];
 
-  $(function () {
-    $.get(content, function (data) {
-        $(".current-content").replaceWith(data);
-    });
-});
+      var playGrid=new Grid("mainPlay",.75,2),
+          playPallete=new Pallete("playPallete",true),
+          playKey=new EventKey(100,"playKey",true),
+          playCorrector=null;
+          playVisualizations=[playGrid,playKey];
 
-}
-
-</script>
-<script>
+      var exploreGrid=new Grid("mainExplore",.75,0),
+          exploreList=new List("exploreList"),
+          exploreKey=new EventKey(100,"exploreKey"),
+          explorePallete=new Pallete("explorePallete"),
+          exploreVisualizations=[exploreGrid,exploreList,exploreKey,explorePallete];
+      var visualizations=compareVisualizations.concat(learnVisualizations)
+          .concat(playVisualizations).concat(exploreVisualizations);
+      var dataSets=[peabody,test];
+      // start handles all loading for events.
+      function start(){
+        console.log("Loading data 1/2");
+        peabody.loadFromCSV("peabodyData.csv", loadTest);
+      }
+      function loadTest(){
+        console.log("Loading data 2/2");
+        test.loadFromCSV("testing.csv",main);
+      }
+      function main(){
+        learnCorrector=new BuildCorrector(peabody);
+        playCorrector =new BuildCorrector(peabody);
+        learnVisualizations.push(learnCorrector);
+        playVisualizations.push(playCorrector);
+        learnKey.draw()
+        sortAllByYear(dataSets);
+        loadAllWithEventSet(visualizations,peabody);
+        playPallete.initEmpty([
+          ['rgb(141, 43, 29)','Color Label'],
+          ['rgb(50, 91, 103)','Color Label'],
+          ['rgb(69, 136, 103)','Color Label'],
+          ['#9CB23E ','Color Label'],
+          ['#74436C','Color Label'],
+          ['#BF602E','Color Label']
+        ]);
+        drawAll(visualizations);
+        playPallete.draw();
+        learnGrid.initBuild(learnPallete,learnCorrector);
+        playGrid.initBuild(playPallete,playCorrector);
+      }
+      start();
+      $("#compare").on("mouseover","path, rect, li",function(e){
+        console.log('highlighting');
+        if (e.currentTarget.getAttribute('data-date')==undefined){
+          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+            return;
+          }
+          var el=e.currentTarget.parentNode;
+        }else{
+          var el=e.currentTarget;
+        }
+        highlight(el,compareVisualizations);
+      });
+      $("#compare").on("mouseout","path, rect, li",function(e){
+        console.log(e.currentTarget);
+        if (e.currentTarget.getAttribute('data-date')==undefined){
+          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+            return;
+          }
+          var el=e.currentTarget.parentNode;
+        }else{
+          var el=e.currentTarget;
+        }
+        unhighlight(el,compareVisualizations);
+      });
+      $("#explore").on("mouseover","path, rect, li",function(e){
+        console.log('highlighting');
+        if (e.currentTarget.getAttribute('data-date')==undefined){
+          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+            return;
+          }
+          var el=e.currentTarget.parentNode;
+        }else{
+          var el=e.currentTarget;
+        }
+        highlight(el,exploreVisualizations);
+      });
+      $("#explore").on("mouseout","path, rect, li",function(e){
+        console.log(e.currentTarget);
+        if (e.currentTarget.getAttribute('data-date')==undefined){
+          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
+            return;
+          }
+          var el=e.currentTarget.parentNode;
+        }else{
+          var el=e.currentTarget;
+        }
+        unhighlight(el,exploreVisualizations);
+      });
+      $("#mainComp").on("click","path",function(e){
+        compareGrid.clickHandle(e);
+      });
+      $(".data-picker").on("click","a",function(e){
+        changeSet(e,e.currentTarget.dataset.parent)
+      });
+      function changeSet(e, parent){
+        console.log(e);
+        if(e.currentTarget.dataset.index==1){
+          if(parent=="#compare"){
+            reload(compareVisualizations,peabody);
+          }else if (parent=="#learn") {
+            reload(learnVisualizations,peabody);
+            learnGrid.corrector=new BuildCorrector(peabody);
+            learnCorrector=learnGrid.corrector;
+            learnCorrector.update();
+            learnVisualizations[2]=learnCorrector;
+            playGrid.corrector=new BuildCorrector(peabody);
+            playCorrector=playGrid.corrector;
+            playCorrector.update();
+            playVisualizations[2]=playCorrector;
+          }else if (parent=="#explore") {
+            reload(exploreVisualizations,peabody);
+          }
+        }else if (e.currentTarget.dataset.index==2) {
+          if(parent=="#compare"){
+            reload(compareVisualizations,test);
+          }else if (parent=="#learn") {
+            reload(learnVisualizations,test);
+            learnGrid.corrector=new BuildCorrector(test);
+            learnCorrector=learnGrid.corrector;
+            learnCorrector.update();
+            learnVisualizations[2]=learnCorrector;
+            playGrid.corrector=new BuildCorrector(test);
+            playCorrector=playGrid.corrector;
+            playCorrector.update();
+            playVisualizations[2]=playCorrector;
+          }else if (parent=="#explore") {
+            reload(exploreVisualizations,test);
+          }
+        }else{
+          return
+        }
+        $(parent+" .currentDataSet").html(e.currentTarget.innerHTML);
+      }
+      $("#mainLearn").on("mouseover","path",function(e){
+        learnGrid.hoverHandle(e,true);
+      });
+      $("#mainLearn").on("mouseout","path",function(e){
+        learnGrid.hoverHandle(e,false);
+      });
+      $("#mainLearn").on("click","path",function(e){
+        learnGrid.clickHandle(e);
+      });
+      $("#mainPlay").on("mouseover","path",function(e){
+        playGrid.hoverHandle(e,true);
+      });
+      $("#mainPlay").on("mouseout","path",function(e){
+        playGrid.hoverHandle(e,false);
+      });
+      $("#mainPlay").on("click","path",function(e){
+        playGrid.clickHandle(e);
+      });
+      $("#next").click(function(e){
+        learnCorrector.loadNext();
+      });
+      $("#previous").click(function(e){
+        learnCorrector.loadPrev();
+      });
+      $("#learnPallete").on("mousedown",".palleteSquare:not(.disabled)",function(e){
+        learnPallete.selectColor(e.currentTarget);
+      });
+      $("#show-hide").on("click",function(e){
+        console.log("clicky");
+        learnGrid.showAnswer();
+      });
+      $("#play").on("mousedown",".palleteSquare:not(.disabled)",function(e){
+        playPallete.selectColor(e.currentTarget);
+      });
+      $("#play").on("dblclick",".palleteSquare:not(.disabled)",function(e){
+        playPallete.changeColor(e.currentTarget);
+      });
+      $("#play").on("dblclick",".palleteSquare",function(e){
+        console.log(e.currentTarget.children);
+        e.currentTarget.children[0].disabled=false;
+        $(e.currentTarget.children[0]).trigger("click");
+      });
+      $("#play").on("change",".secretColor",function(e){
+        e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
+        playPallete.currentColor=e.currentTarget.value;
+        e.currentTarget.disabled=true;
+      });
+      $("#play").on("focusout",".secretColor",function(e){
+        e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
+        playPallete.currentColor=e.currentTarget.value;
+        e.currentTarget.disabled=true;
+      });
+      $(".suggested").on("click",function(e){
+        e.currentTarget.innerHTML="";
+      });
+    </script>
