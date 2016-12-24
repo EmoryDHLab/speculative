@@ -1,38 +1,32 @@
-<!--  h1 is the main title of the page, The Shape of History, nothing else
-      h2 is the subtitle of each section, like About and How it Works
-      h3 are the subtitles of the subtitles of each section, like the instructions Click the right arrow...
-      h4 are the subtitles in each section, like Events and Events and their corresponding squares -->
+<html>
+    <head>
+        <title>Simple test</title>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow:400,700|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="zooming.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/fjord.css" rel="stylesheet">
 
+        <script src="zoom-js/jquery.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- animsition.js -->
+        <!-- <script src="../dist/js/animsition.min.js"></script> -->
+        <script>
+        function goRight(){
+            document.getElementById('route2').click();
+          }
+        function goRightAgain(){
+          document.getElementById('route3').click();
+        }
+        </script>
 
+    </head>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow:400,700|Inconsolata' rel='stylesheet' type='text/css'>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <title>The Shape of History</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/fjord.css" rel="stylesheet">
-  </head>
-  <body>
-      <section class="speculative_intro">
+<body>
+    <section class="speculative_intro">
         <div class="fullrow row intro section">
           <div class="container-fluid introban">
               <h1>The Shape of History</h1>
@@ -42,478 +36,76 @@
               </div>
           </div>
         </div>
-      </section><!--close section intro-->
+      </section>
+      <section>
 
+              <div class="col navarrow"><i class="fa fa-angle-up direction-updown fa-4x" aria-hidden="true"></i></div>
 
-<!--       <section class="walkthrough">
- -->    <div class="section row narrative" id="history">
-          <div class="container">
-            <h2>About</h2>
-            <br>
-            <div class = "row">
-                <div class="col-md-6">
-                    <p>What is the shape of history? Does it unfold along a path, proceeding from past to present? Does it cycle, repeating both triumphs and tragedies? Or is it something else altogether, a shape that reflects the complexities and ambiguities of recorded time?</p>
-                    <br>
-                    <p>When we give shape to history, we make choices that impact how we understand history itself. A timeline, for instance, reinforces our sense of history’s inevitable forward progression. A clocklike arrangement, on the other hand, suggests the cyclical nature of historical events. But what if the goal of giving shape to history were to allow each person, individually, to make sense of history for herself?</p>
-                    <br>
-                    <p>This was the goal of Elizabeth Peabody, the nineteenth-century writer, editor, educator, and activist. Drawing from a system developed in Poland earlier in the century, she devised a method of translating history into shape and color. She aimed to appeal to the mind’s eye—a phrase she herself employed—so that each viewer could create her own story to explain the events of the past.</p>
-                </div>
-            </div>
-          </div>
-        </div><!--close history-->
-<!--       </section>
- -->
+              <div class="row">
 
-
-        <div class="section row explanation" id="howitworks">
-          <div class="container">
-            <h2>How it Works</h2>
-            <h3 id="h3_howitworks">Click to learn how Peabody envisioned her method.</h3>
-              <!--data interval = "false" stops it from automatically cycling through-->
-              <div id="carousel-example-generic" class="carousel" data-ride="carousel" data-interval="false">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="5"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="6"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="7"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="8"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="9"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                  <div class="item active">
-                    <img src="img/imgseq_9-23-01.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-02.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-03.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-04.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-05.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-06.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-07.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-08.png" alt="...">
-                  </div>
-                  <div class="item">
-                    <img src="img/imgseq_9-23-09.png" alt="...">
+                <div class="col navarrow" ><i class="fa fa-angle-left direction fa-4x" aria-hidden="true"></i></div>
+                <div class="col-lg-12 current-content" id="all">
+                  <div class="row narrative" id="history">
+                    <div class="container">
+                      <h2>About</h2>
+                      <br>
+                      <div class = "row">
+                          <div class="col">
+                              <p>What is the shape of history? Does it unfold along a path, proceeding from past to present? Does it cycle, repeating both triumphs and tragedies? Or is it something else altogether, a shape that reflects the complexities and ambiguities of recorded time?</p>
+                              <br>
+                              <p>When we give shape to history, we make choices that impact how we understand history itself. A timeline, for instance, reinforces our sense of history’s inevitable forward progression. A clocklike arrangement, on the other hand, suggests the cyclical nature of historical events. But what if the goal of giving shape to history were to allow each person, individually, to make sense of history for herself?</p>
+                              <br>
+                              <p>This was the goal of Elizabeth Peabody, the nineteenth-century writer, editor, educator, and activist. Drawing from a system developed in Poland earlier in the century, she devised a method of translating history into shape and color. She aimed to appeal to the mind’s eye—a phrase she herself employed—so that each viewer could create her own story to explain the events of the past.</p>
+                          </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" onclick="hide('h3_howitworks')">
-                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-          </div>
-        </div>
-
-        <div class="row interactive fluid" id="view">
-          <div id="explore" class='contain'>
-            <h2>Explore</h2>
-            <h3>Add your own events; change the title, color, color labels, and event descriptions in the Event Key.</h3>
-            <div style="display:flex;">
-              <div id="mainExplore"></div>
-              <div class="accessories">
-                <div class="dropdown">
-                  <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <h4 class="drop">
-                      <span class="currentDataSet">1. Peabody 1501-1600</span>
-                      <span class="caret"></span>
-                    </h4>
-                  </div>
-                  <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                    <li><a data-index="1" data-parent="#explore">1. Peabody 1501-1600</a></li>
-                    <li><a data-index="2" data-parent="#explore">2. A Fake Data Set</a></li>
-                  </ul>
-                </div>
-                <ol id="exploreList" class="eList"></ol>
-                <h4 class="sidetitle">Pallete</h4>
-                <div id="explorePallete"></div>
-                <h4 class="sidetitle">Event Key</h4>
-                <div id="exploreKey"></div>
-              </div>
+                <div class="col navarrow navarrow-suggested" id="howitworkspage" onclick="replace(id)"; ><i class="fa fa-angle-right direction direction-suggested fa-4x" aria-hidden="true" ></i></div>
             </div>
-          </div>
-        </div><!--close view-->
+                <div class="col navarrow"><i class="fa fa-angle-down direction-updown fa-4x" aria-hidden="true"></i></div>
+      </section>
+</body>
 
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/view.js"></script>
+<script src="js/compare.js"></script>
+<script src="js/build.js"></script>
+<script src="js/timeline.js"></script>
 
-      <div class="section contain" id="compare">
-        <h2>Compare</h2>
-        <h3>Mouse over any element to see how the elements compare.</h3>
-        <div id="timeline"></div>
-        <div style="display:flex;">
-          <div class="accessories left-acc">
-            <ol id="csv" class="eList"></ol>
-          </div>
-          <div id="mainComp"></div>
-          <div class="accessories right-acc">
-            <div class="dropdown">
-              <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <h4 class="drop">
-                  <span class="currentDataSet">1. Peabody 1501-1600</span>
-                  <span class="caret"></span>
-                </h4>
-              </div>
-              <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
-                <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
-              </ul>
-            </div>
-            <ol id="compEvtList" class="eList"></ol>
-          </div>
-        </div>
-      </div>
-      <div id="play" class='contain'>
-        <h2>Play</h2>
-        <h3>Add your own events; change the title, color, color labels, and event descriptions in the Event Key.</h3>
-        <div style="display:flex;">
-          <div id="mainPlay"></div>
-          <div class="accessories">
-            <input class="sidetitle editable head4" type="text" value="Title"></input>
-            <textarea id="playEvents" class="editable" placeholder="Type or paste events here."></textarea>
-            <h4 class="sidetitle">Pallete</h4>
-            <div id="playPallete"></div>
-            <h4 class="sidetitle">Event Key</h4>
-            <div id="playKey"></div>
-          </div>
-        </div>
-      </div>
-      <div id="learn" class='section contain'>
-        <h2>Learn</h2>
-        <h3>Click on a color in the palette below and then click on the chart to plot each event.</h3>
-        <div style="display:flex;">
-          <div id="mainLearn"></div>
-          <div class="accessories">
-            <div class="dropdown">
-              <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <h4 class="drop">
-                  <span class="currentDataSet">1. Peabody 1501-1600</span>
-                  <span class="caret"></span>
-                </h4>
-              </div>
-              <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                <li><a data-index="1" data-parent="#learn">1. Peabody 1501-1600</a></li>
-                <li><a data-index="2" data-parent="#learn">2. A Fake Data Set</a></li>
-              </ul>
-            </div>
-            <div id="buildList">
-              <div id="infoNavArea">
-                <div class="info">
-                  <div id="currentYr">1501.</div>
-                  <div id="currentBuildEvent">Henry VII. grants patent for colonizing America.&nbsp;</div>
-                </div>
-                <div id="eventsNavigation">
-                  <div>
-                    <span id="previous" class="glyphicon glyphicon-chevron-left nextPrevButtons" aria-hidden="true"></span>
-                    <span id="eventCounter">1</span>
-                    <span id="next" class="glyphicon glyphicon-chevron-right nextPrevButtons" aria-hidden="true"></span>
-                  </div>
-                </div>
-              </div>
-              <div id="correctionArea">
-                <img class="corIncor" id="correct" width="21px" height="21px" src="img/checkx-check.png" alt="correct" hidden/>
-                <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/checkx-x.png" alt="incorrect" hidden/>
-                <span class="corIncor" id="na" width="21px" height="21px"></span>
-                <a id='show-hide'>Show me</a>
-              </div>
-            </div>
-            <h4 class="sidetitle">Pallete</h4>
-            <div id="learnPallete"></div>
-            <h4 class="sidetitle">Event Key</h4>
-            <div id="learnKey"></div>
-          </div>
-        </div>
-      </div>
+<script src="js/fullheight.js"></script>
+<script>
 
-      <div class="section row narrative" id="interaction">
-        <div class="container">
-          <h2>Interaction, Updated</h2>
-          <br>
-          <div class = "row">
-            <div class="col-md-6">
-              <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
-              <br>
-              <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
-              <br>
-              <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
-            </div>
-          </div>
-        </div><!--close interaction-->
-      </div>
+function replace(page){
+  // var content = "";
 
-      <div class="section row narrative" id="credits">
-        <div class="container">
-          <h2>Credits</h2>
-          <br>
-          <div class="row">
-            <div class="col-md-6">
-              <p>"The Shape of History" was designed and developed in Spring 2016 by Caroline Foster, Erica Pramer, and Lauren Klein. Shivani Negi and Adam Hayward joined the team in Fall 2016, contributing additional features to the project. Version 2.0 will be released in December 2016.</p>
+  // switch(page){
+  //   case howitworkspage:
+  //     content = "howitworks.html";
+  //     break;
+  //   case explore:
+  //     content = "explore.html";
+  //     break;
+  //   case compare:
+  //     content = "compare.html";
+  //     break;
+  //   case play:
+  //     content = "play.html";
+  //     break;
+  //   case learn:
+  //     content = "learn.html";
+  // }
+  var content = "howitworks.html"
 
-              <p>For questions and comments, please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>.</p>
+  $(function () {
+    $.get(content, function (data) {
+        $(".current-content").replaceWith(data);
+    });
+});
 
-              <p>A project of the Georgia Tech <a href="dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+}
 
-    <script src="server.js"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!--<script src="js/fjord.js"></script>-->
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/d3.min.js"></script>
-    <script src="js/two.min.js"></script>
-    <script src="js/newCode/helpers.js"></script>
-    <script src="js/newCode/evtEvtSet.js"></script>
-    <script src="js/newCode/compare.js"></script>
-    <script src="js/newCode/buildCorrector.js"></script>
-    <script src="js/newCode/grid.js"></script>
-    <script src="js/newCode/gridAccessories.js"></script>
-
-    <script src="js/fullheight.js"></script>
-
-    <script>
-      var peabody=new EventSet();
-      var test= new EventSet();
-
-      var compareGrid=new Grid("mainComp",.6,0,335),
-          compEvtList=new List("compEvtList"),
-          compDataList=new List("csv",true)
-          timeline= new Timeline(),
-          compareVisualizations=[compareGrid,compEvtList,compDataList,timeline];
-
-      var learnGrid=new Grid("mainLearn",.75,1),
-          learnPallete=new Pallete("learnPallete"),
-          learnCorrector=null,
-          learnKey=new EventKey(100,"learnKey"),
-          learnVisualizations=[learnGrid,learnPallete];
-
-      var playGrid=new Grid("mainPlay",.75,2),
-          playPallete=new Pallete("playPallete",true),
-          playKey=new EventKey(100,"playKey",true),
-          playCorrector=null;
-          playVisualizations=[playGrid,playKey];
-
-      var exploreGrid=new Grid("mainExplore",.75,0),
-          exploreList=new List("exploreList"),
-          exploreKey=new EventKey(100,"exploreKey"),
-          explorePallete=new Pallete("explorePallete"),
-          exploreVisualizations=[exploreGrid,exploreList,exploreKey,explorePallete];
-      var visualizations=compareVisualizations.concat(learnVisualizations)
-          .concat(playVisualizations).concat(exploreVisualizations);
-      var dataSets=[peabody,test];
-      // start handles all loading for events.
-      function start(){
-        console.log("Loading data 1/2");
-        peabody.loadFromCSV("peabodyData.csv", loadTest);
-      }
-      function loadTest(){
-        console.log("Loading data 2/2");
-        test.loadFromCSV("testing.csv",main);
-      }
-      function main(){
-        learnCorrector=new BuildCorrector(peabody);
-        playCorrector =new BuildCorrector(peabody);
-        learnVisualizations.push(learnCorrector);
-        playVisualizations.push(playCorrector);
-        learnKey.draw()
-        sortAllByYear(dataSets);
-        loadAllWithEventSet(visualizations,peabody);
-        playPallete.initEmpty([
-          ['rgb(141, 43, 29)','Color Label'],
-          ['rgb(50, 91, 103)','Color Label'],
-          ['rgb(69, 136, 103)','Color Label'],
-          ['#9CB23E ','Color Label'],
-          ['#74436C','Color Label'],
-          ['#BF602E','Color Label']
-        ]);
-        drawAll(visualizations);
-        playPallete.draw();
-        learnGrid.initBuild(learnPallete,learnCorrector);
-        playGrid.initBuild(playPallete,playCorrector);
-      }
-      start();
-      $("#compare").on("mouseover","path, rect, li",function(e){
-        console.log('highlighting');
-        if (e.currentTarget.getAttribute('data-date')==undefined){
-          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
-            return;
-          }
-          var el=e.currentTarget.parentNode;
-        }else{
-          var el=e.currentTarget;
-        }
-        highlight(el,compareVisualizations);
-      });
-      $("#compare").on("mouseout","path, rect, li",function(e){
-        console.log(e.currentTarget);
-        if (e.currentTarget.getAttribute('data-date')==undefined){
-          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
-            return;
-          }
-          var el=e.currentTarget.parentNode;
-        }else{
-          var el=e.currentTarget;
-        }
-        unhighlight(el,compareVisualizations);
-      });
-      $("#explore").on("mouseover","path, rect, li",function(e){
-        console.log('highlighting');
-        if (e.currentTarget.getAttribute('data-date')==undefined){
-          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
-            return;
-          }
-          var el=e.currentTarget.parentNode;
-        }else{
-          var el=e.currentTarget;
-        }
-        highlight(el,exploreVisualizations);
-      });
-      $("#explore").on("mouseout","path, rect, li",function(e){
-        console.log(e.currentTarget);
-        if (e.currentTarget.getAttribute('data-date')==undefined){
-          if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
-            return;
-          }
-          var el=e.currentTarget.parentNode;
-        }else{
-          var el=e.currentTarget;
-        }
-        unhighlight(el,exploreVisualizations);
-      });
-      $("#mainComp").on("click","path",function(e){
-        compareGrid.clickHandle(e);
-      });
-      $(".data-picker").on("click","a",function(e){
-        changeSet(e,e.currentTarget.dataset.parent)
-      });
-      function changeSet(e, parent){
-        console.log(e);
-        if(e.currentTarget.dataset.index==1){
-          if(parent=="#compare"){
-            reload(compareVisualizations,peabody);
-          }else if (parent=="#learn") {
-            reload(learnVisualizations,peabody);
-            learnGrid.corrector=new BuildCorrector(peabody);
-            learnCorrector=learnGrid.corrector;
-            learnCorrector.update();
-            learnVisualizations[2]=learnCorrector;
-            playGrid.corrector=new BuildCorrector(peabody);
-            playCorrector=playGrid.corrector;
-            playCorrector.update();
-            playVisualizations[2]=playCorrector;
-          }else if (parent=="#explore") {
-            reload(exploreVisualizations,peabody);
-          }
-        }else if (e.currentTarget.dataset.index==2) {
-          if(parent=="#compare"){
-            reload(compareVisualizations,test);
-          }else if (parent=="#learn") {
-            reload(learnVisualizations,test);
-            learnGrid.corrector=new BuildCorrector(test);
-            learnCorrector=learnGrid.corrector;
-            learnCorrector.update();
-            learnVisualizations[2]=learnCorrector;
-            playGrid.corrector=new BuildCorrector(test);
-            playCorrector=playGrid.corrector;
-            playCorrector.update();
-            playVisualizations[2]=playCorrector;
-          }else if (parent=="#explore") {
-            reload(exploreVisualizations,test);
-          }
-        }else{
-          return
-        }
-        $(parent+" .currentDataSet").html(e.currentTarget.innerHTML);
-      }
-      $("#mainLearn").on("mouseover","path",function(e){
-        learnGrid.hoverHandle(e,true);
-      });
-      $("#mainLearn").on("mouseout","path",function(e){
-        learnGrid.hoverHandle(e,false);
-      });
-      $("#mainLearn").on("click","path",function(e){
-        learnGrid.clickHandle(e);
-      });
-      $("#mainPlay").on("mouseover","path",function(e){
-        playGrid.hoverHandle(e,true);
-      });
-      $("#mainPlay").on("mouseout","path",function(e){
-        playGrid.hoverHandle(e,false);
-      });
-      $("#mainPlay").on("click","path",function(e){
-        playGrid.clickHandle(e);
-      });
-      $("#next").click(function(e){
-        learnCorrector.loadNext();
-      });
-      $("#previous").click(function(e){
-        learnCorrector.loadPrev();
-      });
-      $("#learnPallete").on("mousedown",".palleteSquare:not(.disabled)",function(e){
-        learnPallete.selectColor(e.currentTarget);
-      });
-      $("#show-hide").on("click",function(e){
-        console.log("clicky");
-        learnGrid.showAnswer();
-      });
-      $("#play").on("mousedown",".palleteSquare:not(.disabled)",function(e){
-        playPallete.selectColor(e.currentTarget);
-      });
-      $("#play").on("dblclick",".palleteSquare:not(.disabled)",function(e){
-        playPallete.changeColor(e.currentTarget);
-      });
-      $("#play").on("dblclick",".palleteSquare",function(e){
-        console.log(e.currentTarget.children);
-        e.currentTarget.children[0].disabled=false;
-        $(e.currentTarget.children[0]).trigger("click");
-      });
-      $("#play").on("change",".secretColor",function(e){
-        e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
-        playPallete.currentColor=e.currentTarget.value;
-        e.currentTarget.disabled=true;
-      });
-      $("#play").on("focusout",".secretColor",function(e){
-        e.currentTarget.parentNode.style.backgroundColor=e.currentTarget.value;
-        playPallete.currentColor=e.currentTarget.value;
-        e.currentTarget.disabled=true;
-      });
-      $(".suggested").on("click",function(e){
-        e.currentTarget.innerHTML="";
-      });
-    </script>
-
-    <script>
-      function hide(target){
-        document.getElementById(target).style.display = 'none';
-      }
-    </script>
-
-  </body>
-</html>
+</script>
+<script>

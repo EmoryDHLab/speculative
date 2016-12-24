@@ -104,6 +104,10 @@ html, body{
     min-width: 522px;
 }
 
+#all {
+    z-index: -10;
+    box-shadow: -5px -5px 10px #4d4d4d;
+}
 
 /*body for interactive pages*/
 .interactive{
@@ -117,7 +121,7 @@ h2{
 	font-weight: 400;
 	text-align: center;
   margin: 0;
-  font-size: 20;
+  font-size: 200%;
 }
 
 
@@ -136,7 +140,7 @@ h3 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
-    font-size: .2em;
+    font-size: 1.5em;
     padding-top: 3%;
     padding-bottom: 3%;
 
@@ -160,15 +164,17 @@ img#eventKeyIMG {
 #history{
 	background-color: #8D2B1D; /*red*/
     margin-top: 0em;
-    height: 100%
+    height: 90%;
+/*    width: 100%;*/
 }
 
 #howitworks{
 /*    padding-top: 5%;
     padding-bottom: 5%;*/
-    background-color: #FDFDFD;
-    width: 100%;
-    height: 107%;
+    background-color: #FDFDFD !important;
+    margin-top: 0em;
+    height: 90%;
+
 }
 
 #view{
@@ -189,16 +195,6 @@ img#eventKeyIMG {
 }
 #buildTools h4{
 	font-weight: bold;
-}
-
-.direction {
-    margin: .5em;
-    margin-top: 8em;
-}
-
-.direction-updown {
-    margin: .5em;
-    margin-left: 0em;
 }
 
 
@@ -616,22 +612,23 @@ textarea.editable{
     float: left;
     border: gray;
 }
-.direction-right {
-    float: right;
-    text-align:right;
+
+.direction {
+    margin: 8em .5em 0em .5em;
+    color:#D3D3D3;
+
 }
 
-.direction-left {
-    float:left;
-    text-align: left;
+.direction-updown {
+    margin-left: 16.75em;
+    color: #D3D3D3;
+
 }
 
-.direction-down {
-    text-align: center;
-}
+
 
 .direction-suggested{
-    color: yellow;
+    color: yellow !important;
 
 }
 
@@ -722,6 +719,36 @@ button {
     display: block;
 }
 
-.left{
-    margin-right:4.5em;
+
+.navarrow {
+    background-color: white;
 }
+
+.navarrow:hover {
+    background-color:#D3D3D3;
+}
+.navarrow:hover > i{
+    color: white;
+}
+
+.navarrow-suggested:hover {
+    background-color:yellow !important;
+}
+.navarrow-suggested:hover > i{
+    color: white !important;
+}
+
+/*.shadow-right {
+    box-shadow: -5px 0px 50px #4d4d4d;
+}
+
+.shadow-left {
+    box-shadow: 5px 0px 50px #4d4d4d;
+}
+
+.shadow-top {
+    box-shadow: 0px 5px 50px #4d4d4d;
+}
+.shadow-down {
+    box-shadow: 0px -5px 50px #4d4d4d;
+}*/
