@@ -8,6 +8,9 @@ html, body{
 	height: 100%;
     margin: 0;
 }
+::-webkit-scrollbar{
+	display: none;
+}
 .section {
 /*    min-height: 100%;
 */    display: flex;
@@ -29,7 +32,36 @@ html, body{
 }
 .navrow > .cell{
 	flex: 100% 0 0;
+	padding:20px 20px;
+	box-sizing:border-box;
+	position:relative;
 }
+.gridline {
+	position: absolute;
+
+	background: rgba(200,0,0,0.5);}
+.gridline-h {
+	width: calc(100vw);
+	height: 20px; }
+.gridline-v {
+	width: 20px;
+	height: calc(100vh) }
+.gridline-t {
+	top: 0px;
+	left: 0px;
+	transform: rotateX(-17deg); }
+.gridline-l {
+	left: 0px;
+	top: 0px;
+	transform: rotateY(17deg); }
+.gridline-r {
+	right: 0px;
+	top: 0px;
+	transform: rotateY(-17deg); }
+.gridline-b {
+	bottom: 0px;
+	left: 0px;
+	transform: rotateX(17deg); }
 .intro{
 	background-image: url(img/peabody_original_2.jpg);
 	background-position: 0% 25%; /*zooms in to the image*/
@@ -52,6 +84,7 @@ html, body{
 }
 .speculative_intro.cell{
 	display: block;
+	padding: 0;
 }
 .intro h2{
 	font-family: "Inconsolata", monospace;

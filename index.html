@@ -266,6 +266,7 @@
     </div>
     <div class="navrow">
       <div class="section cell narrative" id="credits">
+        <div class="gridline gridline-b gridline-h"></div>
         <div class="container">
           <h2>Credits</h2>
           <br>
@@ -566,8 +567,29 @@
         e.target.style.backgroundImage="url('"+imageTitle+current+".png')";
       });
       var h= window.innerHeight;
-      $(".navrow>.cell").css("height", h+"px")
-      $(".navrow>.cell>*").css("height", "100%")
+      var gline="gridline"
+      var gridlines=[["-l","-v"],["-r","-v"],["-t","-h"],["-b","-h"]]
+      $(".navrow>.cell").css("height", h+"px");
+      for(let combo of gridlines){
+        $(".navrow>.cell").append("<div class='"+gline+" "+gline+combo[0]+" "+
+          gline+combo[1]+"'></div>");
+      }
+      $(".navrow>.cell>*:not(.gridline)").css("height", "100%")
+      $(".cell").on("click",".gridline", function(e){
+        if(e.currentTarget.className.includes("-h")){
+          if(e.currentTarget.className.includes("-t")){
+            autoScrollY(-window.innerHeight);
+          }else{
+            autoScrollY(window.innerHeight);
+          }
+        }else{
+          if(e.currentTarget.className.includes("-r")){
+            autoScrollX(window.innerWidth);
+          }else{
+            autoScrollX(-window.innerWidth)
+          }
+        }
+      });
     </script>
 
   </body>
