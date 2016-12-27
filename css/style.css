@@ -15,11 +15,21 @@ html, body{
     justify-content: center;
 }
 
+.cell{
+    display: flex;
+    justify-content: center;
+}
 .row{
     display: flex;
     justify-content: center;
 }
-
+.navrow{
+	display: flex;
+	width:100%;
+}
+.navrow > .cell{
+	flex: 100% 0 0;
+}
 .intro{
 	background-image: url(img/peabody_original_2.jpg);
 	background-position: 0% 25%; /*zooms in to the image*/
@@ -40,7 +50,9 @@ html, body{
 	font-size: 75px;
     margin: 0;
 }
-
+.speculative_intro.cell{
+	display: block;
+}
 .intro h2{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
@@ -168,7 +180,7 @@ img#eventKeyIMG {
     padding-bottom: 5%;*/
     background-color: #FDFDFD;
     width: 100%;
-    height: 107%;
+    height: 100%;
 }
 
 #view{
@@ -176,10 +188,15 @@ img#eventKeyIMG {
 }
 
 #interaction{
-	background-color: #2B4461; /*blue*/
+	background-color: #74436C; /*purple*/
     height: 100%;
 }
-
+#design{
+	background-color: #2B4461;
+}
+#data{
+	background-color: #458867;
+}
 #build{
     padding-top: 5%;
     padding-bottom: 5%;
@@ -581,18 +598,18 @@ h4.drop{
 /*
 --------------------Scrollbar---------------------------------------------------
 */
-::-webkit-scrollbar {
+.spec-scroll::-webkit-scrollbar {
     width: 10px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.spec-scroll::-webkit-scrollbar-track {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.spec-scroll::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: rgba(0,0,0,0.2);

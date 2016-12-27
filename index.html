@@ -32,7 +32,8 @@
     <link href="css/fjord.css" rel="stylesheet">
   </head>
   <body>
-      <section class="speculative_intro">
+    <div class="navrow">
+      <div class="speculative_intro cell">
         <div class="fullrow row intro section">
           <div class="container-fluid introban">
               <h1>The Shape of History</h1>
@@ -42,15 +43,37 @@
               </div>
           </div>
         </div>
-      </section><!--close section intro-->
-
-
-<!--       <section class="walkthrough">
- -->    <div class="section row narrative" id="history">
+      </div><!--close section intro-->
+      <div class="speculative_intro cell">
+        <div class="fullrow row intro section">
+          <div class="container-fluid introban">
+              <h1>The Shape of History</h1>
+              <br>
+              <div class="col-md-8 col-md-offset-2">
+                  <h2>Reimagining Elizabeth Palmer Peabody's Historical Visualization Work</h2>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="speculative_intro cell">
+        <div class="fullrow row intro section">
+          <div class="container-fluid introban">
+              <h1>The Shape of History</h1>
+              <br>
+              <div class="col-md-8 col-md-offset-2">
+                  <h2>Reimagining Elizabeth Palmer Peabody's Historical Visualization Work</h2>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--       <section class="walkthrough">-->
+    <div class="navrow">
+      <div class="section cell narrative" id="history">
           <div class="container">
             <h2>Introduction</h2>
             <br>
-            <div class = "row">
+            <div class = "cell">
                 <div class="col-md-6">
                     <p>What is the shape of history? Does it unfold along a path, proceeding from past to present? Does it cycle, repeating both triumphs and tragedies? Or is it something else altogether, a shape that reflects the complexities and ambiguities of recorded time?</p>
                     <br>
@@ -61,11 +84,8 @@
             </div>
           </div>
         </div><!--close history-->
-<!--       </section>
- -->
 
-
-        <div class="section row explanation" id="howitworks">
+        <div class="explanation cell" id="howitworks">
           <div class="container">
             <h2>How it Works</h2>
             <h3 id="h3_howitworks">Click the chart to begin.</h3>
@@ -73,7 +93,7 @@
           </div>
         </div>
 
-        <div class="row interactive fluid" id="view">
+        <div class="cell interactive" id="view">
           <div id="explore" class='contain'>
             <h2>Explore</h2>
             <h3>Mouse over each event to see its position on the grid.</h3>
@@ -101,133 +121,123 @@
             </div>
           </div>
         </div><!--close view-->
-
-
-      <div class="section contain" id="compare">
-        <h2>Compare</h2>
-        <h3>Mouse over any event to see its representation in timeline, data, grid, and textual form.</h3>
-        <div id="timeline"></div>
-        <div style="display:flex;">
-          <div class="accessories left-acc">
-            <ol id="csv" class="eList"></ol>
-          </div>
-          <div id="mainComp"></div>
-          <div class="accessories right-acc">
-            <div class="dropdown">
-              <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <h4 class="drop">
-                  <span class="currentDataSet">1. Peabody 1501-1600</span>
-                  <span class="caret"></span>
-                </h4>
-              </div>
-              <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
-                <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
-              </ul>
+    </div>
+    <div class="navrow">
+      <div class="cell">
+        <div class="contain" id="compare">
+          <h2>Compare</h2>
+          <h3>Mouse over any event to see its representation in timeline, data, grid, and textual form.</h3>
+          <div id="timeline"></div>
+          <div style="display:flex;">
+            <div class="accessories left-acc">
+              <ol id="csv" class="eList spec-scroll"></ol>
             </div>
-            <ol id="compEvtList" class="eList"></ol>
-          </div>
-        </div>
-      </div>
-      <div id="play" class='contain'>
-        <h2>Play</h2>
-        <h3>Click to add your own events to the grid. You can also change the title, event list, colors, color labels, and event descriptions.</h3>
-        <div style="display:flex;">
-          <div id="mainPlay"></div>
-          <div class="accessories">
-            <input class="sidetitle editable head4" type="text" value="Title"></input>
-            <textarea id="playEvents" class="editable" placeholder="Type or paste events here."></textarea>
-            <h4 class="sidetitle">Palette</h4>
-            <div id="playPallete"></div>
-            <h4 class="sidetitle">Event Key</h4>
-            <div id="playKey"></div>
-          </div>
-        </div>
-      </div>
-      <div id="learn" class='section contain'>
-        <h2>Learn</h2>
-        <h3>Read the description of the event, click on the corresponding color, and then plot the event on the grid.</h3>
-        <div style="display:flex;">
-          <div id="mainLearn"></div>
-          <div class="accessories">
-            <div class="dropdown">
-              <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <h4 class="drop">
-                  <span class="currentDataSet">1. Peabody 1501-1600</span>
-                  <span class="caret"></span>
-                </h4>
-              </div>
-              <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                <li><a data-index="1" data-parent="#learn">1. Peabody 1501-1600</a></li>
-                <li><a data-index="2" data-parent="#learn">2. A Fake Data Set</a></li>
-              </ul>
-            </div>
-            <div id="buildList">
-              <div id="infoNavArea">
-                <div class="info">
-                  <div id="currentYr">1501.</div>
-                  <div id="currentBuildEvent">Henry VII. grants patent for colonizing America.&nbsp;</div>
+            <div id="mainComp"></div>
+            <div class="accessories right-acc">
+              <div class="dropdown">
+                <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <h4 class="drop">
+                    <span class="currentDataSet">1. Peabody 1501-1600</span>
+                    <span class="caret"></span>
+                  </h4>
                 </div>
-                <div id="eventsNavigation">
-                  <div>
-                    <span id="previous" class="glyphicon glyphicon-chevron-left nextPrevButtons" aria-hidden="true"></span>
-                    <span id="eventCounter">1</span>
-                    <span id="next" class="glyphicon glyphicon-chevron-right nextPrevButtons" aria-hidden="true"></span>
+                <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
+                  <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
+                  <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
+                </ul>
+              </div>
+              <ol id="compEvtList" class="eList spec-scroll"></ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell">
+        <div id="play" class='contain'>
+          <h2>Play</h2>
+          <h3>Click to add your own events to the grid. You can also change the title, event list, colors, color labels, and event descriptions.</h3>
+          <div style="display:flex;">
+            <div id="mainPlay"></div>
+            <div class="accessories">
+              <input class="sidetitle editable head4" type="text" value="Title"></input>
+              <textarea id="playEvents" class="editable spec-scroll" placeholder="Type or paste events here."></textarea>
+              <h4 class="sidetitle">Palette</h4>
+              <div id="playPallete"></div>
+              <h4 class="sidetitle">Event Key</h4>
+              <div id="playKey"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell">
+        <div id="learn" class='section contain'>
+          <h2>Learn</h2>
+          <h3>Read the description of the event, click on the corresponding color, and then plot the event on the grid.</h3>
+          <div style="display:flex;">
+            <div id="mainLearn"></div>
+            <div class="accessories">
+              <div class="dropdown">
+                <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <h4 class="drop">
+                    <span class="currentDataSet">1. Peabody 1501-1600</span>
+                    <span class="caret"></span>
+                  </h4>
+                </div>
+                <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
+                  <li><a data-index="1" data-parent="#learn">1. Peabody 1501-1600</a></li>
+                  <li><a data-index="2" data-parent="#learn">2. A Fake Data Set</a></li>
+                </ul>
+              </div>
+              <div id="buildList" class="spec-scroll">
+                <div id="infoNavArea">
+                  <div class="info">
+                    <div id="currentYr">1501.</div>
+                    <div id="currentBuildEvent">Henry VII. grants patent for colonizing America.&nbsp;</div>
+                  </div>
+                  <div id="eventsNavigation">
+                    <div>
+                      <span id="previous" class="glyphicon glyphicon-chevron-left nextPrevButtons" aria-hidden="true"></span>
+                      <span id="eventCounter">1</span>
+                      <span id="next" class="glyphicon glyphicon-chevron-right nextPrevButtons" aria-hidden="true"></span>
+                    </div>
                   </div>
                 </div>
+                <div id="correctionArea">
+                  <img class="corIncor" id="correct" width="21px" height="21px" src="img/checkx-check.png" alt="correct" hidden/>
+                  <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/checkx-x.png" alt="incorrect" hidden/>
+                  <span class="corIncor" id="na" width="21px" height="21px"></span>
+                  <a id='show-hide'>Show me</a>
+                </div>
               </div>
-              <div id="correctionArea">
-                <img class="corIncor" id="correct" width="21px" height="21px" src="img/checkx-check.png" alt="correct" hidden/>
-                <img class="corIncor" id="incorrect" width="21px" height="21px" src="img/checkx-x.png" alt="incorrect" hidden/>
-                <span class="corIncor" id="na" width="21px" height="21px"></span>
-                <a id='show-hide'>Show me</a>
-              </div>
+              <h4 class="sidetitle">Palette</h4>
+              <div id="learnPallete"></div>
+              <h4 class="sidetitle">Event Key</h4>
+              <div id="learnKey"></div>
             </div>
-            <h4 class="sidetitle">Palette</h4>
-            <div id="learnPallete"></div>
-            <h4 class="sidetitle">Event Key</h4>
-            <div id="learnKey"></div>
           </div>
         </div>
       </div>
-
-      <div class="section row narrative" id="interaction">
-        <div class="container">
-          <h2>Interaction, Updated</h2>
-          <br>
-          <div class = "row">
-            <div class="col-md-6">
-              <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
-              <br>
-              <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
-              <br>
-              <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
-            </div>
-          </div>
-        </div><!--close interaction-->
-      </div>
-      
-	<div class="section row narrative" id="data">
+    </div>
+    <div class="navrow">
+	     <div class="section cell narrative" id="data">
         <div class="container">
           <h2>The Data of History</h2>
           <br>
-          <div class = "row">
+          <div class = "cell">
             <div class="col-md-6">
               <p>The unfamiliarity of Peabody’s grid is striking in contrast to the familiar form of the timeline. The same history, depicted in timeline form, assumes a comforting legibility: the unfolding of past to present, steadily punctuated by significant events.</p>
               <br>
               <p>The conversion from grid to timeline is made possible, here, because of how each event is stored as data. Country, color, event type, and year; these are the elements that comprise what is, in effect, Peabody’s data structure. Once converted to data, the record of history can be visually represented in any number of different ways.</p>
-              <br>
+                <br>
               <p>Comparing these four representations of the same set of events—as timeline, as data, as grid, and as text—we become alerted to how the representation of data truly matters. We also learn how each visual form reflects a particular sense of the historical record, and our role in the interpretation of it.</p>
             </div>
           </div>
         </div><!--close data-->
       </div>
-      
-	<div class="section row narrative" id="design">
+	    <div class="section cell narrative" id="design">
         <div class="container">
           <h2>PLAY TEXT TITLE TK</h2>
           <br>
-          <div class = "row">
+          <div class = "cell">
             <div class="col-md-6">
               <p>PLAY TEXT GRAF 1</p>
               <br>
@@ -238,25 +248,75 @@
           </div>
         </div><!--close design-->
       </div>
-
-      <div class="section row narrative" id="credits">
+      <div class="section cell narrative" id="interaction">
+        <div class="container">
+          <h2>Interaction, Updated</h2>
+          <br>
+          <div class = "cell">
+            <div class="col-md-6">
+              <p>Elizabeth Peabody intended her images to be interactive. Along with the charts printed in her textbook, she designed workbooks that would allow each student to identify the major historical events of each era and then, one by one, color them in. Her belief was that, by creating “outlines to the eye,” her students would be able to conjure their own narratives of historical change.</p>
+              <br>
+              <p>Recreating Peabody’s interaction for the web is in many ways quite simple. From software like Adobe Photoshop, we understand the concept of the color picker; the mouse (or trackpad) has naturalized the click as a basic mode of interaction; and web programming languages like JavaScript allow us to translate the original interaction into algorithmic form. </p>
+              <br>
+              <p>But the resultant images are much less familiar. What do we learn about history—or about visualization—by translating these events into abstraction? Does the image convey a general sense of the unfolding of historical time, as Peabody envisioned? Does it reflect the impressionistic way in which history is recalled from memory? Or something else altogether? </p>
+            </div>
+          </div>
+        </div><!--close interaction-->
+      </div>
+    </div>
+    <div class="navrow">
+      <div class="section cell narrative" id="credits">
         <div class="container">
           <h2>Credits</h2>
           <br>
-          <div class="row">
+          <div class="cell">
             <div class="col-md-6">
               <p>CREDITS. "The Shape of History" was conceived by Lauren Klein as part of a larger project on the history of data visualization. The site was designed and prototyped in Spring 2016 by Lauren Klein, Caroline Foster, and Erica Pramer. Adam Hayward and Shivani Negi joined the team in Fall 2016, and worked with Lauren and Caroline to implement the version of the site that you see.</p>
 
               <p>ABOUT THE SITE. This site was built using HTML5, CSS and JavaScript, and makes use of several open-source libraries including <a href="https://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://d3js.org/">D3.js</a>, and <a href="https://two.js.org/">two.js</a>. Our code is available on <a href=="https://github.com/GeorgiaTechDHLab/speculative">GitHub</a>. Please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>, with any additional questions or comments.</p>
 
- 				<p>FURTHER READING. This site is part of a larger project on the history of data visualization. Please visit Lauren's <a href="http://lklein.com/research/"> research site</a> for more academic writing on the subject. You can read a bit more about Elizabeth Peabody's visualization scheme <a href="http://lklein.com/2014/12/visualization-as-argument/">here</a> and <a href="https://medium.com/genres-of-scholarly-knowledge-production/visualization-as-argument-and-on-the-floor-736bb8859cf#.i12y3ke85">here</a>. (Other publications are in press). Bruce Rhonda's <a href="http://www.hup.harvard.edu/catalog.php?isbn=9780674246959">Elizabeth Palmer Peabody: A Reformer on Her Own Terms</a> (Harvard University Press, 1999) offers a thorough biography of the subject. Daniel Rosenberg and Anthony Grafton's <a href="https://www.papress.com/html/book.details.page.tpl?isbn=9781568987637">Cartographies of Time: A History of the Timeline</a> (Princeton Architectural Press, 2010) presents a dazzling survey of the range of visual representations of history.</p>	
+ 				<p>FURTHER READING. This site is part of a larger project on the history of data visualization. Please visit Lauren's <a href="http://lklein.com/research/"> research site</a> for more academic writing on the subject. You can read a bit more about Elizabeth Peabody's visualization scheme <a href="http://lklein.com/2014/12/visualization-as-argument/">here</a> and <a href="https://medium.com/genres-of-scholarly-knowledge-production/visualization-as-argument-and-on-the-floor-736bb8859cf#.i12y3ke85">here</a>. (Other publications are in press). Bruce Rhonda's <a href="http://www.hup.harvard.edu/catalog.php?isbn=9780674246959">Elizabeth Palmer Peabody: A Reformer on Her Own Terms</a> (Harvard University Press, 1999) offers a thorough biography of the subject. Daniel Rosenberg and Anthony Grafton's <a href="https://www.papress.com/html/book.details.page.tpl?isbn=9781568987637">Cartographies of Time: A History of the Timeline</a> (Princeton Architectural Press, 2010) presents a dazzling survey of the range of visual representations of history.</p>
 
               <p><center>A project of the Georgia Tech <a href="http://dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</center></p>
             </div>
           </div>
         </div>
       </div>
+      <div class="section cell narrative" id="credits">
+        <div class="container">
+          <h2>Credits</h2>
+          <br>
+          <div class="cell">
+            <div class="col-md-6">
+              <p>CREDITS. "The Shape of History" was conceived by Lauren Klein as part of a larger project on the history of data visualization. The site was designed and prototyped in Spring 2016 by Lauren Klein, Caroline Foster, and Erica Pramer. Adam Hayward and Shivani Negi joined the team in Fall 2016, and worked with Lauren and Caroline to implement the version of the site that you see.</p>
 
+              <p>ABOUT THE SITE. This site was built using HTML5, CSS and JavaScript, and makes use of several open-source libraries including <a href="https://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://d3js.org/">D3.js</a>, and <a href="https://two.js.org/">two.js</a>. Our code is available on <a href=="https://github.com/GeorgiaTechDHLab/speculative">GitHub</a>. Please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>, with any additional questions or comments.</p>
+
+ 				<p>FURTHER READING. This site is part of a larger project on the history of data visualization. Please visit Lauren's <a href="http://lklein.com/research/"> research site</a> for more academic writing on the subject. You can read a bit more about Elizabeth Peabody's visualization scheme <a href="http://lklein.com/2014/12/visualization-as-argument/">here</a> and <a href="https://medium.com/genres-of-scholarly-knowledge-production/visualization-as-argument-and-on-the-floor-736bb8859cf#.i12y3ke85">here</a>. (Other publications are in press). Bruce Rhonda's <a href="http://www.hup.harvard.edu/catalog.php?isbn=9780674246959">Elizabeth Palmer Peabody: A Reformer on Her Own Terms</a> (Harvard University Press, 1999) offers a thorough biography of the subject. Daniel Rosenberg and Anthony Grafton's <a href="https://www.papress.com/html/book.details.page.tpl?isbn=9781568987637">Cartographies of Time: A History of the Timeline</a> (Princeton Architectural Press, 2010) presents a dazzling survey of the range of visual representations of history.</p>
+
+              <p><center>A project of the Georgia Tech <a href="http://dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</center></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section cell narrative" id="credits">
+        <div class="container">
+          <h2>Credits</h2>
+          <br>
+          <div class="cell">
+            <div class="col-md-6">
+              <p>CREDITS. "The Shape of History" was conceived by Lauren Klein as part of a larger project on the history of data visualization. The site was designed and prototyped in Spring 2016 by Lauren Klein, Caroline Foster, and Erica Pramer. Adam Hayward and Shivani Negi joined the team in Fall 2016, and worked with Lauren and Caroline to implement the version of the site that you see.</p>
+
+              <p>ABOUT THE SITE. This site was built using HTML5, CSS and JavaScript, and makes use of several open-source libraries including <a href="https://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://d3js.org/">D3.js</a>, and <a href="https://two.js.org/">two.js</a>. Our code is available on <a href=="https://github.com/GeorgiaTechDHLab/speculative">GitHub</a>. Please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>, with any additional questions or comments.</p>
+
+ 				<p>FURTHER READING. This site is part of a larger project on the history of data visualization. Please visit Lauren's <a href="http://lklein.com/research/"> research site</a> for more academic writing on the subject. You can read a bit more about Elizabeth Peabody's visualization scheme <a href="http://lklein.com/2014/12/visualization-as-argument/">here</a> and <a href="https://medium.com/genres-of-scholarly-knowledge-production/visualization-as-argument-and-on-the-floor-736bb8859cf#.i12y3ke85">here</a>. (Other publications are in press). Bruce Rhonda's <a href="http://www.hup.harvard.edu/catalog.php?isbn=9780674246959">Elizabeth Palmer Peabody: A Reformer on Her Own Terms</a> (Harvard University Press, 1999) offers a thorough biography of the subject. Daniel Rosenberg and Anthony Grafton's <a href="https://www.papress.com/html/book.details.page.tpl?isbn=9781568987637">Cartographies of Time: A History of the Timeline</a> (Princeton Architectural Press, 2010) presents a dazzling survey of the range of visual representations of history.</p>
+
+              <p><center>A project of the Georgia Tech <a href="http://dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</center></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="server.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -336,6 +396,7 @@
         playPallete.draw();
         learnGrid.initBuild(learnPallete,learnCorrector);
         playGrid.initBuild(playPallete,playCorrector);
+        $("#timeline>svg").width($("#timeline").innerWidth());
       }
       start();
       $("#compare").on("mouseover","path, rect, li",function(e){
@@ -504,6 +565,9 @@
         }
         e.target.style.backgroundImage="url('"+imageTitle+current+".png')";
       });
+      var h= window.innerHeight;
+      $(".navrow>.cell").css("height", h+"px")
+      $(".navrow>.cell>*").css("height", "100%")
     </script>
 
   </body>
