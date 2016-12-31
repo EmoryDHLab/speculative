@@ -39,7 +39,7 @@ html, body{
 .gridline {
 	position: absolute;
 
-	background: rgba(200,0,0,0.5);}
+	background: rgba(195,108,37,1);}
 .gridline-h {
 	width: calc(100vw);
 	height: 20px; }
@@ -128,11 +128,11 @@ html, body{
     border-bottom: 10px gray;
 }
 
-
 #viewGrid {
     margin: 0 auto;
     min-width: 522px;
 }
+
 #viewTools{
 	margin-top:17px;
 }
@@ -161,8 +161,8 @@ h2{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 	text-align: center;
-  margin: 0;
-  font-size: 20;
+  	margin: 20px 0px 0px 0px;
+  	font-size: 30px;
 }
 
 
@@ -181,7 +181,7 @@ h3 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
-    font-size: .2em;
+ /*   font-size: .2em; */
     padding-top: 3%;
     padding-bottom: 3%;
 
@@ -189,8 +189,8 @@ h3 {
 
 .narrative p{
 	font-size: larger;
-    margin-left: 50px;
-    margin-right: 50px;
+ /*   margin-left: 50px; */
+/*    margin-right: 50px; */
 
 }
 
