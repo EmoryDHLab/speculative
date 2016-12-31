@@ -197,7 +197,6 @@ h3 {
  /*   font-size: .2em; */
   padding-top: 3%;
   padding-bottom: 3%;
-
 }
 
 .narrative p{
@@ -225,9 +224,24 @@ img#eventKeyIMG {
 #howitworks{
 /*    padding-top: 5%;
     padding-bottom: 5%;*/
-		background-color: #FDFDFD;
-		width: 100%;
-		height: 100%;
+    background-color: #FDFDFD;
+    width: 100%;
+    height: 100%;
+
+/*  from Shivani's styling; need to check
+	background-color: #FDFDFD !important;
+    margin-top: 0em;
+    height: 90%; */
+
+}
+
+#explore{
+    height: 83%;
+}
+
+#play{
+    height: 83%;
+>>>>>>> 2a9d2c4b9bbd7c3245650c099e9e8aa0932537c2
 }
 
 #view{
@@ -829,6 +843,7 @@ button {
 .shadow-down {
     box-shadow: 0px -5px 50px #4d4d4d;
 }*/
+
 
 .left{
     margin-right:4.5em;
