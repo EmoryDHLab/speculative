@@ -632,6 +632,7 @@ h4.drop{
 --------------------Scrollbar---------------------------------------------------
 */
 .spec-scroll::-webkit-scrollbar {
+	display: block;
     width: 10px;
 }
 

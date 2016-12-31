@@ -570,9 +570,13 @@
       var gline="gridline"
       var gridlines=[["-l","-v"],["-r","-v"],["-t","-h"],["-b","-h"]]
       $(".navrow>.cell").css("height", h+"px");
-      for(let combo of gridlines){
-        $(".navrow>.cell").append("<div class='"+gline+" "+gline+combo[0]+" "+
-          gline+combo[1]+"'></div>");
+      var cells=$(".navrow>.cell");
+      for( var i=0;i<15;i++){
+
+        for(let combo of gridlines){
+          console.log(i,cells[i]);
+          $(cells[i]).append("<div class='"+gline+" "+gline+combo[0]+" "+gline+combo[1]+"'></div>");
+        }
       }
       $(".navrow>.cell>*:not(.gridline)").css("height", "100%")
       $(".cell").on("click",".gridline", function(e){
