@@ -206,3 +206,10 @@ function sortAllByYear(objects){
     o.sortByYear();
   }
 }
+
+function autoScrollX(distance){
+  window.scrollBy(distance,0);
+}
+function autoScrollY(distance){
+  window.scrollBy(0,distance);
+}
