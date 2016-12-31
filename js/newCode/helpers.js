@@ -132,14 +132,16 @@ function highlight(el,objects){
   var tp=el.getAttribute("data-type"),
       yr=el.getAttribute("data-date");
   for(var i in objects){
-    objects[i].highlight(yr,tp,el);
+    if (objects[i].type!="pallete")
+      objects[i].highlight(yr,tp,el);
   }
 }
 function unhighlight(el,objects){
   var tp=el.getAttribute('data-type'),
       yr=el.getAttribute('data-date');
   for(var i in objects){
-    objects[i].unhighlight(yr,tp,el)
+    if (objects[i].type!="pallete")
+      objects[i].unhighlight(yr,tp,el);
   }
 }
 
@@ -205,4 +207,11 @@ function sortAllByYear(objects){
   for(let o of objects){
     o.sortByYear();
   }
+}
+
+function autoScrollX(distance){
+  window.scrollBy(distance,0);
+}
+function autoScrollY(distance){
+  window.scrollBy(0,distance);
 }

@@ -8,6 +8,9 @@ html, body{
 	height: 100%;
     margin: 0;
 }
+::-webkit-scrollbar{
+	display: none;
+}
 .section {
 /*    min-height: 100%;
 */    display: flex;
@@ -15,9 +18,58 @@ html, body{
     justify-content: center;
 }
 
+.cell{
+    display: flex;
+    justify-content: center;
+}
 .row{
     display: flex;
     justify-content: center;
+}
+.navrow{
+	display: flex;
+	width:100%;
+}
+.navrow > .cell{
+	flex: 100% 0 0;
+	padding:20px 20px;
+	box-sizing:border-box;
+	position:relative;
+}
+.gridline {
+	position: absolute;
+	background: rgba(195,108,37,1);
+	color:black;
+}
+.gridline-h {
+	width: calc(100vw);
+	height: 20px; }
+.gridline-v {
+	width: 20px;
+	height: calc(100vh) }
+.gridline-t {
+	top: 0px;
+	left: 0px;
+	transform: rotateX(-17deg); }
+.gridline-l {
+	left: 0px;
+	top: 0px;
+	transform: rotateY(17deg); }
+.gridline-r {
+	right: 0px;
+	top: 0px;
+	transform: rotateY(-17deg); }
+.gridline-b {
+	bottom: 0px;
+	left: 0px;
+	transform: rotateX(17deg); }
+.gridline span{
+	display:block;
+	position:relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
 }
 
 .intro{
@@ -40,7 +92,10 @@ html, body{
 	font-size: 75px;
     margin: 0;
 }
-
+.speculative_intro.cell{
+	display: block;
+	padding: 0;
+}
 .intro h2{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
@@ -83,11 +138,11 @@ html, body{
     border-bottom: 10px gray;
 }
 
-
 #viewGrid {
     margin: 0 auto;
     min-width: 522px;
 }
+
 #viewTools{
 	margin-top:17px;
 }
@@ -119,8 +174,8 @@ h2{
 	font-family: "PT Sans Narrow", sans-serif;
 	font-weight: 400;
 	text-align: center;
-  margin: 0;
-  font-size: 200%;
+  margin: 20px 0px 0px 0px;
+  font-size: 30px;
 }
 
 
@@ -139,16 +194,16 @@ h3 {
 /*font for narrative pages*/
 .narrative{
 	color:white; /*change to white when solid background*/
-    font-size: 1.5em;
-    padding-top: 3%;
-    padding-bottom: 3%;
+ /*   font-size: .2em; */
+  padding-top: 3%;
+  padding-bottom: 3%;
 
 }
 
 .narrative p{
 	font-size: larger;
-    margin-left: 50px;
-    margin-right: 50px;
+ /*   margin-left: 50px; */
+/*    margin-right: 50px; */
 
 }
 
@@ -170,36 +225,24 @@ img#eventKeyIMG {
 #howitworks{
 /*    padding-top: 5%;
     padding-bottom: 5%;*/
-    background-color: #FDFDFD !important;
-    margin-top: 0em;
-    height: 90%;
-
-}
-
-#explore{
-    height: 83%;
-}
-
-#play{
-    height: 83%;
+		background-color: #FDFDFD;
+		width: 100%;
+		height: 100%;
 }
 
 #view{
     padding-bottom: 5%;
 }
-
-#learn{
-    height: 83%;
-}
-
-#compare{
-    height: 83%;
-}
 #interaction{
-	background-color: #2B4461; /*blue*/
+	background-color: #74436C; /*purple*/
     height: 100%;
 }
-
+#design{
+	background-color: #2B4461;
+}
+#data{
+	background-color: #458867;
+}
 #build{
     padding-top: 5%;
     padding-bottom: 5%;
@@ -591,18 +634,19 @@ h4.drop{
 /*
 --------------------Scrollbar---------------------------------------------------
 */
-::-webkit-scrollbar {
+.spec-scroll::-webkit-scrollbar {
+	display: block;
     width: 10px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.spec-scroll::-webkit-scrollbar-track {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.spec-scroll::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: rgba(0,0,0,0.2);
@@ -753,8 +797,6 @@ button {
     display: block;
 }
 
-<<<<<<< HEAD
-
 .navarrow {
     background-color: white;
 }
@@ -787,8 +829,6 @@ button {
 .shadow-down {
     box-shadow: 0px -5px 50px #4d4d4d;
 }*/
-=======
+
 .left{
     margin-right:4.5em;
-}
->>>>>>> 6bd072db0e91a4cecf01d9e9ef4cad47b3d7b70d
