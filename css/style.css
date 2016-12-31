@@ -39,7 +39,19 @@ html, body{
 .gridline {
 	position: absolute;
 	background: rgba(195,108,37,1);
-	color:black;
+	color: rgba(195,108,37,1);
+}
+.gridline:hover{
+	color:white;
+	cursor: pointer;
+}
+.gridline.suggested{
+	z-index: 10;
+	color:white;
+}
+.gridline.suggested:hover{
+	background: white;
+	color:rgba(195,108,37,1);
 }
 .gridline-h {
 	width: calc(100vw);
@@ -683,9 +695,7 @@ textarea.editable{
 	border:1px dashed #dfdfdf;
 	padding:.5em;
 }
-.suggested{
-	color:grey;
-}
+
 #playEvents{
 	display: block;
 	width: 75%;
