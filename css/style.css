@@ -49,12 +49,10 @@ html, body{
 	height: calc(100vh) }
 .gridline-t {
 	top: 0px;
-	left: 0px;
-	transform: rotateX(-17deg); }
+	left: 0px;}
 .gridline-l {
 	left: 0px;
-	top: 0px;
-	transform: rotateY(17deg); }
+	top: 0px;}
 .gridline-r {
 	right: 0px;
 	top: 0px;
