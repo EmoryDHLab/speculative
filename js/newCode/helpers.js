@@ -132,14 +132,16 @@ function highlight(el,objects){
   var tp=el.getAttribute("data-type"),
       yr=el.getAttribute("data-date");
   for(var i in objects){
-    objects[i].highlight(yr,tp,el);
+    if (objects[i].type!="pallete")
+      objects[i].highlight(yr,tp,el);
   }
 }
 function unhighlight(el,objects){
   var tp=el.getAttribute('data-type'),
       yr=el.getAttribute('data-date');
   for(var i in objects){
-    objects[i].unhighlight(yr,tp,el)
+    if (objects[i].type!="pallete")
+      objects[i].unhighlight(yr,tp,el);
   }
 }
 
@@ -205,4 +207,27 @@ function sortAllByYear(objects){
   for(let o of objects){
     o.sortByYear();
   }
+}
+
+function updateBurgerNav(x,y,dx,dy){
+  var newXY=[x+dx,y+dy];
+  console.log(newXY);
+  var burgNavIds=[
+    ["#burg-0","#burg-0","#burg-0"],    //0
+    ["#burg-1","#burg-2","#burg-3"],    //1
+    ["#burg-4","#burg-5","#burg-6"],    //2
+    ["#burg-7","#burg-8","#burg-9"],    //3
+    ["#burg-10","#burg-10","#burg-10"], //4
+  ];
+  console.log(burgNavIds[y][x]);
+  $(burgNavIds[y][x]).removeClass("current");
+  $(burgNavIds[newXY[1]][newXY[0]]).addClass("current");
+  return newXY;
+}
+
+function autoScrollX(distance){
+  window.scrollBy(distance,0);
+}
+function autoScrollY(distance){
+  window.scrollBy(0,distance);
 }
