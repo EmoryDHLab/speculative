@@ -172,6 +172,53 @@ html, body{
 #all {
     box-shadow: -5px -5px 5px #4d4d4d;
 }
+.constant{
+	position: fixed;
+	top: 30;
+	left: 30;
+	z-index: 10;
+}
+
+.burgerNav{
+	width: 5vh;
+	height:8vh;
+	cursor: pointer;
+}
+
+.burgerNav .capRow,
+.burgerNav .midRow{
+	margin-top: 0.25vh;
+	display: flex;
+	box-sizing: border-box;
+	width:100%;
+	height:1.25vh;
+	margin-top:0.4375vh;
+}
+.burgerNav .capRow{
+	height:1vh;
+}
+.current{
+	background-color: rgba(195,108,37,1) !important;
+}
+.sqr{
+	box-sizing: border-box;
+	flex: 1.25vh;
+	height: 1.25vh;
+	margin-left:0.4375vh;
+}
+.sqr:first-child{
+	margin-left:0;
+}
+
+.burgerNav .capRow,
+.burgerNav .midRow .sqr{
+	border:2px solid rgba(195,108,37,1);
+	background-color: white;
+}
+
+.capRow:first-child{
+	margin-top: 0;
+}
 
 /*body for interactive pages*/
 .interactive{
