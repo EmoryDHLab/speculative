@@ -263,6 +263,26 @@ h3 {
 
 }
 
+/*link styling*/
+
+/* unvisited link */
+a:link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: #FAAE3C;
+}
+
+/* mouse over link */
+a:focus, a:hover {
+    color: #FAAE3C;
+    text-decoration: underline;
+}
+
+
 #eventKey{
     padding: 0;
 }
