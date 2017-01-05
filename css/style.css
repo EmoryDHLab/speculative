@@ -82,6 +82,25 @@ html, body{
 	width: 100%;
 }
 
+/*link styling*/
+
+/* unvisited link */
+a:link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: #FAAE3C;
+}
+
+/* mouse over link */
+a:focus, a:hover {
+    color: #FAAE3C;
+    text-decoration: underline;
+}
+
 .intro{
 	background-image: url(img/peabody_original_2.jpg);
 	background-position: 0% 25%; /*zooms in to the image*/
@@ -262,26 +281,6 @@ h3 {
 /*    margin-right: 50px; */
 
 }
-
-/*link styling*/
-
-/* unvisited link */
-a:link {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-/* visited link */
-a:visited {
-    color: #FAAE3C;
-}
-
-/* mouse over link */
-a:focus, a:hover {
-    color: #FAAE3C;
-    text-decoration: underline;
-}
-
 
 #eventKey{
     padding: 0;
