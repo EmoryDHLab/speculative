@@ -119,6 +119,11 @@ html, body{
 
 }
 
+a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
 
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{
