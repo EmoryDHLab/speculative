@@ -169,6 +169,9 @@ function reload(objects,evtSet){
   console.log(objects);
   for(var i in objects){
     try{
+      if(objects[i].type=="timeline"){
+        document.getElementById(objects[i].target.id).innerHTML="";
+      }
       objects[i].reload(evtSet);
     }catch(e){
       console.log(e);
