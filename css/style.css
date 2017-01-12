@@ -58,7 +58,7 @@ html, body{
 	height: 20px; }
 .gridline-v {
 	width: 20px;
-	height: calc(100vh) }
+	height: calc(100vh); }
 .gridline-t {
 	top: 0px;
 	left: 0px;}
@@ -80,6 +80,25 @@ html, body{
 	top: 50%;
 	transform: translateY(-50%);
 	width: 100%;
+}
+
+/*link styling*/
+
+/* unvisited link */
+a:link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: #FAAE3C;
+}
+
+/* mouse over link */
+a:focus, a:hover {
+    color: #FAAE3C;
+    text-decoration: underline;
 }
 
 .intro{
@@ -109,7 +128,7 @@ html, body{
 .intro h2{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
-    bix-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .intro .container{
@@ -129,7 +148,7 @@ html, body{
     display: -ms-flexbox;
     display: webkit-flex;
     display: flex;
-    align-items: center
+    align-items: center;
     justify-content: center;
 }
 
@@ -223,7 +242,6 @@ html, body{
 /*body for interactive pages*/
 .interactive{
 	font-family: "Inconsolata", monospace;
-
 }
 
 /*headers for all of the pages*/
@@ -323,8 +341,6 @@ img#eventKeyIMG {
 #buildTools h4{
 	font-weight: bold;
 }
-
-
 
 #compare2{
     padding-top: 5%;
@@ -596,7 +612,7 @@ a:hover{
 h4.drop{
 	display:inline-block;
 	border-bottom: 2px solid grey;
-	font-size: 1em
+	font-size: 1em;
 }
 #compEvtList{
 	background-color: #efefef;
@@ -771,11 +787,8 @@ textarea.editable{
 
 }
 
-
-
 .direction-suggested{
     color: yellow !important;
-
 }
 
 #route1{
@@ -804,7 +817,7 @@ button {
   background-color: #E3E3E3;
   cursor: pointer;
   transition: opacity 1s ease-in-out;
-  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 

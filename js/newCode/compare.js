@@ -1,9 +1,7 @@
 var List= function(target="evtList", csv=false){
-  console.log(target);
   this.type="list";
   this.eventSet=null;
   this.target=document.getElementById(target);
-  console.log(this.target);
   this.isCSV=csv;
 }
 List.prototype.draw = function() {
@@ -61,7 +59,6 @@ List.prototype.reload = function(evtSet) {
 var Timeline=function(target="timeline"){
   this.target=document.getElementById(target);
   this.type="timeline";
-  console.log(this.target);
   this.eventSet=new EventSet();
   this.canvas = d3.select("#"+this.target.id).append('svg')
             .attr("width",this.target.offsetWidth)
@@ -81,7 +78,7 @@ var Timeline=function(target="timeline"){
 
 Timeline.prototype.draw=function(){
   var margin= {top:60, bottom:20, right:25, left:15};
-  document.getElementById("timeline").innerHTML = "";
+  console.log(this.target);
   var timeline = this.canvas.append('g')
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   var xScale = d3.scale.linear()
@@ -149,7 +146,6 @@ Timeline.prototype.draw=function(){
     .attr("stroke", getHighlightColor())
     .attr("stroke-width", 0)
     .on("mouseover",function(d){
-      console.log(d.color);
       //document.querySelectorAll("[data-clr='"+d.color+"'][data-type='"+d.eType+"'][data-date='"+d.year+"']")[0].setAttribute("style","visibility:visible;")
     })
     .on("mouseout",function(d){
@@ -179,7 +175,6 @@ Timeline.prototype.reload=function(eventSet){
 }
 Timeline.prototype.highlight=function(yr,tp, el){
   try{
-    console.log(el.className.baseVal);
     if (el.className.baseVal=="timelinePoint"){
       el.setAttribute("stroke-width",2);
     }else{
@@ -204,7 +199,6 @@ Timeline.prototype.highlight=function(yr,tp, el){
 }
 Timeline.prototype.unhighlight=function(yr,tp,el){
   try{
-    console.log(el.className.baseVal);
     if (el.className.baseVal=="timelinePoint"){
       el.setAttribute("stroke-width",0);
     }else{

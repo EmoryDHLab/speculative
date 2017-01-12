@@ -386,7 +386,7 @@
       }
       function loadTest(){
         console.log("Loading data 2/2");
-        test.loadFromCSV("testing.csv",main);
+        test.loadFromCSV("SoH1800.csv",main);
       }
       function main(){
         learnCorrector=new BuildCorrector(peabody);
@@ -412,7 +412,6 @@
       }
       start();
       $("#compare").on("mouseover","path, rect, li",function(e){
-        console.log('highlighting');
         if (e.currentTarget.getAttribute('data-date')==undefined){
           if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
             return;
@@ -424,7 +423,6 @@
         highlight(el,compareVisualizations);
       });
       $("#compare").on("mouseout","path, rect, li",function(e){
-        console.log(e.currentTarget);
         if (e.currentTarget.getAttribute('data-date')==undefined){
           if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
             return;
@@ -436,7 +434,6 @@
         unhighlight(el,compareVisualizations);
       });
       $("#explore").on("mouseover","path, rect, li",function(e){
-        console.log('highlighting');
         if (e.currentTarget.getAttribute('data-date')==undefined){
           if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
             return;
@@ -448,7 +445,6 @@
         highlight(el,exploreVisualizations);
       });
       $("#explore").on("mouseout","path, rect, li",function(e){
-        console.log(e.currentTarget);
         if (e.currentTarget.getAttribute('data-date')==undefined){
           if(e.currentTarget.parentNode.getAttribute('data-date')==undefined){
             return;
@@ -560,14 +556,17 @@
         e.currentTarget.innerHTML="";
       });
       $(document).on("keydown",function(e){
-        e.preventDefault();
         if(e.keyCode==38){//up
+          e.preventDefault();
           //nothing yet
         }else if(e.keyCode==40){//dn
+          e.preventDefault();
           //nothing yet
         }else if (e.keyCode==39){//rt
+          e.preventDefault();
           //nothing yet
         }else if(e.keyCode==37){//lft
+          e.preventDefault();
           //nothing yet
         }
       });
