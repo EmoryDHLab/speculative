@@ -24,7 +24,7 @@
       <!-- <script src="../dist/js/animsition.min.js"></script> -->
   </head>
   <body>
-    <div class="constant burgerNav">
+    <div href="#myModal" class="constant burgerNav" data-toggle="modal">
       <div id="burg-0" class="capRow current"></div>
       <div class="midRow">
         <div id="burg-1" class="sqr"></div>
@@ -43,6 +43,40 @@
       </div>
       <div id="burg-10" class="capRow"></div>
     </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+
+                <div class="modal-body">
+                  <div id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></div>
+                  <div class="midRow modalRow">
+                    <button id="nav-1 " class="modalSqr"><h4>Introduction</h4></button>
+                    <button id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
+                    <button id="nav-3" class="modalSqr"><h4>Explore</h4></button>
+                  </div>
+                  <div class="midRow modalRow">
+                    <button id="nav-4" class="modalSqr"><h4>Compare</h4></button>
+                    <button id="nav-5" class="modalSqr"><h4>Play</h4></button>
+                    <button id="nav-6" class="modalSqr"><h4>Learn</h4></button>
+                  </div>
+                  <div class="midRow modalRow">
+                    <button id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
+                    <button id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
+                    <button id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
+                  </div>
+                  <div id="nav-10" class="capRow modalRow capModalRow"><h3>Credits</h3></div>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+        </div>
       <div class="navrow vertical-scrolling" id>
         <div class="speculative_intro cell">
           <div class="fullrow intro section">
@@ -79,7 +113,7 @@
         </div>
       </div>
   <!--       <section class="walkthrough">-->
-      <div class="navrow vertical-scrolling">
+      <div class="navrow vertical-scrolling introduction">
         <div class="section cell narrative" id="history">
             <div class="container">
               <h2>Introduction</h2>
@@ -252,7 +286,7 @@
                 <br>
                 <p>In this way, Peabody's charts affirm the role of the senses in the process of knowledge production. They also admit the influence of pleasure and play. A striking departure from contemporaneous methods of data visualization, Peabody's charts activate an alternative unfolding of history, and therefore an alternative future in their own time.</p>
               </div>
-            </div>
+            </div>g
           </div><!--close design-->
         </div>
         <div class="section cell narrative" id="interaction">
@@ -348,6 +382,14 @@
                 sectionSelector: '.vertical-scrolling',
             });
         });
+
+        $("button").click(function() {
+          $(".modal-backdrop.in").hide();
+           $('#myModal').toggle();
+        $('html,body').animate({
+        scrollTop: $(".introduction").offset().top},
+        'slow');
+});
     </script>
 <script>
       var peabody=new EventSet();

@@ -227,12 +227,50 @@ a:focus, a:hover {
 }
 .sqr:first-child{
 	margin-left:0;
+    background-color: yellow;
 }
 
 .burgerNav .capRow,
 .burgerNav .midRow .sqr{
 	border:2px solid rgba(195,108,37,1);
 	background-color: white;
+}
+
+.modalNav {
+    width: 20em;
+    height:20em;
+}
+
+.modal-body{
+    height:45em;
+}
+.modalRow {
+    height: 8em !important;
+    margin:1em;
+    display: flex;
+    box-sizing: border-box;
+}
+.modalSqr{
+    box-sizing: border-box;
+    flex: 3.25vh;
+    height: 15.25vh;
+    margin:.5vh;
+    border:2px solid rgba(195,108,37,1);
+
+}
+
+.modalRow h4{
+    text-align: center;
+    margin: 2em 1em 1em 1em;
+}
+
+.modalRow h3{
+    text-align: center;
+    margin: 1.8em 1em 1em 42%;
+}
+
+.capModalRow{
+    border:2px solid rgba(195,108,37,1);
 }
 
 .capRow:first-child{
@@ -914,4 +952,26 @@ button {
 
 .left{
     margin-right:4.5em;
+}
+
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events:all;
 }
