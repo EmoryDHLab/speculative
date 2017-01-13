@@ -114,8 +114,8 @@
       </div>
   <!--       <section class="walkthrough">-->
       <div class="navrow vertical-scrolling introduction">
-        <div class="section cell narrative" id="history">
-            <div class="container">
+        <div class="cell narrative" id="history">
+            <div class="container section">
               <h2>Introduction</h2>
               <br>
               <div class = "cell">
@@ -131,7 +131,7 @@
           </div><!--close history-->
 
           <div class="explanation cell" id="howitworks">
-            <div class="container">
+            <div class="container section">
               <h2>How it Works</h2>
               <h3 id="h3_howitworks">Click the chart to begin.</h3>
               <div class="clickThru"></div>
@@ -139,7 +139,7 @@
           </div>
 
           <div class="cell interactive" id="view">
-            <div id="explore" class='contain'>
+            <div id="explore" class='section contain'>
               <h2>Explore</h2>
               <h3>Mouse over each event to see its position on the grid.</h3>
               <div style="display:flex;">
@@ -152,6 +152,10 @@
                         <span class="caret"></span>
                       </h4>
                     </div>
+                    <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
+                      <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
+                      <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
+                    </ul>
                   </div>
                   <ol id="exploreList" class="eList"></ol>
                   <h4 class="sidetitle">Palette</h4>
@@ -165,7 +169,7 @@
       </div>
       <div class="navrow vertical-scrolling">
         <div class="cell">
-          <div class="contain" id="compare">
+          <div class="section contain" id="compare">
             <h2>Compare</h2>
             <h3>Mouse over any event to see its representation in timeline, data, grid, and textual form.</h3>
             <div id="timeline"></div>
@@ -193,7 +197,7 @@
           </div>
         </div>
         <div class="cell">
-          <div id="play" class='contain'>
+          <div id="play" class='section contain'>
             <h2>Play</h2>
             <h3>Click to add your own events to the grid. You can also change the title, event list, colors, color labels, and event descriptions.</h3>
             <div style="display:flex;">
@@ -259,8 +263,8 @@
         </div>
       </div>
       <div class="navrow vertical-scrolling">
-  	     <div class="section cell narrative" id="data">
-          <div class="container">
+  	     <div class="cell narrative" id="data">
+          <div class="container section">
             <h2>The Data of History</h2>
             <br>
             <div class = "cell">
@@ -274,8 +278,8 @@
             </div>
           </div><!--close data-->
         </div>
-  	    <div class="section cell narrative" id="design">
-          <div class="container">
+  	    <div class="cell narrative" id="design">
+          <div class="container section">
             <h2>Imagining Alternate Futures</h2>
             <br>
             <div class = "cell">
@@ -286,11 +290,11 @@
                 <br>
                 <p>In this way, Peabody's charts affirm the role of the senses in the process of knowledge production. They also admit the influence of pleasure and play. A striking departure from contemporaneous methods of data visualization, Peabody's charts activate an alternative unfolding of history, and therefore an alternative future in their own time.</p>
               </div>
-            </div>g
+            </div>
           </div><!--close design-->
         </div>
-        <div class="section cell narrative" id="interaction">
-          <div class="container">
+        <div class="cell narrative" id="interaction">
+          <div class="container section">
             <h2>Interaction, Updated</h2>
             <br>
             <div class = "cell">
@@ -307,8 +311,7 @@
       </div>
       <div class="navrow vertical-scrolling">
         <div class="section cell narrative" id="credits">
-          <div class="gridline gridline-b gridline-h"></div>
-          <div class="container">
+          <div class="container section">
             <h2>Credits</h2>
             <br>
             <div class="cell">
@@ -325,7 +328,7 @@
           </div>
         </div>
         <div class="section cell narrative" id="credits">
-          <div class="container">
+          <div class="container section">
             <h2>Credits</h2>
             <br>
             <div class="cell">
@@ -342,7 +345,7 @@
           </div>
         </div>
         <div class="section cell narrative" id="credits">
-          <div class="container">
+          <div class="container section">
             <h2>Credits</h2>
             <br>
             <div class="cell">
@@ -428,7 +431,7 @@
       }
       function loadTest(){
         console.log("Loading data 2/2");
-        test.loadFromCSV("SoH1800.csv",main);
+        test.loadFromCSV("testing.csv",main);
       }
       function main(){
         learnCorrector=new BuildCorrector(peabody);
@@ -663,6 +666,7 @@
           }else{
             direction="down";
           }
+          console.log("@@@@@@@@@@@@@ ",i);
           $(cells[i]).append("<div class='"+suggested+" "+gline+" "+gline+gridlines[s][0]+" "+
             gline+gridlines[s][1]+"'><span class='glyphicon glyphicon-chevron-"+
             direction+"'></span></div>"

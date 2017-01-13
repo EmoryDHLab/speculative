@@ -38,20 +38,20 @@ html, body{
 }
 .gridline {
 	position: absolute;
-	background: rgba(195,108,37,1);
-	color: rgba(195,108,37,1);
+	background: rgb(219, 136, 42);
+	color: rgb(219, 136, 42);
 }
 .gridline:hover{
 	color:white;
 	cursor: pointer;
 }
 .gridline.suggested{
-	z-index: 10;
 	color:white;
 }
 .gridline.suggested:hover{
+	z-index: 10;
 	background: white;
-	color:rgba(195,108,37,1);
+	color:rgb(219, 136, 42);
 }
 .gridline-h {
 	width: calc(100vw);
@@ -195,7 +195,7 @@ a:focus, a:hover {
 	position: fixed;
 	top: 30;
 	left: 30;
-	z-index: 10;
+	z-index: 999;
 }
 
 .burgerNav{
@@ -217,7 +217,7 @@ a:focus, a:hover {
 	height:1vh;
 }
 .current{
-	background-color: rgba(195,108,37,1) !important;
+	background-color: rgb(219, 136, 42) !important;
 }
 .sqr{
 	box-sizing: border-box;
@@ -232,7 +232,7 @@ a:focus, a:hover {
 
 .burgerNav .capRow,
 .burgerNav .midRow .sqr{
-	border:2px solid rgba(195,108,37,1);
+	border:2px solid rgb(219, 136, 42);
 	background-color: white;
 }
 
