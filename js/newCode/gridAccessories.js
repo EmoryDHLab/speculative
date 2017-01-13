@@ -162,7 +162,7 @@ EventKey.prototype.draw=function(){
     ol.appendChild(li);
     ct++;
   }
-  ol.style.width=2*this.size+"px";
+  ol.style.maxWidth=2*this.size+"px";
   this.target.appendChild(ol);
 }
 

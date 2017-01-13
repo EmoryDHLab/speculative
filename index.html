@@ -142,8 +142,8 @@
             <div id="explore" class='section contain'>
               <h2>Explore</h2>
               <h3>Mouse over each event to see its position on the grid.</h3>
-              <div style="display:flex;">
-                <div id="mainExplore"></div>
+              <div class="flexy">
+                <div id="mainExplore" style="flex:1;"></div>
                 <div class="accessories">
                   <div class="dropdown">
                     <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -157,23 +157,23 @@
                       <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
                     </ul>
                   </div>
-                  <ol id="exploreList" class="eList"></ol>
+                  <ol id="exploreList" class="eList spec-scroll"></ol>
                   <h4 class="sidetitle">Palette</h4>
-                  <div id="explorePallete"></div>
+                  <div id="explorePallete" class="pallete"></div>
                   <h4 class="sidetitle">Event Key</h4>
-                  <div id="exploreKey"></div>
+                  <div id="exploreKey" class="key"></div>
                 </div>
               </div>
             </div>
           </div><!--close view-->
       </div>
       <div class="navrow vertical-scrolling">
-        <div class="cell">
+        <div class="cell interactive">
           <div class="section contain" id="compare">
             <h2>Compare</h2>
             <h3>Mouse over any event to see its representation in timeline, data, grid, and textual form.</h3>
             <div id="timeline"></div>
-            <div style="display:flex;">
+            <div class="flexy">
               <div class="accessories left-acc">
                 <ol id="csv" class="eList spec-scroll"></ol>
               </div>
@@ -196,28 +196,28 @@
             </div>
           </div>
         </div>
-        <div class="cell">
+        <div class="cell interactive">
           <div id="play" class='section contain'>
             <h2>Play</h2>
             <h3>Click to add your own events to the grid. You can also change the title, event list, colors, color labels, and event descriptions.</h3>
-            <div style="display:flex;">
+            <div class="flexy">
               <div id="mainPlay"></div>
               <div class="accessories">
                 <input class="sidetitle editable head4" type="text" value="Title"></input>
                 <textarea id="playEvents" class="editable spec-scroll" placeholder="Type or paste events here."></textarea>
                 <h4 class="sidetitle">Palette</h4>
-                <div id="playPallete"></div>
+                <div id="playPallete" class="pallete"></div>
                 <h4 class="sidetitle">Event Key</h4>
-                <div id="playKey"></div>
+                <div id="playKey" class="key"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="cell">
+        <div class="cell interactive">
           <div id="learn" class='section contain'>
             <h2>Learn</h2>
             <h3>Read the description of the event, click on the corresponding color, and then plot the event on the grid.</h3>
-            <div style="display:flex;">
+            <div class="flexy">
               <div id="mainLearn"></div>
               <div class="accessories">
                 <div class="dropdown">
@@ -254,9 +254,9 @@
                   </div>
                 </div>
                 <h4 class="sidetitle">Palette</h4>
-                <div id="learnPallete"></div>
+                <div id="learnPallete" class="pallete"></div>
                 <h4 class="sidetitle">Event Key</h4>
-                <div id="learnKey"></div>
+                <div id="learnKey" class="key"></div>
               </div>
             </div>
           </div>
@@ -398,7 +398,7 @@
       var peabody=new EventSet();
       var test= new EventSet();
 
-      var compareGrid=new Grid("mainComp",.6,0,335),
+      var compareGrid=new Grid("mainComp",.6,0,345),
           compEvtList=new List("compEvtList"),
           compDataList=new List("csv",true)
           timeline= new Timeline(),
