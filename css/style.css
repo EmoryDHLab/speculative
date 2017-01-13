@@ -11,11 +11,34 @@ html, body{
 ::-webkit-scrollbar{
 	display: none;
 }
+.flexy{
+	display: flex;
+	max-width: 80% ;
+	margin-left: auto;
+	margin-right: auto;
+}
+.flexy > div{
+	flex:1;
+}
+.key{
+	width:100%;
+}
+.flexy > div:first-child{
+	margin-right: 10px;
+}
 .section {
 /*    min-height: 100%;
-*/    display: flex;
+*/  display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.section h3{
+	text-align: center;
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:0px;
+	color:grey;
 }
 
 .cell{
@@ -38,27 +61,27 @@ html, body{
 }
 .gridline {
 	position: absolute;
-	background: rgba(195,108,37,1);
-	color: rgba(195,108,37,1);
+	background: rgb(219, 136, 42);
+	color: rgb(219, 136, 42);
 }
 .gridline:hover{
 	color:white;
 	cursor: pointer;
 }
 .gridline.suggested{
-	z-index: 10;
 	color:white;
 }
 .gridline.suggested:hover{
+	z-index: 10;
 	background: white;
-	color:rgba(195,108,37,1);
+	color:rgb(219, 136, 42);
 }
 .gridline-h {
 	width: calc(100vw);
 	height: 20px; }
 .gridline-v {
 	width: 20px;
-	height: calc(100vh) }
+	height: calc(100vh); }
 .gridline-t {
 	top: 0px;
 	left: 0px;}
@@ -128,7 +151,7 @@ a:focus, a:hover {
 .intro h2{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
-    bix-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .intro .container{
@@ -148,7 +171,7 @@ a:focus, a:hover {
     display: -ms-flexbox;
     display: webkit-flex;
     display: flex;
-    align-items: center
+    align-items: center;
     justify-content: center;
 }
 
@@ -195,7 +218,7 @@ a:focus, a:hover {
 	position: fixed;
 	top: 30;
 	left: 30;
-	z-index: 10;
+	z-index: 999;
 }
 
 .burgerNav{
@@ -217,7 +240,7 @@ a:focus, a:hover {
 	height:1vh;
 }
 .current{
-	background-color: rgba(195,108,37,1) !important;
+	background-color: rgb(219, 136, 42) !important;
 }
 .sqr{
 	box-sizing: border-box;
@@ -227,12 +250,50 @@ a:focus, a:hover {
 }
 .sqr:first-child{
 	margin-left:0;
+    background-color: yellow;
 }
 
 .burgerNav .capRow,
 .burgerNav .midRow .sqr{
-	border:2px solid rgba(195,108,37,1);
+	border:2px solid rgb(219, 136, 42);
 	background-color: white;
+}
+
+.modalNav {
+    width: 20em;
+    height:20em;
+}
+
+.modal-body{
+    height:45em;
+}
+.modalRow {
+    height: 8em !important;
+    margin:1em;
+    display: flex;
+    box-sizing: border-box;
+}
+.modalSqr{
+    box-sizing: border-box;
+    flex: 3.25vh;
+    height: 15.25vh;
+    margin:.5vh;
+    border:2px solid rgba(195,108,37,1);
+
+}
+
+.modalRow h4{
+    text-align: center;
+    margin: 2em 1em 1em 1em;
+}
+
+.modalRow h3{
+    text-align: center;
+    margin: 1.8em 1em 1em 42%;
+}
+
+.capModalRow{
+    border:2px solid rgba(195,108,37,1);
 }
 
 .capRow:first-child{
@@ -242,7 +303,6 @@ a:focus, a:hover {
 /*body for interactive pages*/
 .interactive{
 	font-family: "Inconsolata", monospace;
-
 }
 
 /*headers for all of the pages*/
@@ -257,9 +317,10 @@ h2{
 
 h3 {
 	text-align: center;
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: lighter;
-    color: gray;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-weight: lighter;
+  color: gray;
+
 /*    font-size: 100%;
 */}
 
@@ -319,9 +380,6 @@ img#eventKeyIMG {
     height: 83%;
 }
 
-#view{
-    padding-bottom: 5%;
-}
 #interaction{
 	background-color: #74436C; /*purple*/
     height: 100%;
@@ -342,8 +400,6 @@ img#eventKeyIMG {
 #buildTools h4{
 	font-weight: bold;
 }
-
-
 
 #compare2{
     padding-top: 5%;
@@ -545,6 +601,7 @@ a:hover{
 	display: flex;
 	height: 3em;
 	margin-bottom: 10px;
+	font-size: 1.5em;
 }
 .nextPrevButtons:hover{
 	cursor: pointer;
@@ -592,9 +649,12 @@ a:hover{
 #main svg{
 	margin-left:1.2em;
 }
-
+#mainComp{
+	padding-left: 20px;
+}
 .accessories{
 	flex:1;
+	max-width: 50%
 }
 
 .accessories.left-acc{
@@ -615,7 +675,6 @@ a:hover{
 h4.drop{
 	display:inline-block;
 	border-bottom: 2px solid grey;
-	font-size: 1em
 }
 #compEvtList{
 	background-color: #efefef;
@@ -626,13 +685,15 @@ h4.drop{
 }
 #csv{
 	height:340px;
-	padding: 0 5%;
+	padding-left:30px;
+	padding-right: 10px;
 	float: right;
 }
 .eList{
 	font-size: 12px;
 	height:300px;
 	overflow-y: auto;
+	background-color: #efefef;
 }
 /*
 ----------------------------Color Pallete---------------------------------------
@@ -658,7 +719,7 @@ h4.drop{
 .palleteLabel{
 	display: inline-block;
 	max-width: 10em;
-	transform: translateY(-25%);
+	transform: translateY(-75%);
 }
 .colorLabelPair{
 	padding: 3px;
@@ -745,8 +806,8 @@ h4.drop{
 -------------------Play Input styles-----------------------------------------
 */
 .head4{
-	font-size: 1.2em;
-	margin-top: -15px;
+	font-size: 1.5em;
+	margin-top: -10px;
 }
 .editable{
 	border: none;
@@ -763,7 +824,7 @@ textarea.editable{
 
 #playEvents{
 	display: block;
-	width: 75%;
+	width: 100%;
 	min-width: 7em;
 	height:150px;
 	margin-top: 10px;
@@ -790,11 +851,8 @@ textarea.editable{
 
 }
 
-
-
 .direction-suggested{
     color: yellow !important;
-
 }
 
 #route1{
@@ -823,7 +881,7 @@ button {
   background-color: #E3E3E3;
   cursor: pointer;
   transition: opacity 1s ease-in-out;
-  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 
@@ -920,4 +978,26 @@ button {
 
 .left{
     margin-right:4.5em;
+}
+
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events:all;
 }
