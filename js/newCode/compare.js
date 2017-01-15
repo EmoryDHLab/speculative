@@ -60,9 +60,6 @@ var Timeline=function(target="timeline"){
   this.target=document.getElementById(target);
   this.type="timeline";
   this.eventSet=new EventSet();
-  this.canvas = d3.select("#"+this.target.id).append('svg')
-            .attr("width",this.target.offsetWidth)
-            .attr("height", 125); //current width of the timelineContainer div
   this.eventTypes=[
     "Battle, Siege, or Beginning of War",
     "Conquest, Annexation, or Union",
@@ -79,7 +76,10 @@ var Timeline=function(target="timeline"){
 Timeline.prototype.draw=function(){
   var margin= {top:60, bottom:20, right:25, left:15};
   console.log(this.target);
-  var timeline = this.canvas.append('g')
+  var canvas = d3.select("#"+this.target.id).append('svg')
+            .attr("width",this.target.offsetWidth)
+            .attr("height", 125); //current width of the timelineContainer div
+  var timeline = canvas.append('g')
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   var xScale = d3.scale.linear()
                 .domain([0, 99])
@@ -95,7 +95,7 @@ Timeline.prototype.draw=function(){
                       return (d + 1500); //the 1600 would be user input start century
                   }});
 
-  var xGuide = this.canvas.append('g')
+  var xGuide = canvas.append('g')
                 .attr("transform", "translate(" + margin.left + "," + (margin.top + margin.bottom) + ")")
                 .attr("class","axis")
                 .style("stroke-width",2)
@@ -164,7 +164,7 @@ Timeline.prototype.draw=function(){
     .attr("data-date",function(d){return d.year})
     .attr("data-type",function(d){return d.eType})
     .style("visibility", "hidden");
-  this.target.appendChild(this.canvas[0][0]);
+  this.target.appendChild(canvas[0][0]);
 }
 Timeline.prototype.addEventSet=function(eventSet){
   this.eventSet=eventSet;
