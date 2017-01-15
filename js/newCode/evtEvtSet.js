@@ -53,6 +53,7 @@ var EventSet= function(){
     '#BF602E'
   ];
   this.allActors=[];
+  this.allColors=[];
 }
 
 EventSet.prototype.createEvt=function(evtData){
@@ -62,13 +63,17 @@ EventSet.prototype.createEvt=function(evtData){
       var desc=evtData.text;
       var players=[[evtData.country,evtData.color]];
       if(!this.allActors.includes(evtData.country)){
+        console.log("NEW country ADDED!");
         this.allActors.push(evtData.country);
+        this.allColors.push(evtData.color);
       }
     }else{
       var desc = evtData.description;
       if(!this.allActors.includes(evtData.actor)){
         var clr=this.defaultColors[this.allActors.length];
+        console.log("NEW country ADDED!",evtData.actor,clr);
         this.allActors.push(evtData.actor);
+        this.allColors.push(clr);
       }else{
         var clr= this.defaultColors[this.allActors.indexOf(evtData.actor)];
       }

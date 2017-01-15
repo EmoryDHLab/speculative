@@ -178,7 +178,7 @@
                     </div>
                     <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
                       <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
-                      <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
+                      <li><a data-index="2" data-parent="#compare">2. Peabody 1801-1850</a></li>
                     </ul>
                   </div>
                   <ol id="exploreList" class="eList interactive spec-scroll"></ol>
@@ -212,7 +212,7 @@
                   </div>
                   <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
                     <li><a data-index="1" data-parent="#compare">1. Peabody 1501-1600</a></li>
-                    <li><a data-index="2" data-parent="#compare">2. A Fake Data Set</a></li>
+                    <li><a data-index="2" data-parent="#compare">2. Peabody 1801-1850</a></li>
                   </ul>
                 </div>
                 <ol id="compEvtList" class="eList spec-scroll"></ol>
@@ -253,7 +253,7 @@
                   </div>
                   <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
                     <li><a data-index="1" data-parent="#learn">1. Peabody 1501-1600</a></li>
-                    <li><a data-index="2" data-parent="#learn">2. A Fake Data Set</a></li>
+                    <li><a data-index="2" data-parent="#learn">2. Peabody 1801-1850</a></li>
                   </ul>
                 </div>
                 <div id="buildList" class="spec-scroll">
@@ -469,7 +469,7 @@
       }
       function loadTest(){
         console.log("Loading data 2/2");
-        test.loadFromCSV("testing.csv",main);
+        test.loadFromCSV("SoH1800.csv",main);
       }
       function main(){
         learnCorrector=new BuildCorrector(peabody);
@@ -704,7 +704,6 @@
           }else{
             direction="down";
           }
-          console.log("@@@@@@@@@@@@@ ",i);
           $(cells[i]).append("<div class='"+suggested+" "+gline+" "+gline+gridlines[s][0]+" "+
             gline+gridlines[s][1]+"'><span class='glyphicon glyphicon-chevron-"+
             direction+"'></span></div>"
@@ -730,7 +729,7 @@
             autoScrollX(window.innerWidth);
           }else{
             currentPos=updateBurgerNav(currentPos[0],currentPos[1],-1,0);
-            autoScrollX(-window.innerWidth)
+            autoScrollX(-window.innerWidth);
           }
         }
       });
