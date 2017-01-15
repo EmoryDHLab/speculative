@@ -47,7 +47,7 @@ Pallete.prototype.draw = function () {
       tempLabel.innerHTML=(this.labels[i]) ? this.labels[i]:"Unused";
     }else{
       var tempLabel= document.createElement("input");
-      tempLabel.value=(this.labels[i]) ? this.labels[i]:"Unused";
+      tempLabel.placeholder=(this.labels[i]) ? this.labels[i]:"Unused";
       tempLabel.className="palleteLabel editable";
       tempLabel.overflowX="auto";
       tempLabel.style.width="6em";
@@ -152,7 +152,7 @@ EventKey.prototype.draw=function(){
     if(this.isTemplate){
       var inp= document.createElement("input");
       inp.type="text";
-      inp.value="Event Description";
+      inp.placeholder="Event Description";
       inp.className="editable";
       li.appendChild(inp);
     }else{

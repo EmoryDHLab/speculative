@@ -24,21 +24,17 @@ html, body{
 	width:100%;
 }
 .flexy > div:first-child{
-	margin-right: 10px;
+	margin-right: 40px;
 }
 .section {
-/*    min-height: 100%;
-*/  display: flex;
+    min-width: 100%;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
 }
-.section h3{
-	text-align: center;
-	max-width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top:0px;
-	color:grey;
+
+.section.centered{
+	justify-content: center;
 }
 
 .cell{
@@ -55,7 +51,7 @@ html, body{
 }
 .navrow > .cell{
 	flex: 100% 0 0;
-	padding:20px 20px;
+	padding:25px 25px;
 	box-sizing:border-box;
 	position:relative;
 }
@@ -78,19 +74,19 @@ html, body{
 }
 .gridline-h {
 	width: calc(100vw);
-	height: 20px; }
+	height: 25px; }
 .gridline-v {
-	width: 20px;
+	width: 25px;
 	height: calc(100vh); }
 .gridline-t {
-	top: 0px;
+	top: -0.5px;
 	left: 0px;}
 .gridline-l {
 	left: 0px;
-	top: 0px;}
+	top: -0.5px;}
 .gridline-r {
-	right: 0px;
-	top: 0px;
+	right: -0.5px;
+	top: -0.5px;
 	transform: rotateY(-17deg); }
 .gridline-b {
 	bottom: 0px;
@@ -148,7 +144,7 @@ a:focus, a:hover {
 	display: block;
 	padding: 0;
 }
-.intro h2{
+.intro h3{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
     box-sizing: border-box;
@@ -216,8 +212,8 @@ a:focus, a:hover {
 }
 .constant{
 	position: fixed;
-	top: 30;
-	left: 30;
+	top: 35;
+	left: 35;
 	z-index: 999;
 }
 
@@ -306,21 +302,32 @@ a:focus, a:hover {
 }
 
 /*headers for all of the pages*/
-h2{
-	font-family: "PT Sans Narrow", sans-serif;
+h2.head{
+	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
 	text-align: center;
   margin: 20px 0px 0px 0px;
-  font-size: 30px;
+  font-size: 4em !important;
 }
 
+h3{
+	font-family: "Inconsolata", monospace;
+	font-weight: 400;
+	text-align: center;
+	margin: 20px 0px 0px 0px;
+	font-size: 2em !important;
+}
 
-h3 {
+h3.subhead {
 	text-align: center;
   font-family: "PT Sans Narrow", sans-serif;
   font-weight: lighter;
-  color: gray;
-
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:0px;
+	margin-bottom: 20px;
+	color:grey;
 /*    font-size: 100%;
 */}
 
@@ -421,10 +428,6 @@ img#eventKeyIMG {
 	fill: none;
 	stroke: black;
 
-}
-
-.interactive{
-	font-size: smaller;
 }
 
 .buildType:hover{
@@ -719,6 +722,11 @@ h4.drop{
 .palleteLabel{
 	display: inline-block;
 	max-width: 10em;
+}
+.palleteLabel.editable{
+	transform: translateY(-25%);
+}
+.palleteLabel:not(.editable){
 	transform: translateY(-75%);
 }
 .colorLabelPair{
@@ -779,7 +787,7 @@ h4.drop{
 .sidetitle{
 	margin-top:5px;
 	margin-bottom:5px;
-	font-size: 1em;
+	font-size: 1.5em;
 }
 /*
 --------------------Scrollbar---------------------------------------------------
@@ -806,7 +814,7 @@ h4.drop{
 -------------------Play Input styles-----------------------------------------
 */
 .head4{
-	font-size: 1.5em;
+	font-size: 2em;
 	margin-top: -10px;
 }
 .editable{
