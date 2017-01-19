@@ -53,23 +53,23 @@
                 </div>
 
                 <div class="modal-body">
-                  <button id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></button>
+                  <button name="splash" onclick="navigate(name, id)"id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></button>
                   <div class="midRow modalRow">
-                    <button name="introduction" onclick="navigate(name)" id="nav-1" class="modalSqr"><h4>Introduction</h4></button>
-                    <button name="howitworks" onclick="navigate(name)" id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
-                    <button name="explore" onclick="navigate(name)" id="nav-3" class="modalSqr"><h4>Explore</h4></button>
+                    <button name="introduction" onclick="navigate(name, id)" id="nav-1" class="modalSqr"><h4>Introduction</h4></button>
+                    <button name="howitworks" onclick="navigate(name, id)" id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
+                    <button name="explore" onclick="navigate(name, id)" id="nav-3" class="modalSqr"><h4>Explore</h4></button>
                   </div>
                   <div class="midRow modalRow">
-                    <button name="compare" onclick="navigate(name)" id="nav-4" class="modalSqr"><h4>Compare</h4></button>
-                    <button name="play" onclick="navigate(name)" id="nav-5" class="modalSqr"><h4>Play</h4></button>
-                    <button name="learn" onclick="navigate(name)" id="nav-6" class="modalSqr"><h4>Learn</h4></button>
+                    <button name="compare" onclick="navigate(name, id)" id="nav-4" class="modalSqr"><h4>Compare</h4></button>
+                    <button name="play" onclick="navigate(name, id)" id="nav-5" class="modalSqr"><h4>Play</h4></button>
+                    <button name="learn" onclick="navigate(name, id)" id="nav-6" class="modalSqr"><h4>Learn</h4></button>
                   </div>
                   <div class="midRow modalRow">
-                    <button name="dataofhistory" onclick="navigate(name)" id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
-                    <button name="altfutures" onclick="navigate(name)" id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
-                    <button name="interactionupdated" onclick="navigate(name)" id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
+                    <button name="dataofhistory" onclick="navigate(name, id)" id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
+                    <button name="altfutures" onclick="navigate(name, id)" id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
+                    <button name="interactionupdated" onclick="navigate(name, id)" id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
                   </div>
-                  <button name="credits" id="nav-10" onclick="navigate(name)" class="capRow modalRow capModalRow"><h3>Credits</h3></button>
+                  <button name="credits" id="nav-10" onclick="navigate(name, id)" class="capRow modalRow capModalRow"><h3>Credits</h3></button>
                 </div>
             </div>
         </div>
@@ -422,7 +422,7 @@
                 sectionSelector: '.vertical-scrolling',
             });
         });
-          function navigate(page){
+          function navigate(page,id){
             console.log("page=" + page)
             var content;
             switch(page){
@@ -466,12 +466,26 @@
             $('html,body').animate({
               scrollTop: $(content).offset().top, scrollLeft: $(content).offset().left},
               'slow');
-
+            console.log("here");
+            fillBurg(id);
           }
 
           function toggle(){
             $(".modal-backdrop.in").hide();
               $('#myModal').toggle();
+          }
+
+          function fillBurg(id){
+            console.log("here2")
+            var r = /\d+/;
+            var burgCell = (id.match(r));
+            console.log("burgCell"+burgCell);
+            $(".sqr").removeClass("current");
+            $(".capRow").removeClass("current");
+            $(".modalSqr").removeClass("current");
+            $(".modalCapRow").removeClass("current");
+            $("#burg-"+burgCell).addClass("current");
+            $("#nav-"+burgCell).addClass("current");
           }
 
 
