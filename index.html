@@ -54,9 +54,9 @@
                 <div class="modal-body">
                   <div id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></div>
                   <div class="midRow modalRow">
-                    <button id="nav-1 " class="modalSqr"><h4>Introduction</h4></button>
-                    <button id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
-                    <button id="nav-3" class="modalSqr"><h4>Explore</h4></button>
+                    <button name="introduction" onclick="navigate(name)" id="nav-1 " class="modalSqr"><h4>Introduction</h4></button>
+                    <button name="howitworks" onclick="navigate(name)" id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
+                    <button name="explore" onclick="navigate(name)" id="nav-3" class="modalSqr"><h4>Explore</h4></button>
                   </div>
                   <div class="midRow modalRow">
                     <button id="nav-4" class="modalSqr"><h4>Compare</h4></button>
@@ -130,7 +130,7 @@
             </div>
           </div><!--close history-->
 
-          <div class="explanation cell" id="howitworks">
+          <div class="explanation cell howitworks">
             <div class="container">
               <h2>How it Works</h2>
               <h3 id="h3_howitworks">Click the chart to begin.</h3>
@@ -138,7 +138,7 @@
             </div>
           </div>
 
-          <div class="cell interactive" id="view">
+          <div class="cell interactive explore" id="view">
             <div id="explore" class='contain'>
               <h2>Explore</h2>
               <h3>Mouse over each event to see its position on the grid.</h3>
@@ -377,19 +377,56 @@
     <script src="js/newCode/grid.js"></script>
     <script src="js/newCode/gridAccessories.js"></script>
         <script type="text/javascript">
+
         $(document).ready(function() {
             $('#fullpage').fullpage({
                 sectionSelector: '.vertical-scrolling',
             });
         });
+          function navigate(page){
+            var content;
+            switch(page){
+              case "splash":
+                content = ".splash"
+              case "introduction":
+                content = ".introduction"
+              case "howitworkspage":
+                content = ".howitworks";
+                break;
+              case "explorepage":
+                content = ".explore";
+                break;
+              case "comparepage":
+                content = ".compare";
+                break;
+              case "playpage":
+                content = ".play";
+                break;
+              case "learnpage":
+                content = ".learn";
+                break;
+              case "dataofhistory":
+                content = ".dataofhistory"
+                break;
+              case "altfutures":
+                content = ".secondabout"
+                break;
+              case "interactionupdated":
+                content = ".interactionupdated"
+                break;
+              case "credits":
+                content = ".credits"
+          }
+            $("button").click(function() {
+              console.log($(content));
+              $(".modal-backdrop.in").hide();
+              $('#myModal').toggle();
+              $('html,body').animate({
+                scrollTop: $(content).offset().top, scrollLeft: $(content).offset().left},
+                'slow');
+            });
+          }
 
-        $("button").click(function() {
-          $(".modal-backdrop.in").hide();
-           $('#myModal').toggle();
-        $('html,body').animate({
-        scrollTop: $(".introduction").offset().top},
-        'slow');
-});
     </script>
 <script>
       var peabody=new EventSet();
