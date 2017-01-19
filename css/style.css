@@ -11,11 +11,30 @@ html, body{
 ::-webkit-scrollbar{
 	display: none;
 }
+.flexy{
+	display: flex;
+	max-width: 80% ;
+	margin-left: auto;
+	margin-right: auto;
+}
+.flexy > div{
+	flex:1;
+}
+.key{
+	width:100%;
+}
+.flexy > div:first-child{
+	margin-right: 40px;
+}
 .section {
-/*    min-height: 100%;
-*/    display: flex;
+    min-width: 100%;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
+}
+
+.section.centered{
+	justify-content: center;
 }
 
 .cell{
@@ -32,42 +51,42 @@ html, body{
 }
 .navrow > .cell{
 	flex: 100% 0 0;
-	padding:20px 20px;
+	padding:25px 25px;
 	box-sizing:border-box;
 	position:relative;
 }
 .gridline {
 	position: absolute;
-	background: rgba(195,108,37,1);
-	color: rgba(195,108,37,1);
+	background: rgb(219, 136, 42);
+	color: rgb(219, 136, 42);
 }
 .gridline:hover{
 	color:white;
 	cursor: pointer;
 }
 .gridline.suggested{
-	z-index: 10;
 	color:white;
 }
 .gridline.suggested:hover{
+	z-index: 10;
 	background: white;
-	color:rgba(195,108,37,1);
+	color:rgb(219, 136, 42);
 }
 .gridline-h {
 	width: calc(100vw);
-	height: 20px; }
+	height: 25px; }
 .gridline-v {
-	width: 20px;
+	width: 25px;
 	height: calc(100vh); }
 .gridline-t {
-	top: 0px;
+	top: -0.5px;
 	left: 0px;}
 .gridline-l {
 	left: 0px;
-	top: 0px;}
+	top: -0.5px;}
 .gridline-r {
-	right: 0px;
-	top: 0px;
+	right: -0.5px;
+	top: -0.5px;
 	transform: rotateY(-17deg); }
 .gridline-b {
 	bottom: 0px;
@@ -125,7 +144,7 @@ a:focus, a:hover {
 	display: block;
 	padding: 0;
 }
-.intro h2{
+.intro h3{
 	font-family: "Inconsolata", monospace;
 	font-size: 150%;
     box-sizing: border-box;
@@ -193,9 +212,9 @@ a:focus, a:hover {
 }
 .constant{
 	position: fixed;
-	top: 30;
-	left: 30;
-	z-index: 10;
+	top: 35;
+	left: 35;
+	z-index: 999;
 }
 
 .burgerNav{
@@ -217,7 +236,7 @@ a:focus, a:hover {
 	height:1vh;
 }
 .current{
-	background-color: rgba(195,108,37,1) !important;
+	background-color: rgb(219, 136, 42) !important;
 }
 .sqr{
 	box-sizing: border-box;
@@ -232,7 +251,7 @@ a:focus, a:hover {
 
 .burgerNav .capRow,
 .burgerNav .midRow .sqr{
-	border:2px solid rgba(195,108,37,1);
+	border:2px solid rgb(219, 136, 42);
 	background-color: white;
 }
 
@@ -283,20 +302,32 @@ a:focus, a:hover {
 }
 
 /*headers for all of the pages*/
-h2{
-	font-family: "PT Sans Narrow", sans-serif;
+h2.head{
+	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
 	text-align: center;
   margin: 20px 0px 0px 0px;
-  font-size: 30px;
+  font-size: 4em !important;
 }
 
-
-h3 {
+h3{
+	font-family: "Inconsolata", monospace;
+	font-weight: 400;
 	text-align: center;
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: lighter;
-    color: gray;
+	margin: 20px 0px 0px 0px;
+	font-size: 2em !important;
+}
+
+h3.subhead {
+	text-align: center;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-weight: lighter;
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:0px;
+	margin-bottom: 20px;
+	color:grey;
 /*    font-size: 100%;
 */}
 
@@ -356,9 +387,6 @@ img#eventKeyIMG {
     height: 83%;
 }
 
-#view{
-    padding-bottom: 5%;
-}
 #interaction{
 	background-color: #74436C; /*purple*/
     height: 100%;
@@ -400,10 +428,6 @@ img#eventKeyIMG {
 	fill: none;
 	stroke: black;
 
-}
-
-.interactive{
-	font-size: smaller;
 }
 
 .buildType:hover{
@@ -580,6 +604,7 @@ a:hover{
 	display: flex;
 	height: 3em;
 	margin-bottom: 10px;
+	font-size: 1.5em;
 }
 .nextPrevButtons:hover{
 	cursor: pointer;
@@ -627,9 +652,12 @@ a:hover{
 #main svg{
 	margin-left:1.2em;
 }
-
+#mainComp{
+	padding-left: 20px;
+}
 .accessories{
 	flex:1;
+	max-width: 50%
 }
 
 .accessories.left-acc{
@@ -650,7 +678,6 @@ a:hover{
 h4.drop{
 	display:inline-block;
 	border-bottom: 2px solid grey;
-	font-size: 1em;
 }
 #compEvtList{
 	background-color: #efefef;
@@ -661,13 +688,15 @@ h4.drop{
 }
 #csv{
 	height:340px;
-	padding: 0 5%;
+	padding-left:30px;
+	padding-right: 10px;
 	float: right;
 }
 .eList{
 	font-size: 12px;
 	height:300px;
 	overflow-y: auto;
+	background-color: #efefef;
 }
 /*
 ----------------------------Color Pallete---------------------------------------
@@ -676,9 +705,10 @@ h4.drop{
 	width:40em;
 }
 .palleteSquare{
-	display: inline-block;
+	display: block;
 	margin-right:10px;
 	cursor: pointer;
+	float:left;
 }
 .palleteSquare:not(.disabled):hover{
 	outline: 3px dashed #F7DE65;
@@ -691,8 +721,21 @@ h4.drop{
 }
 
 .palleteLabel{
-	display: inline-block;
-	max-width: 10em;
+	box-sizing: border-box;
+	display: block;
+	overflow-x: scroll;
+	float:left;
+	/* Firefox */
+	max-width: -moz-calc(100% - 40px);
+	/* WebKit */
+	max-width: -webkit-calc(100% - 40px);
+	/* Opera */
+	max-width: -o-calc(100% - 40px);
+	/* Standard */
+	max-width: calc(100% - 40px);
+	white-space: nowrap;
+}
+.palleteLabel.editable{
 	transform: translateY(-25%);
 }
 .colorLabelPair{
@@ -753,7 +796,7 @@ h4.drop{
 .sidetitle{
 	margin-top:5px;
 	margin-bottom:5px;
-	font-size: 1em;
+	font-size: 1.5em;
 }
 /*
 --------------------Scrollbar---------------------------------------------------
@@ -776,12 +819,26 @@ h4.drop{
     background: rgba(0,0,0,0.2);
 
 }
+
+.palleteLabel.spec-scroll::-webkit-scrollbar {
+	height:6px;
+}
+.palleteLabel.spec-scroll::-webkit-scrollbar-track {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+.palleteLabel.spec-scroll::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius:6px;
+		height:6px;
+    background: rgba(0,0,0,0.2);
+}
 /*
 -------------------Play Input styles-----------------------------------------
 */
 .head4{
-	font-size: 1.2em;
-	margin-top: -15px;
+	font-size: 2em;
+	margin-top: -10px;
 }
 .editable{
 	border: none;
@@ -798,7 +855,7 @@ textarea.editable{
 
 #playEvents{
 	display: block;
-	width: 75%;
+	width: 100%;
 	min-width: 7em;
 	height:150px;
 	margin-top: 10px;

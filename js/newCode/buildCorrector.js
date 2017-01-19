@@ -131,13 +131,13 @@ BuildCorrector.prototype.update=function(){
 };
 BuildCorrector.prototype.correct = function () {
   if (this.currentA.correct){
-    $(".corIncor:not(#correct)").hide();
-    $("#correct").show();
+    $(".corIncor:not(#correct)").css("display","none");
+    $("#correct").css('display',"block");
   }else if(!this.currentA.attempted){
-    $(".corIncor:not(#na)").hide();
-    $("#na").show();
+    $(".corIncor:not(#na)").css("display","none");
+    $("#na").css('display',"block");
   }else{
-    $(".corIncor:not(#incorrect)").hide();
-    $("#incorrect").show();
+    $(".corIncor:not(#incorrect)").css("display","none");
+    $("#incorrect").css('display',"block");
   }
 };

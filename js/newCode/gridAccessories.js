@@ -13,10 +13,10 @@ Pallete.prototype.addEventSet = function (eventSet) {
     return this.initEmpty(eventSet);
   }
   this.eventSet=eventSet;
-  for(let evt of this.eventSet.events){
-    if(!this.colors.includes(evt.getColors()[0])){
-      this.colors.push(evt.getColors()[0]);
-      this.labels.push(evt.getActor());
+  for(var i in this.eventSet.allActors){
+    if(!this.labels.includes(this.eventSet.allActors[i])){
+      this.labels.push(this.eventSet.allActors[i]);
+      this.colors.push(this.eventSet.allColors[i]);
     }
   }
   this.currentColor=this.colors[0];
@@ -31,6 +31,7 @@ Pallete.prototype.initEmpty = function (colorLabel) {// passed in as a list of t
 
 Pallete.prototype.draw = function () {
   this.target.innerHTML="";
+  console.log(this.colors,this.labels);
   var tempRow=document.createElement("div");
   for (var i=0; i<6; i++){
     if (i==3){
@@ -43,11 +44,11 @@ Pallete.prototype.draw = function () {
 
     if (!this.isTemplate){
       var tempLabel= document.createElement("div");
-      tempLabel.className="palleteLabel";
+      tempLabel.className="palleteLabel  spec-scroll";
       tempLabel.innerHTML=(this.labels[i]) ? this.labels[i]:"Unused";
     }else{
       var tempLabel= document.createElement("input");
-      tempLabel.value=(this.labels[i]) ? this.labels[i]:"Unused";
+      tempLabel.placeholder=(this.labels[i]) ? this.labels[i]:"Unused";
       tempLabel.className="palleteLabel editable";
       tempLabel.overflowX="auto";
       tempLabel.style.width="6em";
@@ -87,6 +88,8 @@ Pallete.prototype.selectColor = function(el){
 }
 Pallete.prototype.reload=function(evtSet){
   this.eventSet=null;
+  this.colors=[];
+  this.labels=[];
   this.addEventSet(evtSet);
   this.draw();
 }
@@ -152,7 +155,7 @@ EventKey.prototype.draw=function(){
     if(this.isTemplate){
       var inp= document.createElement("input");
       inp.type="text";
-      inp.value="Event Description";
+      inp.placeholder="Event Description";
       inp.className="editable";
       li.appendChild(inp);
     }else{
@@ -162,7 +165,7 @@ EventKey.prototype.draw=function(){
     ol.appendChild(li);
     ct++;
   }
-  ol.style.width=2*this.size+"px";
+  ol.style.maxWidth=2*this.size+"px";
   this.target.appendChild(ol);
 }
 
