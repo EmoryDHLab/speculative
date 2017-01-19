@@ -234,6 +234,10 @@ a:focus, a:hover {
 }
 .burgerNav .capRow{
 	height:1vh;
+    width: 100%;
+}
+.capModalRow:nthChild(2){
+    margin-top:;
 }
 .current{
 	background-color: rgb(219, 136, 42) !important;
@@ -290,6 +294,7 @@ a:focus, a:hover {
 
 .capModalRow{
     border:2px solid rgba(195,108,37,1);
+    width: 100%;
 }
 
 .capRow:first-child{

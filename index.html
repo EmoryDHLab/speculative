@@ -53,31 +53,29 @@
                 </div>
 
                 <div class="modal-body">
-                  <div id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></div>
+                  <button id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></button>
                   <div class="midRow modalRow">
-                    <button name="introduction" onclick="navigate(name)" id="nav-1 " class="modalSqr"><h4>Introduction</h4></button>
+                    <button name="introduction" onclick="navigate(name)" id="nav-1" class="modalSqr"><h4>Introduction</h4></button>
                     <button name="howitworks" onclick="navigate(name)" id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
                     <button name="explore" onclick="navigate(name)" id="nav-3" class="modalSqr"><h4>Explore</h4></button>
                   </div>
                   <div class="midRow modalRow">
-                    <button id="nav-4" class="modalSqr"><h4>Compare</h4></button>
-                    <button id="nav-5" class="modalSqr"><h4>Play</h4></button>
-                    <button id="nav-6" class="modalSqr"><h4>Learn</h4></button>
+                    <button name="compare" onclick="navigate(name)" id="nav-4" class="modalSqr"><h4>Compare</h4></button>
+                    <button name="play" onclick="navigate(name)" id="nav-5" class="modalSqr"><h4>Play</h4></button>
+                    <button name="learn" onclick="navigate(name)" id="nav-6" class="modalSqr"><h4>Learn</h4></button>
                   </div>
                   <div class="midRow modalRow">
-                    <button id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
-                    <button id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
-                    <button id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
+                    <button name="dataofhistory" onclick="navigate(name)" id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
+                    <button name="altfutures" onclick="navigate(name)" id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
+                    <button name="interactionupdated" onclick="navigate(name)" id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
                   </div>
-                  <div id="nav-10" class="capRow modalRow capModalRow"><h3>Credits</h3></div>
+                  <button name="credits" id="nav-10" onclick="navigate(name)" class="capRow modalRow capModalRow"><h3>Credits</h3></button>
                 </div>
-
             </div>
-
         </div>
         </div>
         </div>
-      <div class="navrow vertical-scrolling" id>
+      <div class="navrow vertical-scrolling" id="splash">
         <div class="speculative_intro cell">
           <div class="fullrow intro section centered">
             <div class="container-fluid introban">
@@ -113,7 +111,7 @@
         </div>
       </div>
   <!--       <section class="walkthrough">-->
-      <div class="navrow vertical-scrolling introduction">
+      <div class="navrow vertical-scrolling introduction" id="intro">
         <div class="cell narrative" id="history">
             <div class="container section centered">
               <h2 class="head">Introduction</h2>
@@ -425,47 +423,50 @@
             });
         });
           function navigate(page){
+            console.log("page=" + page)
             var content;
             switch(page){
               case "splash":
-                content = ".splash"
+                content = "#splash";
+                break;
               case "introduction":
-                content = ".introduction"
-              case "howitworkspage":
-                content = ".howitworks";
+                content = "#intro";
                 break;
-              case "explorepage":
-                content = ".explore";
+              case "howitworks":
+                content = "#howitworks";
                 break;
-              case "comparepage":
-                content = ".compare";
+              case "explore":
+                content = "#explore";
                 break;
-              case "playpage":
-                content = ".play";
+              case "compare":
+                content = "#compare";
                 break;
-              case "learnpage":
-                content = ".learn";
+              case "play":
+                content = "#play";
+                break;
+              case "learn":
+                content = "#learn";
                 break;
               case "dataofhistory":
-                content = ".dataofhistory"
+                content = "#data";
                 break;
               case "altfutures":
-                content = ".secondabout"
+                content = "#design";
                 break;
               case "interactionupdated":
-                content = ".interactionupdated"
+                content = "#interaction";
                 break;
               case "credits":
-                content = ".credits"
+                content = "#credits";
           }
-            $("button").click(function() {
-              console.log($(content));
-              $(".modal-backdrop.in").hide();
-              $('#myModal').toggle();
-              $('html,body').animate({
-                scrollTop: $(content).offset().top, scrollLeft: $(content).offset().left},
-                'slow');
-            });
+
+            $(".modal-backdrop.in").hide();
+            $('#myModal').toggle();
+            console.log(content);
+            $('html,body').animate({
+              scrollTop: $(content).offset().top, scrollLeft: $(content).offset().left},
+              'slow');
+
           }
 
           function toggle(){
