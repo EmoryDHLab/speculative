@@ -265,7 +265,7 @@ a:focus, a:hover {
 }
 .modalRow {
     height: 8em !important;
-    margin:1em;
+    margin:1em 0em 0em 0em;
     display: flex;
     box-sizing: border-box;
 }
@@ -280,12 +280,12 @@ a:focus, a:hover {
 
 .modalRow h4{
     text-align: center;
-    margin: 2em 1em 1em 1em;
+    margin: 1em 1em 1em 1em;
 }
 
 .modalRow h3{
     text-align: center;
-    margin: 1.8em 1em 1em 42%;
+    margin: 1.5em 1em 1em 42%;
 }
 
 .capModalRow{
@@ -1031,4 +1031,13 @@ button {
     /* To center horizontally */
     margin: 0 auto;
     pointer-events:all;
+}
+
+.close {
+    font-size: 1.5em;
+}
+
+.modal-header {
+    padding: .5em !important;
+    border-bottom: none !important;
 }

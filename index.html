@@ -48,8 +48,9 @@
         <div class="modal-dialog vertical-align-center">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" onclick="toggle()">&times;</span><span class="sr-only">Close</span>
                     </button>
+                </div>
 
                 <div class="modal-body">
                   <div id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></div>
@@ -69,7 +70,6 @@
                     <button id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
                   </div>
                   <div id="nav-10" class="capRow modalRow capModalRow"><h3>Credits</h3></div>
-                </div>
                 </div>
 
             </div>
@@ -467,6 +467,13 @@
                 'slow');
             });
           }
+
+          function toggle(){
+            $(".modal-backdrop.in").hide();
+              $('#myModal').toggle();
+          }
+
+
 
     </script>
 <script>
