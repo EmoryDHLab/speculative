@@ -31,7 +31,6 @@ Pallete.prototype.initEmpty = function (colorLabel) {// passed in as a list of t
 
 Pallete.prototype.draw = function () {
   this.target.innerHTML="";
-  console.log(this.colors,this.labels);
   var tempRow=document.createElement("div");
   for (var i=0; i<6; i++){
     if (i==3){
@@ -71,7 +70,6 @@ Pallete.prototype.draw = function () {
       colorInput.disabled=true;
       tempDiv.appendChild(colorInput);
     }
-    console.log(tempContainerDiv);
     tempContainerDiv.appendChild(tempDiv);
     tempContainerDiv.appendChild(tempLabel);
     tempRow.appendChild(tempContainerDiv);

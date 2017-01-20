@@ -79,28 +79,32 @@ html, body{
 	width: 25px;
 	height: calc(100vh); }
 .gridline-t {
-	top: -0.5px;
+	top: 0px;
 	left: 0px;}
 .gridline-l {
 	left: 0px;
-	top: -0.5px;}
+	top: 0px;}
 .gridline-r {
-	right: -0.5px;
-	top: -0.5px;
-	transform: rotateY(-17deg); }
+	right: 0px;
+	top: 0px;
+}
 .gridline-b {
 	bottom: 0px;
 	left: 0px;
-	transform: rotateX(17deg); }
+	}
 .gridline span{
 	display:block;
 	position:relative;
 	text-align: center;
+	width: 100%;
+	font-size: 1.7em;
 	top: 50%;
 	transform: translateY(-50%);
-	width: 100%;
 }
-
+.gridline-v span{
+	left:50%;
+	transform: translateX(-50%);
+}
 /*link styling*/
 
 /* unvisited link */
@@ -223,6 +227,12 @@ a:focus, a:hover {
 	cursor: pointer;
 }
 
+.burgerNav:hover .capRow{
+	box-shadow: 0px 0px 1px 1px rgba(60, 0, 0, 0.1);
+}
+.burgerNav:hover .sqr{
+	box-shadow: 0px 0px 1px 1px rgba(60, 0, 0, 0.1);
+}
 .burgerNav .capRow,
 .burgerNav .midRow{
 	margin-top: 0.25vh;

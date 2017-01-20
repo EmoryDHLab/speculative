@@ -43,38 +43,63 @@
       </div>
       <div id="burg-10" class="capRow"></div>
     </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="vertical-alignment-helper">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" onclick="toggle()">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                  <button name="splash" onclick="navigate(name, id)"id="burg-0" class="capRow current modalRow capModalRow"><h3>Splash</h3></button>
-                  <div class="midRow modalRow">
-                    <button name="introduction" onclick="navigate(name, id)" id="nav-1" class="modalSqr"><h4>Introduction</h4></button>
-                    <button name="howitworks" onclick="navigate(name, id)" id="nav-2" class="modalSqr"><h4>How It Works</h4></button>
-                    <button name="explore" onclick="navigate(name, id)" id="nav-3" class="modalSqr"><h4>Explore</h4></button>
-                  </div>
-                  <div class="midRow modalRow">
-                    <button name="compare" onclick="navigate(name, id)" id="nav-4" class="modalSqr"><h4>Compare</h4></button>
-                    <button name="play" onclick="navigate(name, id)" id="nav-5" class="modalSqr"><h4>Play</h4></button>
-                    <button name="learn" onclick="navigate(name, id)" id="nav-6" class="modalSqr"><h4>Learn</h4></button>
-                  </div>
-                  <div class="midRow modalRow">
-                    <button name="dataofhistory" onclick="navigate(name, id)" id="nav-7" class="modalSqr"><h4>The Data of History</h4></button>
-                    <button name="altfutures" onclick="navigate(name, id)" id="nav-8" class="modalSqr"><h4>Imagining Alternate Futures</h4></button>
-                    <button name="interactionupdated" onclick="navigate(name, id)" id="nav-9" class="modalSqr"><h4>Interaction, Updated</h4></button>
-                  </div>
-                  <button name="credits" id="nav-10" onclick="navigate(name, id)" class="capRow modalRow capModalRow"><h3>Credits</h3></button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true" onclick="toggle()">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <div id="burg-0" data-to="#splash"
+              class="capRow current modalRow capModalRow navigate">
+                <h3>Splash</h3>
+              </div>
+              <div class="midRow modalRow">
+                <div data-to="#intro" id="nav-1" class="modalSqr navigate">
+                  <h4>Introduction</h4>
+                </div>
+                <div data-to="#howitworks" id="nav-2" class="modalSqr navigate">
+                  <h4>How It Works</h4>
+                </div>
+                <div data-to="#explore" id="nav-3" class="modalSqr navigate">
+                  <h4>Explore</h4>
+                </div>
+              </div>
+              <div class="midRow modalRow">
+                <div data-to="#compare" id="nav-4" class="modalSqr navigate">
+                  <h4>Compare</h4>
+                </div>
+                <div data-to="#play" id="nav-5" class="modalSqr navigate">
+                  <h4>Play</h4>
+                </div>
+                <div data-to="#learn" id="nav-6" class="modalSqr navigate">
+                  <h4>Learn</h4>
+                </div>
+              </div>
+              <div class="midRow modalRow">
+                <div data-to="#data" id="nav-7" class="modalSqr navigate">
+                  <h4>The Data of History</h4>
+                </div>
+                <div data-to="#design" id="nav-8" class="modalSqr navigate">
+                  <h4>Imagining Alternate Futures</h4>
+                </div>
+                <div data-to="#interaction" id="nav-9" class="modalSqr navigate">
+                  <h4>Interaction, Updated</h4>
+                </div>
+              </div>
+              <div data-to="#credits" id="nav-10"
+              class="capRow modalRow capModalRow navigate">
+                <h3>Credits</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
+    </div>
       <div class="navrow vertical-scrolling" id="splash">
         <div class="speculative_intro cell">
           <div class="fullrow intro section centered">
@@ -160,8 +185,8 @@
             </div>
           </div>
 
-          <div class="cell" id="view">
-            <div id="explore" class='section contain'>
+          <div id="explore" class="cell">
+            <div class='section contain'>
               <h2 class="head">Explore</h2>
               <h3 class="subhead">Mouse over each event to see its position on the grid.</h3>
               <div class="flexy">
@@ -190,8 +215,8 @@
           </div><!--close view-->
       </div>
       <div class="navrow vertical-scrolling">
-        <div class="cell interactive">
-          <div class="section contain" id="compare">
+        <div id="compare" class="cell interactive">
+          <div class="section contain">
             <h2 class="head">Compare</h2>
             <h3  class="subhead">Mouse over any event to see its representation in timeline, data, grid, and textual form.</h3>
             <div id="timeline"></div>
@@ -218,8 +243,8 @@
             </div>
           </div>
         </div>
-        <div class="cell interactive">
-          <div id="play" class='section contain'>
+        <div id="play" class="cell interactive">
+          <div class='section contain'>
             <h2 class="head">Play</h2>
             <h3  class="subhead">Click to add your own events to the grid. You can also change the title, event list, colors, color labels, and event descriptions.</h3>
             <div class="flexy">
@@ -235,8 +260,8 @@
             </div>
           </div>
         </div>
-        <div class="cell interactive">
-          <div id="learn" class='section contain'>
+        <div id="learn" class="cell interactive">
+          <div class='section contain'>
             <h2 class="head">Learn</h2>
             <h3  class="subhead">Read the description of the event, click on the corresponding color, and then plot the event on the grid.</h3>
             <div class="flexy">
@@ -284,8 +309,8 @@
           </div>
         </div>
       </div>
-      <div class="navrow vertical-scrolling">
-  	     <div class="cell narrative" id="data">
+      <div id="data" class="navrow vertical-scrolling">
+  	     <div class="cell narrative">
           <div class="container section centered">
             <h2 class="head">The Data of History</h2>
             <br>
@@ -415,79 +440,17 @@
     <script src="js/newCode/buildCorrector.js"></script>
     <script src="js/newCode/grid.js"></script>
     <script src="js/newCode/gridAccessories.js"></script>
+    <script src="js/navigator.js"></script>
         <script type="text/javascript">
-
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
-                sectionSelector: '.vertical-scrolling',
-            });
-        });
-          function navigate(page,id){
-            console.log("page=" + page)
-            var content;
-            switch(page){
-              case "splash":
-                content = "#splash";
-                break;
-              case "introduction":
-                content = "#intro";
-                break;
-              case "howitworks":
-                content = "#howitworks";
-                break;
-              case "explore":
-                content = "#explore";
-                break;
-              case "compare":
-                content = "#compare";
-                break;
-              case "play":
-                content = "#play";
-                break;
-              case "learn":
-                content = "#learn";
-                break;
-              case "dataofhistory":
-                content = "#data";
-                break;
-              case "altfutures":
-                content = "#design";
-                break;
-              case "interactionupdated":
-                content = "#interaction";
-                break;
-              case "credits":
-                content = "#credits";
-          }
-
-            $(".modal-backdrop.in").hide();
-            $('#myModal').toggle();
-            console.log(content);
-            $('html,body').animate({
-              scrollTop: $(content).offset().top, scrollLeft: $(content).offset().left},
-              'slow');
-            console.log("here");
-            fillBurg(id);
-          }
-
+        $(".navigate").click(function(e){
+          $(".modal-backdrop.in").hide();
+          $('#myModal').toggle();
+          navigate(e.currentTarget);
+        })
           function toggle(){
             $(".modal-backdrop.in").hide();
               $('#myModal').toggle();
           }
-
-          function fillBurg(id){
-            console.log("here2")
-            var r = /\d+/;
-            var burgCell = (id.match(r));
-            console.log("burgCell"+burgCell);
-            $(".sqr").removeClass("current");
-            $(".capRow").removeClass("current");
-            $(".modalSqr").removeClass("current");
-            $(".modalCapRow").removeClass("current");
-            $("#burg-"+burgCell).addClass("current");
-            $("#nav-"+burgCell).addClass("current");
-          }
-
 
 
     </script>
@@ -741,30 +704,46 @@
         [1,2,3],[1,0,2,3],[3,0,2],
         [2]    ,[2]      ,[2]
       ];
+      var dataTos=[
+        ['#intro'],['#howitworks'],['#explore'],
+          ['#howitworks','#splash','#compare'], // intro
+          ['#explore','#intro','#splash','#play'], //howitworks
+          ['#learn','#howitworks','#splash'], //explore
+          ['#data','#play','#intro'], //compare
+          ['#compare','#learn','#howitworks','#design'], //play
+          ['#play','#explore','#interaction'], //learn
+          ['#design','#compare','#credits'],//data
+          ['#interaction','#data','#play','#credits'],//design
+          ['#credits','#design','#learn'],//interaction
+        ['#data'],['#design'],['#interaction']
+      ];
       setTimeout(function() {window.scrollTo(0, 0);},1)
       $(".navrow>.cell").css("height", h+"px");
       var cells=$(".navrow>.cell");
       for( var i=0;i<15;i++){
         var direction=null;
         var f=true;
-        for(let s of suggestions[i]){
+        for(var j in suggestions[i]){
+          console.log(j);
+          console.log(suggestions[i][j]);
+          var dTo=dataTos[i][j];
           if(f){
             f = !f;
             suggested="suggested";
           }else{
             suggested="";
           }
-          if(s==0){
+          if(suggestions[i][j]==0){
             direction="left";
-          }else if (s==1){
+          }else if (suggestions[i][j]==1){
             direction="right";
-          }else if (s==2) {
+          }else if (suggestions[i][j]==2) {
             direction="up";
           }else{
             direction="down";
           }
-          $(cells[i]).append("<div class='"+suggested+" "+gline+" "+gline+gridlines[s][0]+" "+
-            gline+gridlines[s][1]+"'><span class='glyphicon glyphicon-chevron-"+
+          $(cells[i]).append("<div data-to='"+dTo+"' class='"+suggested+" "+gline+" "+gline+gridlines[suggestions[i][j]][0]+" "+
+            gline+gridlines[suggestions[i][j]][1]+"'><span class='glyphicon glyphicon-chevron-"+
             direction+"'></span></div>"
           );
           if(gline=="gridline suggested"){
@@ -774,23 +753,7 @@
       }
       $(".navrow>.cell>*:not(.gridline)").css("height", "100%")
       $(".cell").on("click",".gridline", function(e){
-        if(e.currentTarget.className.includes("-h")){
-          if(e.currentTarget.className.includes("-t")){
-            currentPos=updateBurgerNav(currentPos[0],currentPos[1],0,-1);
-            autoScrollY(-window.innerHeight);
-          }else{
-            currentPos=updateBurgerNav(currentPos[0],currentPos[1],0,1);
-            autoScrollY(window.innerHeight);
-          }
-        }else{
-          if(e.currentTarget.className.includes("-r")){
-            currentPos=updateBurgerNav(currentPos[0],currentPos[1],1,0);
-            autoScrollX(window.innerWidth);
-          }else{
-            currentPos=updateBurgerNav(currentPos[0],currentPos[1],-1,0);
-            autoScrollX(-window.innerWidth);
-          }
-        }
+        navigate(e.currentTarget)
       });
     </script>
 
