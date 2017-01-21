@@ -152,7 +152,7 @@ a:focus, a:hover {
 	padding: 0;
 }
 .intro h3{
-	font-family: "Inconsolata", monospace;
+	font-family: "PT Sans Narrow", monospace;
 	font-size: 150%;
     box-sizing: border-box;
 }
@@ -167,7 +167,7 @@ a:focus, a:hover {
 
 /*body for narrative and explanation sections*/
 .narrative, .explanation, .credits{
-	font-family: "PT Sans Narrow", sans-serif;
+	font-family: "PT Sans", sans-serif;
 	font-weight: 400;
     display: -webkit-box;
     display: -moz-box;
@@ -177,7 +177,10 @@ a:focus, a:hover {
     align-items: center;
     justify-content: center;
 }
-
+.narrative p, .explanation p, .credits p{
+	font-size: 1.5em;
+	font-family: "PT Sans", sans-serif;
+}
 .explanation .col-md-4 {
     display: flex;
     flex-direction: column;
@@ -249,11 +252,14 @@ a:focus, a:hover {
 	height:1vh;
     width: 100%;
 }
-.capModalRow:nthChild(2){
-    margin-top:;
+.burgerNav .capRow,
+.burgerNav .midRow .sqr{
+	border:2px solid rgb(219, 136, 42);
+	background-color: white;
 }
 .current{
 	background-color: rgb(219, 136, 42) !important;
+	color:white;
 }
 .sqr{
 	box-sizing: border-box;
@@ -264,50 +270,6 @@ a:focus, a:hover {
 .sqr:first-child{
 	margin-left:0;
     background-color: yellow;
-}
-
-.burgerNav .capRow,
-.burgerNav .midRow .sqr{
-	border:2px solid rgb(219, 136, 42);
-	background-color: white;
-}
-
-.modalNav {
-    width: 20em;
-    height:20em;
-}
-
-.modal-body{
-    height:45em;
-}
-.modalRow {
-    height: 8em !important;
-    margin:1em 0em 0em 0em;
-    display: flex;
-    box-sizing: border-box;
-}
-.modalSqr{
-    box-sizing: border-box;
-    flex: 3.25vh;
-    height: 15.25vh;
-    margin:.5vh;
-    border:2px solid rgba(195,108,37,1);
-
-}
-
-.modalRow h4{
-    text-align: center;
-    margin: 1em 1em 1em 1em;
-}
-
-.modalRow h3{
-    text-align: center;
-    margin: 1.5em 1em 1em 42%;
-}
-
-.capModalRow{
-    border:2px solid rgba(195,108,37,1);
-    width: 100%;
 }
 
 .capRow:first-child{
@@ -359,14 +321,6 @@ h3.subhead {
  /*   font-size: .2em; */
   padding-top: 3%;
   padding-bottom: 3%;
-}
-
-.narrative p{
-	font-family: "PT Sans Narrow", sans-serif;
-	font-size: 2em;
- /*   margin-left: 50px; */
-/*    margin-right: 50px; */
-
 }
 
 #eventKey{
@@ -504,7 +458,7 @@ img#eventKeyIMG {
 
 .clickThru{
 	width:100%;
-	height:500px;
+	height:100%;
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -882,181 +836,64 @@ textarea.editable{
 	resize:none;
 }
 
-.hamburger {
-    background:none;
-    height: 1em;
-    float: left;
-    border: gray;
-}
-
-.direction {
-    margin: 8em .5em 0em .5em;
-    color:#D3D3D3;
-
-}
-
-.direction-updown {
-    margin-left: 16.75em;
-    color: #D3D3D3;
-
-}
-
-.direction-suggested{
-    color: yellow !important;
-}
-
-#route1{
-    background:#8D2B1D !important;
-}
-
-#route2{
-    background: #FDFDFD !important;
-    margin-left:1em;
-}
-
-#route3{
-    background:#2B4461 !important;
-}
-
-
-button {
-  border: 0;
-  padding: 10px;
-  font-family: 'Source Sans Pro', Verdana, Sans-Serif;
-  font-size: 18px;
-  outline: none;
-  border-radius: 3px;
-  display: block;
-  margin: 15px auto;
-  background-color: #E3E3E3;
-  cursor: pointer;
-  transition: opacity 1s ease-in-out;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-
 /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: relative; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: -2em;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    max-width: 50%%
-    overflow: visible !important;
+.navModal{
+	display: none;
+	position: fixed;
+	z-index: 100;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgba(150,150,150,.6);
+	color:rgba(195,108,37,1);
+}
+.modalRow {
+	height: 20vh;
+  margin:1em 0em 0em 0em;
+  display: flex;
+  box-sizing: border-box;
+}
+.modalSqr{
+    box-sizing: border-box;
+		background: white;
+    width: 20vh;
+    height: 20vh;
+    margin-left: 1vh;
+		margin-bottom: 1vh;
+    border:5px solid rgb(219, 136, 42);
+		cursor: pointer;
 }
 
-/* Modal Content/Box */
-.modal-content {
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    width: 80%; /* Could be more or less, depending on screen size */
+.modalRow h4{
+	box-sizing: border-box;
+	width: 100%;
+	position: relative;
+	top:50%;
+	transform:translateY(-50%);
+	margin:0;
+  text-align: center;
+	vertical-align: baseline;
+	font-weight: 700 !important;
+	cursor: pointer;
 }
 
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.capModalRow{
+	background: white;
+  border:4px solid rgb(219, 136, 42);
+  width:64vh;
+	height:5vh;
+	padding-top:1vh;
 }
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.flex-container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  height: 200px;
-
-  align-items: flex-end;
-    display: inline-flex;
-    justify-content: space-between;
-}
-
-
-.flex-start { -webkit-align-self: flex-start; align-self: flex-start;}
-.flex-end { -webkit-align-self: flex-end; align-self: flex-end;}
-.center { -webkit-align-self: center; align-self: center; }
-.baseline { -webkit-align-self: baseline; align-self: baseline; }
-.stretch { -webkit-align-self: stretch; align-self: stretch;}
-
-.flex-item {
-    display: block;
-}
-
-.navarrow {
-    background-color: white;
-}
-
-.navarrow:hover {
-    background-color:#D3D3D3;
-}
-.navarrow:hover > i{
-    color: white;
-}
-
-.navarrow-suggested:hover {
-    background-color:yellow !important;
-}
-.navarrow-suggested:hover > i{
-    color: white !important;
-}
-
-/*.shadow-right {
-    box-shadow: -5px 0px 50px #4d4d4d;
-}
-
-.shadow-left {
-    box-shadow: 5px 0px 50px #4d4d4d;
-}
-
-.shadow-top {
-    box-shadow: 0px 5px 50px #4d4d4d;
-}
-.shadow-down {
-    box-shadow: 0px -5px 50px #4d4d4d;
-}*/
-
-
-.left{
-    margin-right:4.5em;
-}
-
-
-.vertical-alignment-helper {
-    display:table;
-    height: 100%;
-    width: 100%;
-    pointer-events:none;
-}
-.vertical-align-center {
-    /* To center vertically */
-    display: table-cell;
-    vertical-align: middle;
-    pointer-events:none;
-}
-.modal-content {
-    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-    width:inherit;
-    height:inherit;
-    /* To center horizontally */
-    margin: 0 auto;
-    pointer-events:all;
-}
-
-.close {
-    font-size: 1.5em;
-}
-
-.modal-header {
-    padding: .5em !important;
-    border-bottom: none !important;
+.bigBurg{
+	position: relative;
+	display: inline-block;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	background-color:transparent;
+	z-index: 1000;
+	margin-left: auto;
+	margin-right: auto;
 }

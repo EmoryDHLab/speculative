@@ -24,7 +24,7 @@
       <!-- <script src="../dist/js/animsition.min.js"></script> -->
   </head>
   <body>
-    <div href="#myModal" class="constant burgerNav" data-toggle="modal">
+    <div href="#myModal" class="constant burgerNav">
       <div id="burg-0" class="capRow current"></div>
       <div class="midRow">
         <div id="burg-1" class="sqr"></div>
@@ -43,59 +43,48 @@
       </div>
       <div id="burg-10" class="capRow"></div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="vertical-alignment-helper">
-        <div class="modal-dialog vertical-align-center">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true" onclick="toggle()">&times;</span>
-                <span class="sr-only">Close</span>
-              </button>
+    <div class="navModal" id="myModal">
+        <div class="bigBurg">
+          <div id="burg-0" data-to="#splash"
+          class="capRow current modalRow capModalRow navigate">
+            <h4>Splash</h4>
+          </div>
+          <div class="midRow modalRow">
+            <div data-to="#intro" id="nav-1" class="modalSqr navigate">
+              <h4>Introduction</h4>
             </div>
-            <div class="modal-body">
-              <div id="burg-0" data-to="#splash"
-              class="capRow current modalRow capModalRow navigate">
-                <h3>Splash</h3>
-              </div>
-              <div class="midRow modalRow">
-                <div data-to="#intro" id="nav-1" class="modalSqr navigate">
-                  <h4>Introduction</h4>
-                </div>
-                <div data-to="#howitworks" id="nav-2" class="modalSqr navigate">
-                  <h4>How It Works</h4>
-                </div>
-                <div data-to="#explore" id="nav-3" class="modalSqr navigate">
-                  <h4>Explore</h4>
-                </div>
-              </div>
-              <div class="midRow modalRow">
-                <div data-to="#compare" id="nav-4" class="modalSqr navigate">
-                  <h4>Compare</h4>
-                </div>
-                <div data-to="#play" id="nav-5" class="modalSqr navigate">
-                  <h4>Play</h4>
-                </div>
-                <div data-to="#learn" id="nav-6" class="modalSqr navigate">
-                  <h4>Learn</h4>
-                </div>
-              </div>
-              <div class="midRow modalRow">
-                <div data-to="#data" id="nav-7" class="modalSqr navigate">
-                  <h4>The Data of History</h4>
-                </div>
-                <div data-to="#design" id="nav-8" class="modalSqr navigate">
-                  <h4>Imagining Alternate Futures</h4>
-                </div>
-                <div data-to="#interaction" id="nav-9" class="modalSqr navigate">
-                  <h4>Interaction, Updated</h4>
-                </div>
-              </div>
-              <div data-to="#credits" id="nav-10"
-              class="capRow modalRow capModalRow navigate">
-                <h3>Credits</h3>
-              </div>
+            <div data-to="#howitworks" id="nav-2" class="modalSqr navigate">
+              <h4>How It Works</h4>
             </div>
+            <div data-to="#explore" id="nav-3" class="modalSqr navigate">
+              <h4>Explore</h4>
+            </div>
+          </div>
+          <div class="midRow modalRow">
+            <div data-to="#compare" id="nav-4" class="modalSqr navigate">
+              <h4>Compare</h4>
+            </div>
+            <div data-to="#play" id="nav-5" class="modalSqr navigate">
+              <h4>Play</h4>
+            </div>
+            <div data-to="#learn" id="nav-6" class="modalSqr navigate">
+              <h4>Learn</h4>
+            </div>
+          </div>
+          <div class="midRow modalRow">
+            <div data-to="#data" id="nav-7" class="modalSqr navigate">
+              <h4>Data of History</h4>
+            </div>
+            <div data-to="#design" id="nav-8" class="modalSqr navigate">
+              <h4>Alternate Futures</h4>
+            </div>
+            <div data-to="#interaction" id="nav-9" class="modalSqr navigate">
+              <h4>Interaction, Updated</h4>
+            </div>
+          </div>
+          <div data-to="#credits" id="nav-10"
+          class="capRow modalRow capModalRow navigate">
+            <h4>Credits</h4>
           </div>
         </div>
       </div>
@@ -442,17 +431,20 @@
     <script src="js/newCode/gridAccessories.js"></script>
     <script src="js/navigator.js"></script>
         <script type="text/javascript">
+        $(".burgerNav").click(function(e){
+          $('#myModal').show();
+        });
+        $("#myModal").on('click',
+          function(e){
+            $("#myModal").hide();
+          });
         $(".navigate").click(function(e){
-          $(".modal-backdrop.in").hide();
-          $('#myModal').toggle();
+          $('#myModal').hide();
           navigate(e.currentTarget);
         })
-          function toggle(){
-            $(".modal-backdrop.in").hide();
-              $('#myModal').toggle();
-          }
-
-
+        function toggle(){
+            $('#myModal').show();
+        }
     </script>
 <script>
       var peabody=new EventSet();

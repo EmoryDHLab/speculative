@@ -24,10 +24,11 @@ function navigate(el){
 }
 
 function fillBurg(num){
+  console.log($("#burg-"+num));
   $(".sqr").removeClass("current");
   $(".capRow").removeClass("current");
   $(".modalSqr").removeClass("current");
   $(".modalCapRow").removeClass("current");
-  $("#burg-"+num).addClass("current");
   $("#nav-"+num).addClass("current");
+  $("#burg-"+num).addClass("current");
 }
