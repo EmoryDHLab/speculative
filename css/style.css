@@ -178,7 +178,7 @@ a:focus, a:hover {
     justify-content: center;
 }
 .narrative p, .explanation p, .credits p{
-	font-size: 1.5em;
+	font-size: 1.25em;
 	font-family: "PT Sans", sans-serif;
 }
 .explanation .col-md-4 {
@@ -295,7 +295,7 @@ h3{
 	font-weight: 400;
 	text-align: center;
 	margin: 20px 0px 0px 0px;
-	font-size: 3em !important;
+	font-size: 2.5em !important;
 }
 
 h3.subhead {
@@ -571,7 +571,7 @@ a:hover{
 }
 #currentBuildEvent{
 	display: inline-block;
-	flex:1
+	flex:1;
 }
 .info{
 	display: flex;
