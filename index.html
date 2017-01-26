@@ -440,7 +440,7 @@
       var exploreGrid=new Grid("mainExplore",.87,0,500),
           exploreList=new List("exploreList"),
           exploreKey=new EventKey(100,"exploreKey"),
-          explorePallete=new Pallete("explorePallete"),
+          explorePallete=new Pallete("explorePallete",false,false),
           exploreVisualizations=[exploreGrid,exploreList,exploreKey,explorePallete];
       var visualizations=compareVisualizations.concat(learnVisualizations)
           .concat(playVisualizations).concat(exploreVisualizations);
@@ -463,12 +463,12 @@
         sortAllByYear(dataSets);
         loadAllWithEventSet(visualizations,peabody);
         playPallete.initEmpty([
-          ['rgb(141, 43, 29)','Color Label'],
-          ['rgb(50, 91, 103)','Color Label'],
-          ['rgb(69, 136, 103)','Color Label'],
-          ['#9CB23E ','Color Label'],
-          ['#74436C','Color Label'],
-          ['#BF602E','Color Label']
+          ['rgb(141, 43, 29)','Enter Label'],
+          ['rgb(50, 91, 103)','Enter Label'],
+          ['rgb(69, 136, 103)','Enter Label'],
+          ['#9CB23E ','Enter Label'],
+          ['#74436C','Enter Label'],
+          ['#BF602E','Enter Label']
         ]);
         drawAll(visualizations);
         playPallete.draw();
@@ -594,7 +594,6 @@
         learnPallete.selectColor(e.currentTarget);
       });
       $("#show-hide").on("click",function(e){
-        console.log("clicky");
         learnGrid.showAnswer();
       });
       $("#play").on("mousedown",".palleteSquare:not(.disabled)",function(e){

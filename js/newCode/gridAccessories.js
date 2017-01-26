@@ -1,6 +1,7 @@
 
-var Pallete = function(target="pallete", isTemplate=false){
-  this.type="pallete"
+var Pallete = function(target="pallete", isTemplate=false, highlighted=true){
+  this.type="pallete";
+  this.isHighlighted=highlighted;
   this.colors=[];
   this.labels=[];
   this.isTemplate=isTemplate;
@@ -54,8 +55,9 @@ Pallete.prototype.draw = function () {
     }
 
     var tempDiv=document.createElement("div");
-    tempDiv.className=(i==0) ? "palleteSquare currentColor":"palleteSquare";
+    tempDiv.className=(i==0 && this.isHighlighted) ? "palleteSquare currentColor":"palleteSquare";
     tempDiv.className+=(this.colors[i]) ? "":" disabled";
+    tempDiv.className+=(this.isHighlighted) ? "":" noHigh";
     tempDiv.style.width="30px";
     tempDiv.style.height="30px";
     tempDiv.style.backgroundColor= (this.colors[i]) ? this.colors[i]:"#dfdfdf";
@@ -82,7 +84,7 @@ Pallete.prototype.selectColor = function(el){
   for(let ele of selected){
     ele.className="palleteSquare";
   }
-  el.className+=" currentColor";
+  el.className+=(this.isHighlighted) ? " currentColor":"";
 }
 Pallete.prototype.reload=function(evtSet){
   this.eventSet=null;

@@ -683,8 +683,11 @@ h4.drop{
 	cursor: pointer;
 	float:left;
 }
-.palleteSquare:not(.disabled):hover{
+.palleteSquare:not(.disabled):not(.noHigh):hover{
 	outline: 3px dashed #F7DE65;
+}
+.palleteSquare.noHigh:hover{
+	cursor: auto;
 }
 .palleteSquare.disabled:hover{
 	cursor:not-allowed;
