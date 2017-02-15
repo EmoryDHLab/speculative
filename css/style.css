@@ -71,6 +71,7 @@ html, body{
 	color:white;
 }
 .gridline.suggested:hover{
+	animation: none !important;
 	z-index: 10;
 	background: white;
 	color:rgb(219, 136, 42);
@@ -331,7 +332,7 @@ img#eventKeyIMG {
     width: 25%;
 }
 
-#history{
+#intro {
 	background-color: #8D2B1D; /*red*/
     margin-top: 0em;
     height: 90%;
@@ -386,14 +387,14 @@ img#eventKeyIMG {
     padding-bottom: 5%;
 }
 
-#credits{
+#credits .cell{
 	background-color: gray;
     margin: 0;
 }
 
 
 .highlight{
-	background-color: yellow;
+	background-color: rgb(247, 222, 101);
 	font-weight: 700;
 }
 
@@ -408,7 +409,7 @@ img#eventKeyIMG {
 }
 
 .highlightSquare{
-	stroke: yellow;
+	stroke: rgb(247, 222, 101);
     stroke-width: 5px;
 }
 
@@ -571,6 +572,8 @@ a:hover{
 }
 #currentBuildEvent{
 	display: inline-block;
+	min-width: 80%;
+	overflow-y: scroll;
 	flex:1;
 }
 .info{
@@ -737,7 +740,7 @@ h4.drop{
 	outline-style: solid;
 }
 #eventKeySqr td.highlight{
-	background-color: #232323;
+	background-color: rgb(247, 222, 101);
 	font-weight: bold;
 	color:white;
 }
@@ -883,7 +886,7 @@ textarea.editable{
 }
 
 .capModalRow{
-	background: white;
+  background: white;
   border:4px solid rgb(219, 136, 42);
   width:64vh;
 	height:5vh;
@@ -899,4 +902,72 @@ textarea.editable{
 	z-index: 1000;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#splash .gridline.suggested,
+#intro .gridline.suggested {
+	-moz-animation: barcolor 5s infinite; /* Firefox */
+	-webkit-animation: barcolor 5s infinite; /* Safari and Chrome */
+}
+.gridline-t.suggested span {
+	-moz-animation: arrowUp 5s infinite; /* Firefox */
+	-webkit-animation: arrowUp 5s infinite; /* Safari and Chrome */
+}
+.gridline-b.suggested span {
+	-moz-animation: arrowDown 5s infinite; /* Firefox */
+	-webkit-animation: arrowDown 5s infinite; /* Safari and Chrome */
+}
+.gridline-r.suggested span {
+	-moz-animation: arrowRight 5s infinite; /* Firefox */
+	-webkit-animation: arrowRight 5s infinite; /* Safari and Chrome */
+}
+.gridline-l.suggested span {
+	-moz-animation: arrowLeft 5s infinite; /* Firefox */
+	-webkit-animation: arrowLeft 5s infinite; /* Safari and Chrome */
+}
+/*Animation for bar color changes*/
+@-moz-keyframes barcolor { /* Firefox */
+	80%  {background: default; color: white;}
+  90%  {background:white; color:rgb(219, 136, 42);}
+}
+@-webkit-keyframes barcolor { /* Safari & Chrome */
+	80%  {background: rgb(219, 136, 42); color: white;}
+  90%  {background: white; color:rgb(219, 136, 42);}
+}
+
+/*Animations for arrow bounces*/
+@-moz-keyframes arrowDown{ /* Firefox */
+	80%  {top:50%;}
+  90%  {top: 100%;}
+}
+@-webkit-keyframes arrowDown { /* Safari & Chrome */
+		80%  {top:50%;}
+	  90%  {top:100%;}
+}
+
+@-moz-keyframes arrowRight{ /* Firefox */
+		80%  {left:50%;}
+	  90%  {left: 100%;}
+	}
+@-webkit-keyframes arrowRight { /* Safari & Chrome */
+	80%  {left:50%;}
+  90%  {left:100%;}
+}
+
+@-webkit-keyframes arrowLeft { /* Safari & Chrome */
+	80%  {left:50%;}
+	90%  {left:0;}
+}
+@-moz-keyframes arrowLeft { /* Safari & Chrome */
+	80%  {left:50%;}
+	90%  {left:0;}
+}
+
+@-webkit-keyframes arrowUp { /* Safari & Chrome */
+	80%  {top:50%;}
+	90%  {top:0;}
+}
+@-moz-keyframes arrowUp { /* Safari & Chrome */
+	80%  {top:50%;}
+	90%  {top:0;}
 }

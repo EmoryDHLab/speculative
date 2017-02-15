@@ -61,9 +61,13 @@ BuildCorrector.prototype.attempt=function(id,year,type,color){
           b= (this.currentA.evt2.getColors()[0]==tempP.color && this.currentA.evt.getColors()[0]==tempP.color2);
     }
   }
-  this.currentA.correct=(a||b) && this.currentA.evt.getDecade()==year && this.currentA.evt.eType==type;
-  this.correct();
-  return this.currentA.correct;
+  this.currentA.correct = (a||b) && this.currentA.evt.getDecade()==year && this.currentA.evt.eType==type;
+  if(this.correct()){
+    this.loadNext();
+    return true;
+  }else{
+    return false;
+  }
 };
 BuildCorrector.prototype.unattempt=function(id){
   this.currentA.attempted=false;
@@ -133,11 +137,13 @@ BuildCorrector.prototype.correct = function () {
   if (this.currentA.correct){
     $(".corIncor:not(#correct)").css("display","none");
     $("#correct").css('display',"block");
+    return true;
   }else if(!this.currentA.attempted){
     $(".corIncor:not(#na)").css("display","none");
     $("#na").css('display',"block");
   }else{
     $(".corIncor:not(#incorrect)").css("display","none");
     $("#incorrect").css('display',"block");
+    return false;
   }
 };

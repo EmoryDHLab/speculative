@@ -5,7 +5,7 @@ function navigate(el){
   var yScroll=$(content).offset().top;
   var xScroll=$(content).offset().left;
   console.log("Scroll offsets (x,y): "+xScroll+", "+yScroll);
-  if(content!="#splash" && content!="#credits"){
+  if(content!="#credits"){
     $('html,body').animate({
       scrollTop: yScroll, scrollLeft: xScroll},
       'slow');
@@ -15,11 +15,19 @@ function navigate(el){
       'slow');
   }
   var ids=[
-    "#splash","#intro","#howitworks","#explore",
-    "#compare","#play","#learn",
-    "#data","#design","#interaction",
+    "#splash",
+    "#intro","#howitworks","#explore",
+    "#design","#learn","#interaction",
+    "#play","#data","#compare",
     "#credits"
   ];
+  console.log(content);
+  if(content=="#creds" || content=="#aboutSite" || content=="#reading"){
+    content = "#credits";
+  }
+  if(content=="#splash1" || content=="#splash2"){
+    content = "#splash";
+  }
   fillBurg(ids.indexOf(content));
 }
 

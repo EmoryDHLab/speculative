@@ -101,8 +101,8 @@ Grid.prototype.addEvtRep=function(yr,tp){
       grp=this.two.makeGroup(r,t);
 
   r.linewidth=0;
+  r.stroke=this.styles.colors.hlght;            // set the highlight
   if(tempEvts.length>0 && this.build==0){       // if we are not in build mode and we have events to place
-    r.stroke=this.styles.colors.hlght;            // set the highlight
     grp.fill=tempEvts[0].getColors()[0];          // set the event fill to the color
     if (tempEvts.length>1){                       // if there should be a tri
       t.fill=tempEvts[1].getColors()[0];            // color it.
@@ -256,20 +256,23 @@ Grid.prototype.isEvtRep= function(id){
 Grid.prototype.hoverHandle = function(e,isIn){
   // if build mode, do shading on empties
   var evtR=this.isEvtRep(e.currentTarget.parentNode.id);
-  var isBuild=this.build!=0;
+  var isBuild=this.build==1;
   if(evtR===undefined){
     return;
   }
   if(evtR){// if its not empty
     var evt= this.evtDict.getVal(e.currentTarget.parentNode.id);
-    if(isBuild){// if its in build mode
-      if(evt.fill!=this.styles.colors.empty && evt.fill!=this.styles.colors.hvr){// and its colored
+    if(this.build == 1 ){// if its in build mode
+      if(evt.fill!=this.styles.colors.empty && evt.fill!=this.styles.colors.hvr){// and it's colored
         this.styles.highlight(evt,isIn);
       }else{//and its empty
+        this.styles.highlight(evt,false);
         this.styles.shade(evt,isIn);
       }
-    }else{// its not build mode
+    }else if(this.build == 0){// it's view mode
       this.styles.highlight(evt,isIn);
+    }else{
+      this.styles.shade(evt,isIn);
     }
   }else{// it is empty
     var evt = this.emptyDict.getVal(e.currentTarget.parentNode.id);
