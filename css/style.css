@@ -904,11 +904,11 @@ textarea.editable{
 	margin-right: auto;
 }
 
-#splash .gridline.suggested,
-#intro .gridline.suggested {
-	-moz-animation: barcolor 5s infinite; /* Firefox */
-	-webkit-animation: barcolor 5s infinite; /* Safari and Chrome */
+#title{
+	-moz-animation: fadein 2s 0s;
+	-webkit-animation: fadein 2s 0s;
 }
+
 .gridline-t.suggested span {
 	-moz-animation: arrowUp 5s infinite; /* Firefox */
 	-webkit-animation: arrowUp 5s infinite; /* Safari and Chrome */
@@ -925,14 +925,15 @@ textarea.editable{
 	-moz-animation: arrowLeft 5s infinite; /* Firefox */
 	-webkit-animation: arrowLeft 5s infinite; /* Safari and Chrome */
 }
+
 /*Animation for bar color changes*/
 @-moz-keyframes barcolor { /* Firefox */
-	80%  {background: default; color: white;}
-  90%  {background:white; color:rgb(219, 136, 42);}
+  from  {background: rgb(219, 136, 42); color: white;}
+  to  {background:white; color:rgb(219, 136, 42);}
 }
 @-webkit-keyframes barcolor { /* Safari & Chrome */
-	80%  {background: rgb(219, 136, 42); color: white;}
-  90%  {background: white; color:rgb(219, 136, 42);}
+  from  {background: rgb(219, 136, 42); color: white;}
+  to  {background: white; color:rgb(219, 136, 42);}
 }
 
 /*Animations for arrow bounces*/
@@ -970,4 +971,33 @@ textarea.editable{
 @-moz-keyframes arrowUp { /* Safari & Chrome */
 	80%  {top:50%;}
 	90%  {top:0;}
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to   { opacity: 1;}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
