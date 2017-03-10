@@ -60,8 +60,9 @@ html, body{
 }
 .gridline {
 	position: absolute;
-	background: rgb(219, 136, 42);
+	background-color: rgb(219, 136, 42);
 	color: rgb(219, 136, 42);
+	overflow: hidden;
 }
 .gridline:hover{
 	color:white;
@@ -69,11 +70,16 @@ html, body{
 }
 .gridline.suggested{
 	color:white;
+	background-color: rgb(219, 136, 42);
 }
+
+.current-bar{
+	z-index: 10;
+}
+
 .gridline.suggested:hover{
 	animation: none !important;
-	z-index: 10;
-	background: white;
+	background-color: white;
 	color:rgb(219, 136, 42);
 }
 .gridline-h {
@@ -84,7 +90,8 @@ html, body{
 	height: calc(100vh); }
 .gridline-t {
 	top: 0px;
-	left: 0px;}
+	left: 0px;
+}
 .gridline-l {
 	left: 0px;
 	top: 0px;}
@@ -95,7 +102,7 @@ html, body{
 .gridline-b {
 	bottom: 0px;
 	left: 0px;
-	}
+}
 .gridline span{
 	display:block;
 	position:relative;

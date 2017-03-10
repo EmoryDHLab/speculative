@@ -48,9 +48,11 @@ function animateNav(parent) {
   if (parent == "#credits") {
     parent = "#creds";
   }
-  console.log(parent+ " .suggested.gridline");
-  $(parent + ".suggested.gridline").animate({
-    color: "#111111",
-    backgroundColor: "#123456"
-  }, 1000);
+  $(".current-bar").removeAttr('style');
+  $(".current-bar").removeClass("current-bar");
+  $(parent + " .gridline.suggested").addClass("current-bar");
+  $(parent + " .gridline.suggested").animate({
+    color: "rgb(219, 136, 42)",
+    backgroundColor: "white",
+  }, 2000);
 }
