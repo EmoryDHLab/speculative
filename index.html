@@ -6,15 +6,16 @@
       <link rel="stylesheet" type="text/css" href="css/style.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/jquery.fullPage.css" />
 
+
+      <!-- jQuery-->
+      <script src="js/jquery-1.11.3.min.js"></script>
+      <script src="js/jquery.color.js"></script>
+
       <!-- <script src="../dist/js/animsition.min.js"></script> -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
 
-      <!-- jQuery-->
-      <script src="js/jquery-1.11.3.min.js"></script>
-      <script src="js/jquery.color.js"></script>
-      <!--<script src="js/fjord.js"></script>-->
       <script src="js/d3.min.js"></script>
       <script src="js/two.min.js"></script>
       <script src="js/newCode/helpers.js"></script>
@@ -103,6 +104,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <h3>Reimagining Elizabeth Palmer Peabody&#8217;s Historical Visualization Work</h3>
                     <p><center>Click the arrow below to begin.</center></p>
+                    <p><center id="browser-notice"></center></p>
                 </div>
             </div>
           </div>
@@ -400,6 +402,7 @@
         function toggle(){
             $('#myModal').show();
         }
+        recommendBrowser();
     </script>
 <script>
       var peabody=new EventSet();
