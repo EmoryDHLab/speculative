@@ -75,6 +75,7 @@ html, body{
 
 .current-bar{
 	z-index: 10;
+	box-shadow: 0px 0px 5px 2px rgb(219, 136, 42);
 }
 
 .gridline.suggested:hover{
@@ -103,6 +104,20 @@ html, body{
 	bottom: 0px;
 	left: 0px;
 }
+
+.gridline-l.current-bar {
+	outline-width: 1px;
+}
+.gridline-r.current-bar {
+	outline-width: 1px;
+}
+.gridline-b.current-bar {
+	border-top-width: 1px;
+}
+.gridline-t.current-bar {
+	border-bottom-width: 1px;
+}
+
 .gridline span{
 	display:block;
 	position:relative;
