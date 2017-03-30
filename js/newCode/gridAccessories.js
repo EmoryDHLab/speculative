@@ -102,7 +102,8 @@ Pallete.prototype.changeColor=function(el){
   represents the event being hovered over.
   size is given in px
 */
-var EventKey=function(size,target="eventKey",template=false){
+var EventKey=function(size,target="eventKey",template=false, evTypes=[]){
+  this.type = "EventKey";
   this.size=size;
   this.linewidth=size*.01;
   this.borderwidth=size*.04;
@@ -119,13 +120,53 @@ var EventKey=function(size,target="eventKey",template=false){
     "Deeds",
     "Deaths, of remarkable individuals"
   ];
+  if (evTypes.length > 0) {
+    this.eventTypes = evTypes;
+  }
   this.target=document.getElementById(target);
+}
+
+EventKey.prototype.reload = function(eventSet) {
+  var newTypes = eventSet.specialTypes;
+  if (newTypes.length == 0) {
+    this.eventTypes = [
+      "Battles, Sieges, Beginning of War",
+      "Conquests, Annexations, Unions",
+      "Losses and Disasters",
+      "Falls of States",
+      "Foundations of States and Revolutions",
+      "Treaties and Sundries",
+      "Births",
+      "Deeds",
+      "Deaths, of remarkable individuals"
+    ];
+  } else {
+    this.eventTypes = newTypes;
+  }
+  var ol = document.getElementById(this.target.id).getElementsByClassName("eventKeyTypes")[0];
+  ol.innerHTML = "";
+  var ct = 0;
+  for(let type of this.eventTypes){
+    var li=document.createElement("li");
+    if(this.isTemplate){
+      var inp= document.createElement("input");
+      inp.type="text";
+      inp.placeholder="Event Description";
+      inp.className="editable";
+      li.appendChild(inp);
+    }else{
+      li.innerHTML = type;
+    }
+    li.dataset.type=ct;
+    ol.appendChild(li);
+    ct++;
+  }
 }
 
 EventKey.prototype.draw=function(){
   //draw total square:
   var t=document.createElement("table");
-  t.id="eventKeySqr";
+  t.className="eventKeySqr";
   t.style.tableLayout="fixed";
   t.style.width=this.size-this.borderwidth+'px';
   t.style.height=this.size-this.borderwidth+'px';
@@ -137,18 +178,18 @@ EventKey.prototype.draw=function(){
       tr=document.createElement("tr");
     }
     var td=document.createElement("td");
-    td.innerHTML=i;
-    td.className="nineSquare";
-    td.style.borderWidth=this.linewidth+'px';
-    td.dataset.type=i-1;
+    td.innerHTML = i;
+    td.className = "nineSquare";
+    td.style.borderWidth = this.linewidth+'px';
+    td.dataset.type = i - 1;
     tr.appendChild(td);
-    if(i%3==0){
+    if (i%3 == 0) {
       t.appendChild(tr);
     }
   }
   this.target.appendChild(t);
   var ol=document.createElement("ol");
-  ol.id="eventKeyTypes";
+  ol.className="eventKeyTypes";
   var ct=0;
   for(let type of this.eventTypes){
     var li=document.createElement("li");
@@ -159,7 +200,7 @@ EventKey.prototype.draw=function(){
       inp.className="editable";
       li.appendChild(inp);
     }else{
-      li.innerHTML=type;
+      li.innerHTML = type;
     }
     li.dataset.type=ct;
     ol.appendChild(li);

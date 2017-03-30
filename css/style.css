@@ -749,46 +749,46 @@ h4.drop{
 /*
 	----------------------------EVENTKEY------------------------------------------
 */
-#eventKeyTypes{
+.eventKeyTypes{
 	display: inline-block;
 	font-size: .6em;
 	padding-left: 20px;
 	float: left;
 }
 
-#eventKeySqr{
+.eventKeySqr{
 	float:left;
 	outline-color: #FAAE3C;
 	outline-style: solid;
 }
-#eventKeySqr td.highlight{
+.eventKeySqr td.highlight{
 	background-color: rgb(247, 222, 101);
 	font-weight: bold;
 	color:white;
 }
-#eventKeySqr td{
+.eventKeySqr td{
 	border-color:#b3b3b3;
 	border-style: solid;
 	text-align: center;
 }
-#eventKeySqr td[data-type='0'],
-#eventKeySqr td[data-type='3'],
-#eventKeySqr td[data-type='6']{
+.eventKeySqr td[data-type='0'],
+.eventKeySqr td[data-type='3'],
+.eventKeySqr td[data-type='6']{
 	border-left-style:hidden;
 }
-#eventKeySqr td[data-type='2'],
-#eventKeySqr td[data-type='5'],
-#eventKeySqr td[data-type='8']{
+.eventKeySqr td[data-type='2'],
+.eventKeySqr td[data-type='5'],
+.eventKeySqr td[data-type='8']{
 	border-right-style: hidden;
 }
-#eventKeySqr td[data-type='0'],
-#eventKeySqr td[data-type='1'],
-#eventKeySqr td[data-type='2']{
+.eventKeySqr td[data-type='0'],
+.eventKeySqr td[data-type='1'],
+.eventKeySqr td[data-type='2']{
 	border-top-style:hidden;
 }
-#eventKeySqr td[data-type='6'],
-#eventKeySqr td[data-type='7'],
-#eventKeySqr td[data-type='8']{
+.eventKeySqr td[data-type='6'],
+.eventKeySqr td[data-type='7'],
+.eventKeySqr td[data-type='8']{
 	border-bottom-style:hidden;
 }
 .sidetitle + div{

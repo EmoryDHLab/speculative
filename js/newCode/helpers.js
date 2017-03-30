@@ -132,7 +132,7 @@ function highlight(el,objects){
   var tp=el.getAttribute("data-type"),
       yr=el.getAttribute("data-date");
   for(var i in objects){
-    if (objects[i].type!="pallete")
+    if (objects[i].type != "pallete")
       objects[i].highlight(yr,tp,el);
   }
 }
@@ -165,7 +165,7 @@ function mergeSortByYear(list){
   return l3
 }
 
-function reload(objects,evtSet){
+function reload(objects, evtSet){
   console.log(objects);
   for(var i in objects){
     try{

@@ -157,8 +157,12 @@
                       </h4>
                     </div>
                     <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                      <li><a data-index="1" data-parent="#compare">1. Table of the Sixteenth Century</a></li>
-                      <li><a data-index="2" data-parent="#compare">2. Table of the Nineteenth Century</a></li>
+                      <li><a data-index="0" data-parent="#explore">1. Table of the Sixteenth Century</a></li>
+                      <li><a data-index="1" data-parent="#explore">2. Table of the Seventeenth Century</a></li>
+                      <li><a data-index="2" data-parent="#explore">3. Table of the Eighteenth Century</a></li>
+                      <li><a data-index="3" data-parent="#explore">4. Table of the Nineteenth Century</a></li>
+                      <li><a data-index="4" data-parent="#explore">5. Table of the Women's History</a></li>
+                      <li><a data-index="5" data-parent="#explore">6. 100 Days before the 2016 Election</a></li>
                     </ul>
                   </div>
                   <ol id="exploreList" class="eList interactive spec-scroll"></ol>
@@ -202,8 +206,12 @@
                     </h4>
                   </div>
                   <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                    <li><a data-index="1" data-parent="#learn">1. Table of the Sixteenth Century</a></li>
-                    <li><a data-index="2" data-parent="#learn">2. Table of the Nineteenth Century</a></li>
+                    <li><a data-index="0" data-parent="#learn">1. Table of the Sixteenth Century</a></li>
+                    <li><a data-index="1" data-parent="#learn">1. Table of the Seventeenth Century</a></li>
+                    <li><a data-index="2" data-parent="#learn">1. Table of the Eighteenth Century</a></li>
+                    <li><a data-index="3" data-parent="#learn">2. Table of the Nineteenth Century</a></li>
+                    <li><a data-index="4" data-parent="#learn">5. Table of the Women's History</a></li>
+                    <li><a data-index="5" data-parent="#learn">6. 100 Days before the 2016 Election</a></li>
                   </ul>
                 </div>
                 <div id="buildList" class="spec-scroll">
@@ -317,8 +325,12 @@
                     </h4>
                   </div>
                   <ul class="dropdown-menu data-picker" aria-labelledby="dropdownMenu1">
-                    <li><a data-index="1" data-parent="#compare">1. Table of the Sixteenth Century</a></li>
-                    <li><a data-index="2" data-parent="#compare">2. Table of the Nineteenth Century</a></li>
+                    <li><a data-index="0" data-parent="#compare">1. Table of the Sixteenth Century</a></li>
+                    <li><a data-index="1" data-parent="#compare">2. Table of the Seventeenth Century</a></li>
+                    <li><a data-index="2" data-parent="#compare">3. Table of the Eighteenth Century</a></li>
+                    <li><a data-index="3" data-parent="#compare">4. Table of the Nineteenth Century</a></li>
+                    <li><a data-index="4" data-parent="#compare">5. Table of the Women's History</a></li>
+                    <li><a data-index="5" data-parent="#compare">6. 100 Days before the 2016 Election</a></li>
                   </ul>
                 </div>
                 <ol id="compEvtList" class="eList spec-scroll"></ol>
@@ -353,7 +365,7 @@
                   <a href="https://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>,
                   <a href="https://d3js.org/">D3.js</a>, and <a href="https://two.js.org/">two.js</a>. Our code is available on
                   <a href="https://github.com/GeorgiaTechDHLab/speculative">GitHub</a>. Please contact Lauren Klein, <a href="mailto:lauren.klein@lmc.gatech.edu">lauren.klein@lmc.gatech.edu</a>, with any additional questions or comments.</p>
-                  
+
                 <p><center>A project of the Georgia Tech <a href="http://dhlab.lmc.gatech.edu/">Digital Humanities Lab</a>.</center></p>
               </div>
             </div>
@@ -398,8 +410,27 @@
         recommendBrowser();
     </script>
 <script>
-      var peabody=new EventSet();
-      var test= new EventSet();
+      var peabody = new EventSet();
+      var soh16 = new EventSet();
+      var soh17 = new EventSet();
+      var soh18 = new EventSet();
+      var sohWomen = new EventSet([
+        "Birth Control/Pregnancy",
+        "Right to vote",
+        "Workforce",
+        "Women in law",
+        "Domestic Life",
+        "Education",
+        "Harassment",
+        "Military",
+        "General organizational discrimination"
+      ]);
+      var sohElection = new EventSet([
+        "Announcements",
+        "Controversy",
+        "Election projections",
+        "Debates"
+      ]);
 
       var compareGrid=new Grid("mainComp",.6,0,345),
           compEvtList=new List("compEvtList"),
@@ -411,7 +442,7 @@
           learnPallete=new Pallete("learnPallete"),
           learnCorrector=null,
           learnKey=new EventKey(100,"learnKey"),
-          learnVisualizations=[learnGrid,learnPallete];
+          learnVisualizations=[learnGrid,learnPallete, learnKey];
 
       var playGrid=new Grid("mainPlay",.87,2,500),
           playPallete=new Pallete("playPallete",true),
@@ -426,22 +457,37 @@
           exploreVisualizations=[exploreGrid,exploreList,exploreKey,explorePallete];
       var visualizations=compareVisualizations.concat(learnVisualizations)
           .concat(playVisualizations).concat(exploreVisualizations);
-      var dataSets=[peabody,test];
+      var dataSets=[peabody, soh16, soh17, soh18, sohWomen, sohElection];
       // start handles all loading for events.
       function start(){
-        console.log("Loading data 1/2");
-        peabody.loadFromCSV("peabodyData.csv", loadTest);
+        console.log("Loading data 1/" + dataSets.length);
+        peabody.loadFromCSV("SoH1500.csv", loadSoh16);
       }
-      function loadTest(){
-        console.log("Loading data 2/2");
-        test.loadFromCSV("SoH1800.csv",main);
+      function loadSoh16(){
+        console.log("Loading data 2/" + dataSets.length);
+        soh16.loadFromCSV("SoH1600.csv",loadSoh17);
+      }
+      function loadSoh17(){
+        console.log("Loading data 3/" + dataSets.length);
+        soh17.loadFromCSV("SoH1700.csv",loadSoh18);
+      }
+      function loadSoh18(){
+        console.log("Loading data 4/" + dataSets.length);
+        soh18.loadFromCSV("SoH1800.csv",loadSohWomen);
+      }
+      function loadSohWomen(){
+        console.log("Loading data 5/" + dataSets.length);
+        sohWomen.loadFromCSV("SoHWomen.csv",loadSohElection);
+      }
+      function loadSohElection(){
+        console.log("Loading data 6/" + dataSets.length);
+        sohElection.loadFromCSV("SoHElection.csv",main);
       }
       function main(){
         learnCorrector=new BuildCorrector(peabody);
         playCorrector =new BuildCorrector(peabody);
         learnVisualizations.push(learnCorrector);
         playVisualizations.push(playCorrector);
-        learnKey.draw()
         sortAllByYear(dataSets);
         loadAllWithEventSet(visualizations,peabody);
         playPallete.initEmpty([
@@ -509,44 +555,27 @@
       $(".data-picker").on("click","a",function(e){
         changeSet(e,e.currentTarget.dataset.parent)
       });
-      function changeSet(e, parent){
+      function changeSet(e, parent) {
         console.log(e);
-        if(e.currentTarget.dataset.index==1){
-          //if(parent=="#compare"){
-            reload(compareVisualizations,peabody);
-          //}else if (parent=="#learn") {
-            reload(learnVisualizations,peabody);
-            learnGrid.corrector=new BuildCorrector(peabody);
-            learnCorrector=learnGrid.corrector;
-            learnCorrector.update();
-            learnVisualizations[2]=learnCorrector;
-            playGrid.corrector=new BuildCorrector(peabody);
-            playCorrector=playGrid.corrector;
-            playCorrector.update();
-            playVisualizations[2]=playCorrector;
-          //}else if (parent=="#explore") {
-            reload(exploreVisualizations,peabody);
-          //}
-        }else if (e.currentTarget.dataset.index==2) {
-          //if(parent=="#compare"){
-            reload(compareVisualizations,test);
-        //}else if (parent=="#learn") {
-            reload(learnVisualizations,test);
-            learnGrid.corrector=new BuildCorrector(test);
-            learnCorrector=learnGrid.corrector;
-            learnCorrector.update();
-            learnVisualizations[2]=learnCorrector;
-            playGrid.corrector=new BuildCorrector(test);
-            playCorrector=playGrid.corrector;
-            playCorrector.update();
-            playVisualizations[2]=playCorrector;
-          //}else if (parent=="#explore") {
-            reload(exploreVisualizations,test);
-          //}
-        }else{
-          return
+        var ind = e.currentTarget.dataset.index;
+        if (ind < dataSets.length) {
+          var newSet = dataSets[ind];
+        } else {
+          return;
         }
+        reload(compareVisualizations,newSet);
+        reload(learnVisualizations,newSet);
+        learnGrid.corrector=new BuildCorrector(newSet);
+        learnCorrector=learnGrid.corrector;
+        learnCorrector.update();
+        learnVisualizations[2]=learnCorrector;
+        playGrid.corrector=new BuildCorrector(newSet);
+        playCorrector=playGrid.corrector;
+        playCorrector.update();
+        playVisualizations[2]=playCorrector;
+        reload(exploreVisualizations,newSet);
         $(".currentDataSet").html(e.currentTarget.innerHTML);
+
       }
       $("#mainLearn").on("mouseover","path",function(e){
         learnGrid.hoverHandle(e,true);
