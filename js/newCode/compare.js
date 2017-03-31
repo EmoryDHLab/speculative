@@ -13,7 +13,7 @@ List.prototype.draw = function() {
     }
     setDateAndType(li,yearTemp,evt.eType);
     if(!this.isCSV){
-      li.innerHTML=evt.year+". "+evt.desc;
+      li.innerHTML=evt.year + this.eventSet.offset + ". " + evt.desc;
     }else{
       li.innerHTML=evt.getActor()+", "+evt.getColors()[0]+", type"+evt.eType+"year"+evt.getDecade();
     }
@@ -88,6 +88,7 @@ Timeline.prototype.draw=function(){
   var xScale = d3.scale.linear()
                 .domain([0, 99])
                 .range([0,this.target.offsetWidth - margin.right]);
+  var self = this;
   var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient("bottom")
@@ -96,7 +97,7 @@ Timeline.prototype.draw=function(){
                   if((d % 10) != 0){
                       return ("");
                   }else{
-                      return (d + 1500); //the 1600 would be user input start century
+                      return (d + self.century); //the 1600 would be user input start century
                   }});
 
   var xGuide = canvas.append('g')
@@ -172,9 +173,11 @@ Timeline.prototype.draw=function(){
 }
 Timeline.prototype.addEventSet=function(eventSet){
   this.eventSet=eventSet;
+  this.century = Math.floor(this.eventSet.events[0].year/100) * 100;
 }
 Timeline.prototype.reload=function(eventSet){
   this.eventSet=eventSet;
+  this.century = Math.floor(this.eventSet.events[0].year/100) * 100;
   this.draw();
 }
 Timeline.prototype.highlight=function(yr,tp, el){

@@ -695,6 +695,7 @@ h4.drop{
 	height:300px;
 	overflow-y: auto;
 	background-color: #efefef;
+	list-style: none;
 }
 /*
 ----------------------------Color Pallete---------------------------------------

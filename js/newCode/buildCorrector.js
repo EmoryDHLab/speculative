@@ -128,7 +128,7 @@ BuildCorrector.prototype.isAllowed=function(id,color){
 }
 
 BuildCorrector.prototype.update=function(){
-  $("#currentYr").html(this.currentA.evt.year+".");
+  $("#currentYr").html(this.currentA.evt.year + this.eventSet.offset +".");
   $("#currentBuildEvent").html(this.currentA.evt.desc);
   $("#eventCounter").html(this.currentA.i+1+"/"+this.answers.length);
   this.correct();
