@@ -79,7 +79,6 @@ var Timeline=function(target="timeline"){
 
 Timeline.prototype.draw=function(){
   var margin= {top:60, bottom:20, right:25, left:15};
-  console.log(this.target);
   var canvas = d3.select("#"+this.target.id).append('svg')
             .attr("width",this.target.offsetWidth)
             .attr("height", 125); //current width of the timelineContainer div

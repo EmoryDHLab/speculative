@@ -166,7 +166,6 @@ function mergeSortByYear(list){
 }
 
 function reload(objects, evtSet){
-  console.log(objects);
   for(var i in objects){
     try{
       if(objects[i].type=="timeline"){
@@ -174,7 +173,6 @@ function reload(objects, evtSet){
       }
       objects[i].reload(evtSet);
     }catch(e){
-      console.log(e);
       console.log("skipping "+objects[i].type);
     }
   }
@@ -193,29 +191,24 @@ function loadAllWithEventSet(objects,evtSet){
     try{
       o.addEventSet(evtSet);
     }catch(e){
-      console.log(e);
       console.log("skipping "+o.type);
     }
   }
-  console.log("loaded");
 }
 
 function drawAll(objects,two){
   for(let o of objects){
     o.draw(two);
   }
-  console.log("loaded again");
 }
 function sortAllByYear(objects){
   for(let o of objects){
-    console.log(o);
     o.sortByYear();
   }
 }
 
 function updateBurgerNav(x,y,dx,dy){
   var newXY=[x+dx,y+dy];
-  console.log(newXY);
   var burgNavIds=[
     ["#burg-0","#burg-0","#burg-0"],    //0
     ["#burg-1","#burg-2","#burg-3"],    //1
@@ -223,7 +216,6 @@ function updateBurgerNav(x,y,dx,dy){
     ["#burg-7","#burg-8","#burg-9"],    //3
     ["#burg-10","#burg-10","#burg-10"], //4
   ];
-  console.log(burgNavIds[y][x]);
   $(burgNavIds[y][x]).removeClass("current");
   $(burgNavIds[newXY[1]][newXY[0]]).addClass("current");
   return newXY;

@@ -38,8 +38,6 @@ BuildCorrector.prototype.getPlaced = function (id) {
   return null;
 };
 BuildCorrector.prototype.attempt=function(id,year,type,color){
-  console.log(id,year,type,color);
-  console.log(this.currentA.evt.getDecade(),this.currentA.evt.eType,this.currentA.evt.getColors()[0]);
   this.currentA.attempted=true;
   var tempP=this.getPlaced(id);
   if(tempP===null){

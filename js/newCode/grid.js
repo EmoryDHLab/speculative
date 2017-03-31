@@ -305,7 +305,6 @@ Grid.prototype.doPointer=function(){
 }
 Grid.prototype.noPointer=function(){
   for(let k of this.evtDict.Keys){
-    console.log(k);
     $("#"+k).css("cursor","default");
   }
   for(let k of this.emptyDict.Keys){
@@ -320,7 +319,7 @@ Grid.prototype.noPointer=function(){
 Grid.prototype.attemptPlace=function(id){
   var clr=this.pallete.currentColor;
   if(this.corrector.isAllowed(id)){
-    console.log(this.place(id,clr));
+    this.place(id,clr);
   }
 }
 Grid.prototype.place=function(id,color){
@@ -355,7 +354,6 @@ Grid.prototype.place=function(id,color){
 Grid.prototype.highlight=function(yr,tp){
   try{
     var el=document.getElementById(this.target.id).querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
-    console.log(el.id);
   }catch(e){
     console.log(e);
   }
@@ -380,17 +378,12 @@ Grid.prototype.unhighlight=function(yr,tp){
 }
 
 Grid.prototype.showAnswer=function(){
-  console.log("heyo");
   this.corrector.unattemptCurrent();
   var e1=this.corrector.currentA.evt,
       e2=this.corrector.currentA.evt2;
   for(i in this.evtDict.Values){
-    console.log(i);
     var evt = this.evtDict.Values[i];
-    console.log(evt.classList[0].colors.includes(e1.getColors()[0]),evt.classList[0].year);
-    console.log(e1);
     if (evt.classList[0].colors.includes(e1.getColors()[0]) && evt.classList[0].year==e1.getDecade() && evt.classList[0].eType==e1.eType){
-      console.log("GOTE<");
       this.place(this.evtDict.Keys[i],e1.getColors()[0]);
       break;
     }

@@ -161,7 +161,7 @@
                       <li><a data-index="1" data-parent="#explore">2. Table of the Seventeenth Century</a></li>
                       <li><a data-index="2" data-parent="#explore">3. Table of the Eighteenth Century</a></li>
                       <li><a data-index="3" data-parent="#explore">4. Table of the Nineteenth Century</a></li>
-                      <li><a data-index="4" data-parent="#explore">5. Table of the Women's History</a></li>
+                      <li><a data-index="4" data-parent="#explore">5. Table of Women's History</a></li>
                       <li><a data-index="5" data-parent="#explore">6. 100 Days before the 2016 Election</a></li>
                     </ul>
                   </div>
@@ -210,7 +210,7 @@
                     <li><a data-index="1" data-parent="#learn">1. Table of the Seventeenth Century</a></li>
                     <li><a data-index="2" data-parent="#learn">1. Table of the Eighteenth Century</a></li>
                     <li><a data-index="3" data-parent="#learn">2. Table of the Nineteenth Century</a></li>
-                    <li><a data-index="4" data-parent="#learn">5. Table of the Women's History</a></li>
+                    <li><a data-index="4" data-parent="#learn">5. Table of Women's History</a></li>
                     <li><a data-index="5" data-parent="#learn">6. 100 Days before the 2016 Election</a></li>
                   </ul>
                 </div>
@@ -329,7 +329,7 @@
                     <li><a data-index="1" data-parent="#compare">2. Table of the Seventeenth Century</a></li>
                     <li><a data-index="2" data-parent="#compare">3. Table of the Eighteenth Century</a></li>
                     <li><a data-index="3" data-parent="#compare">4. Table of the Nineteenth Century</a></li>
-                    <li><a data-index="4" data-parent="#compare">5. Table of the Women's History</a></li>
+                    <li><a data-index="4" data-parent="#compare">5. Table of Women's History</a></li>
                     <li><a data-index="5" data-parent="#compare">6. 100 Days before the 2016 Election</a></li>
                   </ul>
                 </div>
@@ -614,7 +614,6 @@
         playPallete.changeColor(e.currentTarget);
       });
       $("#play").on("dblclick",".palleteSquare",function(e){
-        console.log(e.currentTarget.children);
         e.currentTarget.children[0].disabled=false;
         $(e.currentTarget.children[0]).trigger("click");
       });
@@ -654,10 +653,8 @@
       }
       imageTitle="img/howitworks/HIW";
       current=0;
-      console.log(imageTitle+current+".png");
       $(".clickThru").css("background-image","url('"+imageTitle+current+".png')");
       $(".clickThru").on("click",function(e){
-        console.log("next");
         current++;
         if(current>8){
           current=0

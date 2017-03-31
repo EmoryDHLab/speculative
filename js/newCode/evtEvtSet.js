@@ -64,7 +64,6 @@ var EventSet= function(specTypes = [], offset = 0){
 }
 
 EventSet.prototype.createEvt=function(evtData){
-    console.log(parseInt(evtData.year) - this.offset);
     var year=parseInt(evtData.year) - this.offset;
     var eType=parseInt(evtData.eventType);
     if(evtData.country!=null){
@@ -79,7 +78,7 @@ EventSet.prototype.createEvt=function(evtData){
       var desc = evtData.description;
       if(!this.allActors.includes(evtData.actor)){
         var clr=this.defaultColors[this.allActors.length];
-        console.log("NEW country ADDED!",evtData.actor,clr);
+        console.log("NEW actor ADDED!",evtData.actor,clr);
         this.allActors.push(evtData.actor);
         this.allColors.push(clr);
       }else{
