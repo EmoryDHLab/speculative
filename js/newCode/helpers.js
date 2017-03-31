@@ -162,7 +162,7 @@ function mergeSortByYear(list){
       l3.push((l1[0].year<=l2[0].year)? l1.shift():l2.shift());
     }
   }
-  return l3
+  return l3;
 }
 
 function reload(objects, evtSet){
@@ -208,6 +208,7 @@ function drawAll(objects,two){
 }
 function sortAllByYear(objects){
   for(let o of objects){
+    console.log(o);
     o.sortByYear();
   }
 }

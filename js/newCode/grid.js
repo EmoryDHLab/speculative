@@ -79,7 +79,7 @@ Grid.prototype.setEventSet=function(evtSet){
 Grid.prototype.setShader=function(newFunc){
   this.styles.shade=newFunc;
 }
-Grid.prototype.setHiglighter=function(newFunc){
+Grid.prototype.setHighlighter=function(newFunc){
   this.styles.highlight=newFunc;
 }
 Grid.prototype.addEvtRepTri=function(x,y){
@@ -353,9 +353,9 @@ Grid.prototype.place=function(id,color){
 }
 
 Grid.prototype.highlight=function(yr,tp){
-  console.log(this.id);
   try{
-    var el=this.target.querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+    var el=document.getElementById(this.target.id).querySelectorAll('[data-date="'+yr+'"][data-type="'+tp+'"]')[0];
+    console.log(el.id);
   }catch(e){
     console.log(e);
   }

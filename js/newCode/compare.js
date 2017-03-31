@@ -7,7 +7,11 @@ var List= function(target="evtList", csv=false){
 List.prototype.draw = function() {
   for(let evt of this.eventSet.events){
     li=document.createElement("LI");
-    setDateAndType(li,evt.year%100,evt.eType);
+    var yearTemp = evt.year%100;
+    if (yearTemp == 0 && evt.year!=0) {
+      yearTemp = 100;
+    }
+    setDateAndType(li,yearTemp,evt.eType);
     if(!this.isCSV){
       li.innerHTML=evt.year+". "+evt.desc;
     }else{

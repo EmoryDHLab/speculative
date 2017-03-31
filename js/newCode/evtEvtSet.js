@@ -59,8 +59,8 @@ var EventSet= function(specTypes = []){
 }
 
 EventSet.prototype.createEvt=function(evtData){
-    var year=evtData.year,
-        eType=evtData.eventType;
+    var year=parseInt(evtData.year),
+        eType=parseInt(evtData.eventType);
     if(evtData.country!=null){
       var desc=evtData.text;
       var players=[[evtData.country,evtData.color]];
@@ -102,9 +102,9 @@ EventSet.prototype.loadFromCSV=function(csvFile,callback){
   Searches EventSet for an event of the given year (by decade) and type. returns
   the Evt or null if not found
 */
-EventSet.prototype.find=function (yr,tp, exclude=[]){
+EventSet.prototype.find=function (yr, tp, exclude=[]){
   return this.events.find(function(evt){
-    return evt.year%100==yr && evt.eType==tp && !exclude.includes(evt);
+    return ((evt.year%100==yr) || ((evt.year % 100 == 0) && (yr == 100)))  && evt.eType==tp && !exclude.includes(evt);
   });
 }
 
