@@ -82,3 +82,10 @@ function recommendBrowser(){
       "Your browser may be incompatible.");
   }
 }
+
+function checkHash(hash){
+	if (hash != "") {
+		var el = document.querySelector(hash); 
+		navigate(el);
+	}
+}
