@@ -33,6 +33,7 @@ function navigate(el){
   }
   animateNav(parentAnimId);
   fillBurg(ids.indexOf(content));
+  window.location.hash = content;
 }
 
 function fillBurg(num){
