@@ -1,12 +1,15 @@
 function navigate(el){
   console.log(el);
-  var content = el.dataset.to;
-  var parentAnimId = content;
-  console.log(content);
-  var yScroll = $(content).offset().top;
-  var xScroll = $(content).offset().left;
+  navigateById(el.dataset.to);
+}
+
+function navigateById(id) {
+  var parentAnimId = id;
+  console.log(id);
+  var yScroll = $(id).offset().top;
+  var xScroll = $(id).offset().left;
   console.log("Scroll offsets (x,y): "+xScroll+", "+yScroll);
-  if (content != "#credits") {
+  if (id != "#credits") {
     $('html,body').animate(
       { scrollTop: yScroll, scrollLeft: xScroll }
       , 'slow'
@@ -17,23 +20,23 @@ function navigate(el){
       ,'slow'
     );
   }
-  var ids=[
+  var ids = [
     "#splash",
     "#intro","#howitworks","#explore",
     "#design","#learn","#interaction",
     "#play","#data","#compare",
     "#credits"
   ];
-  console.log(content);
-  if(content=="#creds" || content=="#aboutSite" || content=="#reading"){
-    content = "#credits";
+  console.log(id);
+  if(id=="#creds" || id=="#aboutSite" || id=="#reading"){
+    id = "#credits";
   }
-  if(content=="#splash1" || content=="#splash2"){
-    content = "#splash";
+  if(id=="#splash1" || id=="#splash2"){
+    id = "#splash";
   }
   animateNav(parentAnimId);
-  fillBurg(ids.indexOf(content));
-  window.location.hash = content;
+  fillBurg(ids.indexOf(id));
+  window.location.hash = id;
 }
 
 function fillBurg(num){
@@ -85,7 +88,7 @@ function recommendBrowser(){
 
 function checkHash(hash){
 	if (hash != "") {
-		var el = document.querySelector(hash); 
+		var el = document.querySelector(hash);
 		navigate(el);
 	}
 }
