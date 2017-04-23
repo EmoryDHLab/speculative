@@ -688,7 +688,9 @@
           ['#reading','#data','#interaction'],//compare
         ['#aboutSite','#play'],['#creds','#reading','#data'],['#aboutSite','#compare']
       ];
-      setTimeout(function() {window.scrollTo(0, 0);},1)
+      if(window.location.hash == ""){
+        setTimeout(function() {window.scrollTo(0, 0);},1);
+      }
       $(".navrow>.cell").css("height", h+"px");
       var cells=$(".navrow>.cell");
       for( var i=0;i<15;i++){
